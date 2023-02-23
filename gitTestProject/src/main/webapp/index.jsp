@@ -11,5 +11,6 @@
 	<hr>
 	<a href="/test.do">서블릿테스트</a>
 	<h1>오늘이 금요일이었으면</h1>
+	<h1>선pull 후push!!!!!</h1>
 </body>
 </html>
