@@ -1,4 +1,4 @@
-package kr.or.iei.api.controller;
+package kr.or.iei.frip.controller;
 
 import java.io.IOException;
 
@@ -10,16 +10,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class PayServlet
+ * Servlet implementation class DetailPageFrmServlet
  */
-@WebServlet(name = "Pay", urlPatterns = { "/pay.do" })
-public class PayServlet extends HttpServlet {
+@WebServlet(name = "DetailPageFrm", urlPatterns = { "/detailPageFrm.do" })
+public class DetailPageFrmServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public PayServlet() {
+    public DetailPageFrmServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,9 +31,9 @@ public class PayServlet extends HttpServlet {
 		//1. 인코딩
 		request.setCharacterEncoding("utf-8");
 		//2. 값추출
-		//3. 비즈니스 로직
+		//3. 비즈니스로직
 		//4. 결과처리
-		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/api/pay.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/frip/detailPageFrm.jsp");
 		view.forward(request, response);
 		
 	}
