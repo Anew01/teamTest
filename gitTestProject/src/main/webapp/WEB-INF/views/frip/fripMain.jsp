@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>심민섭</title>
+<title>Insert title here</title>
 </head>
 <body>
-	<h1>심민섭</h1>
+
 </body>
 </html>
