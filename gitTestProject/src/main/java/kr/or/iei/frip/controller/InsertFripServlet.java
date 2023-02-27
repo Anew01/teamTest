@@ -16,6 +16,7 @@ import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
+import kr.or.iei.frip.service.FripService;
 import kr.or.iei.frip.vo.Frip;
 
 /**
@@ -42,6 +43,7 @@ public class InsertFripServlet extends HttpServlet {
 		String root = getServletContext().getRealPath("/");
 		String saveDirectory = root + "/upload/photo";
 		int maxSize = 10*1024*1024;
+		int num = 0;
 		
 		File attachesDir = new File(saveDirectory);
 		DiskFileItemFactory fileItemFactory = new DiskFileItemFactory();
@@ -64,6 +66,14 @@ public class InsertFripServlet extends HttpServlet {
 						String separator = File.separator;
 						int index = item.getName().lastIndexOf(separator);
 						String fileName = item.getName().substring(index + 1);
+						File file = new File(saveDirectory+"/"+fileName);
+						while(file.exists()) {
+							int indexDot = item.getName().indexOf(".");
+							String fName = item.getName().substring(0,indexDot) +"("+num+")";
+							fileName = fName + item.getName().substring(indexDot);
+							num++;
+							file = new File(saveDirectory + "/" + fileName);
+						}
 						File uploadFile = new File(saveDirectory + separator + fileName);
 						filepath.add(fileName);
 						try {
@@ -75,6 +85,24 @@ public class InsertFripServlet extends HttpServlet {
 							e.printStackTrace();
 						}
 					}
+				} else {
+					switch(item.getFieldName()){
+					case "fripTitle" :
+						f.setFripTitle(item.getString());
+						break;
+					case "fripAddr" :
+						f.setFripAddr(item.getString());
+						break;
+					case "fripLevel" :
+						f.setFripLevel(item.getString());
+						break;
+ 					case "fripPrice" :
+						f.setFripPrice(Integer.parseInt(item.getString()));
+						break;
+					case "editordata" :
+						f.setFripContent(item.getString());
+						break;
+					}
 				}
 			}
 		} catch (FileUploadException e) {
@@ -83,6 +111,8 @@ public class InsertFripServlet extends HttpServlet {
 		}
 		
 		f.setFilePath(filepath);
+		FripService service = new FripService();
+		int result = service.insertFrip(f);
 	}
 
 	/**
