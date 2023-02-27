@@ -1,5 +1,7 @@
 package kr.or.iei.frip.vo;
 
+import java.util.ArrayList;
+
 public class Frip {
 	private int fripNo;
 	private String fripWriter;
@@ -12,13 +14,15 @@ public class Frip {
 	private int fripIncome;
 	private String fripStatus;
 	private String writeDate;
-	
+	private ArrayList<String> filePath;
 	
 	public Frip() {
 		super();
 	}
+	
 	public Frip(int fripNo, String fripWriter, String fripAuth, String fripTitle, String fripContent, String fripAddr,
-			String fripLevel, int fripPrice, int fripIncome, String fripStatus, String writeDate) {
+			String fripLevel, int fripPrice, int fripIncome, String fripStatus, String writeDate,
+			ArrayList<String> filePath) {
 		super();
 		this.fripNo = fripNo;
 		this.fripWriter = fripWriter;
@@ -31,8 +35,9 @@ public class Frip {
 		this.fripIncome = fripIncome;
 		this.fripStatus = fripStatus;
 		this.writeDate = writeDate;
+		this.filePath = filePath;
 	}
-	
+
 	public int getFripNo() {
 		return fripNo;
 	}
@@ -98,5 +103,13 @@ public class Frip {
 	}
 	public void setWriteDate(String writeDate) {
 		this.writeDate = writeDate;
+	}
+
+	public ArrayList<String> getFilePath() {
+		return filePath;
+	}
+
+	public void setFilePath(ArrayList<String> filePath) {
+		this.filePath = filePath;
 	}
 }

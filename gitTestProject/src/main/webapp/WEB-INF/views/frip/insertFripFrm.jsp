@@ -13,7 +13,7 @@
 <body>
 	<div class="page-content">
 		<div class="page-title">스프립 등록</div>
-		<form action="InsertFrip.do" method="post" enctype="multipart/form-data">
+		<form action="insertFrip.do" method="post" enctype="multipart/form-data">
 			<div>
 				<label for="fripTitle">스프립 제목</label>
 				<input type="text" name="fripTitle" id="fripTitle">
@@ -45,6 +45,7 @@
 				<label for="fripContent">스프립 내용</label>
 				<textarea id="summernote" name="editordata"></textarea>
 			</div>
+			<button type="submit">등록하기</button>
 		</form>
 	</div>
 	<script>
