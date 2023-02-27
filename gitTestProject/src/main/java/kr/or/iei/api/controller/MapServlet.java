@@ -33,12 +33,12 @@ public class MapServlet extends HttpServlet {
 		//2. 값추출
 		//3. 비즈니스로직
 		//4. 결과처리
-		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/etc/map.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/api/map.jsp");
 		view.forward(request, response);
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServleitResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
