@@ -16,9 +16,9 @@
 
       <div class="menu">
         <ul class="main-menu">
-            <li><a href="#">Home</a></li>
-            <li><a href=" #">JAVA</a></li>
-            <li><a href="">Oracle</a></li>
+            <li><a href="#">프로필 관리</a></li>
+            <li><a href=" #">전체회원관리</a></li>
+            <li><a href="">프립/피드관리</a></li>
             <li>
                 <a href="#">FrontEnd</a>
                 <ul class="sub-menu">
