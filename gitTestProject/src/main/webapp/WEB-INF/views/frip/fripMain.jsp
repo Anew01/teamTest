@@ -7,7 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>디기디기딕 갱갱갱!</h1>
-	<h2>머지가머지?</h2>
+	<div class="page-content">
+		<div class="content-format">
+			<div><a href="/insertFripFrm.do"></a></div>
+		</div>
+	</div>
 </body>
 </html>
