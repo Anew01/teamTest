@@ -1,52 +1,118 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
     <!doctype html>
-    <html lang="en">
+    <html lang="ko">
 
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         
-         <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
-    	 <link rel="stylesheet" href="/css/adminPage/accrodionmenu.css">
-    	 
-        <title>Bootstrap Example</title>
+         <link rel="stylesheet" href="css/adminPage/sidebar.css">
+          
+         <title>AdminPage</title>
+	    <!-- 폰트 어썸 -->
+	    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+	        integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+	        crossorigin="anonymous" referrerpolicy="no-referrer" />
+	    <!-- jquery -->
+	    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>
+	    <!-- 구글 폰트 -->
+	    <link rel="preconnect" href="https://fonts.googleapis.com">
+	    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Nanum+Gothic&display=swap" rel="stylesheet">
     </head>
 
     <body>
 
-      <div class="menu">
-        <ul class="main-menu">
-            <li><a href="#">Home</a></li>
-            <li><a href=" #">JAVA</a></li>
-            <li><a href="">Oracle</a></li>
-            <li>
-                <a href="#">FrontEnd</a>
-                <ul class="sub-menu">
-                    <li><a href="#">HTML5</a></li>
-                    <li><a href="#">CSS3</a></li>
-                    <li><a href="#">JavaScript</a></li>
-                    <li>
-                        <a href="#">jQuery</a>
-                        <ul class="sub-menu">
-                            <li><a href="#">객체탐색</a></li>
-                            <li><a href="#">객체조작</a></li>
-                            <li><a href="#">이벤트</a></li>
-                            <li><a href="#">효과</a></li>
-                        </ul>
-                    </li>
+       <div class="wrapper">
+        <div class="header">
+            <div class="header-menu">
+                <div class="title"><span>Sprip</span> Admin</div>
+                <div class="sidebar-btn">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <ul>
+                    <li><a href="#"><i class="fa-solid fa-user"></i></a></li>
+                    <li><a href="#"><i class="fa-solid fa-right-from-bracket"></i></a></li>
                 </ul>
-            </li>
-            <li><a href="#">Server</a></li>
-            <li>
-                <a href="#">Framework</a>
-                <ul class="sub-menu">
-                    <li><a href="#">Mybatis</a></li>
-                    <li><a href="#">Spring</a></li>
-                </ul>
-            </li>
-        </ul>
+            </div>
+        </div>
+        <div class="sidebar">
+            <div class="sidebar-menu">
+                <center class="profile">
+                    <img src="/upload/admin/user.png" alt="">
+                    <p>관리자 1</p>
+                </center>
+                <li class="item">
+                    <a href="#" class="menu-btn">
+                        <i class="fa-solid fa-user"></i><span>프로필 관리</span>
+                    </a>
+                </li>
+                <li class="item" id="profile">
+                    <a href="#profile" class="menu-btn">
+                        <i class="fa-solid fa-users"></i><span>전체회원 관리 <i
+                                class="fas fa-chevron-down drop-down"></i></span>
+                    </a>
+                    <div class="sub-menu">
+                        <a href="#"><i class="fas fa-image"></i><span>프립/피드 관리</span></a>
+                        <a href="#"><i class="fas fa-address-card"></i><span>Info</span></a>
+                    </div>
+                </li>
+                <li class="item" id="messages">
+                    <a href="#messages" class="menu-btn">
+                        <i class="fa-brands fa-flipboard"></i><span>프립/피드 관리 <i
+                                class="fas fa-chevron-down drop-down"></i></span>
+                    </a>
+                    <div class="sub-menu">
+                        <a href="#"><i class="fas fa-envelope"></i><span>New</span></a>
+                        <a href="#"><i class="fas fa-envelope-square"></i><span>Sent</span></a>
+                        <a href="#"><i class="fas fa-exclamation-circle"></i><span>Spam</span></a>
+                    </div>
+                </li>
+                <li class="item" id="settings">
+                    <a href="#settings" class="menu-btn">
+                        <i class="fa-solid fa-bell"></i><span>공지사항 관리 <i
+                                class="fas fa-chevron-down drop-down"></i></span>
+                    </a>
+                    <div class="sub-menu">
+                        <a href="#"><i class="fas fa-lock"></i><span>Password</span></a>
+                        <a href="#"><i class="fas fa-language"></i><span>Language</span></a>
+                    </div>
+                </li>
+                <li class="item">
+                    <a href="#" class="menu-btn">
+                        <i class="fa-solid fa-question"></i><span>문의 관리</span>
+                    </a>
+                </li>
+                <li class="item">
+                    <a href="#" class="menu-btn">
+                        <i class="fa-solid fa-tags"></i><span>쿠폰 관리</span>
+                    </a>
+                </li>
+            </div>
+        </div>
+        <div class="main-container">
+            <div class="card">
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                    industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type
+                    and scrambled it to make a type specimen book. It has survived not only five centuries, but also the
+                    leap into electronic typesetting, remaining essentially unchanged.</p>
+            </div>
+            <div class="card">
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                    industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type
+                    and scrambled it to make a type specimen book. It has survived not only five centuries, but also the
+                    leap into electronic typesetting, remaining essentially unchanged.</p>
+            </div>
+            <div class="card">
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                    industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type
+                    and scrambled it to make a type specimen book. It has survived not only five centuries, but also the
+                    leap into electronic typesetting, remaining essentially unchanged.</p>
+            </div>
+        </div>
     </div>
-    <script src="/js/adminPage/accrodionmenu.js"></script>
+    <!-- sidebar.js -->
+    <script src="/js/adminPage/sidebar.js"></script>
     </body>
 
     </html>
