@@ -7,10 +7,12 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<%@include file="/WEB-INF/views/common/header.jsp" %>
 	<div class="page-content">
 		<div class="content-format">
 			<div><a href="/insertFripFrm.do"></a></div>
 		</div>
 	</div>
+	<%@include file="/WEB-INF/views/common/footer.jsp" %>
 </body>
 </html>

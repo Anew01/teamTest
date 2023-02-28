@@ -15,6 +15,7 @@
 <link rel="stylesheet" href="/css/summernote/summernote-lite.css">
 </head>
 <body>
+	<%@include file="/WEB-INF/views/common/header.jsp" %>
 	<div class="page-content">
 		<div class="page-title">스프립 등록</div>
 		<form action="insertFrip.do" method="post" enctype="multipart/form-data">
@@ -67,6 +68,7 @@
 			</div>
 			<button type="submit">등록하기</button>
 		</form>
+		<%@include file="/WEB-INF/views/common/footer.jsp" %>
 	</div>
 	<script>
 		function uploadFiles(fs){
