@@ -14,7 +14,7 @@
     <!--bootstrap-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <!--기본css-->
-    <link rel="stylesheet" href="/mokupCss/mockup.css">
+    <link rel="stylesheet" href="/css/mokupCss/mockup.css">
     
     <header>
     <div class="header">
@@ -49,7 +49,7 @@
                     <li><a href="#"><img src="/categoryImg/뷰티.png" ><div class="img-text"><span>뷰티</span></div></a></li>
                     <li><a href="#"><img src="/categoryImg/모임.png" ><div class="img-text"><span>모임</span></div></a></li>
                     <li><a href="#"><img src="/categoryImg/국내여행.png" ><div class="img-text"><span>국내여행</span></div></a></li>
-                    <li><a href="#"><img src="/categoryImg/해외여행.png" ><div class="img-text"><span>해외여행</span></div></a></li>
+                    <li><a href="/adminPage.do"><img src="/categoryImg/해외여행.png" ><div class="img-text"><span>해외여행</span></div></a></li>
                 </ul>
             </div>
         </div>        
