@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -132,6 +133,18 @@ public class InsertFripServlet extends HttpServlet {
 		f.setFilePath(filepath);
 		FripService service = new FripService();
 		int result = service.insertFrip(f);
+		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
+		
+		if(result > 0) {
+			request.setAttribute("title", "스프립 등록 성공");
+			request.setAttribute("msg", "스프립 등록이 성공했습니다");
+			request.setAttribute("icon", "success");
+		} else {
+			request.setAttribute("title", "스프립 등록 실패");
+			request.setAttribute("msg", "관리자에게 문의 하세요");
+			request.setAttribute("icon", "error");
+		}
+		request.setAttribute("loc", "/fripMain.do");
 	}
 
 	/**
