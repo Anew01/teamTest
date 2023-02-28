@@ -14,5 +14,7 @@
 	<h1>선pull 후push!!!!!</h1>
 	<h1>저희 주제 오늘 정할까요?</h1>
 	<p>저도 해볼게요.</p>
+	
+	<a href="/adminPage.do">adminPage</a>
 </body>
 </html>
