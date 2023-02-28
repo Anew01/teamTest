@@ -2,6 +2,7 @@ package kr.or.iei.frip.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileItemStream;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
@@ -51,6 +53,7 @@ public class InsertFripServlet extends HttpServlet {
 		fileItemFactory.setSizeThreshold(maxSize);
 		
 		ServletFileUpload fileUpload = new ServletFileUpload(fileItemFactory);
+		fileUpload.setHeaderEncoding("UTF-8");
 		Frip f = new Frip();
 		ArrayList<String> filepath = new ArrayList<>();
 		
@@ -86,21 +89,37 @@ public class InsertFripServlet extends HttpServlet {
 						}
 					}
 				} else {
+					String str = new String(item.getString().getBytes("8859_1"),"UTF-8");
 					switch(item.getFieldName()){
 					case "fripTitle" :
-						f.setFripTitle(item.getString());
+						f.setFripTitle(str);
 						break;
 					case "fripAddr" :
-						f.setFripAddr(item.getString());
+						f.setFripAddr(str);
 						break;
 					case "fripLevel" :
-						f.setFripLevel(item.getString());
+						f.setFripLevel(str);
 						break;
  					case "fripPrice" :
-						f.setFripPrice(Integer.parseInt(item.getString()));
+						f.setFripPrice(Integer.parseInt(str));
 						break;
 					case "editordata" :
-						f.setFripContent(item.getString());
+						f.setFripContent(str);
+						break;
+					case "fripCategory" :
+						f.setFripCategory(str);
+						break;
+					case "fripDate" :
+						f.setFripDate(str);
+						break;
+					case "fripTime" :
+						f.setFripTime(str);
+						break;
+					case "maxCount" :
+						f.setMaxCount(Integer.parseInt(str));
+						break;
+					case "fripWriter" :
+						f.setFripWriter("user01");
 						break;
 					}
 				}
