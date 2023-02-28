@@ -18,6 +18,7 @@ public class FripService {
 	public int insertFrip(Frip f) {
 		Connection conn = JDBCTemplate.getConnection();
 		int result1 = dao.insertFrip(conn, f);
+		int result4 = 1;
 		
 		if(result1 > 0) {
 			
@@ -28,7 +29,7 @@ public class FripService {
 				
 				int result3 = dao.insertFripJoinableDate(conn, f, fripNo);
 				if(result3 > 0) {
-					int result4 = 1;
+					result4 = 1;
 					
 					for(String filepath : f.getFilePath()) {
 						int result5 = dao.insertFripFile(conn, fripNo, filepath);
@@ -44,12 +45,26 @@ public class FripService {
 				}
 			}
 		}
-		return result1;
+		return result4;
 	}
 	
 	public ArrayList<Frip> selectAllFrip(){
 		Connection conn = JDBCTemplate.getConnection();
 		ArrayList<Frip> list = dao.selectAllFrip(conn);
+		for(Frip f : list) {
+			ArrayList<String> fripFiles = dao.selectFripFiles(conn, f.getFripNo());
+			f.setFilePath(fripFiles);
+			ArrayList<FripJoinableDate> joinableDates = dao.selectJoinableDates(conn, f.getFripNo());
+			f.setJoinableDates(joinableDates);
+			String fripCategory = dao.selectFripCategory(conn, f.getFripNo());
+			f.setFripCategory(fripCategory);
+		}
+		return list;
+	}
+
+	public ArrayList<Frip> selectMyFrip(String fripWriter) {
+		Connection conn = JDBCTemplate.getConnection();
+		ArrayList<Frip> list = dao.selectMyFrip(conn, fripWriter);
 		for(Frip f : list) {
 			ArrayList<String> fripFiles = dao.selectFripFiles(conn, f.getFripNo());
 			f.setFilePath(fripFiles);

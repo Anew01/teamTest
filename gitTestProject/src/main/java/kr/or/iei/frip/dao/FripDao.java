@@ -204,4 +204,64 @@ public class FripDao {
 		return list;
 	}
 
+	public ArrayList<Frip> selectMyFrip(Connection conn, String fripWriter) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<Frip> list = new ArrayList<>();
+		Frip f = null;
+		String query = "select * from frip_tbl where frip_writer=?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, fripWriter);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				f = new Frip();
+				f.setFripAddr(rset.getString("frip_addr"));
+				f.setFripAuth(rset.getString("frip_auth"));
+				f.setFripCategory(rset.getString("category_name"));
+				f.setFripContent(rset.getString("frip_content"));
+				f.setFripIncome(rset.getInt("frip_income"));
+				f.setFripLevel(rset.getString("frip_level"));
+				f.setFripPrice(rset.getInt("frip_price"));
+				f.setFripNo(rset.getInt("frip_no"));
+				f.setFripStatus(rset.getString("frip_status"));
+				f.setWriteDate(rset.getString("write_date"));
+				f.setFripWriter(rset.getString("frip_writer"));
+				list.add(f);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return list;
+	}
+
+	public String selectFripCategory(Connection conn, int fripNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String fripCategory = null;
+		String query = "select * from frip_category where frip_no=?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, fripNo);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				fripCategory = rset.getString("category_name");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return fripCategory;
+	}
+
 }
