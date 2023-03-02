@@ -26,7 +26,7 @@
                                 <th>가입일</th>
                                 <th>등급 변경</th>
                                 <th>탈퇴</th>
-                            </tr>
+                            </tr>                          
                             <tr>
                                 <td><input type="checkbox" class="chk"></td>
                                 <td>1</td>
