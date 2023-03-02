@@ -15,6 +15,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Nanum+Gothic&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
 <body>
 	<div class="wrapper">
         <div class="header">
@@ -41,7 +43,7 @@
                     </a>
                 </li>
                   <li class="item" id="profile">
-                    <a href="/allMember.do" class="menu-btn">
+                    <a href="/allMember.do?reqPage=1" class="menu-btn">
                         <i class="fa-solid fa-users"></i><span>전체회원 관리
                     </a>
                 </li>

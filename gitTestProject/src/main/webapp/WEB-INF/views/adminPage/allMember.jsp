@@ -1,8 +1,11 @@
 <%@page import="kr.or.iei.member.vo.Member" %>
     <%@page import="java.util.ArrayList" %>
         <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-            <% ArrayList<Member> list = (ArrayList<Member>)request.getAttribute("list");
-                    %>
+            <% 
+            	ArrayList<Member> list = (ArrayList<Member>)request.getAttribute("list");
+            	String pageNavi = (String)request.getAttribute("pageNavi");
+            	int start = (int)request.getAttribute("start");
+			%>
                     <!DOCTYPE html>
                     <html lang="ko" dir="ltr">
 
@@ -32,11 +35,12 @@
                                                     <th>등급 변경</th>
                                                     <th>탈퇴</th>
                                                 </tr>
-                                                <%for(Member member: list) {%>
+                                                <%for(int i = 0; i < list.size(); i++) {%>
+                                                <%Member member = list.get(i); %>
                                                     <tr>
                                                         <td><input type="checkbox" class="chk"></td>
                                                         <td>
-                                                            <%=member.getMemberNo() %>
+                                                            <%=i+start%>
                                                         </td>
                                                         <td><%=member.getMemberId() %></td>
                                                         <td>
@@ -82,26 +86,7 @@
                                                             </th>
                                                         </tr>
                                             </table>
-                                            <div class="page_wrap">
-                                                <div class="page_nation">
-                                                    <a class="arrow pprev" href="#">
-                                                        < </a>
-                                                            <a class="arrow prev" href="#">
-                                                                < </a>
-                                                                    <a href="#" class="active">1</a>
-                                                                    <a href="#">2</a>
-                                                                    <a href="#">3</a>
-                                                                    <a href="#">4</a>
-                                                                    <a href="#">5</a>
-                                                                    <a href="#">6</a>
-                                                                    <a href="#">7</a>
-                                                                    <a href="#">8</a>
-                                                                    <a href="#">9</a>
-                                                                    <a href="#">10</a>
-                                                                    <a class="arrow next" href="#">></a>
-                                                                    <a class="arrow nnext" href="#">></a>
-                                                </div>
-                                            </div>
+                                            <div id="pageNavi"><%=pageNavi %></div>                                         
                                         </div>
                                     </div>
                                     <div class="card">

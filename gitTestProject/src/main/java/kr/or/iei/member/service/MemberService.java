@@ -7,6 +7,7 @@ import java.util.StringTokenizer;
 import common.JDBCTemplate;
 import kr.or.iei.member.dao.MemberDao;
 import kr.or.iei.member.vo.Member;
+import kr.or.iei.member.vo.MemberPageDate;
 
 public class MemberService {
 	private MemberDao dao;
@@ -16,14 +17,75 @@ public class MemberService {
 		dao = new MemberDao();
 	}
 
-	public ArrayList<Member> selectAllMember() {
+	public MemberPageDate selectAllMember(int reqPage) {
 		Connection connection = JDBCTemplate.getConnection();
 
-		ArrayList<Member> list = dao.selectAllMember(connection);
+		int numPerPage = 10;
+		int end = numPerPage * reqPage;
+		int start = end - numPerPage + 1;
+
+		ArrayList<Member> list = dao.selectAllMember(connection, start, end);
+
+		int totalCount = dao.selectMemberCount(connection);
+
+		int totalPage = 0;
+
+		if (totalCount % numPerPage == 0) {
+			totalPage = totalCount / numPerPage;
+		} else {
+			totalPage = totalCount / numPerPage + 1;
+		}
+
+		int pageNaviSize = 5;
+		int pageNO = ((reqPage - 1) / pageNaviSize) * pageNaviSize + 1;
+
+		String pageNavi = "<ul class='pagination circle-style'>";
+
+		if (pageNO != 1) { // 시작 페이지일아닐때
+			// 시작 네비
+			pageNavi += "<li>";
+			pageNavi += "<a class='page-item' href='/allMember.do?reqPage=" + (pageNO - 1) + "'>";
+			pageNavi += "<span class='material-icons'>chevron_left</span>";
+			pageNavi += "</a></li>";
+		}
+
+		// 페이지 숫자 5개
+		// 페이지 최조페이지 까지 for문
+		for (int i = 0; i < pageNaviSize; i++) {
+			if (pageNO == reqPage) { // 현재 페이지랑 현재 요청 페이지가 같을때 검은색 효과
+				pageNavi += "<li>";
+				pageNavi += "<a class='page-item active-page' href='/allMember.do?reqPage=" + (pageNO) + "'>";
+				pageNavi += pageNO;
+				pageNavi += "</a></li>";
+			} else { // 아닐때
+				pageNavi += "<li>";
+				pageNavi += "<a class='page-item' href='/allMember.do?reqPage=" + (pageNO) + "'>";
+				pageNavi += pageNO;
+				pageNavi += "</a></li>";
+
+			}
+			pageNO++;
+
+			if (pageNO > totalPage) { // 최종 페이지 나가기
+				break;
+			}
+		}
+
+		// 다음 버튼
+		if (pageNO <= totalPage) { // 최종 페이지가 되면 다음가면 안됨
+			pageNavi += "<li>";
+			pageNavi += "<a class='page-item' href='/allMember.do?reqPage=" + (pageNO) + "'>";
+			pageNavi += "<span class='material-icons'>chevron_right</span>";
+			pageNavi += "</a></li>";
+		}
+
+		pageNavi += "</ul>";
 
 		JDBCTemplate.close(connection);
 
-		return list;
+		MemberPageDate memberPageDate = new MemberPageDate(list, pageNavi, start);
+
+		return memberPageDate;
 	}
 
 	public int chageLevel(String memberId, int memberLevel) {
