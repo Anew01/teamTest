@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="ko" dir="ltr">
 <head>
 <meta charset="UTF-8">
 <title>adminPage</title>
 
  	<link rel="stylesheet" href="/css/adminPage/sidebar.css">
+ 	<link rel="stylesheet" href="/css/adminPage/profile.css">
     <!-- 폰트 어썸 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
         integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
@@ -43,35 +44,25 @@
                         <i class="fa-solid fa-user"></i><span>프로필 관리</span>
                     </a>
                 </li>
-                <li class="item" id="profile">
+                  <li class="item" id="profile">
                     <a href="#profile" class="menu-btn">
-                        <i class="fa-solid fa-users"></i><span>전체회원 관리 <i
-                                class="fas fa-chevron-down drop-down"></i></span>
+                        <i class="fa-solid fa-users"></i><span>전체회원 관리
                     </a>
-                    <div class="sub-menu">
-                        <a href="#"><i class="fas fa-image"></i><span>프립/피드 관리</span></a>
-                        <a href="#"><i class="fas fa-address-card"></i><span>Info</span></a>
-                    </div>
                 </li>
-                <li class="item" id="messages">
+                 <li class="item" id="messages">
                     <a href="#messages" class="menu-btn">
-                        <i class="fa-brands fa-flipboard"></i><span>프립/피드 관리 <i
-                                class="fas fa-chevron-down drop-down"></i></span>
+                        <i class="fa-brands fa-flipboard"></i>
+                        <span>프립/피드 관리</span>
                     </a>
-                    <div class="sub-menu">
-                        <a href="#"><i class="fas fa-envelope"></i><span>New</span></a>
-                        <a href="#"><i class="fas fa-envelope-square"></i><span>Sent</span></a>
-                        <a href="#"><i class="fas fa-exclamation-circle"></i><span>Spam</span></a>
-                    </div>
                 </li>
-                <li class="item" id="settings">
+                 <li class="item" id="settings">
                     <a href="#settings" class="menu-btn">
                         <i class="fa-solid fa-bell"></i><span>공지사항 관리 <i
                                 class="fas fa-chevron-down drop-down"></i></span>
                     </a>
                     <div class="sub-menu">
-                        <a href="#"><i class="fas fa-lock"></i><span>Password</span></a>
-                        <a href="#"><i class="fas fa-language"></i><span>Language</span></a>
+                        <a href="#"><i class="fa-solid fa-pen-nib"></i><span>공지사항 작성</span></a>
+                        <a href="#"><i class="fa-solid fa-list"></i><span>공지사항 목록</span></a>
                     </div>
                 </li>
                 <li class="item">
@@ -86,24 +77,47 @@
                 </li>
             </div>
         </div>
-        <div class="main-container">
-            <div class="card">
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                    industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type
-                    and scrambled it to make a type specimen book. It has survived not only five centuries, but also the
-                    leap into electronic typesetting, remaining essentially unchanged.</p>
-            </div>
-            <div class="card">
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                    industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type
-                    and scrambled it to make a type specimen book. It has survived not only five centuries, but also the
-                    leap into electronic typesetting, remaining essentially unchanged.</p>
-            </div>
-            <div class="card">
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                    industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type
-                    and scrambled it to make a type specimen book. It has survived not only five centuries, but also the
-                    leap into electronic typesetting, remaining essentially unchanged.</p>
+         <div class="main-container">
+            <div class="main-content">
+                <div class="main-header">
+                    <h1>프로필 관리</h1>
+                </div>
+                <div class="card">
+                    <div>
+                        <table class="profile-table">
+                            <tr>
+                                <img src="./user.png" class="profile-image">
+                                <th><label for="" class="adminLabel">아이디</label></th>
+                                <td><input type="text" name="name" class="adminInput" value="alstq" readonly></td>
+                            </tr>
+                            <tr>
+                                <th>프로필 사진</th>
+                                <td><input type="text"></td>
+                            </tr>
+                            <tr>
+                                <th>프로필 사진</th>
+                                <td><input type="text"></td>
+                            </tr>
+                            <tr>
+                                <th>프로필 사진</th>
+                                <td><input type="text"></td>
+                            </tr>
+                            <tr>
+                                <th>프로필 사진</th>
+                                <td><input type="text"></td>
+                            </tr>
+                            <tr>
+                                <th>프로필 사진</th>
+                                <td><input type="text"></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="card">
+                    <p>㈜프렌트립 | 사업자 등록번호 : 261-81-04385|통신판매업신고번호 : 2016-서울성동-01088
+                        대표 : 임수열|개인정보 관리 책임자 : 양사열|서울시 성동구 왕십리로 115 헤이그라운드 서울숲점 G703
+                        ㈜프렌트립은 통신판매중개자로서 거래당사자가 아니며, 호스트가 등록한 상품정보 및 거래에 대해 ㈜프렌트립은 일체의 책임을 지지 않습니다.</p>
+                </div>
             </div>
         </div>
     </div>
