@@ -1,44 +1,67 @@
-.profile-table{
+.page-content {
   width: 1200px;
+  margin: 30px auto;
+  margin-bottom: 10px;
+  flex-grow: 1;
 }
 
-.profile-table th{
-  width: 30%;
+.page-title {
+  font-family: ns-bold;
+  padding: 20px 0px;
+  font-size: 1.5rem;
 }
 
-.profile-table td{
-  width: 70%;
+.input-wrap {
+  padding: 15px;
+  margin: 0 auto;
 }
 
-.profile-image {
-  margin-top: 30px;
-  margin-left: 35px;
-  width: 200px;
-  height: 200px;
-}
-
-.adminLabel {
+.input-wrap>label {
+  font-size: 1.1em;
+  margin-bottom: 30px;
   display: block;
-  margin-bottom: 20px;
-  color: rgb(102, 102, 102);
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 22px;
-  letter-spacing: -0.03em;
-  text-align: left;
 }
 
-.adminInput {
-  width: 100%;
-  border: 1px solid rgb(238, 238, 238);
-  box-sizing: border-box;
-  border-radius: 3px;
-  padding: 14px 14px 12px;
-  background: rgb(250, 250, 250);
-  color: rgb(17, 17, 17);
-  font-size: 14px;
+.input-form {
+  /* width: 100%;
+  display: block;
+  padding: 0.8rem;
+  background-color: #fff;
+  outline: none;
+  border: 1px solid #ccc;
+  box-sizing: border-box; */
+  display: block;
+  width: 80%;
+  height: calc(1.5em + 1.8rem + 2px);
+  padding: 0.9rem 1rem;
   font-weight: 400;
-  line-height: 22px;
-  letter-spacing: -0.03em;
-  text-align: left;
+  line-height: 1.5;
+  color: #333;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ddd;
+  border-radius: 0.25rem;
+  box-shadow: 0 3px 2px hsl(0deg 0% 87% / 5%);
+  transition: all .15s cubic-bezier(.68, -.55, .265, 1.55);
+}
+
+.input-form:read-only:not(select),
+.input-form:disabled {
+  background-color: #f7f7f9;
+}
+
+.btn-box {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.bs2 {
+  padding: 1.5rem;
+  font-size: 1.1em;
+}
+
+.bc66 {
+  color: rgba(255, 46, 99, 1);
+  background-color: #fff;
+  border: 2px solid rgba(255, 46, 99, 1);
 }
