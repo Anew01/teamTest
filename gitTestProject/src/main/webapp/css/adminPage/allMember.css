@@ -71,7 +71,7 @@ td {
     width: 100%;
 }
 
-.table button {
+.table .btn {
     border: 1px solid rgb(204, 204, 204);
     background-color: rgb(255, 255, 255);
     color: rgb(51, 51, 51);
@@ -166,8 +166,8 @@ td {
     border: 1px solid #42454c;
 }
 
-.select-btn {
-    width: 11%;
+.table .select-btn {
+    width: 15%;
     height: 56px;
     line-height: 24px;
     padding: 16px;
@@ -182,14 +182,22 @@ td {
     margin: 0px;
 }
 
-.checkedChangeLevel {
-    margin-left: 1100px;
+.table .checkedChangeLevel {
+    margin-left: 750px;
     margin-right: 15px;
     background-color: #4B89DC;
     color: white;
 }
 
-.checkedWithdrawal {
+.table .checkedChangeLevel:hover {
+    background-color: rgb(1, 76, 156);
+}
+
+.table .checkedWithdrawal {
     background-color: #DB4455;
     color: white;
+}
+
+.table .checkedWithdrawal:hover {
+    background-color: #e61e09;
 }
