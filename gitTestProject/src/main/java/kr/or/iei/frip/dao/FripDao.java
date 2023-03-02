@@ -107,6 +107,8 @@ public class FripDao {
 				startDate = joinDate.getStartDate();
 				endDate = joinDate.getEndDate();
 			}
+			System.out.println(startDate);
+			System.out.println(endDate);
 			pstmt.setString(2, startDate);
 			pstmt.setInt(3, f.getMaxCount());
 			pstmt.setString(4, endDate);
