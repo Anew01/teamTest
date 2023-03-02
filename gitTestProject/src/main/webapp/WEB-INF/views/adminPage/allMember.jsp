@@ -1,5 +1,10 @@
+<%@page import="kr.or.iei.member.vo.Member"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	ArrayList<Member> list = (ArrayList<Member>)request.getAttribute("list");
+%>
 <!DOCTYPE html>
 <html lang="ko" dir="ltr">
 <head>
@@ -26,143 +31,40 @@
                                 <th>가입일</th>
                                 <th>등급 변경</th>
                                 <th>탈퇴</th>
-                            </tr>                          
-                            <tr>
-                                <td><input type="checkbox" class="chk"></td>
-                                <td>1</td>
-                                <td>user01</td>
-                                <td>유저1</td>
-                                <td>010-1111-1111</td>
-                                <td>
-                                    <select class="input">
-                                        <option value="1" selected>운영자</option>
-                                        <option value="2">호스트</option>
-                                        <option value="3">회원</option>
-                                    </select>
-                                </td>
-                                <td>2022-12-12</td>
-                                <td><button class="btc bc33 bs4 checkedChageLevel">회원등급변경</button></td>
-                                <td><button class="btc bc33 bs4 checkedChageLevel Withdrawal">탈퇴</button></td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" class="chk"></td>
-                                <td>1</td>
-                                <td>user01</td>
-                                <td>유저1</td>
-                                <td>010-1111-1111</td>
-                                <td>
-                                    <select class="input">
-                                        <option value="1" selected>운영자</option>
-                                        <option value="2">호스트</option>
-                                        <option value="3">회원</option>
-                                    </select>
-                                </td>
-                                <td>2022-12-12</td>
-                                <td><button class="btc bc33 bs4 checkedChageLevel">회원등급변경</button></td>
-                                <td><button class="btc bc33 bs4 checkedChageLevel Withdrawal">탈퇴</button></td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" class="chk"></td>
-                                <td>1</td>
-                                <td>user01</td>
-                                <td>유저1</td>
-                                <td>010-1111-1111</td>
-                                <td>
-                                    <select class="input">
-                                        <option value="1" selected>운영자</option>
-                                        <option value="2">호스트</option>
-                                        <option value="3">회원</option>
-                                    </select>
-                                </td>
-                                <td>2022-12-12</td>
-                                <td><button class="btc bc33 bs4 checkedChageLevel">회원등급변경</button></td>
-                                <td><button class="btc bc33 bs4 checkedChageLevel Withdrawal">탈퇴</button></td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" class="chk"></td>
-                                <td>1</td>
-                                <td>user01</td>
-                                <td>유저1</td>
-                                <td>010-1111-1111</td>
-                                <td>
-                                    <select class="input">
-                                        <option value="1" selected>운영자</option>
-                                        <option value="2">호스트</option>
-                                        <option value="3">회원</option>
-                                    </select>
-                                </td>
-                                <td>2022-12-12</td>
-                                <td><button class="btc bc33 bs4 checkedChageLevel">회원등급변경</button></td>
-                                <td><button class="btc bc33 bs4 checkedChageLevel Withdrawal">탈퇴</button></td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" class="chk"></td>
-                                <td>1</td>
-                                <td>user01</td>
-                                <td>유저1</td>
-                                <td>010-1111-1111</td>
-                                <td>
-                                    <select class="select">
-                                        <option value="1" selected>운영자</option>
-                                        <option value="2">호스트</option>
-                                        <option value="3">회원</option>
-                                    </select>
-                                </td>
-                                <td>2022-12-12</td>
-                                <td><button class="btc bc33 bs4 checkedChageLevel">회원등급변경</button></td>
-                                <td><button class="btc bc33 bs4 checkedChageLevel Withdrawal">탈퇴</button></td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" class="chk"></td>
-                                <td>1</td>
-                                <td>user01</td>
-                                <td>유저1</td>
-                                <td>010-1111-1111</td>
-                                <td>
-                                    <select class="input">
-                                        <option value="1" selected>운영자</option>
-                                        <option value="2">호스트</option>
-                                        <option value="3">회원</option>
-                                    </select>
-                                </td>
-                                <td>2022-12-12</td>
-                                <td><button class="btc bc33 bs4 checkedChageLevel">회원등급변경</button></td>
-                                <td><button class="btc bc33 bs4 checkedChageLevel Withdrawal">탈퇴</button></td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" class="chk"></td>
-                                <td>1</td>
-                                <td>user01</td>
-                                <td>유저1</td>
-                                <td>010-1111-1111</td>
-                                <td>
-                                    <select class="input">
-                                        <option value="1" selected>운영자</option>
-                                        <option value="2">호스트</option>
-                                        <option value="3">회원</option>
-                                    </select>
-                                </td>
-                                <td>2022-12-12</td>
-                                <td><button class="btc bc33 bs4 checkedChageLevel">회원등급변경</button></td>
-                                <td><button class="btc bc33 bs4 checkedChageLevel Withdrawal">탈퇴</button></td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" class="chk"></td>
-                                <td>1</td>
-                                <td>user01</td>
-                                <td>유저1</td>
-                                <td>010-1111-1111</td>
-                                <td>
-                                    <select class="input">
-                                        <option value="1" selected>운영자</option>
-                                        <option value="2">호스트</option>
-                                        <option value="3">회원</option>
-                                    </select>
-                                </td>
-                                <td>2022-12-12</td>
-                                <td><button class="btc bc33 bs4 checkedChageLevel">회원등급변경</button></td>
-                                <td><button class="btc bc33 bs4 checkedChageLevel Withdrawal">탈퇴</button></td>
-                            </tr>
+                            </tr>    
+                            <%for(Member member: list) {%>    
+                            	 <tr>
+	                                <td><input type="checkbox" class="chk"></td>
+	                                <td><%=member.getMemberNo() %></td>
+	                                <td><%=member.getMemberId() %></td>
+	                                <td><%=member.getMemberName() %></td>
+	                                <td><%=member.getMemberPhone() %></td>
+	                                <td>
+	                                <%if(member.getMemberLevel() == 1) {%>
+	                                	<select class="input">
+	                                        <option value="1" selected>운영자</option>
+	                                        <option value="2">호스트</option>
+	                                        <option value="3">회원</option>
+	                                    </select>
+	                                <%} else if(member.getMemberLevel() == 2) {%>
+	                                	<select class="input">
+	                                        <option value="1">운영자</option>
+	                                        <option value="2" selected>호스트</option>
+	                                        <option value="3">회원</option>
+	                                    </select>
+	                                <%} else if(member.getMemberLevel() == 3) {%>
+	                                	<select class="input">
+	                                        <option value="1" selected>운영자</option>
+	                                        <option value="2">호스트</option>
+	                                        <option value="3" selected>회원</option>
+	                                    </select>
+	                                <%} %>                                    
+	                                </td>
+	                                <td><%=member.getEnrollDate() %></td>
+	                                <td><button class="btc bc33 bs4 checkedChageLevel">회원등급변경</button></td>
+	                                <td><button class="btc bc33 bs4 checkedChageLevel Withdrawal">탈퇴</button></td>
+	                            </tr>
+                            <%} %>                                             
                         </table>
                         <div class="page_wrap">
                             <div class="page_nation">
