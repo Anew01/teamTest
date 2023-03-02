@@ -1,0 +1,86 @@
+.wrap{
+    width: 1200px;
+    margin: 0 auto;
+}
+.contents-bundle{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+.content>h2{
+    margin-bottom: 40px;
+}
+.content{
+    padding: 10px 0 20px 0;
+    border-bottom: 1px solid rgb(206, 204, 204);
+}
+.addr{
+    font-size: 12px;
+    margin-bottom: 15px;
+}
+.contents-left{
+    width: 50%;
+}
+.contents-right{
+    float: right;
+    width: 50%;
+}
+.attend-box{
+    padding: 20px;
+}
+.attend-info{
+    padding: 10px 0 20px 0;
+    border-bottom: 1px solid rgb(206, 204, 204);
+}
+.attend-box{
+    border: 1px solid rgb(206, 204, 204);
+    width: 400px;
+    height: 500px;
+    border-radius: 10px;
+    margin-left: 100px;
+}
+.title{
+    font-size: 25px;
+    font-weight: 800;
+    margin-bottom: 60px;
+}
+.small-title{
+    font-weight: 800;
+    font-size: 20px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+.calendar-info{
+    margin-bottom: 50px;writing-mode: ;
+}
+.material-symbols-rounded {
+  font-variation-settings:
+  'FILL' 1,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 48
+}
+.attend-number{
+    margin-top: 15px;
+    width: 220px;
+    height: 50px;
+    border-radius:10px;
+    border: 1px solid rgb(174, 177, 171);
+}
+.totalprice{
+    font-weight: 900;
+}
+#pay{
+    background-color: #85C88A;
+    width: 160px;
+    height: 80px;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 20px;
+}
+button{
+    background-color: #85C88A;
+    border: none;
+    padding: 5px 20px;
+    cursor: pointer;
+}
