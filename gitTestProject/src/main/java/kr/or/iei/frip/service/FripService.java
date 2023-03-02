@@ -56,8 +56,6 @@ public class FripService {
 			f.setFilePath(fripFiles);
 			ArrayList<FripJoinableDate> joinableDates = dao.selectJoinableDates(conn, f.getFripNo());
 			f.setJoinableDates(joinableDates);
-			String fripCategory = dao.selectFripCategory(conn, f.getFripNo());
-			f.setFripCategory(fripCategory);
 		}
 		return list;
 	}

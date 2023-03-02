@@ -121,7 +121,6 @@ public class FripDao {
 		Frip f = null;
 		String query = "select * from frip_tbl t join frip_category c "
 				+ "on (t.frip_no=c.frip_no)";
-		String query2 = "select * from frip_files where frip_no=?";
 		try {
 			pstmt = conn.prepareStatement(query);
 			rset = pstmt.executeQuery();
@@ -209,7 +208,9 @@ public class FripDao {
 		ResultSet rset = null;
 		ArrayList<Frip> list = new ArrayList<>();
 		Frip f = null;
-		String query = "select * from frip_tbl where frip_writer=?";
+		String query = "select * from frip_tbl t join frip_category c\n"
+				+ "on (t.frip_no=c.frip_no) \n"
+				+ "where frip_writer=?";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -240,28 +241,4 @@ public class FripDao {
 		}
 		return list;
 	}
-
-	public String selectFripCategory(Connection conn, int fripNo) {
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		String fripCategory = null;
-		String query = "select * from frip_category where frip_no=?";
-		
-		try {
-			pstmt = conn.prepareStatement(query);
-			pstmt.setInt(1, fripNo);
-			rset = pstmt.executeQuery();
-			if(rset.next()) {
-				fripCategory = rset.getString("category_name");
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			JDBCTemplate.close(rset);
-			JDBCTemplate.close(pstmt);
-		}
-		return fripCategory;
-	}
-
 }
