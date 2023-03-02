@@ -11,7 +11,6 @@ public class Frip {
 	private String fripAddr;
 	private String fripLevel;
 	private String fripCategory;
-	private String fripDate;
 	private String fripTime;
 	private int maxCount;
 	private int fripPrice;
@@ -37,7 +36,6 @@ public class Frip {
 		this.fripAddr = fripAddr;
 		this.fripLevel = fripLevel;
 		this.fripCategory = fripCategory;
-		this.fripDate = fripDate;
 		this.fripTime = fripTime;
 		this.maxCount = maxCount;
 		this.fripPrice = fripPrice;
@@ -130,15 +128,6 @@ public class Frip {
 	public void setFripCategory(String fripCategory) {
 		this.fripCategory = fripCategory;
 	}
-
-	public String getFripDate() {
-		return fripDate;
-	}
-
-	public void setFripDate(String fripDate) {
-		this.fripDate = fripDate;
-	}
-
 	public String getFripTime() {
 		return fripTime;
 	}

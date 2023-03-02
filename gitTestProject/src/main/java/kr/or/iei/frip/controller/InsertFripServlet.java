@@ -20,6 +20,7 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import kr.or.iei.frip.service.FripService;
 import kr.or.iei.frip.vo.Frip;
+import kr.or.iei.frip.vo.FripJoinableDate;
 
 /**
  * Servlet implementation class InsertFripServlet
@@ -58,6 +59,7 @@ public class InsertFripServlet extends HttpServlet {
 		
 		try {
 			List<FileItem> items = fileUpload.parseRequest(request);
+			ArrayList<FripJoinableDate> list = new ArrayList<>();
 			
 			for(FileItem item : items) {
 				
@@ -83,6 +85,7 @@ public class InsertFripServlet extends HttpServlet {
 					}
 				} else {
 					String str = new String(item.getString().getBytes("8859_1"),"UTF-8");
+					FripJoinableDate joinDate = new FripJoinableDate();
 					switch(item.getFieldName()){
 					case "fripTitle" :
 						f.setFripTitle(str);
@@ -102,8 +105,11 @@ public class InsertFripServlet extends HttpServlet {
 					case "fripCategory" :
 						f.setFripCategory(str);
 						break;
-					case "fripDate" :
-						f.setFripDate(str);
+					case "startDate" :
+						joinDate.setStartDate(str);
+						break;
+					case "endDate" :
+						joinDate.setEndDate(str);
 						break;
 					case "fripTime" :
 						f.setFripTime(str);
@@ -115,6 +121,8 @@ public class InsertFripServlet extends HttpServlet {
 						f.setFripWriter("user01");
 						break;
 					}
+					list.add(joinDate);
+					f.setJoinableDates(list);
 				}
 			}
 		} catch (FileUploadException e) {

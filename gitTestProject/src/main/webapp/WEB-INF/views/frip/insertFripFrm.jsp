@@ -53,8 +53,12 @@
 					<input type="text" name="fripCategory" id="fripCategory" required>
 				</div>
 				<div>
-					<label for="fripDate">스프립 날짜</label>
-					<input type="date" name="fripDate" id="fripDate" required>
+					<label for="startDate">스프립 시작날짜</label>
+					<input type="date" name="startDate" id="startDate" required>
+				</div>
+				<div>
+					<label for="endDate">스프립 마감날짜</label>
+					<input type="date" name="endDate" id="endDate" required>
 				</div>
 				<div>
 					<label for="fripTime">스프립 시간</label>
