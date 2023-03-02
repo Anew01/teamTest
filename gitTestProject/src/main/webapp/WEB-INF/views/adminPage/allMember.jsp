@@ -102,11 +102,17 @@
     </div>
     <script>
 	    $(".chageLevel").on("click", function () {
-	        const memberNo = $(this).parent().parent().children().eq(1).text(); // 회원 번호	       
+	        const memberId = $(this).parent().parent().children().eq(2).text(); // 회원 아이디   
 	        const memberLevel = $(this).parent().parent().children().eq(5).children().val(); // 회원 등급       
 	      
-	        location.href = "/changeLevel.do?memberNo=" + memberNo + "&memberLevel=" + memberLevel;
+	        location.href = "/changeLevel.do?memberId=" + memberId + "&memberLevel=" + memberLevel;
 	    });
+	    
+	    $(".withdrawal").on("click", function () {
+	    	const memberId = $(this).parent().parent().children().eq(2).text(); // 회원 아이디          
+
+            location.href = "/withdrawal.do?memberId=" + memberId;
+        });
     </script>
     <!-- sidebar.js -->
     <script src="/js/adminPage/sidebar.js"></script>

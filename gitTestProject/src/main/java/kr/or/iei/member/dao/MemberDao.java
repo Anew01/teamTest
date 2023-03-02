@@ -50,4 +50,49 @@ public class MemberDao {
 		return list;
 	}
 
+	public int chageLevel(Connection connection, String memberId, int memberLevel) {
+		PreparedStatement preparedStatement = null;
+
+		int result = 0;
+
+		String query = "UPDATE MEMBER_TBL SET MEMBER_LEVEL = ? WHERE MEMBER_ID = ?";
+
+		try {
+			preparedStatement = connection.prepareStatement(query);
+
+			preparedStatement.setInt(1, memberLevel);
+			preparedStatement.setString(2, memberId);
+
+			result = preparedStatement.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(preparedStatement);
+		}
+
+		return result;
+	}
+
+	public int deleteMember(Connection connection, String memberId) {
+		PreparedStatement preparedStatement = null;
+
+		int result = 0;
+
+		String query = "DELETE FROM MEMBER_TBL WHERE MEMBER_ID = ?";
+
+		try {
+			preparedStatement = connection.prepareStatement(query);
+
+			preparedStatement.setString(1, memberId);
+
+			result = preparedStatement.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(preparedStatement);
+		}
+
+		return result;
+	}
+
 }

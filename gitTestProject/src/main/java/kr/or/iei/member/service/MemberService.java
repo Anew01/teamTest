@@ -25,7 +25,35 @@ public class MemberService {
 		return list;
 	}
 
-	public int chageLevel(int memberNo, int memberLevel) {
-		return 0;
+	public int chageLevel(String memberId, int memberLevel) {
+		Connection connection = JDBCTemplate.getConnection();
+
+		int result = dao.chageLevel(connection, memberId, memberLevel);
+
+		if (result > 0) {
+			JDBCTemplate.commit(connection);
+		} else {
+			JDBCTemplate.rollback(connection);
+		}
+
+		JDBCTemplate.close(connection);
+
+		return result;
+	}
+
+	public int deleteMember(String memberId) {
+		Connection connection = JDBCTemplate.getConnection();
+
+		int result = dao.deleteMember(connection, memberId);
+
+		if (result > 0) {
+			JDBCTemplate.commit(connection);
+		} else {
+			JDBCTemplate.rollback(connection);
+		}
+
+		JDBCTemplate.close(connection);
+
+		return result;
 	}
 }

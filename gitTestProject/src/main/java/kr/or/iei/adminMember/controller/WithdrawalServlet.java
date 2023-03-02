@@ -11,38 +11,37 @@ import javax.servlet.http.HttpServletResponse;
 
 import kr.or.iei.member.service.MemberService;
 
-@WebServlet(name = "ChangeLevel", urlPatterns = { "/changeLevel.do" })
-public class ChangeLevelServlet extends HttpServlet {
+@WebServlet(name = "Withdrawal", urlPatterns = { "/withdrawal.do" })
+public class WithdrawalServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public ChangeLevelServlet() {
+	public WithdrawalServlet() {
 		super();
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html;charset=utf-8");
+
 		String memberId = request.getParameter("memberId");
-		int memberLevel = Integer.parseInt(request.getParameter("memberLevel"));
 
 		MemberService service = new MemberService();
 
-		int result = service.chageLevel(memberId, memberLevel);
+		int result = service.deleteMember(memberId);
 
-		// 변경 선공: 관리자 페이지
-		// 변경 실패: alert하고 관리자 페이지
+		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
+
 		if (result > 0) {
-			// jsp로 바로 못감 서블릿 거쳐서
 			response.sendRedirect("/allMember.do");
 		} else {
-			RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
-
-			request.setAttribute("title", "등급 변경 실패");
+			request.setAttribute("title", "회원 삭제 실패");
 			request.setAttribute("msg", "홈페이지에 문제가 발생했습니다.");
 			request.setAttribute("icon", "error");
 			request.setAttribute("loc", "/allMember.do");
-
 			view.forward(request, response);
 		}
+
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
