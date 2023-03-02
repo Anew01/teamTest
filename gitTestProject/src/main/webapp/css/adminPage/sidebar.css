@@ -228,10 +228,16 @@ body {
   margin-left: 70px;
 }
 
-.main-header{
+.main-header {
   background: #fff;
   padding: 1.25rem 1.5rem;
   border-radius: calc(0.6rem - 1px) calc(0.6rem - 1px) 0 0;
+}
+
+.main-header>h1 {
+  color: rgb(51, 51, 51);
+  font-size: 24px;
+  line-height: 24px;
 }
 
 .wrapper .main-container .card {
@@ -241,7 +247,7 @@ body {
   font-size: 14px;
 }
 
-.wrapper .main-container .card:last-child{
+.wrapper .main-container .card:last-child {
   border-bottom-left-radius: calc(0.6rem - 1px);
   border-bottom-right-radius: calc(0.6rem - 1px);
 }
