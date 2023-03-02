@@ -8,6 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Insert title here</title>
 <link rel="stylesheet" href="/css/summernote/summernote-lite.css">
 <link rel="stylesheet" href="/css/fripPage/insertFripFrm.css">
@@ -58,21 +59,21 @@
 					<div class="input-group-text">
 						<input type="radio" name="fripLevel" id="easy" value="EASY">
 					</div>
-					<div class="input-group-text">
-						<label for="easy">쉬움</label>
-					</div>
+					<label for="easy" class="form-control">
+						<span>쉬움</span>
+					</label>
 					<div class="input-group-text">
 						<input type="radio" name="fripLevel" id="medium" value="MEDIUM">
 					</div>
-					<div class="input-group-text">
-						<label for="medium">보통</label>
-					</div>
+					<label for="medium" class="form-control">
+						<span>보통</span>
+					</label>
 					<div class="input-group-text">
 						<input type="radio"  name="fripLevel" id="hard" value="">
 					</div>
-					<div class="input-group-text">
-						<label for="hard">어려움</label>
-					</div>
+					<label for="hard" class="form-control">
+						<span>어려움</span>
+					</label>
 				</div>
 				<div class="input-group mb-3">
 					<div class="input-group-prepend">
@@ -121,37 +122,44 @@
 					<label for="fripContent">스프립 내용</label>
 					<textarea id="summernote" name="editordata" required></textarea>
 				</div>
-				<button type="submit">등록하기</button>
+				<div class="submit-btn-warpper">
+					<button type="submit" class="btn btn-primary btn-lg btn-block" style="width : 100%;">등록하기</button>
+				</div>
 			</form>
 		</div>
-		<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="width: 300px">
-			<ol class="carousel-indicators">
-		    	<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-			    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-			    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-			</ol>
-			<div class="carousel-inner">
-		    	<div class="carousel-item active">
-		      		<img class="d-block w-100" src="/upload/photo/0d383419-1a54-4150-b634-a8c66b701f71.jpeg" alt="First slide">
-		    	</div>
-		    <div class="carousel-item">
-		    	<img class="d-block w-100" src="/upload/photo/1c188a8b-9b6e-4171-b843-cd360caaf5c1.png" alt="Second slide">
-		    </div>
-		    	<div class="carousel-item">
-		      		<img class="d-block w-100" src="/upload/photo/81db47af-a1ad-4b20-b3e5-ce6c2d31a27b.png" alt="Third slide">
-		    	</div>
-		  	</div>
-		  	<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-			    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-			    <span class="sr-only">Previous</span>
-		 	</a>
-		  	<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-			    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-			    <span class="sr-only">Next</span>
-		  	</a>
+		<div class="slide-wrapper">
+			<div class="slide-title"><h4>이미지 미리보기</h4></div>
+			<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
+	  			<div class="carousel-indicators">
+				    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+				    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+				    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+	  			</div>
+	  			<div class="carousel-inner">
+		    		<div class="carousel-item active">
+		     			 <img src="/upload/photo/0d383419-1a54-4150-b634-a8c66b701f71.jpeg" class="d-block w-100" alt="...">
+		    		</div>
+	    		<div class="carousel-item">
+	      			<img src="/upload/photo/1c188a8b-9b6e-4171-b843-cd360caaf5c1.png" class="d-block w-100" alt="...">
+	    		</div>
+	    		<div class="carousel-item">
+	     			<img src="/upload/photo/81db47af-a1ad-4b20-b3e5-ce6c2d31a27b.png" class="d-block w-100" alt="...">
+	    		</div>
+	  			</div>
+		  		<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+				   	<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+				    <span class="visually-hidden">Previous</span>
+		  		</button>
+				<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+				    <span class="visually-hidden">Next</span>
+				</button>
 			</div>
 		</div>
+	</div>
 		<%@include file="/WEB-INF/views/common/footer.jsp" %>
+	    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+	
 	<script>
 		function uploadFiles(fs){
 			if(fs.files.length != 0 && fs.files[0] != 0){
