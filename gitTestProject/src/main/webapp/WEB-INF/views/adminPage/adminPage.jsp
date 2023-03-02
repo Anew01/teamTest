@@ -4,20 +4,9 @@
 <html lang="ko" dir="ltr">
 <head>
 <meta charset="UTF-8">
-<title>adminPage</title>
-
- 	<link rel="stylesheet" href="/css/adminPage/sidebar.css">
- 	<link rel="stylesheet" href="/css/adminPage/profile.css">
-    <!-- 폰트 어썸 -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
-        integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!-- jquery -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>
-    <!-- 구글 폰트 -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Nanum+Gothic&display=swap" rel="stylesheet">
+<head>
+	<title>프로필 관리</title>
+	<link rel="stylesheet" href="/css/adminPage/profile.css">
 </head>
 <body>
 		<%@ include file = "/WEB-INF/views/adminPage/adminPageHeader.jsp" %>

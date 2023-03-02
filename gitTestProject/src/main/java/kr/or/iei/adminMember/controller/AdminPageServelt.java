@@ -1,4 +1,4 @@
-package kr.or.iei.notice.controller;
+package kr.or.iei.adminMember.controller;
 
 import java.io.IOException;
 
@@ -9,11 +9,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "AllMember", urlPatterns = { "/allMember.do" })
-public class AllMemberServlet extends HttpServlet {
+@WebServlet(name = "AdminPage", urlPatterns = { "/adminPage.do" })
+public class AdminPageServelt extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public AllMemberServlet() {
+	public AdminPageServelt() {
 		super();
 	}
 
@@ -22,7 +22,7 @@ public class AllMemberServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
 
-		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/adminPage/allMember.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/adminPage/adminPage.jsp");
 
 		view.forward(request, response);
 	}

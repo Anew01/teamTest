@@ -4,10 +4,7 @@
 <html lang="ko" dir="ltr">
 <head>
 <meta charset="UTF-8">
-<title>adminPage</title>
-
  	<link rel="stylesheet" href="/css/adminPage/sidebar.css">
- 	<link rel="stylesheet" href="/css/adminPage/profile.css">
     <!-- 폰트 어썸 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
         integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
