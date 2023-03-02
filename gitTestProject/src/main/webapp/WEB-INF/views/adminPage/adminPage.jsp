@@ -40,12 +40,12 @@
                     <p>관리자 1</p>
                 </center>
                 <li class="item">
-                    <a href="#" class="menu-btn">
+                    <a href="/adminPage.do" class="menu-btn">
                         <i class="fa-solid fa-user"></i><span>프로필 관리</span>
                     </a>
                 </li>
                   <li class="item" id="profile">
-                    <a href="#profile" class="menu-btn">
+                    <a href="/allMember.do" class="menu-btn">
                         <i class="fa-solid fa-users"></i><span>전체회원 관리
                     </a>
                 </li>
