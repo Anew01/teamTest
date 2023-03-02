@@ -15,6 +15,9 @@
 	<%@ include file="/WEB-INF/views/common/header.jsp" %>
 	<%for(int i=0; i<list.size(); i++){ %>
 	<%Frip f = list.get(i); %>
+	<%f.getFilePath(); %>
+	<%f.getFripTitle(); %>
+	<%f.getFripAddr(); %>
 	<%} %>
 	<%@ include file="/WEB-INF/views/common/footer.jsp" %>
 </body>

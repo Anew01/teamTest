@@ -13,6 +13,7 @@
     <script src="/js/jquery-3.6.3.min.js"></script>
     <!--bootstrap-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
     <!--기본css-->
     <link rel="stylesheet" href="/css/mokupCss/mockup.css">
     
@@ -39,7 +40,7 @@
             <div class="category-bar">
                 <ul class="category-list">
                     <li><a href="/allCategory.do"><img src="/categoryImg/ALL.png" ><div class="img-text"><span>ALL</span></div></a></li>
-                    <li><a href="#"><img src="/categoryImg/아웃도어.jpg" ><div class="img-text"><span>아웃도어</span></div></a></li>
+                    <li><a href="/ratingFrm.do"><img src="/categoryImg/아웃도어.jpg" ><div class="img-text"><span>아웃도어</span></div></a></li>
                     <li><a href="#"><img src="/categoryImg/피트니스.png" ><div class="img-text"><span>피트니스</span></div></a></li>
                     <li><a href="#"><img src="/categoryImg/DIY.png" ><div class="img-text"><span>공예DIY</span></div></a></li>
                     <li><a href="#"><img src="/categoryImg/스포츠1.png" ><div class="img-text"><span>스포츠</span></div></a></li>
