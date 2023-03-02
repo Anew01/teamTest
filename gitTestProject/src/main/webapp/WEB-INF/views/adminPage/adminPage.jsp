@@ -19,7 +19,7 @@
                     </div>
                     <div class="card">
                         <div class="page-content">
-                            <form action="/updateMember1.do" method="post">
+                            <form action="/updateMember1.do" method="post" class="profile-form">
                                 <div class="input-wrap">
                                     <label for="memberNo">회원번호</label>
                                     <input type="text" name="memberNo" id="memberNo" class="input-form" value="1"

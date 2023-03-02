@@ -13,11 +13,12 @@
 
 .input-wrap {
   padding: 15px;
+  margin: 0 auto;
 }
 
 .input-wrap>label {
   font-size: 1.1em;
-  margin-bottom: 10px;
+  margin-bottom: 30px;
   display: block;
 }
 
@@ -30,7 +31,7 @@
   border: 1px solid #ccc;
   box-sizing: border-box; */
   display: block;
-  width: 100%;
+  width: 80%;
   height: calc(1.5em + 1.8rem + 2px);
   padding: 0.9rem 1rem;
   font-weight: 400;
@@ -47,6 +48,11 @@
 .input-form:read-only:not(select),
 .input-form:disabled {
   background-color: #f7f7f9;
+}
+
+.btn-box {
+  text-align: center;
+  margin-top: 30px;
 }
 
 .bs2 {
