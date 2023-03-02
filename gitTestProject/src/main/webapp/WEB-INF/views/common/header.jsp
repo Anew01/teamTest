@@ -39,7 +39,7 @@
             <div class="category-bar">
                 <ul class="category-list">
                     <li><a href="/allCategory.do"><img src="/categoryImg/ALL.png" ><div class="img-text"><span>ALL</span></div></a></li>
-                    <li><a href="#"><img src="/categoryImg/아웃도어.jpg" ><div class="img-text"><span>아웃도어</span></div></a></li>
+                    <li><a href="/ratingFrm.do"><img src="/categoryImg/아웃도어.jpg" ><div class="img-text"><span>아웃도어</span></div></a></li>
                     <li><a href="#"><img src="/categoryImg/피트니스.png" ><div class="img-text"><span>피트니스</span></div></a></li>
                     <li><a href="#"><img src="/categoryImg/DIY.png" ><div class="img-text"><span>공예DIY</span></div></a></li>
                     <li><a href="#"><img src="/categoryImg/스포츠1.png" ><div class="img-text"><span>스포츠</span></div></a></li>
