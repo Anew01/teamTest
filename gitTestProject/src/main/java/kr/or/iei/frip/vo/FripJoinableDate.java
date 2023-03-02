@@ -4,9 +4,7 @@ public class FripJoinableDate {
 	private String fripNo;
 	private String startDate;
 	private String endDate;
-	private int maxCount;
-	private String joinableTime;
-	
+	private int maxCount;	
 	
 	public FripJoinableDate() {
 		super();
@@ -17,7 +15,6 @@ public class FripJoinableDate {
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.maxCount = maxCount;
-		this.joinableTime = joinableTime;
 	}
 	
 	public String getFripNo() {
@@ -44,13 +41,5 @@ public class FripJoinableDate {
 	}
 	public void setMaxCount(int maxCount) {
 		this.maxCount = maxCount;
-	}
-
-	public String getJoinableTime() {
-		return joinableTime;
-	}
-
-	public void setJoinableTime(String joinableTime) {
-		this.joinableTime = joinableTime;
 	}
 }

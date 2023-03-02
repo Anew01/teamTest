@@ -10,6 +10,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="/css/summernote/summernote-lite.css">
+<link rel="stylesheet" href="/css/fripPage/insertFripFrm.css">
 <style>
 	.page-content{
 		display : flex;
@@ -22,8 +23,8 @@
 	<script src="/js/summernote-ko-KR.js"></script>
 	<div class="page-content">
 		<%@include file="/WEB-INF/views/frip/fripSideBar.jsp" %>
-		<div class="content">
-			<div class="page-title">스프립 등록</div>
+		<div class="form-content">
+			<div class="page-title"><h2>스프립 등록</h2></div>
 			<form action="insertFrip.do" method="post" enctype="multipart/form-data">
 				<div>
 					<input type="hidden" name="fripWriter">
@@ -59,10 +60,6 @@
 				<div>
 					<label for="endDate">스프립 마감날짜</label>
 					<input type="date" name="endDate" id="endDate" required>
-				</div>
-				<div>
-					<label for="fripTime">스프립 시간</label>
-					<input type="time" name="fripTime" id="fripTime" required>
 				</div>
 				<div>
 					<label for="maxCount">스프립 인원</label>

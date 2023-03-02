@@ -95,7 +95,7 @@ public class FripDao {
 
 	public int insertFripJoinableDate(Connection conn, Frip f, int fripNo) {
 		PreparedStatement pstmt = null;
-		String query = "insert into frip_joinable_date values(joinable_date_seq.nextval,?,?,?,?,?)";
+		String query = "insert into frip_joinable_date values(joinable_date_seq.nextval,?,?,?,?)";
 		int result = 0;
 		
 		try {
@@ -109,8 +109,7 @@ public class FripDao {
 			}
 			pstmt.setString(2, startDate);
 			pstmt.setInt(3, f.getMaxCount());
-			pstmt.setString(4, f.getFripTime());
-			pstmt.setString(5, endDate);
+			pstmt.setString(4, endDate);
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -197,7 +196,6 @@ public class FripDao {
 				date = new FripJoinableDate();
 				date.setStartDate(rset.getString("start_date"));
 				date.setEndDate(rset.getString("end_date"));
-				date.setJoinableTime(rset.getString("joinable_time"));
 				date.setMaxCount(rset.getInt("max_count"));
 				list.add(date);
 			}
