@@ -2,9 +2,9 @@ package kr.or.iei.frip.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,13 +14,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.FileItemStream;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import kr.or.iei.frip.service.FripService;
 import kr.or.iei.frip.vo.Frip;
+import kr.or.iei.frip.vo.FripJoinableDate;
 
 /**
  * Servlet implementation class InsertFripServlet
@@ -54,32 +54,26 @@ public class InsertFripServlet extends HttpServlet {
 		fileItemFactory.setSizeThreshold(maxSize);
 		
 		ServletFileUpload fileUpload = new ServletFileUpload(fileItemFactory);
-		fileUpload.setHeaderEncoding("UTF-8");
 		Frip f = new Frip();
 		ArrayList<String> filepath = new ArrayList<>();
 		
 		try {
 			List<FileItem> items = fileUpload.parseRequest(request);
+			ArrayList<FripJoinableDate> list = new ArrayList<>();
 			
 			for(FileItem item : items) {
 				
 				if(!item.isFormField()) {
 					
 					if(item.getSize() > 0) {
-						item.getName();
-						String separator = File.separator;
-						int index = item.getName().lastIndexOf(separator);
-						String fileName = item.getName().substring(index + 1);
-						File file = new File(saveDirectory+"/"+fileName);
-						while(file.exists()) {
-							int indexDot = item.getName().indexOf(".");
-							String fName = item.getName().substring(0,indexDot) +"("+num+")";
-							fileName = fName + item.getName().substring(indexDot);
-							num++;
-							file = new File(saveDirectory + "/" + fileName);
-						}
-						File uploadFile = new File(saveDirectory + separator + fileName);
+						String str = new String(item.getName());
+						int index = str.lastIndexOf(".");
+						String str1 = str.substring(index);
+						UUID uuid = UUID.randomUUID();
+						String fileName = uuid.toString() + str1;
+						File uploadFile = new File(saveDirectory + "/" + fileName);
 						filepath.add(fileName);
+						
 						try {
 							
 							item.write(uploadFile);
@@ -91,6 +85,7 @@ public class InsertFripServlet extends HttpServlet {
 					}
 				} else {
 					String str = new String(item.getString().getBytes("8859_1"),"UTF-8");
+					FripJoinableDate joinDate = new FripJoinableDate();
 					switch(item.getFieldName()){
 					case "fripTitle" :
 						f.setFripTitle(str);
@@ -110,8 +105,11 @@ public class InsertFripServlet extends HttpServlet {
 					case "fripCategory" :
 						f.setFripCategory(str);
 						break;
-					case "fripDate" :
-						f.setFripDate(str);
+					case "startDate" :
+						joinDate.setStartDate(str);
+						break;
+					case "endDate" :
+						joinDate.setEndDate(str);
 						break;
 					case "fripTime" :
 						f.setFripTime(str);
@@ -123,6 +121,8 @@ public class InsertFripServlet extends HttpServlet {
 						f.setFripWriter("user01");
 						break;
 					}
+					list.add(joinDate);
+					f.setJoinableDates(list);
 				}
 			}
 		} catch (FileUploadException e) {
@@ -145,6 +145,7 @@ public class InsertFripServlet extends HttpServlet {
 			request.setAttribute("icon", "error");
 		}
 		request.setAttribute("loc", "/fripMain.do");
+		view.forward(request, response);
 	}
 
 	/**

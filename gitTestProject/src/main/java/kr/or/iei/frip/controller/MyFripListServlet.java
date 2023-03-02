@@ -12,19 +12,18 @@ import javax.servlet.http.HttpServletResponse;
 
 import kr.or.iei.frip.service.FripService;
 import kr.or.iei.frip.vo.Frip;
-import kr.or.iei.frip.vo.FripMainDate;
 
 /**
- * Servlet implementation class FripMainServlet
+ * Servlet implementation class MyFripListServlet
  */
-@WebServlet(name = "FripMain", urlPatterns = { "/fripMain.do" })
-public class FripMainServlet extends HttpServlet {
+@WebServlet(name = "MyFripList", urlPatterns = { "/myFripList.do" })
+public class MyFripListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public FripMainServlet() {
+    public MyFripListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,34 +33,11 @@ public class FripMainServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/frip/fripMain.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/frip/myFripList.jsp");
 		FripService service = new FripService();
 		String fripWriter = "user01";
 		ArrayList<Frip> list = service.selectMyFrip(fripWriter);
-		int totalIncome = 0;
-		int totalInquiryCount = 0;
-		int totalrankAvg = 0;
-		int totalFeedCount = 0;
-		int totalPaymentCount = 0;
-		int totalFripCount = list.size();
-		int totalExpiredFripCount = 0;
-		
-		for(Frip f : list) {
-			totalIncome += f.getFripIncome();
-			if( Integer.parseInt(f.getFripStatus()) == 1) {
-				totalExpiredFripCount++;
-			}
-		}
-		FripMainDate data = new FripMainDate();
-		data.setTotalExpiredFripCount(totalExpiredFripCount);
-		data.setTotalFeedCount(totalFeedCount);
-		data.setTotalFripCount(totalFripCount);
-		data.setTotalIncome(totalIncome);
-		data.setTotalInquiryCount(totalInquiryCount);
-		data.setTotalPaymentCount(totalPaymentCount);
-		data.setTotalrankCount(totalrankAvg);
-		
-		request.setAttribute("data", data);
+		request.setAttribute("list", list);
 		view.forward(request, response);
 	}
 

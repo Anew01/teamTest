@@ -101,9 +101,15 @@ public class FripDao {
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, fripNo);
-			pstmt.setString(2, f.getFripDate());
+			String startDate = "";
+			String endDate = "";
+			for(FripJoinableDate joinDate : f.getJoinableDates()) {
+				startDate = joinDate.getStartDate();
+				endDate = joinDate.getEndDate();
+			}
+			pstmt.setString(2, startDate);
 			pstmt.setInt(3, f.getMaxCount());
-			pstmt.setString(4, f.getFripTime());
+			pstmt.setString(4, endDate);
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -121,7 +127,6 @@ public class FripDao {
 		Frip f = null;
 		String query = "select * from frip_tbl t join frip_category c "
 				+ "on (t.frip_no=c.frip_no)";
-		String query2 = "select * from frip_files where frip_no=?";
 		try {
 			pstmt = conn.prepareStatement(query);
 			rset = pstmt.executeQuery();
@@ -189,8 +194,8 @@ public class FripDao {
 			rset = pstmt.executeQuery();
 			while(rset.next()) {
 				date = new FripJoinableDate();
-				date.setJoinableDate(rset.getString("joinable_date"));
-				date.setJoinableTime(rset.getString("joinable_time"));
+				date.setStartDate(rset.getString("start_date"));
+				date.setEndDate(rset.getString("end_date"));
 				date.setMaxCount(rset.getInt("max_count"));
 				list.add(date);
 			}
@@ -209,7 +214,9 @@ public class FripDao {
 		ResultSet rset = null;
 		ArrayList<Frip> list = new ArrayList<>();
 		Frip f = null;
-		String query = "select * from frip_tbl where frip_writer=?";
+		String query = "select * from frip_tbl t join frip_category c\n"
+				+ "on (t.frip_no=c.frip_no) \n"
+				+ "where frip_writer=?";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -240,28 +247,4 @@ public class FripDao {
 		}
 		return list;
 	}
-
-	public String selectFripCategory(Connection conn, int fripNo) {
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		String fripCategory = null;
-		String query = "select * from frip_category where frip_no=?";
-		
-		try {
-			pstmt = conn.prepareStatement(query);
-			pstmt.setInt(1, fripNo);
-			rset = pstmt.executeQuery();
-			if(rset.next()) {
-				fripCategory = rset.getString("category_name");
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			JDBCTemplate.close(rset);
-			JDBCTemplate.close(pstmt);
-		}
-		return fripCategory;
-	}
-
 }

@@ -9,67 +9,75 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="/js/jquery-3.6.3.min.js"></script>
-<script src="/js/summernote-lite.js"></script>
-<script src="/js/summernote-ko-KR.js"></script>
 <link rel="stylesheet" href="/css/summernote/summernote-lite.css">
+<link rel="stylesheet" href="/css/fripPage/insertFripFrm.css">
+<style>
+	.page-content{
+		display : flex;
+	}
+</style>
 </head>
 <body>
 	<%@include file="/WEB-INF/views/common/header.jsp" %>
+	<script src="/js/summernote-lite.js"></script>
+	<script src="/js/summernote-ko-KR.js"></script>
 	<div class="page-content">
-		<div class="page-title">스프립 등록</div>
-		<form action="insertFrip.do" method="post" enctype="multipart/form-data">
-			<div>
-				<input type="hidden" name="fripWriter">
-				<label for="fripTitle">스프립 제목</label>
-				<input type="text" name="fripTitle" id="fripTitle" required>
-			</div>
-			<div>
-				<label for="fripFiles">스프립 프로필 사진</label>
-				<input type="file" multiple="multiple" accept=".jpg,.png,.jpeg" name="fripFiles" id="fripFiles" onChange="uploadFiles(this)">
-			</div>		
-			<div id="FilesView"></div>
-			<div>
-				<label for="fripAddr">스프립 주소</label>
-				<input type="text" name="fripAddr" id="fripAddr" required>
-			</div>
-			<div>
-				<label for="fripLevel">난이도</label>
-				<input type="radio" name="fripLevel" id="easy" value="EASY">
-				<label for="easy">쉬움</label>
-				<input type="radio" name="fripLevel" id="medium" value="MEDIUM">
-				<label for="medium">보통</label>
-				<input type="radio" name="fripLevel" id="hard" value="">
-				<label for="hard">어려움</label>
-			</div>
-			<div>
-				<label for="fripCategory">스프립 카테고리</label>
-				<input type="text" name="fripCategory" id="fripCategory" required>
-			</div>
-			<div>
-				<label for="fripDate">스프립 날짜</label>
-				<input type="date" name="fripDate" id="fripDate" required>
-			</div>
-			<div>
-				<label for="fripTime">스프립 시간</label>
-				<input type="time" name="fripTime" id="fripTime" required>
-			</div>
-			<div>
-				<label for="maxCount">스프립 인원</label>
-				<input type="text" name="maxCount" id="maxCount" required>
-			</div>
-			<div>
-				<label for="fripPrice">스프립 가격</label>
-				<input type="text" name="fripPrice" id="fripPrice" required>
-			</div>
-			<div>
-				<label for="fripContent">스프립 내용</label>
-				<textarea id="summernote" name="editordata" required></textarea>
-			</div>
-			<button type="submit">등록하기</button>
-		</form>
-		<%@include file="/WEB-INF/views/common/footer.jsp" %>
+		<%@include file="/WEB-INF/views/frip/fripSideBar.jsp" %>
+		<div class="form-content">
+			<div class="page-title"><h2>스프립 등록</h2></div>
+			<form action="insertFrip.do" method="post" enctype="multipart/form-data">
+				<div>
+					<input type="hidden" name="fripWriter">
+					<label for="fripTitle">스프립 제목</label>
+					<input type="text" name="fripTitle" id="fripTitle" required>
+				</div>
+				<div>
+					<label for="fripFiles">스프립 프로필 사진</label>
+					<input type="file" multiple="multiple" accept=".jpg,.png,.jpeg" name="fripFiles" id="fripFiles" onChange="uploadFiles(this)">
+				</div>		
+				<div id="FilesView"></div>
+				<div>
+					<label for="fripAddr">스프립 주소</label>
+					<input type="text" name="fripAddr" id="fripAddr" required>
+				</div>
+				<div>
+					<label for="fripLevel">난이도</label>
+					<input type="radio" name="fripLevel" id="easy" value="EASY">
+					<label for="easy">쉬움</label>
+					<input type="radio" name="fripLevel" id="medium" value="MEDIUM">
+					<label for="medium">보통</label>
+					<input type="radio" name="fripLevel" id="hard" value="">
+					<label for="hard">어려움</label>
+				</div>
+				<div>
+					<label for="fripCategory">스프립 카테고리</label>
+					<input type="text" name="fripCategory" id="fripCategory" required>
+				</div>
+				<div>
+					<label for="startDate">스프립 시작날짜</label>
+					<input type="date" name="startDate" id="startDate" required>
+				</div>
+				<div>
+					<label for="endDate">스프립 마감날짜</label>
+					<input type="date" name="endDate" id="endDate" required>
+				</div>
+				<div>
+					<label for="maxCount">스프립 인원</label>
+					<input type="text" name="maxCount" id="maxCount" required>
+				</div>
+				<div>
+					<label for="fripPrice">스프립 가격</label>
+					<input type="text" name="fripPrice" id="fripPrice" required>
+				</div>
+				<div>
+					<label for="fripContent">스프립 내용</label>
+					<textarea id="summernote" name="editordata" required></textarea>
+				</div>
+				<button type="submit">등록하기</button>
+			</form>
+		</div>
 	</div>
+		<%@include file="/WEB-INF/views/common/footer.jsp" %>
 	<script>
 		function uploadFiles(fs){
 			if(fs.files.length != 0 && fs.files[0] != 0){
