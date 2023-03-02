@@ -11,17 +11,20 @@ import kr.or.iei.member.vo.Member;
 
 public class MemberDao {
 
-	public ArrayList<Member> selectAllMember(Connection connection) {
+	public ArrayList<Member> selectAllMember(Connection connection, int start, int end) {
 		PreparedStatement preparedStatement = null;
 
 		ResultSet resultSet = null;
 
 		ArrayList<Member> list = new ArrayList<Member>();
 
-		String query = "SELECT * FROM MEMBER_TBL";
+		String query = "SELECT * FROM(SELECT ROWNUM AS rnum, n.* FROM (SELECT MEMBER_NO, MEMBER_ID, MEMBER_PW, MEMBER_NAME, MEMBER_ADDR, MEMBER_PHONE, MEMBER_GENDER, MEMBER_LEVEL, ENROLL_DATE FROM MEMBER_TBL ORDER BY 1 DESC) n) WHERE rnum BETWEEN ? and ?";
 
 		try {
 			preparedStatement = connection.prepareStatement(query);
+
+			preparedStatement.setInt(1, start);
+			preparedStatement.setInt(2, end);
 
 			resultSet = preparedStatement.executeQuery();
 
@@ -93,6 +96,32 @@ public class MemberDao {
 		}
 
 		return result;
+	}
+
+	public int selectMemberCount(Connection connection) {
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+
+		int totalCount = 0;
+
+		String query = "SELECT COUNT(*) AS CNT FROM MEMBER_TBL";
+
+		try {
+			preparedStatement = connection.prepareStatement(query);
+
+			resultSet = preparedStatement.executeQuery();
+
+			if (resultSet.next()) {
+				totalCount = resultSet.getInt("CNT");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(resultSet);
+			JDBCTemplate.close(preparedStatement);
+		}
+
+		return totalCount;
 	}
 
 }

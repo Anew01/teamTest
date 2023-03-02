@@ -1,7 +1,6 @@
 package kr.or.iei.adminMember.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kr.or.iei.member.service.MemberService;
-import kr.or.iei.member.vo.Member;
+import kr.or.iei.member.vo.MemberPageDate;
 
 @WebServlet(name = "AllMember", urlPatterns = { "/allMember.do" })
 public class AllMemberServlet extends HttpServlet {
@@ -26,13 +25,17 @@ public class AllMemberServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
 
+		int reqPage = Integer.parseInt(request.getParameter("reqPage"));
+
 		MemberService service = new MemberService();
 
-		ArrayList<Member> list = service.selectAllMember();
+		MemberPageDate memberPageDate = service.selectAllMember(reqPage);
 
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/adminPage/allMember.jsp");
 
-		request.setAttribute("list", list);
+		request.setAttribute("list", memberPageDate.getList());
+		request.setAttribute("pageNavi", memberPageDate.getPageNavi());
+		request.setAttribute("start", memberPageDate.getStart());
 
 		view.forward(request, response);
 	}
