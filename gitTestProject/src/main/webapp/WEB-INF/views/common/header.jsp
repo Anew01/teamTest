@@ -49,7 +49,7 @@
                     <li><a href="#"><img src="/categoryImg/뷰티.png" ><div class="img-text"><span>뷰티</span></div></a></li>
                     <li><a href="#"><img src="/categoryImg/모임.png" ><div class="img-text"><span>모임</span></div></a></li>
                     <li><a href="#"><img src="/categoryImg/국내여행.png" ><div class="img-text"><span>국내여행</span></div></a></li>
-                    <li><a href="#"><img src="/categoryImg/해외여행.png" ><div class="img-text"><span>해외여행</span></div></a></li>
+                    <li><a href="/adminPage.do"><img src="/categoryImg/해외여행.png" ><div class="img-text"><span>해외여행</span></div></a></li>
                 </ul>
             </div>
         </div>        
