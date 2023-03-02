@@ -134,6 +134,7 @@ public class FripDao {
 			rset = pstmt.executeQuery();
 			while(rset.next()) {
 				f = new Frip();
+				f.setFripTitle(rset.getString("frip_title"));
 				f.setFripAddr(rset.getString("frip_addr"));
 				f.setFripAuth(rset.getString("frip_auth"));
 				f.setFripCategory(rset.getString("category_name"));
@@ -227,6 +228,7 @@ public class FripDao {
 			
 			while(rset.next()) {
 				f = new Frip();
+				f.setFripTitle(rset.getString("frip_title"));
 				f.setFripAddr(rset.getString("frip_addr"));
 				f.setFripAuth(rset.getString("frip_auth"));
 				f.setFripCategory(rset.getString("category_name"));
