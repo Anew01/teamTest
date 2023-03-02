@@ -93,12 +93,12 @@ td {
     cursor: pointer;
 }
 
-.table button:hover {
+.chageLevel:hover {
     color: #fff;
     background-color: #4B89DC;
 }
 
-.table .Withdrawal:hover {
+.withdrawal:hover {
     color: #fff;
     background-color: #DB4455;
 }
@@ -180,17 +180,17 @@ td {
     margin: 0px;
 }
 
-.changeLevel-btn {
+.checkedChangeLevel {
     margin-left: 850px;
 }
 
-.changeLevel-btn {
+.checkedChangeLevel {
     margin-left: 1100px;
     background-color: #4B89DC;
     color: white;
 }
 
-.withdrawal-btn {
+.checkedWithdrawal {
     background-color: #DB4455;
     color: white;
 }

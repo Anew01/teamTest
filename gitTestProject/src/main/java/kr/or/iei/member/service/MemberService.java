@@ -24,4 +24,8 @@ public class MemberService {
 
 		return list;
 	}
+
+	public int chageLevel(int memberNo, int memberLevel) {
+		return 0;
+	}
 }

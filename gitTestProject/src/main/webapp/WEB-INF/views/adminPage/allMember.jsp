@@ -61,8 +61,8 @@
 	                                <%} %>                                    
 	                                </td>
 	                                <td><%=member.getEnrollDate() %></td>
-	                                <td><button class="btc bc33 bs4 checkedChageLevel">회원등급변경</button></td>
-	                                <td><button class="btc bc33 bs4 checkedChageLevel Withdrawal">탈퇴</button></td>
+	                                <td><button class="btc bc33 bs4 chageLevel">회원등급변경</button></td>
+	                                <td><button class="btc bc33 bs4 withdrawal">탈퇴</button></td>
 	                            </tr>
                             <%} %>                                             
                         </table>
@@ -89,8 +89,8 @@
                     </div>
                 </div>
                 <div class="card">
-                    <button class="select-btn changeLevel-btn">선택회원등급변경</button>
-                    <button class="select-btn withdrawal-btn">선택회원탈퇴</button>
+                    <button class="select-btn checkedChangeLevel">선택회원등급변경</button>
+                    <button class="select-btn checkedWithdrawal">선택회원탈퇴</button>
                 </div>
                 <div class="card">
                     <p>㈜프렌트립 | 사업자 등록번호 : 261-81-04385|통신판매업신고번호 : 2016-서울성동-01088
@@ -101,9 +101,12 @@
         </div>
     </div>
     <script>
-        $(".checkedChageLevel").click(function () {
-            $(this).toggleClass("button-active");
-        });
+	    $(".chageLevel").on("click", function () {
+	        const memberNo = $(this).parent().parent().children().eq(1).text(); // 회원 번호	       
+	        const memberLevel = $(this).parent().parent().children().eq(5).children().val(); // 회원 등급       
+	      
+	        location.href = "/changeLevel.do?memberNo=" + memberNo + "&memberLevel=" + memberLevel;
+	    });
     </script>
     <!-- sidebar.js -->
     <script src="/js/adminPage/sidebar.js"></script>
