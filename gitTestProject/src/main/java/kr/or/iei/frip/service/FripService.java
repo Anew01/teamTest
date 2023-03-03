@@ -88,7 +88,13 @@ public class FripService {
 	public ArrayList<Frip> selectOutdoor() {
 		Connection conn = JDBCTemplate.getConnection();
 		ArrayList<Frip> list = dao.selectOutdoor(conn);
-		return null;
+		for(Frip f : list) {
+			ArrayList<String> fripFiles = dao.selectFripFiles(conn, f.getFripNo());
+			f.setFilePath(fripFiles);
+			ArrayList<FripJoinableDate> joinableDates = dao.selectJoinableDates(conn, f.getFripNo());
+			f.setJoinableDates(joinableDates);
+		}
+		return list;
 	}
 
 	

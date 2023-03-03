@@ -3,6 +3,7 @@ package kr.or.iei.fripCategory.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -37,6 +38,11 @@ public class OutdoorServlet extends HttpServlet {
 		//비
 		FripService service = new FripService();
 		ArrayList<Frip> list = service.selectOutdoor();
+		//결
+		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/category/outdoor.jsp");
+		request.setAttribute("list", list);
+		
+		view.forward(request, response);
 		
 	}
 
