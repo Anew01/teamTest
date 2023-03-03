@@ -1,29 +1,27 @@
 package kr.or.iei.join.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.io.PrintWriter;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import kr.or.iei.frip.service.FripService;
-import kr.or.iei.frip.vo.Frip;
+import kr.or.iei.join.service.JoinFripService;
 
 /**
- * Servlet implementation class JoinFripServlet
+ * Servlet implementation class CheckScheduleServlet
  */
-@WebServlet(name = "JoinFrip", urlPatterns = { "/joinFrip.do" })
-public class JoinFripServlet extends HttpServlet {
+@WebServlet(name = "CheckSchedule", urlPatterns = { "/checkSchedule.do" })
+public class CheckScheduleServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public JoinFripServlet() {
+    public CheckScheduleServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,16 +30,21 @@ public class JoinFripServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
-		int fripNo = Integer.parseInt(request.getParameter("fripNo"));
-		FripService fservice = new FripService();
-		Frip f = fservice.selectOneFripByNo(fripNo);
-		ArrayList<Frip> list = fservice.selectAllFrip();
-		
-		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/frip/checkJoinFrip.jsp");
-		request.setAttribute("f", f);
-		request.setAttribute("list", list);
-		view.forward(request, response);
+				//1. 인코딩
+				request.setCharacterEncoding("UTF-8");
+				//2. 값추출
+				int fripNo = Integer.parseInt(request.getParameter("fripNo"));
+				String calendar= request.getParameter("calendar");
+				int attendNumber = Integer.parseInt(request.getParameter("attendNumber"));
+				//3. 비즈니스로직
+				System.out.println(fripNo);
+				System.out.println(calendar);
+				System.out.println(attendNumber);
+				JoinFripService service = new JoinFripService();
+				int result = service.checkSchedule(fripNo,calendar,attendNumber);
+				//4. 결과처리
+				PrintWriter out = response.getWriter();
+				out.print(result);
 	}
 
 	/**
