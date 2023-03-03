@@ -38,7 +38,7 @@ public class WithdrawalServlet extends HttpServlet {
 			request.setAttribute("title", "회원 삭제 실패");
 			request.setAttribute("msg", "홈페이지에 문제가 발생했습니다.");
 			request.setAttribute("icon", "error");
-			request.setAttribute("loc", "/allMember.do");
+			request.setAttribute("loc", "/allMember.do?reqPage=1");
 			view.forward(request, response);
 		}
 

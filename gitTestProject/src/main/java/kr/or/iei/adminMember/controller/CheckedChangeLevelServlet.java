@@ -43,7 +43,7 @@ public class CheckedChangeLevelServlet extends HttpServlet {
 			request.setAttribute("icon", "error");
 		}
 
-		request.setAttribute("loc", "/allMember.do");
+		request.setAttribute("loc", "/allMember.do?reqPage=1");
 
 		view.forward(request, response);
 	}
