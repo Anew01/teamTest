@@ -1,4 +1,9 @@
+<%@page import="kr.or.iei.frip.vo.Frip"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+   <%
+   		ArrayList<Frip> frips = (ArrayList<Frip>)request.getAttribute("frips");
+   %>
     <!DOCTYPE html>
     <html lang="ko" dir="ltr">
 
@@ -31,28 +36,29 @@
                                     <th>등록 수락</th>
                                     <th>삭제</th>
                                 </tr>
-                                <tr>
+                                <%for(Frip frip : frips) {%>
+                                 <tr>
                                     <td><input type="checkbox" class="chk"></td>
                                     <td>
-                                        1
+                                        <%=frip.getFripNo() %>
                                     </td>
                                     <td>
-                                        alstjq
+                                        <%=frip.getFripWriter() %>
                                     </td>
                                     <td>
-                                        여행가기
+                                        <%=frip.getFripTitle() %>
                                     </td>
                                     <td>
-                                        서울시 구로수 16069호
+                                        <%=frip.getFripAddr() %>
                                     </td>
                                     <td>
-                                        어려움
+                                        <%=frip.getFripLevel() %>
                                     </td>
-                                    <td>36000</td>
+                                    <td><%=frip.getFripPrice() %></td>
                                     <td><button class="btc bc33 btn chageLevel fripAccept">등록 수락</button></td>
                                     <td><button class="btc bc33 btn withdrawal  fripDelete">삭제</button></td>
                                 </tr>
-
+									 <%} %>
                                 <tr>
                                     <th colspan="9">
                                         <button
