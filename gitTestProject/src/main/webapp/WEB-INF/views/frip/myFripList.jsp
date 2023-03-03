@@ -17,9 +17,11 @@
 	<div class="page-content">
 		<%@include file="/WEB-INF/views/frip/fripSideBar.jsp" %>
 		<div class="content">
+  			<div class="content-title">My Sprip List</div>
   			<div class="slide-content">
   				<% for(int i=0;i<list.size();i++) { %>
   				<% Frip f = list.get(i); %>
+  				<div class="slide-box">
   				<div id="carousel-<%= i %>" class="carousel slide" data-bs-ride="true" style="width : 200px;">
 					<div class="carousel-indicators">
 					    <% for(int j=0;j<f.getFilePath().size();j++) { %>
@@ -51,9 +53,13 @@
 					    <span class="carousel-control-next-icon" aria-hidden="true"></span>
 					    <span class="visually-hidden">Next</span>
 					</button>
-				<div class="slide-title"><%= f.getFripTitle() %></div>
 				</div>
+				<div class="slide-title"><%= f.getFripTitle() %></div>
+  				</div>
 				<% } %>
+  			</div>
+  			<div class="d-grid gap-2 col-6 mx-auto">
+  				<button class="btn btn-success">더보기</button>
   			</div>
 		</div>
 	</div>

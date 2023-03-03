@@ -5,14 +5,40 @@
 }
 .content{
 	display: flex;
-	justify-content : center;	
+	flex-direction : column;	
+	justify-content : center;
 	width : 100%;
+	margin : 20px 40px;
+	margin-top : 50px;
+}
+.content-title{
+	text-align : center;
+	color : #85C88A;
+	font-size : 50px;	
 }
 .slide-content{
-	width : 80%;
+	width : 100%;
 	display : flex;
-	justify-content : space-between;
+	flex-wrap: wrap;
+	margin-top : 50px;
+}
+.slide-box{
+	width : 230px;
+	height : 400px;
+	display : flex;
+	flex-direction : column;
+	align-items : center;
+	justify-content : center;
+	border : 1px solid #dedede;
+	box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
+	border-radius : 12px;
+	margin : 10px 15px;
+	margin-bottom : 50px;
 }
 .carousel-item>img{
-	height : 400px;
+	height : 320px;
+}
+.slide-title{
+	margin-top : 5px;
+	text-align : center;
 }
