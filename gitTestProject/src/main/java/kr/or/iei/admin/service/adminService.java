@@ -6,7 +6,9 @@ import java.util.StringTokenizer;
 
 import common.JDBCTemplate;
 import kr.or.iei.admin.dao.adminDao;
+import kr.or.iei.admin.vo.FripAndFeedPageDate;
 import kr.or.iei.admin.vo.MemberPageDate;
+import kr.or.iei.feed.vo.Feed;
 import kr.or.iei.frip.vo.Frip;
 import kr.or.iei.member.vo.Member;
 
@@ -201,7 +203,25 @@ public class adminService {
 		return result;
 	}
 
-	public ArrayList<Frip> selectAllFrip() {
+	public FripAndFeedPageDate selectAllFripAndFeed(int fripReqPage, int feedReqPage) {
+		Connection connection = JDBCTemplate.getConnection();
+
+		int numPerPage = 10;
+
+		int fripEnd = numPerPage * fripReqPage;
+		int fripStart = fripEnd - numPerPage + 1;
+		int feedEnd = numPerPage * feedReqPage;
+		int feedStart = feedEnd - numPerPage + 1;
+
+		ArrayList<Frip> frips = dao.selectAllFrip(connection, fripStart, fripEnd);
+		ArrayList<Feed> feeds = dao.selectAllFeed(connection, feedStart, feedEnd);
+
+		int fripTotalCount = dao.selectFripCount(connection);
+		int feedTotalCount = dao.selectFeedCount(connection);
+
+		int totalPage = 0;
+
 		return null;
 	}
+
 }

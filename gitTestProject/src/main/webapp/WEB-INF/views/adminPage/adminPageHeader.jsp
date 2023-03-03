@@ -48,7 +48,7 @@
                     </a>
                 </li>
                  <li class="item" id="messages">
-                    <a href="/firpAndFeed.do" class="menu-btn">
+                    <a href="/firpAndFeed.do?fripReqPage=1&feedReqPage=1" class="menu-btn">
                         <i class="fa-brands fa-flipboard"></i>
                         <span>프립/피드 관리</span>
                     </a>

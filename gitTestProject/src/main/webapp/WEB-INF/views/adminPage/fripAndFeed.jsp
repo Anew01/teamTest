@@ -1,10 +1,15 @@
+<%@page import="kr.or.iei.feed.vo.Feed"%>
 <%@page import="kr.or.iei.frip.vo.Frip"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
    <%
    		ArrayList<Frip> frips = (ArrayList<Frip>)request.getAttribute("frips");
-		String pageNavi = (String)request.getAttribute("pageNavi");
-		int start = (int)request.getAttribute("start");
+		String fripPageNavi = (String)request.getAttribute("fripPageNavi");
+		int fripStart = (int)request.getAttribute("fripStart");
+		
+		ArrayList<Feed> feeds = (ArrayList<Feed>)request.getAttribute("fedds");
+		String feedPageNavi = (String)request.getAttribute("feedPageNavi");
+		int feedStart = (int)request.getAttribute("feedStart");
    %>
     <!DOCTYPE html>
     <html lang="ko" dir="ltr">
@@ -43,7 +48,7 @@
                                  <tr>
                                     <td><input type="checkbox" class="chk"></td>
                                     <td>
-                                        <%=i+start%>
+                                        <%=i+fripStart%>
                                     </td>
                                     <td>
                                         <%=frip.getFripWriter() %>
@@ -71,7 +76,7 @@
                                 </tr>
                             </table>
                             <div id="pageNavi">
-								<%=pageNavi %>
+								<%=fripPageNavi %>
                             </div>
                         </div>
                     </div>
@@ -89,6 +94,8 @@
                                     <th>작성일자</th>
                                     <th>삭제</th>
                                 </tr>
+                                <%for(int i = 0; i < feeds.size(); i++) {%>
+                                <%Feed feed = feeds.get(i);%>
                                 <tr>
                                     <td><input type="checkbox" class="chk"></td>
                                     <td>
@@ -105,7 +112,7 @@
                                     </td>
                                     <td><button class="btc bc33 btn withdrawal feedDelete">삭제</button></td>
                                 </tr>
-
+                                 <%} %>
                                 <tr>
                                     <th colspan="9">
                                         <button class="select-btn checkedWithdrawal checkedfeedDelete">선택피드삭제</button>
@@ -113,7 +120,7 @@
                                 </tr>
                             </table>
                             <div id="pageNavi">
-
+                            <%=feedPageNavi %>
                             </div>
                         </div>
                     </div>

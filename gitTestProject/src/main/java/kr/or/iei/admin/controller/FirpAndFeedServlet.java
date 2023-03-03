@@ -1,7 +1,6 @@
 package kr.or.iei.admin.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kr.or.iei.admin.service.adminService;
-import kr.or.iei.frip.vo.Frip;
+import kr.or.iei.admin.vo.FripAndFeedPageDate;
 
 @WebServlet(name = "FirpAndFeed", urlPatterns = { "/firpAndFeed.do" })
 public class FirpAndFeedServlet extends HttpServlet {
@@ -26,13 +25,20 @@ public class FirpAndFeedServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
 
-		int reqPage = Integer.parseInt(request.getParameter("reqPage"));
+		int fripReqPage = Integer.parseInt(request.getParameter("fripReqPage"));
+		int feedReqPage = Integer.parseInt(request.getParameter("feedReqPage"));
 
 		adminService service = new adminService();
 
-		ArrayList<Frip> frips = service.selectAllFrip();
+		FripAndFeedPageDate fripAndFeedPageDate = service.selectAllFripAndFeed(fripReqPage, feedReqPage);
 
-		request.setAttribute("frips", frips);
+		request.setAttribute("frips", fripAndFeedPageDate.getFrips());
+		request.setAttribute("fripPageNavi", fripAndFeedPageDate.getFripPageNavi());
+		request.setAttribute("fripStart", fripAndFeedPageDate.getFripStart());
+
+		request.setAttribute("fedds", fripAndFeedPageDate.getFeeds());
+		request.setAttribute("feedPageNavi", fripAndFeedPageDate.getFeedPageNavi());
+		request.setAttribute("feedStart", fripAndFeedPageDate.getFeedStart());
 
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/adminPage/fripAndFeed.jsp");
 

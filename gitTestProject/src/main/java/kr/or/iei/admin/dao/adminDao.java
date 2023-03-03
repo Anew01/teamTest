@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import common.JDBCTemplate;
+import kr.or.iei.feed.vo.Feed;
+import kr.or.iei.frip.vo.Frip;
 import kr.or.iei.member.vo.Member;
 
 public class adminDao {
@@ -152,4 +154,19 @@ public class adminDao {
 		return result;
 	}
 
+	public ArrayList<Frip> selectAllFrip(Connection connection, int fripStart, int fripEnd) {
+		return null;
+	}
+
+	public ArrayList<Feed> selectAllFeed(Connection connection, int feedStart, int feedEnd) {
+		return null;
+	}
+
+	public int selectFripCount(Connection connection) {
+		return 0;
+	}
+
+	public int selectFeedCount(Connection connection) {
+		return 0;
+	}
 }
