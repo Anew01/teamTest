@@ -85,4 +85,12 @@ public class FripService {
 		return f;
 	}
 
+	public ArrayList<Frip> selectOutdoor() {
+		Connection conn = JDBCTemplate.getConnection();
+		ArrayList<Frip> list = dao.selectOutdoor(conn);
+		return null;
+	}
+
+	
+
 }

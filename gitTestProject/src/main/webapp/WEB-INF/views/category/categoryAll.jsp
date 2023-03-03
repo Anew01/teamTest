@@ -33,9 +33,12 @@
             <div class="f-addr">
               	<%=f.getFripAddr() %>
             </div>
+            <%for(int q=0; q<1; q++){ %>
+               <%FripJoinableDate fjd = f.getJoinableDates().get(q); %>
             <div class="j-date">
-                00.00.00 ~ 00.00.00
+            	<%=fjd.getStartDate() %> ~ <%=fjd.getEndDate() %>
             </div>
+            <%} %>
             <div class="f-price">
                 <%=f.getFripPrice() %>
             </div>
