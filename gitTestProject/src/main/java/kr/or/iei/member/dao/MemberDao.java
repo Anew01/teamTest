@@ -124,4 +124,32 @@ public class MemberDao {
 		return totalCount;
 	}
 
+	public int updateMember(Connection connection, Member member) {
+		System.out.println(member.getMemberId());
+		PreparedStatement pStatement = null;
+
+		int result = 0;
+
+		String query = "UPDATE MEMBER_TBL SET MEMBER_PW = ?, MEMBER_PHONE = ?, MEMBER_ADDR = ?, MEMBER_PROFILE = ?, MEMBER_INTRO = ? WHERE MEMBER_ID = ?";
+
+		try {
+			pStatement = connection.prepareStatement(query);
+
+			pStatement.setString(1, member.getMemberPw());
+			pStatement.setString(2, member.getMemberPhone());
+			pStatement.setString(3, member.getMemberAddr());
+			pStatement.setString(4, member.getMemberProfile());
+			pStatement.setString(5, member.getMemberIntro());
+			pStatement.setString(6, member.getMemberId());
+
+			result = pStatement.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pStatement);
+		}
+
+		return result;
+	}
+
 }

@@ -1,0 +1,33 @@
+*{
+    margin: 0;
+    padding: 0;
+    outline: none;
+}
+.content-wrap{
+    width: 1200px;
+    margin: 0 auto;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: center;
+}
+.frip-box{
+    width: 330px;
+    text-align: left;
+    margin: 0;
+}
+
+.img-box{
+    width: 330px;
+    height: 330px;
+    margin: 0;
+    background-color: aqua;
+    border-radius: 30px;
+}
+.img-box img{
+	width: 330px;
+    height: 330px;
+    border-radius: 30px;
+}
