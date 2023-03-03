@@ -20,16 +20,21 @@
 	<%for(int i=0; i<list.size(); i++){ %>
 	<%Frip f = list.get(i); %>
 	<%=f.getFilePath() %>
+	
+	<%for(int j=0; j<1; j++){ %>
+	<%String s = f.getFilePath().get(j); %>
 		<table>
 			<tr>
 				<th>
-					<img src="/upload/photo/<%=f.getFilePath() %>">
+					<img src="/upload/photo/<%=s %>">
 				</th>
 				<th>
 					
 				</th>
 			</tr>
 		</table>
+	<%} %>
+	
 	<%} %>
 	<%@ include file="/WEB-INF/views/common/footer.jsp" %>
 </body>
