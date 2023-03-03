@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kr.or.iei.admin.service.adminService;
-import kr.or.iei.member.vo.MemberPageDate;
+import kr.or.iei.admin.vo.MemberPageDate;
 
 @WebServlet(name = "AllMember", urlPatterns = { "/allMember.do" })
 public class AllMemberServlet extends HttpServlet {
