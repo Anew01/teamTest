@@ -79,7 +79,7 @@
 					<div class="input-group-prepend">
 						<label class="input-group-text" for="fripCategory">스프립 카테고리</label>
 					</div>
-					<select class="form-control" style="width : max-content;" id="inputGroupSelect01" required>
+					<select class="form-control" name="fripCategory" style="width : max-content;" id="inputGroupSelect01" required>
 					    <option selected>카테고리...</option>
 					    <option value="아웃도어">아웃도어</option>
 					    <option value="피트니스">피트니스</option>
@@ -127,39 +127,25 @@
 				</div>
 			</form>
 		</div>
-		<div class="slide-wrapper">
-			<div class="slide-title"><h4>이미지 미리보기</h4></div>
-			<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
-	  			<div class="carousel-indicators">
-				    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-				    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-				    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-	  			</div>
-	  			<div class="carousel-inner">
-		    		<div class="carousel-item active">
-		     			 <img src="/upload/photo/0d383419-1a54-4150-b634-a8c66b701f71.jpeg" class="d-block w-100" alt="...">
-		    		</div>
-	    		<div class="carousel-item">
-	      			<img src="/upload/photo/1c188a8b-9b6e-4171-b843-cd360caaf5c1.png" class="d-block w-100" alt="...">
-	    		</div>
-	    		<div class="carousel-item">
-	     			<img src="/upload/photo/81db47af-a1ad-4b20-b3e5-ce6c2d31a27b.png" class="d-block w-100" alt="...">
-	    		</div>
-	  			</div>
-		  		<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-				   	<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-				    <span class="visually-hidden">Previous</span>
-		  		</button>
-				<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-					<span class="carousel-control-next-icon" aria-hidden="true"></span>
-				    <span class="visually-hidden">Next</span>
-				</button>
+		<div class="slide-page">
+			<div class="slide-wrapper">
+				<div class="slide-title"><h4>이미지 미리보기</h4></div>
+				<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
+			  		<div class="carousel-inner">
+			  		</div>
+					<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+						<span class="visually-hidden">Previous</span>
+					</button>
+					<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+						<span class="carousel-control-next-icon" aria-hidden="true"></span>
+						<span class="visually-hidden">Next</span>
+					</button>
+				</div>
 			</div>
 		</div>
 	</div>
 		<%@include file="/WEB-INF/views/common/footer.jsp" %>
-	    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-	
 	<script>
 		function uploadFiles(fs){
 			if(fs.files.length != 0 && fs.files[0] != 0){
@@ -167,12 +153,20 @@
 					const reader = new FileReader();
 					reader.readAsDataURL(fs.files[i]);
 					reader.onload = function(e){
+						const div = $("<div>").addClass("carousel-item");
+						if(i == 0){
+							div.addClass("active");
+						}
 						const img = $("<img>").attr("src", e.target.result);
-						$("#FilesView").append(img)
+						div.append(img);
+						$(".carousel-inner").append(div);
 					}
 				}
 			} else {
-				$("#FilesView").attr("src","");
+				const div = $("<div>").addClass("carousel-item");
+				div.addClass("active");
+				const img = $("<img>").attr("src", "");
+				$(".carousel-inner").append(img);
 			}
 		}
 		$('#summernote').summernote({

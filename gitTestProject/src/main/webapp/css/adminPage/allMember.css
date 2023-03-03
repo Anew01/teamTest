@@ -157,23 +157,23 @@ td {
 }
 
 .table .select-btn {
-    width: 15%;
-    height: 56px;
+    width: 8%;
+    height: 40px;
     line-height: 24px;
-    padding: 16px;
+    padding: 7px;
     background-color: #f8f8f8;
     text-align: center;
     cursor: pointer;
     border: 1px solid transparent;
     border-radius: 10px;
     color: black;
-    font-size: 16px;
+    font-size: 12px;
     font-weight: 500;
     margin: 0px;
 }
 
 .table .checkedChangeLevel {
-    margin-left: 750px;
+    margin-left: 1200px;
     margin-right: 15px;
     background-color: #4B89DC;
     color: white;
