@@ -19,15 +19,19 @@
                     </div>
                     <div class="card">
                         <div class="page-content">
-                            <form action="/updateMember.do" method="post" class="profile-form">
+                            <form action="/updateMember.do" method="post" class="profile-form"
+                                enctype="multipart/form-data">
                                 <div class="input-wrap">
-                                    <label for="memberNo">회원번호</label>
-                                    <input type="text" name="memberNo" id="memberNo" class="input-form" value="1"
-                                        disabled>
+                                    <img src="/upload/admin/user.png" class="profile-img">
+                                    <label for="upProfile">
+                                        <img src="/upload/admin/camera.png" id="camera">
+                                    </label>
+                                    <input type="file" name="upProfile" id="upProfile" class="input-form"
+                                        accept=".jpg,.png,.jpeg" onchange="loadImg(this);">
                                 </div>
                                 <div class="input-wrap">
                                     <label for="memberId">아이디</label>
-                                    <input type="text" name="memberId" id="memberId" class="input-form" value="gsdgsdg"
+                                    <input type="text" name="memberId" id="memberId" class="input-form" value="user21"
                                         readonly>
                                 </div>
                                 <div class="input-wrap">
@@ -59,6 +63,10 @@
                                     <input type="text" name="memberDate" id="memberDate" class="input-form"
                                         value="2022-12-12" disabled>
                                 </div>
+                                <div class="input-wrap">
+                                    <label for="memberDate">관리자 소개</label>
+                                    <textarea name="memberIntro" id="" cols="132" rows="20"></textarea>
+                                </div>
                                 <div class="btn-box">
                                     <button type="submit" class="btn bc66 bs2">정보수정</button>
                                 </div>
@@ -75,6 +83,28 @@
             </div>
             <!-- sidebar.js -->
             <script src="/js/adminPage/sidebar.js"></script>
+            <script>
+                function loadImg(f) {
+                    // this는 파일
+
+                    // 첨부파일을 배열로 처리
+
+                    // f.files.length != 0: 파일이 있고
+                    // f.files[0] != 0: 파일이 정상이면
+                    // files[0]: 파일 어차피 하나밖에 못 올림
+                    if (f.files.length != 0 && f.files[0] != 0) {
+                        const reader = new FileReader();
+                        // 선택한 파일 정보를 읽어옴
+                        reader.readAsDataURL(f.files[0]);
+                        // 파일 정보를 다 읽어오면 동작할 함수
+                        reader.onload = function (e) {
+                            $(".profile-img").attr("src", e.target.result);
+                        };
+                    } else {
+                        $(".profile-img").attr("src", "");
+                    }
+                }
+            </script>
     </body>
 
     </html>

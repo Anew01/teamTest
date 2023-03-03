@@ -1,4 +1,4 @@
-package kr.or.iei.adminMember.controller;
+package kr.or.iei.admin.controller;
 
 import java.io.IOException;
 
@@ -9,14 +9,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import kr.or.iei.member.service.MemberService;
-import kr.or.iei.member.vo.MemberPageDate;
-
-@WebServlet(name = "AllMember", urlPatterns = { "/allMember.do" })
-public class AllMemberServlet extends HttpServlet {
+@WebServlet(name = "AdminPage", urlPatterns = { "/adminPage.do" })
+public class AdminPageServelt extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public AllMemberServlet() {
+	public AdminPageServelt() {
 		super();
 	}
 
@@ -25,17 +22,7 @@ public class AllMemberServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
 
-		int reqPage = Integer.parseInt(request.getParameter("reqPage"));
-
-		MemberService service = new MemberService();
-
-		MemberPageDate memberPageDate = service.selectAllMember(reqPage);
-
-		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/adminPage/allMember.jsp");
-
-		request.setAttribute("list", memberPageDate.getList());
-		request.setAttribute("pageNavi", memberPageDate.getPageNavi());
-		request.setAttribute("start", memberPageDate.getStart());
+		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/adminPage/adminPage.jsp");
 
 		view.forward(request, response);
 	}

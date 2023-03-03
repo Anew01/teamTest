@@ -1,6 +1,8 @@
-package kr.or.iei.member.vo;
+package kr.or.iei.admin.vo;
 
 import java.util.ArrayList;
+
+import kr.or.iei.member.vo.Member;
 
 public class MemberPageDate {
 	private ArrayList<Member> list;

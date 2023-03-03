@@ -251,4 +251,76 @@ public class FripDao {
 		}
 		return list;
 	}
+
+	public Frip selectOneFripByNo(Connection conn, int fripNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Frip f = null;
+		String query = "select * from frip_tbl t join frip_category c on (t.frip_no=c.frip_no) where t.frip_no=?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, fripNo);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				f = new Frip();
+				f.setFripTitle(rset.getString("frip_title"));
+				f.setFripAddr(rset.getString("frip_addr"));
+				f.setFripAuth(rset.getString("frip_auth"));
+				f.setFripCategory(rset.getString("category_name"));
+				f.setFripContent(rset.getString("frip_content"));
+				f.setFripIncome(rset.getInt("frip_income"));
+				f.setFripLevel(rset.getString("frip_level"));
+				f.setFripPrice(rset.getInt("frip_price"));
+				f.setFripNo(rset.getInt("frip_no"));
+				f.setFripStatus(rset.getString("frip_status"));
+				f.setWriteDate(rset.getString("write_date"));
+				f.setFripWriter(rset.getString("frip_writer"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+			JDBCTemplate.close(rset);
+		}
+		return f;
+	}
+
+	public ArrayList<Frip> selectAllFripByCategory(Connection conn, String fripCategory) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<Frip> list = new ArrayList<>();
+		Frip f = null;
+		String query = "select * from frip_tbl t join frip_category c using(frip_no) where c.category_name=?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, fripCategory);
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				f = new Frip();
+				f.setFripTitle(rset.getString("frip_title"));
+				f.setFripAddr(rset.getString("frip_addr"));
+				f.setFripAuth(rset.getString("frip_auth"));
+				f.setFripCategory(rset.getString("category_name"));
+				f.setFripContent(rset.getString("frip_content"));
+				f.setFripIncome(rset.getInt("frip_income"));
+				f.setFripLevel(rset.getString("frip_level"));
+				f.setFripPrice(rset.getInt("frip_price"));
+				f.setFripNo(rset.getInt("frip_no"));
+				f.setFripStatus(rset.getString("frip_status"));
+				f.setWriteDate(rset.getString("write_date"));
+				f.setFripWriter(rset.getString("frip_writer"));
+				list.add(f);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return list;
+	}
 }

@@ -1,4 +1,4 @@
-package kr.or.iei.adminMember.controller;
+package kr.or.iei.admin.controller;
 
 import java.io.IOException;
 
@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import kr.or.iei.member.service.MemberService;
+import kr.or.iei.admin.service.adminService;
 
 @WebServlet(name = "Withdrawal", urlPatterns = { "/withdrawal.do" })
 public class WithdrawalServlet extends HttpServlet {
@@ -26,7 +26,7 @@ public class WithdrawalServlet extends HttpServlet {
 
 		String memberId = request.getParameter("memberId");
 
-		MemberService service = new MemberService();
+		adminService service = new adminService();
 
 		int result = service.deleteMember(memberId);
 
@@ -38,7 +38,7 @@ public class WithdrawalServlet extends HttpServlet {
 			request.setAttribute("title", "회원 삭제 실패");
 			request.setAttribute("msg", "홈페이지에 문제가 발생했습니다.");
 			request.setAttribute("icon", "error");
-			request.setAttribute("loc", "/allMember.do");
+			request.setAttribute("loc", "/allMember.do?reqPage=1");
 			view.forward(request, response);
 		}
 

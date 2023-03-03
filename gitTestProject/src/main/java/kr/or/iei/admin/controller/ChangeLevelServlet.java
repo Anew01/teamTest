@@ -1,4 +1,4 @@
-package kr.or.iei.adminMember.controller;
+package kr.or.iei.admin.controller;
 
 import java.io.IOException;
 
@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import kr.or.iei.member.service.MemberService;
+import kr.or.iei.admin.service.adminService;
 
 @WebServlet(name = "ChangeLevel", urlPatterns = { "/changeLevel.do" })
 public class ChangeLevelServlet extends HttpServlet {
@@ -24,7 +24,7 @@ public class ChangeLevelServlet extends HttpServlet {
 		String memberId = request.getParameter("memberId");
 		int memberLevel = Integer.parseInt(request.getParameter("memberLevel"));
 
-		MemberService service = new MemberService();
+		adminService service = new adminService();
 
 		int result = service.chageLevel(memberId, memberLevel);
 
@@ -39,7 +39,7 @@ public class ChangeLevelServlet extends HttpServlet {
 			request.setAttribute("title", "등급 변경 실패");
 			request.setAttribute("msg", "홈페이지에 문제가 발생했습니다.");
 			request.setAttribute("icon", "error");
-			request.setAttribute("loc", "/allMember.do");
+			request.setAttribute("loc", "/allMember.do?reqPage=1");
 
 			view.forward(request, response);
 		}

@@ -1,4 +1,4 @@
-package kr.or.iei.adminMember.controller;
+package kr.or.iei.admin.controller;
 
 import java.io.IOException;
 
@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import kr.or.iei.member.service.MemberService;
+import kr.or.iei.admin.service.adminService;
 
 @WebServlet(name = "CheckedWithdrawal", urlPatterns = { "/checkedWithdrawal.do" })
 public class CheckedWithdrawalServlet extends HttpServlet {
@@ -26,7 +26,7 @@ public class CheckedWithdrawalServlet extends HttpServlet {
 
 		String id = request.getParameter("id");
 
-		MemberService service = new MemberService();
+		adminService service = new adminService();
 
 		boolean result = service.checkedWithdrawal(id);
 
@@ -42,7 +42,7 @@ public class CheckedWithdrawalServlet extends HttpServlet {
 			request.setAttribute("icon", "error");
 		}
 
-		request.setAttribute("loc", "/allMember.do");
+		request.setAttribute("loc", "/allMember.do?reqPage=1");
 
 		view.forward(request, response);
 	}

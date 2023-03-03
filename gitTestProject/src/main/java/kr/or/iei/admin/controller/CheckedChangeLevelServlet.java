@@ -1,4 +1,4 @@
-package kr.or.iei.adminMember.controller;
+package kr.or.iei.admin.controller;
 
 import java.io.IOException;
 
@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import kr.or.iei.member.service.MemberService;
+import kr.or.iei.admin.service.adminService;
 
 @WebServlet(name = "CheckedChangeLevel", urlPatterns = { "/checkedChangeLevel.do" })
 public class CheckedChangeLevelServlet extends HttpServlet {
@@ -27,7 +27,7 @@ public class CheckedChangeLevelServlet extends HttpServlet {
 		String id = request.getParameter("id");
 		String level = request.getParameter("level");
 
-		MemberService service = new MemberService();
+		adminService service = new adminService();
 
 		boolean result = service.checkedChangeLevel(id, level);
 
@@ -43,7 +43,7 @@ public class CheckedChangeLevelServlet extends HttpServlet {
 			request.setAttribute("icon", "error");
 		}
 
-		request.setAttribute("loc", "/allMember.do");
+		request.setAttribute("loc", "/allMember.do?reqPage=1");
 
 		view.forward(request, response);
 	}
