@@ -1,6 +1,7 @@
 package kr.or.iei.frip.vo;
 
 import java.util.ArrayList;
+import java.util.function.Predicate;
 
 public class Frip {
 	private int fripNo;
@@ -19,6 +20,7 @@ public class Frip {
 	private String writeDate;
 	private ArrayList<String> filePath;
 	private ArrayList<FripJoinableDate> joinableDates;
+
 	
 	public Frip() {
 		super();
@@ -116,7 +118,7 @@ public class Frip {
 	public ArrayList<String> getFilePath() {
 		return filePath;
 	}
-
+	
 	public void setFilePath(ArrayList<String> filePath) {
 		this.filePath = filePath;
 	}
