@@ -20,10 +20,9 @@
     <link rel="stylesheet" href="/css/mokupCss/mockup.css">
     
     <header>
-    
     <div class="header">
         <div class="header-content-top">
-            <div class="header-logo"><a href="#"><span class="logo-text">Sprip</span></a></div>
+            <div class="header-logo"><a href="/allCategory.do" class="homeBtn"><span class="logo-text">Sprip</span></a></div>
             <div class="header-searchBar">
                 <div class="input-group mb-3">
                     <input type="text" class="form-control" placeholder="Search" aria-label="Recipient's username" aria-describedby="button-addon2">
@@ -58,9 +57,4 @@
             </div>
         </div>        
     </div>
-    <script>
-    	const Btn = $("#allBtn").eq(0);
-    	console.log(Btn);
-    	$("catefory-list").next().click();
-    </script>
     </header>
