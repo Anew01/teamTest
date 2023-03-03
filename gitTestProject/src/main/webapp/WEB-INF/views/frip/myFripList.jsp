@@ -33,16 +33,22 @@
 					    <% } %>
 				  	</div>
 					<div class="carousel-inner">
-						<% for(int j=0;j<f.getFilePath().size();j++) { %>
-							<% if(j == 0) { %>
-								<div class="carousel-item active">
-							    	<img src="/upload/photo/<%= f.getFilePath().get(j) %>" class="d-block w-100" alt="...">
-							    </div>
-							<% } else { %>
-							   	<div class="carousel-item">
-							    	<img src="/upload/photo/<%= f.getFilePath().get(j) %>" class="d-block w-100" alt="...">
-							    </div>
+						<% if(f.getFilePath().size() > 0) { %>
+							<% for(int j=0;j<f.getFilePath().size();j++) { %>
+								<% if(j == 0) { %>
+									<div class="carousel-item active">
+								    	<img src="/upload/photo/<%= f.getFilePath().get(j) %>" class="d-block w-100" alt="...">
+								    </div>
+								<% } else { %>
+								   	<div class="carousel-item">
+								    	<img src="/upload/photo/<%= f.getFilePath().get(j) %>" class="d-block w-100" alt="...">
+								    </div>
+								<% } %>
 							<% } %>
+						<% } else { %>
+							<div class="carousel-item active">
+								<img src="/upload/photo/noImg.gif" class="d-block w-100" alt="...">
+						]	</div>
 						<% } %>
 					</div>
 					<button class="carousel-control-prev" type="button" data-bs-target="#carousel-<%= i %>" data-bs-slide="prev">
