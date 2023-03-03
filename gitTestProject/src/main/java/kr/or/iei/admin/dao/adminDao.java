@@ -305,4 +305,26 @@ public class adminDao {
 
 		return result;
 	}
+
+	public int fripDelete(Connection connection, int fripNo) {
+		PreparedStatement preparedStatement = null;
+
+		int result = 0;
+
+		String query = "DELETE FROM FRIP_TBL WHERE FRIP_NO = ?";
+
+		try {
+			preparedStatement = connection.prepareStatement(query);
+
+			preparedStatement.setInt(1, fripNo);
+
+			result = preparedStatement.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(preparedStatement);
+		}
+
+		return result;
+	}
 }

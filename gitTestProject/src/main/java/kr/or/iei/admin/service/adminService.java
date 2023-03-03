@@ -354,4 +354,20 @@ public class adminService {
 		return result;
 	}
 
+	public int fripDelete(int fripNo) {
+		Connection connection = JDBCTemplate.getConnection();
+
+		int result = dao.fripDelete(connection, fripNo);
+
+		if (result > 0) {
+			JDBCTemplate.commit(connection);
+		} else {
+			JDBCTemplate.rollback(connection);
+		}
+
+		JDBCTemplate.close(connection);
+
+		return result;
+	}
+
 }

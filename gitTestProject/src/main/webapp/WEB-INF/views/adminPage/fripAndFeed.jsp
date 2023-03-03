@@ -148,7 +148,13 @@
                                                 const fripNo = $(this).parent().parent().children().eq(3).text(); // 프립 번호  
 
                                                 location.href = "/fripAccept.do?fripNo=" + fripNo;
-                                            });                                       
+                                            });
+
+                                            $(".fripDelete").on("click", function () {
+                                                const fripNo = $(this).parent().parent().children().eq(3).text(); // 프립 번호       
+
+                                                location.href = "/fripDelete.do?fripNo=" + fripNo;
+                                            });
                                         </script>
                                         <script src="/js/adminPage/sidebar.js"></script>
                                 </body>
