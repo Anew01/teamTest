@@ -31,9 +31,13 @@ public class JoinFripServlet extends HttpServlet {
 		//1. 인코딩
 		request.setCharacterEncoding("UTF-8");
 		//2. 값추출
-		String date = request.getParameter("date");
 		//3. 비즈니스로직
 		//4. 결과처리
+		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/frip/checkJoinFrip.jsp");
+		int fripNo = 41;
+		request.setAttribute("fripNo",fripNo);
+		view.forward(request, response);
+		
 		
 	}
 
