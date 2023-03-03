@@ -23,6 +23,9 @@
                                 enctype="multipart/form-data">
                                 <div class="input-wrap">
                                     <img src="/upload/admin/user.png" class="profile-img">
+                                    <label for="upProfile">
+                                        <img src="/upload/admin/camera.png" id="camera">
+                                    </label>
                                     <input type="file" name="upProfile" id="upProfile" class="input-form"
                                         accept=".jpg,.png,.jpeg" onchange="loadImg(this);">
                                 </div>
