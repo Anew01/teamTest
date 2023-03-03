@@ -155,18 +155,132 @@ public class adminDao {
 	}
 
 	public ArrayList<Frip> selectAllFrip(Connection connection, int fripStart, int fripEnd) {
-		return null;
+		PreparedStatement preparedStatement = null;
+
+		ResultSet resultSet = null;
+
+		ArrayList<Frip> frips = new ArrayList<Frip>();
+
+		String query = "SELECT * FROM(SELECT ROWNUM AS rnum, n.* FROM (SELECT FRIP_NO, FRIP_WRITER, FRIP_TITLE, FRIP_ADDR, FRIP_LEVEL, FRIP_PRICE, WRITE_DATE FROM FRIP_TBL ORDER BY 1 DESC) n) WHERE rnum BETWEEN ? and ?";
+
+		try {
+			preparedStatement = connection.prepareStatement(query);
+
+			preparedStatement.setInt(1, fripStart);
+			preparedStatement.setInt(2, fripEnd);
+
+			resultSet = preparedStatement.executeQuery();
+
+			while (resultSet.next()) {
+				Frip frip = new Frip();
+				
+				frip.setFripNo(resultSet.getInt("FRIP_NO"));
+				frip.setFripWriter(resultSet.getString("FRIP_WRITER"));
+				frip.setFripTitle(resultSet.getString("FRIP_TITLE"));
+				frip.setFripAddr(resultSet.getString("FRIP_ADDR"));
+				frip.setFripLevel(resultSet.getString("FRIP_LEVEL"));
+				frip.setFripPrice(resultSet.getInt("FRIP_PRICE"));
+				frip.setWriteDate(resultSet.getString("WRITE_DATE"));
+
+				frips.add(frip);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(resultSet);
+			JDBCTemplate.close(preparedStatement);
+		}
+
+		return frips;
 	}
 
 	public ArrayList<Feed> selectAllFeed(Connection connection, int feedStart, int feedEnd) {
-		return null;
+		PreparedStatement preparedStatement = null;
+
+		ResultSet resultSet = null;
+
+		ArrayList<Feed> feeds = new ArrayList<Feed>();
+
+		String query = "SELECT * FROM(SELECT ROWNUM AS rnum, n.* FROM (SELECT FEED_NO, FRIP_NO, FEED_WRITER, WRITE_DATE FROM FEED_TBL ORDER BY 1 DESC) n) WHERE rnum BETWEEN ? and ?";
+
+		try {
+			preparedStatement = connection.prepareStatement(query);
+
+			preparedStatement.setInt(1, feedStart);
+			preparedStatement.setInt(2, feedEnd);
+
+			resultSet = preparedStatement.executeQuery();
+
+			while (resultSet.next()) {
+				Feed feed = new Feed();
+				
+				feed.setFeedNo(resultSet.getInt("FEED_NO"));
+				feed.setFripNo(resultSet.getInt("FRIP_NO"));
+				feed.setFeedWriter(resultSet.getString("FEED_WRITER"));
+				feed.setWriteDate(resultSet.getString("WRITE_DATE"));
+
+
+				feeds.add(feed);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(resultSet);
+			JDBCTemplate.close(preparedStatement);
+		}
+
+		return feeds;
 	}
 
 	public int selectFripCount(Connection connection) {
-		return 0;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+
+		int fripTotalCount = 0;
+
+		String query = "SELECT COUNT(*) AS CNT FROM FRIP_TBL";
+
+		try {
+			preparedStatement = connection.prepareStatement(query);
+
+			resultSet = preparedStatement.executeQuery();
+
+			if (resultSet.next()) {
+				fripTotalCount = resultSet.getInt("CNT");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(resultSet);
+			JDBCTemplate.close(preparedStatement);
+		}
+
+		return fripTotalCount;
 	}
 
 	public int selectFeedCount(Connection connection) {
-		return 0;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+
+		int feedTotalCount = 0;
+
+		String query = "SELECT COUNT(*) AS CNT FROM FEED_TBL";
+
+		try {
+			preparedStatement = connection.prepareStatement(query);
+
+			resultSet = preparedStatement.executeQuery();
+
+			if (resultSet.next()) {
+				feedTotalCount = resultSet.getInt("CNT");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(resultSet);
+			JDBCTemplate.close(preparedStatement);
+		}
+
+		return feedTotalCount;
 	}
 }
