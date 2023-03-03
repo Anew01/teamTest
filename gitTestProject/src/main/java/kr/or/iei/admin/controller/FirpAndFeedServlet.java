@@ -10,8 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import kr.or.iei.feed.service.FeedService;
-import kr.or.iei.frip.service.FripService;
+import kr.or.iei.admin.service.adminService;
 import kr.or.iei.frip.vo.Frip;
 
 @WebServlet(name = "FirpAndFeed", urlPatterns = { "/firpAndFeed.do" })
@@ -27,10 +26,9 @@ public class FirpAndFeedServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
 
-		FripService fripService = new FripService();
-		FeedService feedService = new FeedService();
+		adminService service = new adminService();
 
-		ArrayList<Frip> frips = fripService.selectAllFrip();
+		ArrayList<Frip> frips = service.selectAllFrip();
 
 		request.setAttribute("frips", frips);
 

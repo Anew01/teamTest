@@ -7,6 +7,7 @@ import java.util.StringTokenizer;
 import common.JDBCTemplate;
 import kr.or.iei.admin.dao.adminDao;
 import kr.or.iei.admin.vo.MemberPageDate;
+import kr.or.iei.frip.vo.Frip;
 import kr.or.iei.member.vo.Member;
 
 public class adminService {
@@ -198,5 +199,9 @@ public class adminService {
 		JDBCTemplate.close(connection);
 
 		return result;
+	}
+
+	public ArrayList<Frip> selectAllFrip() {
+		return null;
 	}
 }
