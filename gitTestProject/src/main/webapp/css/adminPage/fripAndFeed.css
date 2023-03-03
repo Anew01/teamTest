@@ -6,16 +6,12 @@
 
 .table tr {
     border-bottom: 1px solid #ccc;
+    padding: 1rem 1.5rem;
+    height: 90px;
 }
 
 .table tr:first-child {
-    color: #909399;
     height: 60px;
-}
-
-.table tr {
-    padding: 1rem 1.5rem;
-    height: 90px;
 }
 
 .table th,
@@ -25,17 +21,21 @@ td {
 }
 
 .table th {
-    background-color: #f4f4f4;
-    color: #777;
+    background-color: #e5f0f9;
+    color: #392f31;
     font-weight: 500;
 }
 
-.tr1>th {
-    background-color: #4B89DC;
+.table .tr-1 th {
+    background-color: #e5f0f9;
+    color: #392f31;
+    font-weight: 500;
 }
 
-.tr2>th {
-    background-color: blue;
+.table .tr-2 th {
+    background-color: #b1a5c8;
+    color: #f5f5dc;
+    font-weight: 500;
 }
 
 .table td {
