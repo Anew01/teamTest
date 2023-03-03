@@ -3,6 +3,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
    <%
    		ArrayList<Frip> frips = (ArrayList<Frip>)request.getAttribute("frips");
+		String pageNavi = (String)request.getAttribute("pageNavi");
+		int start = (int)request.getAttribute("start");
    %>
     <!DOCTYPE html>
     <html lang="ko" dir="ltr">
@@ -36,11 +38,12 @@
                                     <th>등록 수락</th>
                                     <th>삭제</th>
                                 </tr>
-                                <%for(Frip frip : frips) {%>
+                                <%for(int i = 0; i < frips.size(); i++) {%>
+                                <%Frip frip = frips.get(i);%>
                                  <tr>
                                     <td><input type="checkbox" class="chk"></td>
                                     <td>
-                                        <%=frip.getFripNo() %>
+                                        <%=i+start%>
                                     </td>
                                     <td>
                                         <%=frip.getFripWriter() %>
@@ -68,7 +71,7 @@
                                 </tr>
                             </table>
                             <div id="pageNavi">
-
+								<%=pageNavi %>
                             </div>
                         </div>
                     </div>
