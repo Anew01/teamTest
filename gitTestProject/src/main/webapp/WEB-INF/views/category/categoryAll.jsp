@@ -13,24 +13,39 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+	<link rel="stylesheet" href="/css/mokupCss/Frip.css">
 </head>
 <body>
-
 	<%@ include file="/WEB-INF/views/common/header.jsp" %>
+	 <div class="content-wrap">
 	<%for(int i=0; i<list.size(); i++){ %>
-	<%Frip f = list.get(i); %>
-	<%=f.getFilePath() %>
-		<table>
-			<tr>
-				<th>
-					<img src="/upload/photo/<%=f.getFilePath() %>">
-				</th>
-				<th>
-					
-				</th>
-			</tr>
-		</table>
+		<%Frip f = list.get(i); %>
+        <div class="frip-box">
+            <div class="img-box">
+		<%for(int j=0; j<1; j++){ %>
+   			<%String s = f.getFilePath().get(j); %>
+                <img src="/upload/photo/<%=s%>">
+			<%} %>
+            </div>
+            <div class="f-title">
+                <%=f.getFripTitle() %>
+            </div>
+            <div class="f-addr">
+              	<%=f.getFripAddr() %>
+            </div>
+            <div class="j-date">
+                00.00.00 ~ 00.00.00
+            </div>
+            <div class="f-price">
+                <%=f.getFripPrice() %>
+            </div>
+            <div class="rating">
+                ★5.0
+            </div>
+        </div>
 	<%} %>
+    </div>		
 	<%@ include file="/WEB-INF/views/common/footer.jsp" %>
+	
 </body>
 </html>
