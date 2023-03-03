@@ -49,14 +49,15 @@
                                         어려움
                                     </td>
                                     <td>36000</td>
-                                    <td><button class="btc bc33 btn fripAccept">등록 수락</button></td>
-                                    <td><button class="btc bc33 btn  fripDelete">삭제</button></td>
+                                    <td><button class="btc bc33 btn chageLevel fripAccept">등록 수락</button></td>
+                                    <td><button class="btc bc33 btn withdrawal  fripDelete">삭제</button></td>
                                 </tr>
 
                                 <tr>
                                     <th colspan="9">
-                                        <button class="select-btn checkedChangeLevel">선택프립등록수락</button>
-                                        <button class="select-btn checkedWithdrawal">선택프립삭제</button>
+                                        <button
+                                            class="select-btn checkedChangeLevel checkedfripAccept">선택프립등록수락</button>
+                                        <button class="select-btn checkedWithdrawal checkedfripDelete">선택프립삭제</button>
                                     </th>
                                 </tr>
                             </table>
@@ -71,7 +72,7 @@
                         </div>
                         <div>
                             <table class="table">
-                                <tr class="tr-2">
+                                <tr class="tr-1">
                                     <th>선택</th>
                                     <th>번호</th>
                                     <th>프립</th>
@@ -93,12 +94,12 @@
                                     <td>
                                         2022-3-12
                                     </td>
-                                    <td><button class="btc bc33 btn  withdrawal">삭제</button></td>
+                                    <td><button class="btc bc33 btn withdrawal feedDelete">삭제</button></td>
                                 </tr>
 
                                 <tr>
                                     <th colspan="9">
-                                        <button class="select-btn checkedWithdrawal">선택피드삭제</button>
+                                        <button class="select-btn checkedWithdrawal checkedfeedDelete">선택피드삭제</button>
                                     </th>
                                 </tr>
                             </table>
