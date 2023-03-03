@@ -49,9 +49,7 @@
                                                                         <td>
                                                                             <%=i+fripStart%>
                                                                         </td>
-                                                                        <td>
-                                                                            <%=frip.getFripWriter() %>
-                                                                        </td>
+                                                                        <td><%=frip.getFripWriter() %></td>
                                                                         <td>
                                                                             <%=frip.getFripTitle() %>
                                                                         </td>
@@ -105,16 +103,16 @@
                                                                     <tr>
                                                                         <td><input type="checkbox" class="chk"></td>
                                                                         <td>
-                                                                            1
+                                                                            <%=i+feedStart %>
                                                                         </td>
                                                                         <td>
-                                                                            여행가기
+                                                                            <%=feed.getFripNo() %>
                                                                         </td>
                                                                         <td>
-                                                                            심민섭
+                                                                            <%=feed.getFeedWriter() %>
                                                                         </td>
                                                                         <td>
-                                                                            2022-3-12
+                                                                            <%=feed.getWriteDate() %>
                                                                         </td>
                                                                         <td><button
                                                                                 class="btc bc33 btn withdrawal feedDelete">삭제</button>
