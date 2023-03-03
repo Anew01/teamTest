@@ -53,7 +53,9 @@
                                                                         <td>
                                                                             <%=frip.getFripWriter() %>
                                                                         </td>
-                                                                        <td class="frip-no"><%=frip.getFripNo() %></td>
+                                                                        <td class="frip-no">
+                                                                            <%=frip.getFripNo() %>
+                                                                        </td>
                                                                         <td>
                                                                             <%=frip.getFripTitle() %>
                                                                         </td>
@@ -174,6 +176,26 @@
                                                 });
 
                                                 location.href = "/checkedfripAccept.do?fripNos=" + fripNos.join("/");
+                                            });
+
+                                            $(".checkedfripDelete").on("click", function () {
+                                                const check = $(".chk:checked");
+
+                                                if (check.length == 0) {
+                                                    alert("선택된 회원이 없습니다.");
+                                                    return;
+                                                }
+
+                                                // 체크된 회원번호와, 등급 저장(배열)
+                                                const Id = new Array();
+
+                                                check.each(function (index, item) {
+                                                    const memberId = $(item).parent().parent().children().eq(2).text();
+
+                                                    Id.push(memberId);
+                                                });
+
+                                                location.href = "/checkedWithdrawal.do?id=" + Id.join("/");
                                             });
                                         </script>
                                         <script src="/js/adminPage/sidebar.js"></script>
