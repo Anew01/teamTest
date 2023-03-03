@@ -45,7 +45,8 @@
                                                             <%for(int i=0; i < frips.size(); i++) {%>
                                                                 <%Frip frip=frips.get(i);%>
                                                                     <tr>
-                                                                        <td><input type="checkbox" class="chk"></td>
+                                                                        <td><input type="checkbox" class="chk fripChk">
+                                                                        </td>
                                                                         <td>
                                                                             <%=i+fripStart%>
                                                                         </td>
@@ -154,6 +155,25 @@
                                                 const fripNo = $(this).parent().parent().children().eq(3).text(); // 프립 번호       
 
                                                 location.href = "/fripDelete.do?fripNo=" + fripNo;
+                                            });
+
+                                            $(".checkedfripAccept").on("click", function () {
+                                                const check = $(".fripChk:checked");
+
+                                                if (check.length == 0) {
+                                                    alert("선택된 회원이 없습니다.");
+                                                    return;
+                                                }
+
+                                                const fripNos = new Array();
+
+                                                check.each(function (index, item) {
+                                                    const fripNo = $(item).parent().parent().children().eq(3).text();
+
+                                                    fripNos.push(fripNo);
+                                                });
+
+                                                location.href = "/checkedfripAccept.do?fripNos=" + fripNos.join("/");
                                             });
                                         </script>
                                         <script src="/js/adminPage/sidebar.js"></script>

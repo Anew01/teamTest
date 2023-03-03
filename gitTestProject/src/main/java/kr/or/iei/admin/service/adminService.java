@@ -370,4 +370,35 @@ public class adminService {
 		return result;
 	}
 
+	public boolean checkedfripAccept(String fripNos) {
+		Connection connection = JDBCTemplate.getConnection();
+
+		// no : 4/7 형태 level: 1/2/3 형태 처리 필요
+		StringTokenizer sT1 = new StringTokenizer(fripNos, "/");
+
+		boolean result = true;
+
+		while (sT1.hasMoreTokens()) {
+			int fripNo = Integer.parseInt(sT1.nextToken());
+
+			int changeResult = dao.fripAccept(connection, fripNo);
+
+			if (changeResult == 0) { // 하나라도 실패하면
+				result = false; // 모두 실패
+
+				break; // 하나라도 실패하면 뒤에거 update x
+			}
+		}
+
+		if (result) {
+			JDBCTemplate.commit(connection);
+		} else {
+			JDBCTemplate.rollback(connection);
+		}
+
+		JDBCTemplate.close(connection);
+
+		return result;
+	}
+
 }
