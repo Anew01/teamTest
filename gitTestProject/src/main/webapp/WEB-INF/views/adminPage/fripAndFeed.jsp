@@ -53,9 +53,7 @@
                                                                         <td>
                                                                             <%=frip.getFripWriter() %>
                                                                         </td>
-                                                                        <td class="frip-no">
-                                                                            <%=frip.getFripNo() %>
-                                                                        </td>
+                                                                        <td class="frip-no"><%=frip.getFripNo() %></td>
                                                                         <td>
                                                                             <%=frip.getFripTitle() %>
                                                                         </td>
@@ -112,9 +110,7 @@
                                                                         <td>
                                                                             <%=i+feedStart %>
                                                                         </td>
-                                                                        <td class="feed-no">
-                                                                            <%=feed.getFeedNo() %>
-                                                                        </td>
+                                                                        <td class="feed-no"><%=feed.getFeedNo() %></td>
                                                                         <td>
                                                                             <%=feed.getFripNo() %>
                                                                         </td>

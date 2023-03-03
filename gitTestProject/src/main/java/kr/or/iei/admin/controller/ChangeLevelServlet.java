@@ -31,7 +31,7 @@ public class ChangeLevelServlet extends HttpServlet {
 		// 변경 선공: 관리자 페이지
 		// 변경 실패: alert하고 관리자 페이지
 		if (result > 0) {
-			response.sendRedirect("/allMember.do");
+			response.sendRedirect("/allMember.do?reqPage=1");
 		} else {
 			RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
 
