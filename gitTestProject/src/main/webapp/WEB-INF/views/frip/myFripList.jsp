@@ -33,14 +33,14 @@
 					    <% } %>
 				  	</div>
 					<div class="carousel-inner">
-						<% if(f.getFilePath().size() > 0) { %>
+						<% if(f.getFilePath().size() > 0 && f.getFilePath().get(0) != null) { %>
 							<% for(int j=0;j<f.getFilePath().size();j++) { %>
 								<% if(j == 0) { %>
-									<div class="carousel-item active">
+									<div class="carousel-item active" onclick="viewFrip(<%= f.getFripNo() %>)">
 								    	<img src="/upload/photo/<%= f.getFilePath().get(j) %>" class="d-block w-100" alt="...">
 								    </div>
 								<% } else { %>
-								   	<div class="carousel-item">
+								   	<div class="carousel-item" onclick="viewFrip(<%= f.getFripNo() %>)">
 								    	<img src="/upload/photo/<%= f.getFilePath().get(j) %>" class="d-block w-100" alt="...">
 								    </div>
 								<% } %>
@@ -71,6 +71,10 @@
 	</div>
 	<%@include file="/WEB-INF/views/common/footer.jsp" %>
 	<script>
+		function viewFrip(fripNo){
+			location.href="/viewMyFrip.do?fripNo="+fripNo;
+		}
 	</script>
+	
 </body>
 </html>
