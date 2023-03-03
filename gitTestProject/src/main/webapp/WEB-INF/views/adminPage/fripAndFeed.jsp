@@ -49,7 +49,10 @@
                                                                         <td>
                                                                             <%=i+fripStart%>
                                                                         </td>
-                                                                        <td><%=frip.getFripWriter() %></td>
+                                                                        <td>
+                                                                            <%=frip.getFripWriter() %>
+                                                                        </td>
+                                                                        <td class="frip-no"><%=frip.getFripNo() %></td>
                                                                         <td>
                                                                             <%=frip.getFripTitle() %>
                                                                         </td>
@@ -109,7 +112,7 @@
                                                                             <%=feed.getFripNo() %>
                                                                         </td>
                                                                         <td>
-                                                                            <%=feed.getFeedWriter() %>
+                                                                            <%=feed.getFripNo() %>
                                                                         </td>
                                                                         <td>
                                                                             <%=feed.getWriteDate() %>
@@ -140,6 +143,13 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <script>
+                                            $(".fripAccept").on("click", function () {
+                                                const fripNo = $(this).parent().parent().children().eq(3).text(); // 프립 번호  
+
+                                                location.href = "/fripAccept.do?fripNo=" + fripNo;
+                                            });                                       
+                                        </script>
                                         <script src="/js/adminPage/sidebar.js"></script>
                                 </body>
 

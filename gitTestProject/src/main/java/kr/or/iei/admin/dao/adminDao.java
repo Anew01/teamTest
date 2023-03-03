@@ -161,7 +161,7 @@ public class adminDao {
 
 		ArrayList<Frip> frips = new ArrayList<Frip>();
 
-		String query = "SELECT * FROM(SELECT ROWNUM AS rnum, n.* FROM (SELECT FRIP_NO, FRIP_WRITER, FRIP_TITLE, FRIP_ADDR, FRIP_LEVEL, FRIP_PRICE, WRITE_DATE FROM FRIP_TBL ORDER BY 1 DESC) n) WHERE rnum BETWEEN ? and ?";
+		String query = "SELECT * FROM(SELECT ROWNUM AS rnum, n.* FROM (SELECT FRIP_NO, FRIP_WRITER, FRIP_AUTH, FRIP_TITLE, FRIP_ADDR, FRIP_LEVEL, FRIP_PRICE, WRITE_DATE FROM FRIP_TBL ORDER BY 1 DESC) n) WHERE rnum BETWEEN ? and ?";
 
 		try {
 			preparedStatement = connection.prepareStatement(query);
@@ -173,9 +173,10 @@ public class adminDao {
 
 			while (resultSet.next()) {
 				Frip frip = new Frip();
-				
+
 				frip.setFripNo(resultSet.getInt("FRIP_NO"));
 				frip.setFripWriter(resultSet.getString("FRIP_WRITER"));
+				frip.setFripAuth(resultSet.getString("FRIP_AUTH"));
 				frip.setFripTitle(resultSet.getString("FRIP_TITLE"));
 				frip.setFripAddr(resultSet.getString("FRIP_ADDR"));
 				frip.setFripLevel(resultSet.getString("FRIP_LEVEL"));
@@ -213,12 +214,11 @@ public class adminDao {
 
 			while (resultSet.next()) {
 				Feed feed = new Feed();
-				
+
 				feed.setFeedNo(resultSet.getInt("FEED_NO"));
 				feed.setFripNo(resultSet.getInt("FRIP_NO"));
 				feed.setFeedWriter(resultSet.getString("FEED_WRITER"));
 				feed.setWriteDate(resultSet.getString("WRITE_DATE"));
-
 
 				feeds.add(feed);
 			}
@@ -282,5 +282,27 @@ public class adminDao {
 		}
 
 		return feedTotalCount;
+	}
+
+	public int fripAccept(Connection connection, int fripNo) {
+		PreparedStatement preparedStatement = null;
+
+		int result = 0;
+
+		String query = "UPDATE FRIP_TBL SET FRIP_AUTH = 1 WHERE FRIP_NO = ?";
+
+		try {
+			preparedStatement = connection.prepareStatement(query);
+
+			preparedStatement.setInt(1, fripNo);
+
+			result = preparedStatement.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(preparedStatement);
+		}
+
+		return result;
 	}
 }

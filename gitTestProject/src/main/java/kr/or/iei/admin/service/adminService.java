@@ -221,112 +221,137 @@ public class adminService {
 
 		int fripTotalPage = 0;
 		int feedTotalPage = 0;
-		
+
 		if (fripTotalCount % numPerPage == 0) {
 			fripTotalPage = fripTotalCount / numPerPage;
 		} else {
 			fripTotalPage = fripTotalCount / numPerPage + 1;
 		}
-		
+
 		if (feedTotalCount % numPerPage == 0) {
 			feedTotalPage = feedTotalCount / numPerPage;
 		} else {
 			feedTotalPage = feedTotalCount / numPerPage + 1;
 		}
-		
+
 		int pageNaviSize = 5;
-		
+
 		int fripPageNo = ((fripReqPage - 1) / pageNaviSize) * pageNaviSize + 1;
 		int feedPageNo = ((feedReqPage - 1) / pageNaviSize) * pageNaviSize + 1;
-		
+
 		String fripPageNavi = "<ul class='pagination circle-style'>";
 		String feedPageNavi = "<ul class='pagination circle-style'>";
-		
+
 		if (fripPageNo != 1) { // 시작 페이지일아닐때
 			// 시작 네비
 			fripPageNavi += "<li>";
-			fripPageNavi += "<a class='page-item' href='/firpAndFeed.do?fripReqPage=" + (fripPageNo - 1) + "&feedReqPage='" + feedPageNo +">";
+			fripPageNavi += "<a class='page-item' href='/firpAndFeed.do?fripReqPage=" + (fripPageNo - 1)
+					+ "&feedReqPage='" + feedPageNo + ">";
 			fripPageNavi += "<span class='material-icons'>chevron_left</span>";
 			fripPageNavi += "</a></li>";
 		}
-		
+
 		if (feedPageNo != 1) { // 시작 페이지일아닐때
 			// 시작 네비
 			feedPageNavi += "<li>";
-			feedPageNavi += "<a class='page-item' href='/firpAndFeed.do?fripReqPage=" + fripPageNo + "&feedReqPage='" + (feedPageNo - 1) +">";
+			feedPageNavi += "<a class='page-item' href='/firpAndFeed.do?fripReqPage=" + fripPageNo + "&feedReqPage='"
+					+ (feedPageNo - 1) + ">";
 			feedPageNavi += "<span class='material-icons'>chevron_left</span>";
 			feedPageNavi += "</a></li>";
 		}
-		
-				// fripPageNation
-				for (int i = 0; i < pageNaviSize; i++) {
-					if (fripPageNo == fripReqPage) { // 현재 페이지랑 현재 요청 페이지가 같을때 검은색 효과
-						fripPageNavi += "<li>";
-						fripPageNavi += "<a class='page-item active-page' href='/firpAndFeed.do?fripReqPage=" + fripPageNo + "&feedReqPage='" + feedPageNo +">";
-						fripPageNavi += fripPageNo;
-						fripPageNavi += "</a></li>";
-					} else { // 아닐때
-						fripPageNavi += "<li>";
-						fripPageNavi += "<a class='page-item' href='/firpAndFeed.do?fripReqPage=" + fripPageNo + "&feedReqPage='" + feedPageNo +">";
-						fripPageNavi += fripPageNo;
-						fripPageNavi += "</a></li>";
 
-					}
-					
-					fripPageNo++;
+		// fripPageNation
+		for (int i = 0; i < pageNaviSize; i++) {
+			if (fripPageNo == fripReqPage) { // 현재 페이지랑 현재 요청 페이지가 같을때 검은색 효과
+				fripPageNavi += "<li>";
+				fripPageNavi += "<a class='page-item active-page' href='/firpAndFeed.do?fripReqPage=" + fripPageNo
+						+ "&feedReqPage='" + feedPageNo + ">";
+				fripPageNavi += fripPageNo;
+				fripPageNavi += "</a></li>";
+			} else { // 아닐때
+				fripPageNavi += "<li>";
+				fripPageNavi += "<a class='page-item' href='/firpAndFeed.do?fripReqPage=" + fripPageNo
+						+ "&feedReqPage='" + feedPageNo + ">";
+				fripPageNavi += fripPageNo;
+				fripPageNavi += "</a></li>";
 
-					if (fripPageNo > fripTotalPage) { // 최종 페이지 나가기
-						break;
-					}
-				}
-				
-				// feedPageNoNation
-				for (int i = 0; i < pageNaviSize; i++) {
-					if (feedPageNo == feedReqPage) { // 현재 페이지랑 현재 요청 페이지가 같을때 검은색 효과
-						feedPageNavi += "<li>";
-						feedPageNavi += "<a class='page-item active-page' href='/firpAndFeed.do?fripReqPage=" + fripPageNo + "&feedReqPage='" + feedPageNo +">";
-						feedPageNavi += feedPageNo;
-						feedPageNavi += "</a></li>";
-					} else { // 아닐때
-						feedPageNavi += "<li>";
-						feedPageNavi += "<a class='page-item' href='/firpAndFeed.do?fripReqPage=" + fripPageNo + "&feedReqPage='" + feedPageNo +">";
-						feedPageNavi += feedPageNo;
-						feedPageNavi += "</a></li>";
+			}
 
-					}
-					
-					feedPageNo++;
+			fripPageNo++;
 
-					if (feedPageNo > feedTotalPage) { // 최종 페이지 나가기
-						break;
-					}
-				}
-				
-				// 다음 버튼
-				if (fripPageNo <= fripTotalPage) { // 최종 페이지가 되면 다음가면 안됨
-					fripPageNavi += "<li>";
-					fripPageNavi += "<a class='page-item' href='/firpAndFeed.do?fripReqPage=" + (fripPageNo) + "&feedReqPage='" + (feedPageNo) +">";
-					fripPageNavi += "<span class='material-icons'>chevron_right</span>";
-					fripPageNavi += "</a></li>";
-				}
+			if (fripPageNo > fripTotalPage) { // 최종 페이지 나가기
+				break;
+			}
+		}
 
-				fripPageNavi += "</ul>";
-				
-				// 다음 버튼
-				if (feedPageNo <= feedTotalPage) { // 최종 페이지가 되면 다음가면 안됨
-					feedPageNavi += "<li>";
-					feedPageNavi += "<a class='page-item' href='/firpAndFeed.do?fripReqPage=" + (fripPageNo) + "&feedReqPage='" + (feedPageNo) +">";
-					feedPageNavi += "<span class='material-icons'>chevron_right</span>";
-					feedPageNavi += "</a></li>";
-				}
+		// feedPageNoNation
+		for (int i = 0; i < pageNaviSize; i++) {
+			if (feedPageNo == feedReqPage) { // 현재 페이지랑 현재 요청 페이지가 같을때 검은색 효과
+				feedPageNavi += "<li>";
+				feedPageNavi += "<a class='page-item active-page' href='/firpAndFeed.do?fripReqPage=" + fripPageNo
+						+ "&feedReqPage='" + feedPageNo + ">";
+				feedPageNavi += feedPageNo;
+				feedPageNavi += "</a></li>";
+			} else { // 아닐때
+				feedPageNavi += "<li>";
+				feedPageNavi += "<a class='page-item' href='/firpAndFeed.do?fripReqPage=" + fripPageNo
+						+ "&feedReqPage='" + feedPageNo + ">";
+				feedPageNavi += feedPageNo;
+				feedPageNavi += "</a></li>";
 
-				feedPageNavi += "</ul>";
-				
-				JDBCTemplate.close(connection);
-				
-				FripAndFeedPageDate fripAndFeedPageDate = new FripAndFeedPageDate(frips, fripPageNavi, fripStart, feeds, feedPageNavi, feedStart);
+			}
+
+			feedPageNo++;
+
+			if (feedPageNo > feedTotalPage) { // 최종 페이지 나가기
+				break;
+			}
+		}
+
+		// 다음 버튼
+		if (fripPageNo <= fripTotalPage) { // 최종 페이지가 되면 다음가면 안됨
+			fripPageNavi += "<li>";
+			fripPageNavi += "<a class='page-item' href='/firpAndFeed.do?fripReqPage=" + (fripPageNo) + "&feedReqPage='"
+					+ (feedPageNo) + ">";
+			fripPageNavi += "<span class='material-icons'>chevron_right</span>";
+			fripPageNavi += "</a></li>";
+		}
+
+		fripPageNavi += "</ul>";
+
+		// 다음 버튼
+		if (feedPageNo <= feedTotalPage) { // 최종 페이지가 되면 다음가면 안됨
+			feedPageNavi += "<li>";
+			feedPageNavi += "<a class='page-item' href='/firpAndFeed.do?fripReqPage=" + (fripPageNo) + "&feedReqPage='"
+					+ (feedPageNo) + ">";
+			feedPageNavi += "<span class='material-icons'>chevron_right</span>";
+			feedPageNavi += "</a></li>";
+		}
+
+		feedPageNavi += "</ul>";
+
+		JDBCTemplate.close(connection);
+
+		FripAndFeedPageDate fripAndFeedPageDate = new FripAndFeedPageDate(frips, fripPageNavi, fripStart, feeds,
+				feedPageNavi, feedStart);
 
 		return fripAndFeedPageDate;
+	}
+
+	public int fripAccept(int fripNo) {
+		Connection connection = JDBCTemplate.getConnection();
+
+		int result = dao.fripAccept(connection, fripNo);
+
+		if (result > 0) {
+			JDBCTemplate.commit(connection);
+		} else {
+			JDBCTemplate.rollback(connection);
+		}
+
+		JDBCTemplate.close(connection);
+
+		return result;
 	}
 
 }

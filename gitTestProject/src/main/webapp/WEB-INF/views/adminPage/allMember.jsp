@@ -96,7 +96,7 @@
                                         </p>
                                     </div>
                                 </div>
-                            </div>
+                            </div>                        
                             </div>
                             <script>
                                 $(".chageLevel").on("click", function () {

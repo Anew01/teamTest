@@ -206,3 +206,11 @@ td {
 .table .checkedfeedDelete {
     margin-left: 1300px;
 }
+
+.frip-auth {
+    display: none;
+}
+
+.frip-no {
+    display: none;
+}
