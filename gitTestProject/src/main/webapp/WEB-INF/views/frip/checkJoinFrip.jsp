@@ -53,15 +53,13 @@
 					class="ratingcount"> (평점준사람수)</span><span class="addr"> 주소</span>
 				</p>
 			</div>
-				<!-- for문 둘려서 하기!!!! -->
-				<% for(int i=0; i<list.size(); i++){ %>
-				<% Frip f1 = list.get(i); %>
-				 <%for(int j=0; j<1; j++){ %>
-				 <%String s =  f.getFilePath().get(j); %>
-					<img src="/upload/photo/<%=s%>"> 
-					<%} %>
-				<%} %>
-				
+				<div class="photo">
+                <a href="#">
+                    <img src="/05_Semi_pj/IMG/한강.png">
+                    <img src="/05_Semi_pj/IMG/한강2.png">
+                    <img src="IMG/한강3.png">
+                </a>
+            </div>
 			</div>
 		</div>
 		<div class="contents-bundle">
