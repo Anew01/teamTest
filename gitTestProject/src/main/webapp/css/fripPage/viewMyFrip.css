@@ -1,0 +1,15 @@
+@charset "UTF-8";
+
+.page-content{
+	width: 1200px;
+	display: flex;
+}
+.content{
+	width : 100%;
+}
+
+.frip-detail{
+	width : 500px;
+	height : 400px;
+	border : 1px solid #dedede;
+}

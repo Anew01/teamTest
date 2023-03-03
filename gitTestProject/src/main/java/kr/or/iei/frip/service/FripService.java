@@ -72,4 +72,17 @@ public class FripService {
 		return list;
 	}
 
+	public Frip selectOneFripByNo(int fripNo) {
+		Connection conn = JDBCTemplate.getConnection();
+		Frip f = dao.selectOneFripByNo(conn, fripNo);
+		if( f != null) {
+			ArrayList<String> fripFiles = dao.selectFripFiles(conn, fripNo);
+			f.setFilePath(fripFiles);
+			ArrayList<FripJoinableDate> joinableDates = dao.selectJoinableDates(conn, f.getFripNo());
+			f.setJoinableDates(joinableDates);
+		}
+		JDBCTemplate.close(conn);
+		return f;
+	}
+
 }
