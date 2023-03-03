@@ -37,7 +37,8 @@ public class OutdoorServlet extends HttpServlet {
 		//값
 		//비
 		FripService service = new FripService();
-		ArrayList<Frip> list = service.selectOutdoor();
+		String fripCategory = "아웃도어";
+		ArrayList<Frip> list = service.selectAllFripByCategory(fripCategory);
 		//결
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/category/outdoor.jsp");
 		request.setAttribute("list", list);
