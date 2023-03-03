@@ -23,13 +23,13 @@
                                 <tr class="tr-2">
                                     <th>선택</th>
                                     <th>번호</th>
-                                    <th>아이디</th>
-                                    <th>이름</th>
-                                    <th>전화번호</th>
-                                    <th>역할</th>
-                                    <th>가입일</th>
-                                    <th>등급 변경</th>
-                                    <th>탈퇴</th>
+                                    <th>작성자</th>
+                                    <th>제목</th>
+                                    <th>주소</th>
+                                    <th>난이도</th>
+                                    <th>가격</th>
+                                    <th>등록 수락</th>
+                                    <th>삭제</th>
                                 </tr>
                                 <tr>
                                     <td><input type="checkbox" class="chk"></td>
@@ -37,46 +37,26 @@
                                         1
                                     </td>
                                     <td>
-                                        2
+                                        alstjq
                                     </td>
                                     <td>
-                                        3
+                                        여행가기
                                     </td>
                                     <td>
-                                        4
+                                        서울시 구로수 16069호
                                     </td>
                                     <td>
-
-                                        <select class="input">
-                                            <option value="1" selected>운영자</option>
-                                            <option value="2">호스트</option>
-                                            <option value="3">회원</option>
-                                        </select>
-
-                                        <select class="input">
-                                            <option value="1">운영자</option>
-                                            <option value="2" selected>호스트</option>
-                                            <option value="3">회원</option>
-                                        </select>
-
-                                        <select class="input">
-                                            <option value="1" selected>운영자</option>
-                                            <option value="2">호스트</option>
-                                            <option value="3" selected>회원</option>
-                                        </select>
-
+                                        어려움
                                     </td>
-                                    <td>
-
-                                    </td>
-                                    <td><button class="btc bc33 btn chageLevel">회원등급변경</button></td>
-                                    <td><button class="btc bc33 btn  withdrawal">탈퇴</button></td>
+                                    <td>36000</td>
+                                    <td><button class="btc bc33 btn fripAccept">등록 수락</button></td>
+                                    <td><button class="btc bc33 btn  fripDelete">삭제</button></td>
                                 </tr>
 
                                 <tr>
                                     <th colspan="9">
-                                        <button class="select-btn checkedChangeLevel">선택회원등급변경</button>
-                                        <button class="select-btn checkedWithdrawal">선택회원탈퇴</button>
+                                        <button class="select-btn checkedChangeLevel">선택프립등록수락</button>
+                                        <button class="select-btn checkedWithdrawal">선택프립삭제</button>
                                     </th>
                                 </tr>
                             </table>
@@ -94,12 +74,9 @@
                                 <tr class="tr-2">
                                     <th>선택</th>
                                     <th>번호</th>
+                                    <th>프립</th>
                                     <th>작성자</th>
-                                    <th>제목</th>
-                                    <th>주소</th>
-                                    <th>난이도</th>
-                                    <th>가격</th>
-                                    <th>플립 허가</th>
+                                    <th>작성일자</th>
                                     <th>삭제</th>
                                 </tr>
                                 <tr>
@@ -108,46 +85,20 @@
                                         1
                                     </td>
                                     <td>
-                                        2
+                                        여행가기
                                     </td>
                                     <td>
-                                        3
+                                        심민섭
                                     </td>
                                     <td>
-                                        4
+                                        2022-3-12
                                     </td>
-                                    <td>
-
-                                        <select class="input">
-                                            <option value="1" selected>운영자</option>
-                                            <option value="2">호스트</option>
-                                            <option value="3">회원</option>
-                                        </select>
-
-                                        <select class="input">
-                                            <option value="1">운영자</option>
-                                            <option value="2" selected>호스트</option>
-                                            <option value="3">회원</option>
-                                        </select>
-
-                                        <select class="input">
-                                            <option value="1" selected>운영자</option>
-                                            <option value="2">호스트</option>
-                                            <option value="3" selected>회원</option>
-                                        </select>
-
-                                    </td>
-                                    <td>
-
-                                    </td>
-                                    <td><button class="btc bc33 btn chageLevel">회원등급변경</button></td>
-                                    <td><button class="btc bc33 btn  withdrawal">탈퇴</button></td>
+                                    <td><button class="btc bc33 btn  withdrawal">삭제</button></td>
                                 </tr>
 
                                 <tr>
                                     <th colspan="9">
-                                        <button class="select-btn checkedChangeLevel">선택회원등급변경</button>
-                                        <button class="select-btn checkedWithdrawal">선택회원탈퇴</button>
+                                        <button class="select-btn checkedWithdrawal">선택피드삭제</button>
                                     </th>
                                 </tr>
                             </table>
