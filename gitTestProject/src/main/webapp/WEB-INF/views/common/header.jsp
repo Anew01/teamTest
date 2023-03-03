@@ -1,3 +1,5 @@
+<%@page import="kr.or.iei.frip.vo.Frip"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 	<!--폰트-->
@@ -18,6 +20,7 @@
     <link rel="stylesheet" href="/css/mokupCss/mockup.css">
     
     <header>
+    
     <div class="header">
         <div class="header-content-top">
             <div class="header-logo"><a href="#"><span class="logo-text">Sprip</span></a></div>
@@ -39,20 +42,25 @@
         <div class="header-content-bottom">
             <div class="category-bar">
                 <ul class="category-list">
-                    <li><a href="/allCategory.do"><img src="/categoryImg/ALL.png" ><div class="img-text"><span>ALL</span></div></a></li>
-                    <li><a href="/outdoor.do"><img src="/categoryImg/아웃도어.jpg" ><div class="img-text"><span>아웃도어</span></div></a></li>
-                    <li><a href="/fitness.do"><img src="/categoryImg/피트니스.png" ><div class="img-text"><span>피트니스</span></div></a></li>
-                    <li><a href="/diy.do"><img src="/categoryImg/DIY.png" ><div class="img-text"><span>공예DIY</span></div></a></li>
-                    <li><a href="/sports.do"><img src="/categoryImg/스포츠1.png" ><div class="img-text"><span>스포츠</span></div></a></li>
-                    <li><a href="/cook.do"><img src="/categoryImg/요리.png" ><div class="img-text"><span>요리</span></div></a></li>
-                    <li><a href="/online.do"><img src="/categoryImg/온라인.png" ><div class="img-text"><span>온라인</span></div></a></li>
-                    <li><a href="/selfImprovement.do"><img src="/categoryImg/자기계발.png" ><div class="img-text"><span>자기계발</span></div></a></li>
-                    <li><a href="/buety.do"><img src="/categoryImg/뷰티.png" ><div class="img-text"><span>뷰티</span></div></a></li>
-                    <li><a href="/meeting.do"><img src="/categoryImg/모임.png" ><div class="img-text"><span>모임</span></div></a></li>
-                    <li><a href="/localTrip.do"><img src="/categoryImg/국내여행.png" ><div class="img-text"><span>국내여행</span></div></a></li>
-                    <li><a href="/overseasTrip.do"><img src="/categoryImg/해외여행.png" ><div class="img-text"><span>해외여행</span></div></a></li>
+                    <li><a href="/allCategory.do" id="allBtn"><img src="/categoryImg/ALL.png" ><div class="img-text"><span>ALL</span></div></a></li>
+                    <li><a href="/selectAllFripByCategory.do?categoryName=아웃도어"><img src="/categoryImg/아웃도어.jpg" ><div class="img-text"><span>아웃도어</span></div></a></li>
+                    <li><a href="/selectAllFripByCategory.do?categoryName=피트니스"><img src="/categoryImg/피트니스.png" ><div class="img-text"><span>피트니스</span></div></a></li>
+                    <li><a href="/selectAllFripByCategory.do?categoryName=DIY"><img src="/categoryImg/DIY.png" ><div class="img-text"><span>공예DIY</span></div></a></li>
+                    <li><a href="/selectAllFripByCategory.do?categoryName=스포츠"><img src="/categoryImg/스포츠1.png" ><div class="img-text"><span>스포츠</span></div></a></li>
+                    <li><a href="/selectAllFripByCategory.do?categoryName=요리"><img src="/categoryImg/요리.png" ><div class="img-text"><span>요리</span></div></a></li>
+                    <li><a href="/selectAllFripByCategory.do?categoryName=온라인"><img src="/categoryImg/온라인.png" ><div class="img-text"><span>온라인</span></div></a></li>
+                    <li><a href="/selectAllFripByCategory.do?categoryName=자기계발"><img src="/categoryImg/자기계발.png" ><div class="img-text"><span>자기계발</span></div></a></li>
+                    <li><a href="/selectAllFripByCategory.do?categoryName=뷰티"><img src="/categoryImg/뷰티.png" ><div class="img-text"><span>뷰티</span></div></a></li>
+                    <li><a href="/selectAllFripByCategory.do?categoryName=모임"><img src="/categoryImg/모임.png" ><div class="img-text"><span>모임</span></div></a></li>
+                    <li><a href="/selectAllFripByCategory.do?categoryName=국내여행"><img src="/categoryImg/국내여행.png" ><div class="img-text"><span>국내여행</span></div></a></li>
+                    <li><a href="/selectAllFripByCategory.do?categoryName=해외여행"><img src="/categoryImg/해외여행.png" ><div class="img-text"><span>해외여행</span></div></a></li>
                 </ul>
             </div>
         </div>        
     </div>
+    <script>
+    	const Btn = $("#allBtn").eq(0);
+    	console.log(Btn);
+    	$("catefory-list").next().click();
+    </script>
     </header>
