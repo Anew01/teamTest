@@ -1,4 +1,4 @@
-package kr.or.iei.adminMember.controller;
+package kr.or.iei.admin.controller;
 
 import java.io.IOException;
 
@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-import kr.or.iei.member.service.MemberService;
+import kr.or.iei.admin.service.adminService;
 import kr.or.iei.member.vo.Member;
 
 @WebServlet(name = "UpdateMember", urlPatterns = { "/updateMember.do" })
@@ -44,7 +44,7 @@ public class UpdateMemberServlet extends HttpServlet {
 		member.setMemberIntro(mRequest.getParameter("memberIntro"));
 		member.setMemberProfile(mRequest.getFilesystemName("upProfile"));
 
-		MemberService service = new MemberService();
+		adminService service = new adminService();
 
 		int result = service.updateMember(member);
 

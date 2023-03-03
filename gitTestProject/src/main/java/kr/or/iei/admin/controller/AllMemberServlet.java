@@ -1,7 +1,6 @@
-package kr.or.iei.adminMember.controller;
+package kr.or.iei.admin.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,15 +9,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import kr.or.iei.feed.service.FeedService;
-import kr.or.iei.frip.service.FripService;
-import kr.or.iei.frip.vo.Frip;
+import kr.or.iei.admin.service.adminService;
+import kr.or.iei.member.vo.MemberPageDate;
 
-@WebServlet(name = "FirpAndFeed", urlPatterns = { "/firpAndFeed.do" })
-public class FirpAndFeedServlet extends HttpServlet {
+@WebServlet(name = "AllMember", urlPatterns = { "/allMember.do" })
+public class AllMemberServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public FirpAndFeedServlet() {
+	public AllMemberServlet() {
 		super();
 	}
 
@@ -27,14 +25,17 @@ public class FirpAndFeedServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
 
-		FripService fripService = new FripService();
-		FeedService feedService = new FeedService();
+		int reqPage = Integer.parseInt(request.getParameter("reqPage"));
 
-		ArrayList<Frip> frips = fripService.selectAllFrip();
+		adminService service = new adminService();
 
-		request.setAttribute("frips", frips);
+		MemberPageDate memberPageDate = service.selectAllMember(reqPage);
 
-		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/adminPage/fripAndFeed.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/adminPage/allMember.jsp");
+
+		request.setAttribute("list", memberPageDate.getList());
+		request.setAttribute("pageNavi", memberPageDate.getPageNavi());
+		request.setAttribute("start", memberPageDate.getStart());
 
 		view.forward(request, response);
 	}

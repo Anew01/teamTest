@@ -1,4 +1,4 @@
-package kr.or.iei.adminMember.controller;
+package kr.or.iei.admin.controller;
 
 import java.io.IOException;
 
@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import kr.or.iei.member.service.MemberService;
+import kr.or.iei.admin.service.adminService;
 
 @WebServlet(name = "Withdrawal", urlPatterns = { "/withdrawal.do" })
 public class WithdrawalServlet extends HttpServlet {
@@ -26,7 +26,7 @@ public class WithdrawalServlet extends HttpServlet {
 
 		String memberId = request.getParameter("memberId");
 
-		MemberService service = new MemberService();
+		adminService service = new adminService();
 
 		int result = service.deleteMember(memberId);
 

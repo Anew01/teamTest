@@ -1,4 +1,4 @@
-package kr.or.iei.adminMember.controller;
+package kr.or.iei.admin.controller;
 
 import java.io.IOException;
 
@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import kr.or.iei.member.service.MemberService;
+import kr.or.iei.admin.service.adminService;
 
 @WebServlet(name = "ChangeLevel", urlPatterns = { "/changeLevel.do" })
 public class ChangeLevelServlet extends HttpServlet {
@@ -24,7 +24,7 @@ public class ChangeLevelServlet extends HttpServlet {
 		String memberId = request.getParameter("memberId");
 		int memberLevel = Integer.parseInt(request.getParameter("memberLevel"));
 
-		MemberService service = new MemberService();
+		adminService service = new adminService();
 
 		int result = service.chageLevel(memberId, memberLevel);
 

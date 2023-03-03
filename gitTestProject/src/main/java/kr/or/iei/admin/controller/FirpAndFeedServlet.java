@@ -1,6 +1,7 @@
-package kr.or.iei.adminMember.controller;
+package kr.or.iei.admin.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,11 +10,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "AdminPage", urlPatterns = { "/adminPage.do" })
-public class AdminPageServelt extends HttpServlet {
+import kr.or.iei.feed.service.FeedService;
+import kr.or.iei.frip.service.FripService;
+import kr.or.iei.frip.vo.Frip;
+
+@WebServlet(name = "FirpAndFeed", urlPatterns = { "/firpAndFeed.do" })
+public class FirpAndFeedServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public AdminPageServelt() {
+	public FirpAndFeedServlet() {
 		super();
 	}
 
@@ -22,7 +27,14 @@ public class AdminPageServelt extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
 
-		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/adminPage/adminPage.jsp");
+		FripService fripService = new FripService();
+		FeedService feedService = new FeedService();
+
+		ArrayList<Frip> frips = fripService.selectAllFrip();
+
+		request.setAttribute("frips", frips);
+
+		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/adminPage/fripAndFeed.jsp");
 
 		view.forward(request, response);
 	}
