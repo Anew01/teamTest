@@ -7,7 +7,7 @@
 		String fripPageNavi = (String)request.getAttribute("fripPageNavi");
 		int fripStart = (int)request.getAttribute("fripStart");
 		
-		ArrayList<Feed> feeds = (ArrayList<Feed>)request.getAttribute("fedds");
+		ArrayList<Feed> feeds = (ArrayList<Feed>)request.getAttribute("feeds");
 		String feedPageNavi = (String)request.getAttribute("feedPageNavi");
 		int feedStart = (int)request.getAttribute("feedStart");
    %>

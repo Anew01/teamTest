@@ -36,7 +36,7 @@ public class FirpAndFeedServlet extends HttpServlet {
 		request.setAttribute("fripPageNavi", fripAndFeedPageDate.getFripPageNavi());
 		request.setAttribute("fripStart", fripAndFeedPageDate.getFripStart());
 
-		request.setAttribute("fedds", fripAndFeedPageDate.getFeeds());
+		request.setAttribute("feeds", fripAndFeedPageDate.getFeeds());
 		request.setAttribute("feedPageNavi", fripAndFeedPageDate.getFeedPageNavi());
 		request.setAttribute("feedStart", fripAndFeedPageDate.getFeedStart());
 
