@@ -107,9 +107,13 @@
                                                             <%for(int i=0; i < feeds.size(); i++) {%>
                                                                 <%Feed feed=feeds.get(i);%>
                                                                     <tr>
-                                                                        <td><input type="checkbox" class="chk"></td>
+                                                                        <td><input type="checkbox" class="chk feedChk">
+                                                                        </td>
                                                                         <td>
                                                                             <%=i+feedStart %>
+                                                                        </td>
+                                                                        <td class="feed-no">
+                                                                            <%=feed.getFeedNo() %>
                                                                         </td>
                                                                         <td>
                                                                             <%=feed.getFripNo() %>
@@ -159,6 +163,12 @@
                                                 location.href = "/fripDelete.do?fripNo=" + fripNo;
                                             });
 
+                                            $(".feedDelete").on("click", function () {
+                                                const feedNo = $(this).parent().parent().children().eq(2).text(); // 피드 번호       
+
+                                                location.href = "/feedDelete.do?feedNo=" + feedNo;
+                                            });
+
                                             $(".checkedfripAccept").on("click", function () {
                                                 const check = $(".fripChk:checked");
 
@@ -179,23 +189,41 @@
                                             });
 
                                             $(".checkedfripDelete").on("click", function () {
-                                                const check = $(".chk:checked");
+                                                const check = $(".fripChk:checked");
 
                                                 if (check.length == 0) {
                                                     alert("선택된 회원이 없습니다.");
                                                     return;
                                                 }
 
-                                                // 체크된 회원번호와, 등급 저장(배열)
-                                                const Id = new Array();
+                                                const fripNos = new Array();
 
                                                 check.each(function (index, item) {
-                                                    const memberId = $(item).parent().parent().children().eq(2).text();
+                                                    const fripNo = $(item).parent().parent().children().eq(3).text();
 
-                                                    Id.push(memberId);
+                                                    fripNos.push(fripNo);
                                                 });
 
-                                                location.href = "/checkedWithdrawal.do?id=" + Id.join("/");
+                                                location.href = "/checkedfripDelete.do?fripNos" + fripNos.join("/");
+                                            });
+
+                                            $(".checkedfeedDelete").on("click", function () {
+                                                const check = $(".feedChk:checked");
+
+                                                if (check.length == 0) {
+                                                    alert("선택된 회원이 없습니다.");
+                                                    return;
+                                                }
+
+                                                const feedNos = new Array();
+
+                                                check.each(function (index, item) {
+                                                    const feedNo = $(item).parent().parent().children().eq(2).text();
+
+                                                    feedNos.push(feedNo);
+                                                });
+
+                                                location.href = "/checkedfeedDelete.do?feedNos" + feedNos.join("/");
                                             });
                                         </script>
                                         <script src="/js/adminPage/sidebar.js"></script>

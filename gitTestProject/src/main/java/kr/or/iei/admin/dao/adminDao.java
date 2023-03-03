@@ -327,4 +327,26 @@ public class adminDao {
 
 		return result;
 	}
+
+	public int feedDelte(Connection connection, int feedNo) {
+		PreparedStatement preparedStatement = null;
+
+		int result = 0;
+
+		String query = "DELETE FROM FEED_TBL WHERE FEED_NO = ?";
+
+		try {
+			preparedStatement = connection.prepareStatement(query);
+
+			preparedStatement.setInt(1, feedNo);
+
+			result = preparedStatement.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(preparedStatement);
+		}
+
+		return result;
+	}
 }
