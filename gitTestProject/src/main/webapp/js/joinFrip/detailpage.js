@@ -11,6 +11,7 @@ $( function() {
     //   $( "#datepicker" ).datepicker();
     $('#gijgo').datepicker(
         { 
+        	format:'yyyy-mm-d',
             header: true, 
             modal: true, 
             footer: true 
@@ -34,37 +35,32 @@ const open = document.querySelector(".contact-host");
         init();
 
         //조회하기 
-        function func1(){
+        function func1(fripNo){
             //ajax로 날짜, 인원  정보보내기
-            $("#seemore-button").on("click", function(){
-                    const calendar = $(".calendar").children().text();
+                    const calendar = $("#gijgo").val();
                     const attendNumber = $(".attend-number").val();
-                    const fripNo = $("").val();
                     
+                    console.log(fripNo);
                     console.log(calendar);
                     console.log(attendNumber);
-//                    $.ajax({
-//                        url : "/joinFrip.do",
-//                        type : "get",
-//                        data : {calendar : calendar, attendNumber: attendNumber},
-//                        dataType: "JSON", //이거 적거나 아니면 서블릿에서 response.setContentType("application/json"); 이라고 적어준다.
-//                        success : function(data){
-//                            console.log(data, typeof data)
-//                            if(data==null){
-//                                result.append("해당하는 날짜에 가능한 스프립이 없습니다.");
-//                            }else{
-//                                for(let i=0; i<data.length; i++){
-//                                    result.append("날짜 : "+data.memberId+"<br>");
-//                                    result.append("시간 : "+data.memberName+"<br>");
-//                                    result.append("가격 : "+data.memberPhone+"<br>");
-//                                }
-//                            }
-//                        },
-//                        error : function(){
-//                            console.log("서버 호출 실패");
-//                        }
-//                    });
-                });
+                    $.ajax({
+                        url : "/checkSchedule.do",
+                        type : "get",
+                        data : {fripNo : fripNo ,calendar : calendar, attendNumber: attendNumber},
+                        dataType: "JSON", //이거 적거나 아니면 서블릿에서 response.setContentType("application/json"); 이라고 적어준다.
+                        success : function(data){
+                            console.log(data, typeof data);
+                            //data == 0 이면 예약불가
+                            
+                            //data == 1 이면 예약가능
+                            
+                            
+                        },
+                        error : function(){
+                            console.log("서버 호출 실패");
+                        }
+                    });
+               
         }
       
        

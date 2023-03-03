@@ -1,14 +1,14 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="kr.or.iei.frip.vo.Frip"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
+	<% 	
+	Frip f = (Frip) request.getAttribute("f");
+	ArrayList<Frip> list = (ArrayList<Frip>)request.getAttribute("list");
+	%>
+
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-	<%@ include file="/WEB-INF/views/common/header.jsp"%>
-	<!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
@@ -16,6 +16,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>상세페이지</title>
 <link rel="stylesheet" href="/css/joinFrip/detailpage.css">
+
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <link rel="stylesheet"
@@ -23,41 +24,21 @@
 <link rel="stylesheet" href="/resources/demos/style.css">
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <!-- <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script> -->
-<script src="https://unpkg.com/gijgo@1.9.14/js/gijgo.min.js"></script>
-<link href="https://unpkg.com/gijgo@1.9.14/css/gijgo.min.css"
-	rel="stylesheet" />
-<!-- <script>
-    $( function() {
-    //     $.datepicker.setDefaults({
-    //     nextText: "다음",
-    //     prevText: "이전",
-    //     monthNames: ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월" ],
-    //     dayNames: ["일", "월", "화", "수", "목", "금", "토" ],
-    //     dayNamesShort: ["일", "월", "화", "수", "목", "금", "토" ],
-    //     dayNamesMin: ["일", "월", "화", "수", "목", "금", "토" ]
-    // });
-    //   $( "#datepicker" ).datepicker();
-    $('#gijgo').datepicker(
-        { 
-            header: true, 
-            modal: true, 
-            footer: true });
-});
-    </script>  -->
-</head>
+
 </head>
 <body>
+	<%@ include file="/WEB-INF/views/common/header.jsp"%>
 	<div class="modal-wrap hidden">
-	<div class="modal" id="jsModal">
-		<div class="text-area">
-			<textarea name="message-to-host" id="message-to-host"
-				placeholder="호스트에게 필요한 메세지를 적어주세요."></textarea>
+		<div class="modal" id="jsModal">
+			<div class="text-area">
+				<textarea name="message-to-host" id="message-to-host"
+					placeholder="호스트에게 필요한 메세지를 적어주세요."></textarea>
+			</div>
+			<div class="modal-button">
+				<button class="modal__closeBtn" id="jsCloseBtn">X</button>
+				<button class="send-to-host" id="send-to-host">보내기</button>
+			</div>
 		</div>
-		<div class="modal-button">
-			<button class="modal__closeBtn" id="jsCloseBtn">X</button>
-			<button class="send-to-host" id="send-to-host">보내기</button>
-		</div>
-	</div>
 	</div>
 	<div class="wrap">
 		<div class="content">
@@ -72,10 +53,15 @@
 					class="ratingcount"> (평점준사람수)</span><span class="addr"> 주소</span>
 				</p>
 			</div>
-			<div class="photo">
-				<a href="/"> <img src="/05_Semi_pj/IMG/한강.png"> <img
-					src="/05_Semi_pj/IMG/한강2.png"> <img src="IMG/한강3.png">
-				</a>
+				<!-- for문 둘려서 하기!!!! -->
+				<% for(int i=0; i<list.size(); i++){ %>
+				<% Frip f1 = list.get(i); %>
+				 <%for(int j=0; j<1; j++){ %>
+				 <%String s =  f.getFilePath().get(j); %>
+					<img src="/upload/photo/<%=s%>"> 
+					<%} %>
+				<%} %>
+				
 			</div>
 		</div>
 		<div class="contents-bundle">
@@ -84,7 +70,6 @@
 					<div class="title">
 						호스트 : <span>hostname</span>님
 					</div>
-					<img class="host-img" src="/05_Semi_pj/IMG/host.png">
 				</div>
 				<div class="content">
 					<div class="small-title">프로그램</div>
@@ -127,7 +112,7 @@
 							<div class="select-box left">
 								<!-- <p>날짜 <input type="text" id="datepicker"> </p>  -->
 								<p class="calendar">
-									날짜 <input type="text" id="gijgo">
+									날짜 <input type="text" id="gijgo" readonly>
 								</p>
 							</div>
 							<div class="select-box right">
@@ -147,7 +132,8 @@
 								</select>
 							</div>
 							<div class="check">
-								<button type="button" id="seemore-button" onclick="func1();">조회하기</button>
+								<button type="button" id="seemore-button"
+									onclick="func1(<%= f.getFripNo()%>);">조회하기</button>
 							</div>
 							<div class="select-area">
 								<!--여기는 날짜, 인원으로 ajax로 조회한 그 날짜의 인원, 시간 목록이 뜨게한다.-->
@@ -163,12 +149,13 @@
 				<img src="/05_Semi_pj/IMG/네이버맵.jpg">
 			</div>
 		</div>
+		<script src="https://unpkg.com/gijgo@1.9.14/js/gijgo.min.js"></script>
+		<link href="https://unpkg.com/gijgo@1.9.14/css/gijgo.min.css"
+			rel="stylesheet" />
 		<script src="/js/joinFrip/detailpage.js"></script>
+		
 </body>
 </html>
-
-
-
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>
 </body>
 </html>
