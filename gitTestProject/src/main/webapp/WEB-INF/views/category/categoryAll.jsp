@@ -19,26 +19,6 @@
 	<%@ include file="/WEB-INF/views/common/header.jsp" %>
 	 <div class="content-wrap">
 	<%for(int i=0; i<list.size(); i++){ %>
-<<<<<<< HEAD
-	<%Frip f = list.get(i); %>
-	<%=f.getFilePath() %>
-	
-	<%for(int j=0; j<1; j++){ %>
-	<%String s = f.getFilePath().get(j); %>
-		<table>
-			<tr>
-				<th>
-					<img src="/upload/photo/<%=s %>">
-				</th>
-				<th>
-					
-				</th>
-			</tr>
-		</table>
-	<%} %>
-	
-	<%} %>
-=======
 		<%Frip f = list.get(i); %>
         <div class="frip-box">
             <div class="img-box">
@@ -65,7 +45,6 @@
         </div>
 	<%} %>
     </div>		
->>>>>>> MH_br
 	<%@ include file="/WEB-INF/views/common/footer.jsp" %>
 	
 </body>
