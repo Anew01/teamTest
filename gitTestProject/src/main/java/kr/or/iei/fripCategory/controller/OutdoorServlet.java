@@ -3,7 +3,6 @@ package kr.or.iei.fripCategory.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,16 +14,16 @@ import kr.or.iei.frip.service.FripService;
 import kr.or.iei.frip.vo.Frip;
 
 /**
- * Servlet implementation class AllCategoryServlet
+ * Servlet implementation class OutdoorServlet
  */
-@WebServlet(name = "AllCategory", urlPatterns = { "/allCategory.do" })
-public class AllCategoryServlet extends HttpServlet {
+@WebServlet(name = "Outdoor", urlPatterns = { "/outdoor.do" })
+public class OutdoorServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AllCategoryServlet() {
+    public OutdoorServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,16 +32,19 @@ public class AllCategoryServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//인코딩
+		//인
 		request.setCharacterEncoding("utf-8");
-		//값추출
-		//비즈니스로직
+		//값
+		//비
 		FripService service = new FripService();
-		ArrayList<Frip> list = service.selectAllFrip();
-		//결과처리
-		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/category/categoryAll.jsp");
+		String fripCategory = "아웃도어";
+		ArrayList<Frip> list = service.selectAllFripByCategory(fripCategory);
+		//결
+		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/category/outdoor.jsp");
 		request.setAttribute("list", list);
+		
 		view.forward(request, response);
+		
 	}
 
 	/**
