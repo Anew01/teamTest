@@ -1,13 +1,41 @@
 /* input 디자인 */
 .input-form {
-    width: 100%;
+    /* width: 100%;
     display: block;
     padding: 0.8rem;
     background-color: #fff;
     outline: none;
     border: 1px solid #ccc;
 
-    box-sizing: border-box;
+    box-sizing: border-box; */
+    display: block;
+    width: 100%;
+    height: calc(1.5em + 1.8rem + 2px);
+    padding: 0.9rem 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #333;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ddd;
+    border-radius: 0.25rem;
+    box-shadow: 0 3px 2px hsl(0deg 0% 87% / 5%);
+    transition: all .15s cubic-bezier(.68, -.55, .265, 1.55);
+}
+
+.note-editable {
+    display: block;
+    width: 100%;
+    height: calc(1.5em + 1.8rem + 2px);
+    padding: 0.9rem 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #333;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ddd;
+    border-radius: 0.25rem;
+    box-shadow: 0 3px 2px hsl(0deg 0% 87% / 5%);
 }
 
 .input-form:focus {
@@ -131,8 +159,14 @@ textarea.input-form {
     background-color: rgba(57, 62, 70, 0.1);
 }
 
-.tbl .td-3 {
+/* .tbl .td-3 {
     background-color: rgba(0, 173, 181, 0.1);
+} */
+
+.tbl .td-3 {
+    padding: 1rem;
+    vertical-align: top;
+    /* border: 1px solid #ddd; */
 }
 
 .tbl .td-4 {
@@ -376,4 +410,27 @@ textarea.input-form {
     width: 100%;
     padding: 2rem;
     font-size: 1.2em;
+}
+
+.noitceComplete {
+    border: 1px solid rgb(204, 204, 204);
+    background: #4B89DC;
+    color: #fff;
+    display: inline-flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    box-sizing: border-box;
+    font-weight: 500;
+    letter-spacing: -0.03em;
+    text-align: center;
+    white-space: nowrap;
+    width: 150px;
+    height: 45px;
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-size: 12px;
+    line-height: 16px;
+    cursor: pointer;
 }
