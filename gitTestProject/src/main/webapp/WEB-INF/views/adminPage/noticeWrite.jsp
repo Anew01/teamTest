@@ -20,7 +20,7 @@
 						<h1>공지사항 작성</h1>
 					</div>
 					<div class="card">
-						<form action="/noticeWrite.do" method="post" enctype="multipart/form-data">
+						<form action="/noticeWrite.do" method="post">
 							<table class="tbl" id="noticeWrite">
 								<tr class="tr1">
 									<th class="td-3">제목</th>
@@ -31,11 +31,16 @@
 								<tr class="tr1">
 									<th class="td-3">작성자</th>
 									<td>
-										작성자1
-										<input type="hidden" name="noticeWriter" value="1">
+										user01
+										<input type="hidden" name="noticeWriter" value="user01">
 									</td>
-									<th class="td-3">첨부파일</th>
-									<td><input type="file" name="upfile" class="upfile"></td>
+									<th class="td-3">분류</th>
+									<td>
+										<select name="noticeCategory" id="noticeCategory">
+											<option value="공지">공지</option>
+											<option value="이벤트">이벤트</option>
+										</select>
+									</td>
 								</tr>
 								<tr class="tr-1">
 									<td colspan="4" style="text-align : left;">
