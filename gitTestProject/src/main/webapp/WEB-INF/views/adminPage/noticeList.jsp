@@ -22,7 +22,6 @@
                                     <th style="width:45%">제목</th>
                                     <th style="width:15%">작성자</th>
                                     <th style="width:20%">작성일</th>
-                                    <th style="width:10%">조회수</th>
                                 </tr>
                                 <tr class="tr-1">
                                     <td>
@@ -38,10 +37,7 @@
                                     </td>
                                     <td>
                                         2022-21-21
-                                    </td>
-                                    <td>
-                                        내용
-                                    </td>
+                                    </td>                                
                                 </tr>
                             </table>
                             <div id="pageNavi">

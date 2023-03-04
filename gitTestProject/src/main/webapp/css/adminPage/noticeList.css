@@ -37,6 +37,11 @@ td {
     font-weight: 600
 }
 
+a {
+    text-decoration: none;
+    color: #333;
+}
+
 .table input {
     display: inline-block;
     width: 20px;
