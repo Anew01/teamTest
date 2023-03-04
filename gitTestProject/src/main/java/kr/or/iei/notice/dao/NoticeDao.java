@@ -66,7 +66,7 @@ public class NoticeDao {
 
 		ArrayList<Notice> list = new ArrayList<>();
 
-		String query = "SELECT * FROM(SELECT ROWNUM AS rnum, n.* from(SELECT NOTICE_NO, NOTICE_TITLE, NOTICE_WRITER, ENROLL_DATE FROM NOTICE_TBL ORDER BY 1 DESC)n) WHERE rnum BETWEEN ? and ?";
+		String query = "SELECT * FROM(SELECT ROWNUM AS rnum, n.* from(SELECT NOTICE_NO, NOTICE_TITLE, NOTICE_CONTENT, NOTICE_WRITER, ENROLL_DATE FROM NOTICE_TBL ORDER BY 1 DESC)n) WHERE rnum BETWEEN ? and ?";
 
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -81,10 +81,13 @@ public class NoticeDao {
 
 				notice.setNoticeNo(rset.getInt("NOTICE_NO"));
 				notice.setNoticeTitle(rset.getString("NOTICE_TITLE"));
+				notice.setNoticeContent(rset.getString("NOTICE_CONTENT"));
 				notice.setNoticeWriter(rset.getString("NOTICE_WRITER"));
 				notice.setEnrollDate(rset.getString("ENROLL_DATE"));
 
 				list.add(notice);
+
+				System.out.println(notice.getNoticeContent());
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -23,7 +23,7 @@
                                     <div class="card">
                                         <div>
                                             <table class="table tbl-hover notice-tbl">
-                                                <tr class="tr-2">
+                                                <tr class="tr-1">
                                                     <th style="width:10%">번호</th>
                                                     <th style="width:45%">제목</th>
                                                     <th style="width:15%">작성자</th>
@@ -31,12 +31,12 @@
                                                 </tr>
                                                 <%for(int i=0; i<list.size(); i++){ %>
                                                     <%Notice notice=list.get(i); %>
-                                                        <tr class="tr-1">
+                                                        <tr class="tr-2">
                                                             <td>
                                                                 <%=i+start %>
                                                             </td>
                                                             <td>
-                                                                <a href="/noticeView.do?noticeNo=1">
+                                                                <a href="#" class="notice-content-view">
                                                                     <%=notice.getNoticeTitle() %>
                                                                 </a>
                                                             </td>
@@ -45,6 +45,11 @@
                                                             </td>
                                                             <td>
                                                                 <%=notice.getEnrollDate() %>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="notice-content">
+                                                            <td colspan="4">
+                                                                <%=notice.getNoticeContent() %>
                                                             </td>
                                                         </tr>
                                                         <%} %>
@@ -57,6 +62,11 @@
                                 </div>
                             </div>
                             </div>
+                            <script>
+                                $(".notice-content-view").on("click", function () {
+                                    $(this).parent().parent().next().css("display", "table-cell");
+                                });
+                            </script>
                             <script src="/js/adminPage/sidebar.js"></script>
                     </body>
 

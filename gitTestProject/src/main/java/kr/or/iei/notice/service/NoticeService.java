@@ -96,6 +96,8 @@ public class NoticeService {
 
 		NoticePageData noticePageData = new NoticePageData(list, pageNavi, start);
 
+		System.out.println(noticePageData.getList().get(1).getNoticeContent());
+
 		return noticePageData;
 	}
 

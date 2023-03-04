@@ -33,6 +33,8 @@ public class NoticeListServlet extends HttpServlet {
 
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/adminPage/noticeList.jsp");
 
+		System.out.println(nPageData.getList().get(1).getNoticeContent());
+
 		request.setAttribute("list", nPageData.getList());
 		request.setAttribute("pageNavi", nPageData.getPageNavi());
 		request.setAttribute("start", nPageData.getStart());
