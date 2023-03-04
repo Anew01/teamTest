@@ -1,16 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="/css/member/join.css">
+<link rel="stylesheet" href="/css/member/enroll.css">
 </head>
 <body>
-	<%@ include file="/WEB-INF/views/common/header.jsp"%>
-	<div class="content-wrap">
-	  <div class="join-wrap">
+<%@ include file="/WEB-INF/views/common/header.jsp" %>
+<div class="page-content">
+<div class="join-wrap">
         <div class="join-header">
             <h1>회원가입</h1>
         </div>
@@ -125,7 +125,7 @@
             </form>
         </div>
     </div>
-	</div>
-	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
+</div>
+<%@ include file="/WEB-INF/views/common/footer.jsp" %>
 </body>
 </html>
