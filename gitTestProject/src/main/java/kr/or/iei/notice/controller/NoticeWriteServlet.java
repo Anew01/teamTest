@@ -53,7 +53,7 @@ public class NoticeWriteServlet extends HttpServlet {
 			request.setAttribute("msg", "오류가 발생했습니다. 홈페이지에 문의해주세요.");
 			request.setAttribute("icon", "error");
 		}
-		request.setAttribute("loc", "/adminPage.do");
+		request.setAttribute("loc", "/noticeWrite.do");
 
 		view.forward(request, response);
 	}

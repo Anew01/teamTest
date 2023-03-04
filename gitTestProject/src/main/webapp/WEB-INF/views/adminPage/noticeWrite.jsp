@@ -49,7 +49,7 @@
 								</tr>
 								<tr class="tr-1">
 									<td colspan="4">
-										<button type="submit" class="noitceComplete">공지사항 작성완료</button>
+										<button type="submit" class="noitceComplete">공지사항 작성</button>
 									</td>
 								</tr>
 							</table>
