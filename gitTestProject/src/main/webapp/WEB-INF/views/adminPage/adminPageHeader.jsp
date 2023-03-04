@@ -59,7 +59,7 @@
                                 class="fas fa-chevron-down drop-down"></i></span>
                     </a>
                     <div class="sub-menu">
-                        <a href="#"><i class="fa-solid fa-pen-nib"></i><span>공지사항 작성</span></a>
+                        <a href="/noticeWriteFrm.do"><i class="fa-solid fa-pen-nib"></i><span>공지사항 작성</span></a>
                         <a href="#"><i class="fa-solid fa-list"></i><span>공지사항 목록</span></a>
                     </div>
                 </li>
