@@ -4,7 +4,7 @@
 
     <head>
         <title>공지사항 목록</title>
-        <link rel="stylesheet" href="/css/adminPage/allMember.css">
+        <link rel="stylesheet" href="/css/adminPage/noticeList.css">
     </head>
 
     <body>
@@ -16,7 +16,7 @@
                     </div>
                     <div class="card">
                         <div>
-                            <table class="tbl tbl-hover notice-tbl">
+                            <table class="table tbl-hover notice-tbl">
                                 <tr class="tr-2">
                                     <th style="width:10%">번호</th>
                                     <th style="width:45%">제목</th>
