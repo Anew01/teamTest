@@ -13,7 +13,7 @@ public class JoinFripService {
 		super();
 		dao = new JoinFripDao();
 	}
-
+/*
 	public int checkSchedule(int fripNo, String calendar, int attendCount) {
 		Connection conn = JDBCTemplate.getConnection();
 		int result = joinFripDao.checkCalander(conn, fripNo, calendar);
@@ -48,8 +48,8 @@ public class JoinFripService {
 		  최대인원수 > 예약된인원수 + attendNumber
 		  예약가능하면 return 1;
 		  예약불가능하면 return 0;
-		 */
 	}
+		 */
 	
 	public JoinFrip selectCount(String date, int fripNo) {
 		Connection conn = JDBCTemplate.getConnection();
