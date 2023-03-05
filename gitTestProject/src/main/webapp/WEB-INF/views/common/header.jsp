@@ -38,18 +38,14 @@
                     <button type="submit" class="btn btn-outline-dark">피드</button>
                     </form>
                     <button type="button" class="btn btn-outline-dark">Middle</button>
-                    
-                     <% if (loginMember==null){ %>
+        <% if (loginMember==null){ %>
         <a href="/loginFrm.do">로그인</a>
         <%}else{ %>
         <%-- 
         <a href="/myInfo.do?memberId=<%=member.getMemberId() %>">마이페이지</a>
         --%>
-        <a href="#">마이페이지</a>
+        <a href="/myInfo.do?memberId=<%=loginMember.getMemberId() %>">마이페이지</a>
         <%} %>
-        
-        
-                    
                   </div>
                 </div>
             </div>
