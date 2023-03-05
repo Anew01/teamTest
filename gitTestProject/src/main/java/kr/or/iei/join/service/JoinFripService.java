@@ -13,20 +13,21 @@ public class JoinFripService {
 		joinFripDao = new JoinFripDao();
 	}
 
-	public int checkSchedule(int fripNo, String calendar, int attendNumber) {
+	public int checkSchedule(int fripNo, String calendar, int attendCount) {
 		Connection conn = JDBCTemplate.getConnection();
-		int calendarResult = joinFripDao.checkCalander(conn, fripNo, calendar);
-		if(calendarResult==1) {
+		int result = joinFripDao.checkCalander(conn, fripNo, calendar);
+		if(result==1) {
 			//활동의 최대인원수
 			int maxCount = joinFripDao.checkMaxCount(conn, fripNo, calendar);
 			//활동에 예약된 인원수
 			int joinCount = joinFripDao.checkJoinCount(conn,  calendar, fripNo); 
-			if(maxCount > joinCount + attendNumber) {
+			if(maxCount > joinCount + attendCount) {
 				return 1;
 			}else {
 				return 0;
 			}
 		}else {
+			JDBCTemplate.close(conn);
 			return 0;
 		}
 		

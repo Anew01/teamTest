@@ -30,6 +30,7 @@ public class CheckScheduleServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+				//ajax 방식으로 가져오는 페이지다!!
 				//1. 인코딩
 				request.setCharacterEncoding("UTF-8");
 				//2. 값추출

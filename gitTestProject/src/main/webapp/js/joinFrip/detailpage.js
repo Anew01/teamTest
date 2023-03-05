@@ -1,5 +1,5 @@
-//달력 기능
-$( function() {
+	//달력 기능
+	$( function() {
     //     $.datepicker.setDefaults({
     //     nextText: "다음",
     //     prevText: "이전",
@@ -19,51 +19,57 @@ $( function() {
 });
   
 
-//호스트에게 연락하기 모달 
+		//호스트에게 연락하기 모달 
 		window.onload=function(){
-			const open = document.querySelector(".contact-host");
-			const close = document.querySelector(".modal__closeBtn");
-			const modal = document.querySelector(".modal-wrap");
-			function init(){
-				open.addEventListener("click", function(){
-					console.log("hidden사라져랏!");
-					modal.classList.remove("hidden");
-				});
-				close.addEventListener("click", function(){
-					modal.classList.add("hidden");
-				});
-			}
+		const open = document.querySelector(".contact-host");
+		const close = document.querySelector(".modal__closeBtn");
+		const modal = document.querySelector(".modal-wrap");
+		function init(){
+			open.addEventListener("click", function(){
+			console.log("hidden사라져랏!");
+			modal.classList.remove("hidden");
+			});
+			close.addEventListener("click", function(){
+			modal.classList.add("hidden");
+			});
+		}
 			init();
 		}
 
         //조회하기 
         function func1(fripNo){
-            //ajax로 날짜, 인원  정보보내기
-                    const calendar = $("#gijgo").val();
-                    const attendNumber = $(".attend-number").val();
+        //ajax로 날짜, 인원  정보보내기
+    	const calendar = $("#gijgo").val();
+        const attendNumber = $(".attend-number").val();
                     
-                    console.log(fripNo);
-                    console.log(calendar);
-                    console.log(attendNumber);
-                    $.ajax({
-                        url : "/checkSchedule.do",
-                        type : "get",
-                        data : {fripNo : fripNo ,calendar : calendar, attendNumber: attendNumber},
-                        dataType: "JSON", //이거 적거나 아니면 서블릿에서 response.setContentType("application/json"); 이라고 적어준다.
-                        success : function(data){
-                            console.log(data, typeof data);
-                            //data == 0 이면 예약불가
-                            
-                            //data == 1 이면 예약가능
-                            
-                            
-                        },
-                        error : function(){
-                            console.log("서버 호출 실패");
-                        }
-                    });
-               
-        }
+        console.log(fripNo);
+        console.log(calendar);
+        console.log(attendNumber);
+        $.ajax({
+            url : "/checkSchedule.do",
+            type : "get",
+            data : {fripNo : fripNo ,calendar : calendar, attendNumber: attendNumber},
+            dataType: "JSON", //이거 적거나 아니면 서블릿에서 response.setContentType("application/json"); 이라고 적어준다.
+            success : function(data){
+                console.log(data, typeof data);
+                if(data==0){
+                	//data == 0 이면 예약불가
+                	//날짜와 인원수를 조정해주세요 라는 alert뜬다
+                	alert("날짜와 인원수를 조정해주세요.");
+                }else if(data==1){
+                	//data == 1 이면 예약가능 
+                	//-> '예약하기' 버튼이 생기고 payment.do로 넘어간다.
+                	//-> 이 때, 내가 지정했던 날짜와 인원수 정보가 저장돼서 같이 넘어가야한다.
+                	result.append("예약 날짜 : "+data.calendar+"<br>");
+                	result.append("남는 자리 : "+data.attendCount+"<br>");
+                }
+            },
+            error : function(){
+            console.log("서버 호출 실패");
+                }
+            });
+       
+}
       
        
 

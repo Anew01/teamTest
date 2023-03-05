@@ -13,9 +13,9 @@ public class JoinFripDao {
 	public int checkCalander(Connection conn, int fripNo, String calendar) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		int calendarResult= 0;
+		int result= 0;
 		//1.원하는 플립과 날짜에서 가능한 프립 날짜가 있는지 // end_date와 start_date는 같은 날짜를 넣는다.
-		String query = "select joinable_date_no from frip_joinable_date where frip_no=? and (?<=end_date and ?>=start_date)  and end_date=start_date";
+		String query = "select joinable_date_no from frip_joinable_date where frip_no=? and (?<=end_date and ?>=start_date)";
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, fripNo);
@@ -23,7 +23,7 @@ public class JoinFripDao {
 			pstmt.setString(3, calendar);
 			rset=pstmt.executeQuery();
 			if(rset.next()) {
-				calendarResult=1;
+				result=1;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -31,7 +31,7 @@ public class JoinFripDao {
 			JDBCTemplate.close(rset);
 			JDBCTemplate.close(pstmt);
 		}
-		return calendarResult;
+		return result;
 	}
 
 	public int checkMaxCount(Connection conn, int fripNo, String calendar) {
@@ -40,7 +40,7 @@ public class JoinFripDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		int maxCount = 0;
-		String query = "select max_count from frip_joinable_date where frip_no=? and (?<=end_date and ?>=start_date)  and end_date=start_date";
+		String query = "select max_count from frip_joinable_date where frip_no=? and (?<=end_date and ?>=start_date)";
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, fripNo);
