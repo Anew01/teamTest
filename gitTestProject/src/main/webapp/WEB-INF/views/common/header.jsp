@@ -41,9 +41,12 @@
                     <button type="button" class="btn btn-outline-dark">Middle</button>
                     
                      <% if (member==null){ %>
-        <button type="button" class="btn btn-outline-dark"><a href="/loginFrm.do"></a>로그인</button>
+        <a href="/loginFrm.do">로그인</a>
         <%}else{ %>
-        <button type="button" class="btn btn-outline-dark"><a href="/myInfo.do?memberId=<%=member.getMemberId() %>"></a>마이페이지</button>
+        <%-- 
+        <a href="/myInfo.do?memberId=<%=member.getMemberId() %>">마이페이지</a>
+        --%>
+        <a href="#">마이페이지</a>
         <%} %>
         
         
