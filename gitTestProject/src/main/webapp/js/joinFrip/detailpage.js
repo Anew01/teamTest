@@ -18,21 +18,22 @@
 		});
 });
 		//호스트에게 연락하기 모달 
-		window.onload=function(){
-		const open = document.querySelector(".contact-host");
-		const close = document.querySelector(".modal__closeBtn");
-		const modal = document.querySelector(".modal-wrap");
-		function init(){
-			open.addEventListener("click", function(){
-			console.log("hidden사라져랏!");
-			modal.classList.remove("hidden");
-			});
-			close.addEventListener("click", function(){
-			modal.classList.add("hidden");
-			});
-		}
-			init();
-		}
+		document.addEventListener("DOMContentLoaded", function() {
+		  const open = document.querySelector(".contact-host");
+		  const close = document.querySelector(".modal__closeBtn");
+		  const modal = document.querySelector(".modal-wrap");
+		  function init() {
+		    open.addEventListener("click", function() {
+		      console.log("hidden사라져랏!");
+		      modal.classList.remove("hidden");
+		    });
+		    close.addEventListener("click", function() {
+		      modal.classList.add("hidden");
+		    });
+		  }
+		  init();
+		});
+
 
         //조회하기 
         function func1(fripNo){
@@ -59,7 +60,7 @@
                 	//data == 1 이면 예약가능 
                 	//-> 내가 지정한 날짜와 인원수 정보가 밑에 text로 다시한번 뜬다.
                 	const a = $("<a>");
-                	a.text(calendar);
+                	a.text(calendar + "\n" + attendCount);
                 	$(".search-result").append(a);
                 	/*
                 	$(".search-result").append(calendar);

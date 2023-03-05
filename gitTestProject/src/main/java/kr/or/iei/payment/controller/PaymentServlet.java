@@ -1,6 +1,8 @@
 package kr.or.iei.payment.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -26,8 +28,14 @@ public class PaymentServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		//1. 인코딩
+		request.setCharacterEncoding("utf-8");
+		//2. 값추출
+		//3. 비즈니스 로직
+		//4. 결과처리
+		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/api/pay.jsp");
+		view.forward(request, response);
+		response.getWriter().println("<script>alert('결제 성공!'); history.back();</script>");
 	}
 
 	/**
