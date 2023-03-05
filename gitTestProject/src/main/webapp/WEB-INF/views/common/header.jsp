@@ -4,7 +4,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
      <%
-    	Member member = (Member)session.getAttribute("m");
+    	Member loginMember = (Member)session.getAttribute("m");
     %>
 	<!--폰트-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -40,7 +40,7 @@
                     </form>
                     <button type="button" class="btn btn-outline-dark">Middle</button>
                     
-                     <% if (member==null){ %>
+                     <% if (loginMember==null){ %>
         <a href="/loginFrm.do">로그인</a>
         <%}else{ %>
         <%-- 
