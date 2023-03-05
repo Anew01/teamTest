@@ -29,6 +29,7 @@
                                                     <th>작성자</th>
                                                     <th>작성일</th>
                                                     <th>수정</th>
+                                                    <th>삭제</th>
                                                 </tr>
                                                 <%for(int i=0; i<list.size(); i++){ %>
                                                     <%Notice notice=list.get(i); %>
@@ -48,7 +49,10 @@
                                                                 <%=notice.getEnrollDate() %>
                                                             </td>
                                                             <td>
-                                                                <button type="button" class="upadte-btn">수정</button>
+                                                                <button type="button" class="btn upadte-btn">수정</button>
+                                                            </td>
+                                                            <td>
+                                                                <button type="button" class="btn delete-btn">삭제</button>
                                                             </td>
                                                             <td class="notice-No"><%=notice.getNoticeNo() %></td>
                                                         </tr>
@@ -73,9 +77,15 @@
                                 });
 
                                 $(".upadte-btn").on("click", function () {
-                                    const noticeNo = $(this).parent().parent().children().eq(5).text();
+                                    const noticeNo = $(this).parent().parent().children().eq(6).text();
 
                                     location.href = "/updateNoticeFrm.do?noticeNo=" + noticeNo;
+                                });
+
+                                $(".delete-btn").on("click", function () {
+                                    const noticeNo = $(this).parent().parent().children().eq(6).text();
+
+                                    location.href = "/deleteNotice.do?noticeNo=" + noticeNo;
                                 });
                             </script>
                             <script src="/js/adminPage/sidebar.js"></script>

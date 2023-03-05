@@ -86,8 +86,6 @@ public class NoticeDao {
 				notice.setEnrollDate(rset.getString("ENROLL_DATE"));
 
 				list.add(notice);
-
-				System.out.println(notice.getNoticeContent());
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -145,6 +143,27 @@ public class NoticeDao {
 			pstmt.setString(3, notice.getNoticeCategory());
 			pstmt.setString(4, notice.getNoticeWriter());
 			pstmt.setInt(5, notice.getNoticeNo());
+
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+
+		return result;
+	}
+
+	public int deleteNotice(Connection connection, int noticeNo) {
+		PreparedStatement pstmt = null;
+
+		int result = 0;
+		String query = "DELETE FROM NOTICE_TBL WHERE NOTICE_NO = ?";
+
+		try {
+			pstmt = connection.prepareStatement(query);
+
+			pstmt.setInt(1, noticeNo);
 
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {

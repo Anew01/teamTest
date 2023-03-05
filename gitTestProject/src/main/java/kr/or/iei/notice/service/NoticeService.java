@@ -96,8 +96,6 @@ public class NoticeService {
 
 		NoticePageData noticePageData = new NoticePageData(list, pageNavi, start);
 
-		System.out.println(noticePageData.getList().get(1).getNoticeContent());
-
 		return noticePageData;
 	}
 
@@ -115,6 +113,22 @@ public class NoticeService {
 		Connection connection = JDBCTemplate.getConnection();
 
 		int result = dao.updateNotice(connection, notice);
+
+		if (result > 0) {
+			JDBCTemplate.commit(connection);
+		} else {
+			JDBCTemplate.rollback(connection);
+		}
+
+		JDBCTemplate.close(connection);
+
+		return result;
+	}
+
+	public int deleteNotice(int noticeNo) {
+		Connection connection = JDBCTemplate.getConnection();
+
+		int result = dao.deleteNotice(connection, noticeNo);
 
 		if (result > 0) {
 			JDBCTemplate.commit(connection);
