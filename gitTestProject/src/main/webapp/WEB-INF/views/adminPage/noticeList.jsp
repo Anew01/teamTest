@@ -24,10 +24,11 @@
                                         <div>
                                             <table class="table tbl-hover notice-tbl">
                                                 <tr class="tr-1">
-                                                    <th style="width:10%">번호</th>
-                                                    <th style="width:45%">제목</th>
-                                                    <th style="width:15%">작성자</th>
-                                                    <th style="width:20%">작성일</th>
+                                                    <th>번호</th>
+                                                    <th>제목</th>
+                                                    <th>작성자</th>
+                                                    <th>작성일</th>
+                                                    <th>수정</th>
                                                 </tr>
                                                 <%for(int i=0; i<list.size(); i++){ %>
                                                     <%Notice notice=list.get(i); %>
@@ -46,9 +47,13 @@
                                                             <td>
                                                                 <%=notice.getEnrollDate() %>
                                                             </td>
+                                                            <td>
+                                                                <button type="button" class="upadte-btn">수정</button>
+                                                            </td>
+                                                            <td class="notice-No"><%=notice.getNoticeNo() %></td>
                                                         </tr>
                                                         <tr class="notice-content">
-                                                            <td colspan="4">
+                                                            <td colspan="5">
                                                                 <%=notice.getNoticeContent() %>
                                                             </td>
                                                         </tr>
@@ -65,6 +70,12 @@
                             <script>
                                 $(".notice-content-view").on("click", function () {
                                     $(this).parent().parent().next().css("display", "table-cell");
+                                });
+
+                                $(".upadte-btn").on("click", function () {
+                                    const noticeNo = $(this).parent().parent().children().eq(5).text();
+
+                                    location.href = "/updateNoticeFrm.do?noticeNo=" + noticeNo;
                                 });
                             </script>
                             <script src="/js/adminPage/sidebar.js"></script>

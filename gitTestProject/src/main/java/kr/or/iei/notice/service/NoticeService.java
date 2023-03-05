@@ -101,4 +101,30 @@ public class NoticeService {
 		return noticePageData;
 	}
 
+	public Notice getNotice(int noticeNo) {
+		Connection connection = JDBCTemplate.getConnection();
+
+		Notice notice = dao.selectOneNotice(connection, noticeNo);
+
+		JDBCTemplate.close(connection);
+
+		return notice;
+	}
+
+	public int upadteNotice(Notice notice) {
+		Connection connection = JDBCTemplate.getConnection();
+
+		int result = dao.updateNotice(connection, notice);
+
+		if (result > 0) {
+			JDBCTemplate.commit(connection);
+		} else {
+			JDBCTemplate.rollback(connection);
+		}
+
+		JDBCTemplate.close(connection);
+
+		return result;
+	}
+
 }

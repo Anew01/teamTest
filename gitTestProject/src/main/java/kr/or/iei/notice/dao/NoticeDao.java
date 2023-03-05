@@ -99,4 +99,61 @@ public class NoticeDao {
 		return list;
 	}
 
+	public Notice selectOneNotice(Connection connection, int noticeNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+
+		Notice notice = null;
+		String query = "SELECT * FROM NOTICE_TBL WHERE NOTICE_NO = ?";
+
+		try {
+			pstmt = connection.prepareStatement(query);
+			pstmt.setInt(1, noticeNo);
+
+			rset = pstmt.executeQuery();
+
+			if (rset.next()) {
+				notice = new Notice();
+
+				notice.setNoticeNo(rset.getInt("NOTICE_NO"));
+				notice.setNoticeTitle(rset.getString("NOTICE_TITLE"));
+				notice.setNoticeContent(rset.getString("NOTICE_CONTENT"));
+				notice.setNoticeCategory(rset.getString("NOTICE_CATEGORY"));
+				notice.setNoticeWriter(rset.getString("NOTICE_WRITER"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+			JDBCTemplate.close(rset);
+		}
+		return notice;
+	}
+
+	public int updateNotice(Connection connection, Notice notice) {
+		PreparedStatement pstmt = null;
+
+		int result = 0;
+
+		String query = "UPDATE NOTICE_TBL SET NOTICE_TITLE = ?, NOTICE_CONTENT = ?, NOTICE_CATEGORY = ?, NOTICE_WRITER = ? WHERE NOTICE_NO = ?";
+
+		try {
+			pstmt = connection.prepareStatement(query);
+
+			pstmt.setString(1, notice.getNoticeTitle());
+			pstmt.setString(2, notice.getNoticeContent());
+			pstmt.setString(3, notice.getNoticeCategory());
+			pstmt.setString(4, notice.getNoticeWriter());
+			pstmt.setInt(5, notice.getNoticeNo());
+
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+
+		return result;
+	}
+
 }
