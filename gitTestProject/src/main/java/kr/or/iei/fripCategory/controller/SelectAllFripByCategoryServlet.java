@@ -36,91 +36,34 @@ public class SelectAllFripByCategoryServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		//값
 		String categoryName = request.getParameter("categoryName");
-		String fripCategory = categoryName;
-		//비
+		RequestDispatcher view = null;
 		FripService service = new FripService();
-		ArrayList<Frip> list = service.selectAllFripByCategory(fripCategory);
-		//결
-		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/category/selectAllFripByCategory.jsp");
-		request.setAttribute("list", list);
-		view.forward(request, response);
-		/*
-		if(categoryName.equals("아웃도어")) {
-			view.forward(request, response);
-		} else if(categoryName.equals("피트니스")) {
-			String fripCategory = "피트니스";
-			FripService service = new FripService();
-			ArrayList<Frip> list = service.selectAllFripByCategory(fripCategory);
-			RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/category/selectAllFripByCategory.jsp");
+		
+		if ("main".equals(categoryName)) {
+			//main 화면
+			//비
+			ArrayList<Frip> list1 = service.selectAllFripByCategory("rating");
+			ArrayList<Frip> list2 = service.selectAllFripByCategory("new");
+			
+			request.setAttribute("list1", list1);
+			request.setAttribute("list2", list2);
+		} else {
+			//main 화면이 아닐때
+			//비
+			ArrayList<Frip> list = service.selectAllFripByCategory(categoryName);
+			
+			for(Frip f : list) {
+				String avgRating = service.selectRating(f.getFripNo());
+				f.setAvgRating(avgRating);
+				System.out.println(f.getFripNo()+"의 별점은 : "+avgRating);
+			}
 			request.setAttribute("list", list);
-			view.forward(request, response);
-		} else if(categoryName.equals("DIY")) {
-			String fripCategory = "DIY";
-			FripService service = new FripService();
-			ArrayList<Frip> list = service.selectAllFripByCategory(fripCategory);
-			RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/category/selectAllFripByCategory.jsp");
-			request.setAttribute("list", list);
-			view.forward(request, response);
-		} else if(categoryName.equals("스포츠")) {
-			String fripCategory = "스포츠";
-			FripService service = new FripService();
-			ArrayList<Frip> list = service.selectAllFripByCategory(fripCategory);
-			RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/category/selectAllFripByCategory.jsp");
-			request.setAttribute("list", list);
-			view.forward(request, response);
-		} else if(categoryName.equals("요리")) {
-			String fripCategory = "요리";
-			FripService service = new FripService();
-			ArrayList<Frip> list = service.selectAllFripByCategory(fripCategory);
-			RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/category/selectAllFripByCategory.jsp");
-			request.setAttribute("list", list);
-			view.forward(request, response);
-		} else if(categoryName.equals("온라인")) {
-			String fripCategory = "온라인";
-			FripService service = new FripService();
-			ArrayList<Frip> list = service.selectAllFripByCategory(fripCategory);
-			RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/category/selectAllFripByCategory.jsp");
-			request.setAttribute("list", list);
-			view.forward(request, response);
-		} else if(categoryName.equals("자기계발")) {
-			String fripCategory = "자기계발";
-			FripService service = new FripService();
-			ArrayList<Frip> list = service.selectAllFripByCategory(fripCategory);
-			RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/category/selectAllFripByCategory.jsp");
-			request.setAttribute("list", list);
-			view.forward(request, response);
-		} else if(categoryName.equals("뷰티")) {
-			String fripCategory = "뷰티";
-			FripService service = new FripService();
-			ArrayList<Frip> list = service.selectAllFripByCategory(fripCategory);
-			RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/category/selectAllFripByCategory.jsp");
-			request.setAttribute("list", list);
-			view.forward(request, response);
-		} else if(categoryName.equals("모임")) {
-			String fripCategory = "모임";
-			FripService service = new FripService();
-			ArrayList<Frip> list = service.selectAllFripByCategory(fripCategory);
-			RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/category/selectAllFripByCategory.jsp");
-			request.setAttribute("list", list);
-			view.forward(request, response);
-		} else if(categoryName.equals("국내여행")) {
-			String fripCategory = "국내여행";
-			FripService service = new FripService();
-			ArrayList<Frip> list = service.selectAllFripByCategory(fripCategory);
-			RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/category/selectAllFripByCategory.jsp");
-			request.setAttribute("list", list);
-			view.forward(request, response);
-		} else if(categoryName.equals("해외여행")) {
-			String fripCategory = "해외여행";
-			FripService service = new FripService();
-			ArrayList<Frip> list = service.selectAllFripByCategory(fripCategory);
-			RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/category/selectAllFripByCategory.jsp");
-			request.setAttribute("list", list);
-			view.forward(request, response);
+			view = request.getRequestDispatcher("/WEB-INF/views/category/selectAllFripByCategory.jsp");
 		}
+		//결
 		
+		view.forward(request, response);
 		
-		 */
 	}
 
 	/**

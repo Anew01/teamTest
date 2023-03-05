@@ -7,7 +7,6 @@ import common.JDBCTemplate;
 import kr.or.iei.frip.dao.FripDao;
 import kr.or.iei.frip.vo.Frip;
 import kr.or.iei.frip.vo.FripJoinableDate;
-import kr.or.iei.frip.vo.FripJoinableDateData;
 
 public class FripService {
 	private FripDao dao;
@@ -112,5 +111,13 @@ public class FripService {
 		}
 		JDBCTemplate.close(conn);
 		return date;
+	}
+	
+
+	public String selectRating(int fripNo) {
+		Connection conn = JDBCTemplate.getConnection();
+		String avgRating = dao.selectRating(conn, fripNo);
+		JDBCTemplate.close(conn);
+		return avgRating;
 	}
 }
