@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="/css/member/login.css">
 </head>
 <body>
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
@@ -19,7 +20,7 @@
                 <div class="inputs-wrap">
                     <div class="join-input-wrap">
                         <div>
-                            <input type="text" name="loginIn" id="loginIn" placeholder="아이디(이메일)" onfocus="this.placeholder=''" onblur="this.placeholder='아이디(이메일)'" required> 
+                            <input type="text" name="loginId" id="loginId" placeholder="아이디(이메일)" onfocus="this.placeholder=''" onblur="this.placeholder='아이디(이메일)'" required> 
                         </div>
                     </div>
                     <div class="join-input-wrap">

@@ -1,7 +1,11 @@
+<%@page import="kr.or.iei.member.vo.Member"%>
 <%@page import="kr.or.iei.frip.vo.Frip"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+     <%
+    	Member member = (Member)session.getAttribute("m");
+    %>
 	<!--폰트-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -35,7 +39,15 @@
                     <button type="submit" class="btn btn-outline-dark">피드</button>
                     </form>
                     <button type="button" class="btn btn-outline-dark">Middle</button>
-                    <button type="button" class="btn btn-outline-dark">Right</button>
+                    
+                     <% if (member==null){ %>
+        <button type="button" class="btn btn-outline-dark"><a href="/loginFrm.do"></a>로그인</button>
+        <%}else{ %>
+        <button type="button" class="btn btn-outline-dark"><a href="/myInfo.do?memberId=<%=member.getMemberId() %>"></a>마이페이지</button>
+        <%} %>
+        
+        
+                    
                   </div>
                 </div>
             </div>

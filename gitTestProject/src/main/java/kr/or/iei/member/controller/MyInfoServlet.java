@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import kr.or.iei.member.service.MemberService;
+import kr.or.iei.member.vo.Member;
+
 /**
  * Servlet implementation class MyInfoServlet
  */
@@ -29,12 +32,16 @@ public class MyInfoServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//1.인코딩
-				request.setCharacterEncoding("utf-8");
-				//2.값추출
-				//3.비즈니스로직
-				//4.결과처리
-				RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/member/myInfo.jsp");
-				view.forward(request, response);
+		request.setCharacterEncoding("utf-8");
+		//2.값추출
+		String memberId = request.getParameter("memberId");
+		//3.비즈니스로직
+		MemberService service = new MemberService();
+		Member m = service.selectOneMember(memberId);
+		//4.화면처리
+		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/member/myInfo.jsp");
+		request.setAttribute("m", m);
+		view.forward(request, response);
 	}
 
 	/**

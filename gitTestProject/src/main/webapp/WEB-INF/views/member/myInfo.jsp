@@ -1,10 +1,16 @@
+
+<%@page import="kr.or.iei.member.vo.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+     <%
+     Member member = (Member)request.getAttribute("m");
+    %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="/css/member/myinfo.css">
 </head>
 <body>
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
@@ -15,7 +21,7 @@
         </div>
         <hr>
         <div class="join-content">
-            <form action="join.html" method="post" autocomplete="off">
+            <form action="/updateMyInfo.do" method="post" autocomplete="off">
                 <div class="inputs-wrap">
                     <div class="profile-wrap">
                         <div class="profile-image"><a href='#'><img src="img/iconmonstr-user-20-240.png" width="100px"></a></div>
@@ -25,7 +31,7 @@
                             <label for="memberId">이메일</label>
                         </div>
                         <div>
-                            <input type="text" name="memberId" id="memberId" disabled> 
+                            <input type="text" name="memberId" id="memberId" value="<%=member.getMemberId() %>" disabled> 
                            
                         </div>
                         
@@ -35,7 +41,7 @@
                             <label for="memberPw">비밀번호</label>
                         </div>
                         <div>
-                            <input type="password" name="memberPw" id="memberPw">
+                            <input type="password" name="memberPw" id="memberPw" value="<%=member.getMemberPw() %>">
                         </div>
                     </div>
                     <div class="join-input-wrap">
@@ -51,7 +57,7 @@
                             <label for="memberName">이름</label>
                         </div>
                         <div>
-                            <input type="text" name="memberName" id="memberName" >
+                            <input type="text" name="memberName" id="memberName" value="<%=member.getMemberName() %>">
                         </div>
                     </div>
                     <div class="join-input-wrap">
@@ -59,7 +65,7 @@
                             <label for="memberPhone">전화번호</label>
                         </div>
                         <div>
-                            <input type="text" name="memberPhone" id="memberPhone">
+                            <input type="text" name="memberPhone" id="memberPhone" value="<%=member.getMemberPhone() %>">
                         </div>
                     </div>
                     <div class="join-input-wrap">
@@ -82,7 +88,7 @@
                             <button type="button" class="addr-btn">주소검색</button>
                         </div>
                         <div>
-                            <input type="text" name="addr-detal" id="addr-detail" placeholder="상세주소를 입력해주세요." onfocus="this.placeholder=''" onblur="this.placeholder='상세주소를 입력해주세요.'" > 
+                            <input type="text" name="memberAddrDetail" id="memberAddrDetail"  > 
                            
                         </div>
                     </div>

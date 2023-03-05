@@ -1,6 +1,7 @@
 package kr.or.iei.member.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -74,6 +75,7 @@ public class LoginServlet extends HttpServlet {
 				request.setAttribute("msg", "환영합니다.");
 				request.setAttribute("icon", "success");
 				request.setAttribute("loc", "/");
+				
 			}
 		}
 		
