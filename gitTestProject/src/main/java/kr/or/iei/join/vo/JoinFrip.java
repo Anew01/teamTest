@@ -7,6 +7,9 @@ public class JoinFrip {
 	private int joinableDateNo;
 	private int paymentNo;
 	private int joinCount;
+	private String maxCnt;
+	private String useCnt;
+	
 	public JoinFrip() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -56,6 +59,19 @@ public class JoinFrip {
 	public void setJoinCount(int joinCount) {
 		this.joinCount = joinCount;
 	}
+	public String getMaxCnt() {
+		return maxCnt;
+	}
+	public void setMaxCnt(String maxCnt) {
+		this.maxCnt = maxCnt;
+	}
+	public String getUseCnt() {
+		return useCnt;
+	}
+	public void setUseCnt(String useCnt) {
+		this.useCnt = useCnt;
+	}
+	
 	
 	
 
