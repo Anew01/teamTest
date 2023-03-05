@@ -23,6 +23,7 @@
 	href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 <link rel="stylesheet" href="/resources/demos/style.css">
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+
 <!-- <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script> -->
 
 </head>
@@ -95,8 +96,7 @@
 						있습니다. ✔ 고려대 바이오향료공학 석사 ✔ 프랑스 gip 국제과정 수료 ✔ 기업 향기 마케팅 컨설팅 진행 ✔
 						셀러브리티 향수 출시 ✔ 관공서, 백화점, 기업 등 퍼퓸클래스 진행</div>
 					<div>
-						<button class="contact-host" id="jsBtn">호스트에게 연락</button>
-
+						<button class="contact-host" id="jsBtn" onclick="init()">호스트에게 연락</button>
 					</div>
 				</div>
 			</div>
@@ -151,9 +151,6 @@
 		<link href="https://unpkg.com/gijgo@1.9.14/css/gijgo.min.css"
 			rel="stylesheet" />
 		<script src="/js/joinFrip/detailpage.js"></script>
-		
-</body>
-</html>
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>
 </body>
 </html>
