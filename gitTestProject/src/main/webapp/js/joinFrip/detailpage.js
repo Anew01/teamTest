@@ -17,8 +17,6 @@
             footer: true 
 		});
 });
-  
-
 		//호스트에게 연락하기 모달 
 		window.onload=function(){
 		const open = document.querySelector(".contact-host");
@@ -40,7 +38,7 @@
         function func1(fripNo){
         //ajax로 날짜, 인원  정보보내기
     	const calendar = $("#gijgo").val();
-        const attendNumber = $(".attend-number").val();
+        const attendNumber = $(".attend-count").val();
                     
         console.log(fripNo);
         console.log(calendar);
@@ -48,7 +46,7 @@
         $.ajax({
             url : "/checkSchedule.do",
             type : "get",
-            data : {fripNo : fripNo ,calendar : calendar, attendNumber: attendNumber},
+            data : {fripNo : fripNo ,calendar : calendar, attendCount: attendCount},
             dataType: "JSON", //이거 적거나 아니면 서블릿에서 response.setContentType("application/json"); 이라고 적어준다.
             success : function(data){
                 console.log(data, typeof data);
@@ -56,12 +54,20 @@
                 	//data == 0 이면 예약불가
                 	//날짜와 인원수를 조정해주세요 라는 alert뜬다
                 	alert("날짜와 인원수를 조정해주세요.");
+                	$("#reserve-button").hide();
                 }else if(data==1){
                 	//data == 1 이면 예약가능 
-                	//-> '예약하기' 버튼이 생기고 payment.do로 넘어간다.
+                	//-> 내가 지정한 날짜와 인원수 정보가 밑에 text로 다시한번 뜬다.
+                	const a = $("<a>");
+                	a.text(calendar);
+                	$(".search-result").append(a);
+                	/*
+                	$(".search-result").append(calendar);
+                	$(".search-result").append(attendCount);
+                	 */
+                	//-> '예약하기' 버튼이 생기고 payment.do로 넘어간다.(checkJoin.jsp 에서 버튼기능 구현하자!)
+                	$("#reserve-button").show()
                 	//-> 이 때, 내가 지정했던 날짜와 인원수 정보가 저장돼서 같이 넘어가야한다.
-                	result.append("예약 날짜 : "+data.calendar+"<br>");
-                	result.append("남는 자리 : "+data.attendCount+"<br>");
                 }
             },
             error : function(){
