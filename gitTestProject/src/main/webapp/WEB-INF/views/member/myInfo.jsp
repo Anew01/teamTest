@@ -31,10 +31,8 @@
                             <label for="memberId">이메일</label>
                         </div>
                         <div>
-                            <input type="text" name="memberId" id="memberId" value="<%=member.getMemberId() %>" disabled> 
-                           
+                            <input type="text" name="memberId" id="memberId" value="<%=member.getMemberId() %>" readonly> 
                         </div>
-                        
                     </div>
                     <div class="join-input-wrap">
                         <div>
