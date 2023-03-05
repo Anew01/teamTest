@@ -1,0 +1,64 @@
+tbody{
+
+}
+.join-wrap{
+    width: 800px;
+    background-color: #fff;
+    margin: 100px auto;
+    border-radius: 10px;
+}
+.join-header>span{
+    text-align: center;
+    padding: 25px;
+    font-family: nn_eb;
+    color: #424752;
+    font-size: 2em;
+    font-weight: 900;
+}
+.join-header{
+    text-align: center;
+    padding: 15px;
+}
+.join-content{
+    width: 300px;
+    margin: 30px auto;
+    
+}
+.join-input-wrap{
+    margin: 10px 0px;
+}
+
+.join-input-wrap input{
+    width: 100%;
+    box-sizing: border-box;
+    height: 30px;
+    outline: none; /*눌렀을때 테두리없이 커서만 나오게*/
+    border: 1px solid #ccc;
+    font-size: 15px;
+    padding: 20px 20px;
+    border-radius: 5px;
+    
+}
+
+
+.find-pw{
+    text-align: right;
+    text-decoration: none;
+}
+.join-btn-wrap{
+    padding: 30px 0px;
+}
+
+.join-btn-wrap>input[type=submit]:last-child{
+    width: 300px;
+    outline: none;
+    padding: 15px;
+    font-size: 18px;
+    background-color: rgb(254,230,70);
+    color: #0a0101;
+    font-family: nn_eb;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-bottom: 20px;
+}

@@ -15,7 +15,7 @@
             <h3>스프립 시작하기</h3>
         </div>
         <div class="join-content">
-            <form action="join.html" method="post" autocomplete="off">
+            <form action="/enrollFrm.do" method="post" autocomplete="off">
                 <div class="inputs-wrap">
                   
                 <div class="join-btn-wrap">

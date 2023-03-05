@@ -28,6 +28,7 @@ body{
 .join-input-wrap{
     margin: 10px 0px;
 }
+
 .join-input-wrap>div:first-child>label{
     font-family: nn_b;
     color: #003399;

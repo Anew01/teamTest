@@ -1,6 +1,9 @@
-@charset "UTF-8";
 body{
     outline: none;
+}
+.profile-wrap{
+    text-align: center;
+    margin: 50px 0;
 }
 .join-wrap{
     width: 1200px;
@@ -11,13 +14,16 @@ body{
 .join-header>h1{
     text-align: left;
     padding: 25px;
+    font-family: nn_eb;
     font-size: 2em;
 }
 
 .join-content{
     width: 900px;
     margin: 30px auto;
-    
+    /* input text 배경색 확인용 >transparent인지 white인지
+    background-color: aquamarine;
+    */
 }
 .join-input-wrap{
     margin: 10px 0px;
@@ -25,24 +31,24 @@ body{
 .join-input-wrap>div>input{
     width: 100%;
 }
-#memberId,#id-auth,#memberAddr{
+#memberAddr{
     width: 700px;
 }
 
-.join-input-wrap>div:first-child>label,.title{
+.join-input-wrap>div:first-child>label{
     font-weight: 700;
     font-size: 20px;
     color: #686b72;
 }
 .join-input-wrap>div:first-child>label>sup{
-    
+    font-family: nn_eb;
     color: #f00;
 }
 .join-input-wrap input{
     box-sizing: border-box;
     height: 30px;
-    border: none; 
-    outline: none; 
+    border: none; /*날리는 이유: 길이제외하고 나머지 디자인 똑같이 하기 위함*/
+    outline: none; /*눌렀을때 테두리없이 커서만 나오게*/
     border: 1px solid #ccc;
     font-size: 18px;
     padding: 20px 10px;
@@ -53,7 +59,7 @@ body{
     border-color: #393c42;
 }
 
-.auth-btn,.addr-btn{
+.addr-btn{
     width: 190px;
     height: 43px;
     font-size: 15px;
@@ -65,7 +71,7 @@ body{
     color: #fff;
 }
 .chk-btn{
-    width: 190px;
+    width: 90px;
     height: 43px;
     font-size: 15px;
     border: none;
@@ -83,12 +89,13 @@ body{
     width: 50%;
     text-align: center;
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid #686b72;
     color: #686b72;
+    font-family: nn_b;
     cursor: pointer;
     /*여기까지하면 width안먹음*/
     display: block;
-    float: left;
+    float: left;/*높이처리안됨 hidden필요*/
     box-sizing: border-box;
 }
 .join-input-wrap input[type=radio]:checked+label{
@@ -109,7 +116,6 @@ body{
     font-size: 18px;
     background-color: #fff;
     color: #686b72;
-    font-family: nn_eb;
     border: 2px solid #686b72;
     border-radius: 10px;
     cursor: pointer;
@@ -121,20 +127,4 @@ body{
 }
 .join-input-wrap>div:first-child{
     padding: 15px 0px;
-}
-.title{
-    margin: 40px 0;
-}
-.agreeContent{
-    width: 98%;
-    margin: 0 auto;
-    border: 1px solid #ccc;
-    margin: 20px 0;
-    padding: 10px;
-}
-label{
-    font-size: 18px;
-}
-.agreebox{
-    margin-top: 20px;
 }

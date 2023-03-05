@@ -41,8 +41,8 @@ public class EnrollServlet extends HttpServlet {
 				m.setMemberName(request.getParameter("memberName"));
 				m.setMemberPhone(request.getParameter("memberPhone"));
 				m.setMemberAddr(request.getParameter("memberAddr"));
+				m.setMemberAddrDetail(request.getParameter("memberAddrDetail"));
 				m.setMemberGender(request.getParameter("memberGender"));
-				m.set
 				m.setEnrollDate(request.getParameter("enrollDate"));
 				//3.비즈니스로직
 				MemberService service = new MemberService();
@@ -62,7 +62,7 @@ public class EnrollServlet extends HttpServlet {
 				}
 				view.forward(request, response);
 			}
-	}
+	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

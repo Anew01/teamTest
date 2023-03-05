@@ -10,16 +10,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class EnrollFrmServlet
+ * Servlet implementation class MyInfoServlet
  */
-@WebServlet(name = "EnrollFrm", urlPatterns = { "/enrollFrm.do" })
-public class EnrollFrmServlet extends HttpServlet {
+@WebServlet(name = "MyInfo", urlPatterns = { "/myInfo.do" })
+public class MyInfoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public EnrollFrmServlet() {
+    public MyInfoServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,7 +33,7 @@ public class EnrollFrmServlet extends HttpServlet {
 				//2.값추출
 				//3.비즈니스로직
 				//4.결과처리
-				RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/member/enroll.jsp");
+				RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/member/myInfo.jsp");
 				view.forward(request, response);
 	}
 
