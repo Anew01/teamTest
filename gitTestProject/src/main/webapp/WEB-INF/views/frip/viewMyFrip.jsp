@@ -79,10 +79,10 @@
 					</div>
 				</div>
 				<div class="detail-btn-wrap">
-					<a href="#">
+					<a href="/joinFrip.do?fripNo=<%=f.getFripNo()%>">
 						<button class="btn btn-primary">바로가기</button>
 					</a>
-					<a href="#">
+					<a href="/updateFripFrm.do?fripNo=<%=f.getFripNo()%>">
 						<button class="btn btn-primary">수정하기</button>
 					</a>
 				</div>

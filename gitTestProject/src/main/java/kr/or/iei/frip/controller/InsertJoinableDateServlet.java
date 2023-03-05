@@ -54,7 +54,7 @@ public class InsertJoinableDateServlet extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		PrintWriter out = response.getWriter();
 		Gson gson = new Gson();
-		gson.toJson(date, out);				
+		gson.toJson(date, out);
 	}
 	
 	

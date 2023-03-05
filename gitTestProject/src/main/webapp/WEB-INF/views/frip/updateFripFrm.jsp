@@ -1,14 +1,12 @@
-<%@page import="kr.or.iei.member.vo.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%
-    	Member mem = (Member)request.getAttribute("member");
+    	Frip f = (Frip)request.getAttribute("f");
     %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Insert title here</title>
 <link rel="stylesheet" href="/css/summernote/summernote-lite.css">
 <link rel="stylesheet" href="/css/fripPage/insertFripFrm.css">
@@ -21,26 +19,28 @@
 	<div class="page-content">
 		<%@include file="/WEB-INF/views/frip/fripSideBar.jsp" %>
 		<div class="form-content" style="width: 700px;">
-			<div class="page-title"><h2>스프립 등록</h2></div>
-			<form action="insertFrip.do" method="post" enctype="multipart/form-data">
+			<div class="page-title"><h2>스프립 수정</h2></div>
+			<form action="updateFrip.do" method="post" enctype="multipart/form-data">
 				<input type="hidden" name="fripWriter">
 				<div class="input-group mb-3">
 					<div class="input-group-prepend">
 						<span class="input-group-text">스프립 제목</span>
 					</div>
-					<input type="text" class="form-control" name="fripTitle" id="fripTitle" required>
+					<input type="text" class="form-control" name="fripTitle" id="fripTitle" value="<%=f.getFripTitle()%>" required>
 				</div>
 				<div class="input-group">
 					<div class="input-group-prepend">
 						<span class="input-group-text">스프립 프로필 사진</span>
 					</div>
-					<input type="file" class="form-control" multiple="multiple" accept=".jpg,.png,.jpeg" name="fripFiles" id="fripFiles" onChange="uploadFiles(this)">
+					<input type="file" class="form-control" multiple="multiple" accept=".jpg,.png,.jpeg" name="fripFiles" 
+						id="fripFiles" onChange="uploadFiles(this)"
+						value="">
 				</div>		
 				<div class="input-group">
 					<div class="input-group-prepend">
 						<span class="input-group-text">스프립 주소</span>
 					</div>
-					<input type="text" class="form-control" name="fripAddr" id="fripAddr" readonly required>
+					<input type="text" class="form-control" name="fripAddr" id="fripAddr" value="<%=f.getFripAddr()%>" readonly required>
 					<div class="input-group-append">
 						<button type="button" class="btn btn-outline-secondary" id="findAddrBtn">주소찾기</button>
 					</div>
@@ -57,19 +57,31 @@
 						<span class="input-group-text">난이도</span>
 					</div>
 					<div class="input-group-text">
-						<input type="radio" name="fripLevel" id="easy" value="EASY">
+						<% if(f.getFripLevel().equals("EASY")) { %>
+							<input type="radio" name="fripLevel" id="easy" value="EASY" checked>
+						<% } else { %>
+							<input type="radio" name="fripLevel" id="easy" value="EASY">
+						<% } %>
 					</div>
 					<label for="easy" class="form-control">
 						<span>쉬움</span>
 					</label>
 					<div class="input-group-text">
+						<% if(f.getFripLevel().equals("MEDIUM")) { %>
+							<input type="radio" name="fripLevel" id="medium" value="MEDIUM" checked>
+						<% } else { %>
 						<input type="radio" name="fripLevel" id="medium" value="MEDIUM">
+						<% } %>
 					</div>
 					<label for="medium" class="form-control">
 						<span>보통</span>
 					</label>
 					<div class="input-group-text">
-						<input type="radio"  name="fripLevel" id="hard" value="HARD">
+						<% if(f.getFripLevel().equals("HARD")) { %>
+							<input type="radio"  name="fripLevel" id="hard" value="HARD" checked>
+						<% } else { %>
+							<input type="radio"  name="fripLevel" id="hard" value="HARD">
+						<% } %>
 					</div>
 					<label for="hard" class="form-control">
 						<span>어려움</span>
@@ -79,7 +91,8 @@
 					<div class="input-group-prepend">
 						<label class="input-group-text" for="fripCategory">스프립 카테고리</label>
 					</div>
-					<select class="form-control" name="fripCategory" style="width : max-content;" id="inputGroupSelect01" required>
+					<input type="hidden" id="oldCategory" value="<%=f.getFripCategory() %>">
+					<select class="form-control" name="fripCategory" style="width : max-content;" id="fripCategory" required>
 					    <option selected>카테고리...</option>
 					    <option value="아웃도어">아웃도어</option>
 					    <option value="피트니스">피트니스</option>
@@ -116,14 +129,14 @@
 					<div class="input-group-prepend">
 						<label class="input-group-text" for="fripPrice">스프립 가격</label>
 					</div>
-					<input type="text" class="form-control" name="fripPrice" id="fripPrice" required>
+					<input type="text" class="form-control" name="fripPrice" id="fripPrice" value="<%= f.getFripPrice() %>" required>
 				</div>
 				<div class="form-group">
 					<label for="fripContent">스프립 내용</label>
-					<textarea id="summernote" name="editordata" required></textarea>
+					<textarea id="summernote" name="editordata" required><%= f.getFripContent() %></textarea>
 				</div>
 				<div class="submit-btn-warpper">
-					<button type="submit" class="btn btn-primary btn-lg btn-block" style="width : 100%;">등록하기</button>
+					<button type="submit" class="btn btn-primary btn-lg btn-block" style="width : 100%;">수정하기</button>
 				</div>
 			</form>
 		</div>
@@ -132,6 +145,19 @@
 				<div class="slide-title"><h4>이미지 미리보기</h4></div>
 				<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
 			  		<div class="carousel-inner">
+			  			<% if(f.getFilePath().size() > 0) { %>
+				  			<% for(int i=0;i<f.getFilePath().size();i++) { %>
+									<% if(i == 0){ %>
+										<div class="carousel-item active">
+											<img src="/upload/photo/<%=f.getFilePath().get(i)%>">
+										</div>
+									<% } else { %>
+										<div class="carousel-item">
+											<img src="/upload/photo/<%=f.getFilePath().get(i)%>">
+										</div>
+									<% } %> 
+							<% } %>
+			  			<% } %>
 			  		</div>
 					<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
 						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -145,7 +171,7 @@
 			</div>
 		</div>
 	</div>
-		<%@include file="/WEB-INF/views/common/footer.jsp" %>
+	<%@include file="/WEB-INF/views/common/footer.jsp" %>
 	<script>
 		function uploadFiles(fs){
 			if(fs.files.length != 0 && fs.files[0] != 0){
@@ -184,6 +210,16 @@
 		        	$("#fripAddr").val(data.address)
 		        }
 		    }).open();
+		})
+		
+		$(function(){
+			const category = $("#oldCategory").val();
+			const options = $("#fripCategory").children();
+			options.each(function(i, option){
+				if($(option).val() == category) {
+					$(option).prop("selected", true);
+				} 
+			})
 		})
 	</script>
 </body>
