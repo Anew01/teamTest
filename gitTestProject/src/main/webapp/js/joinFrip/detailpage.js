@@ -20,19 +20,21 @@ $( function() {
   
 
 //호스트에게 연락하기 모달 
-const open = document.querySelector(".contact-host");
-        const close = document.querySelector(".modal__closeBtn");
-        const modal = document.querySelector(".modal-wrap");
-        function init(){
-            open.addEventListener("click", function(){
-                console.log("1");
-                modal.classList.remove("hidden");
-            });
-            close.addEventListener("click", function(){
-                modal.classList.add("hidden");
-            });
-        }
-        init();
+		window.onload=function(){
+			const open = document.querySelector(".contact-host");
+			const close = document.querySelector(".modal__closeBtn");
+			const modal = document.querySelector(".modal-wrap");
+			function init(){
+				open.addEventListener("click", function(){
+					console.log("hidden사라져랏!");
+					modal.classList.remove("hidden");
+				});
+				close.addEventListener("click", function(){
+					modal.classList.add("hidden");
+				});
+			}
+			init();
+		}
 
         //조회하기 
         function func1(fripNo){
