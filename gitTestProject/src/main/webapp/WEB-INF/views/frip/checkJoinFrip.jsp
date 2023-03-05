@@ -115,7 +115,7 @@
 							</div>
 							<div class="select-box right">
 								<div class="guest-number">인원</div>
-								<select class="attend-number">
+								<select class="attend-count">
 									<option value>참여자 수</option>
 									<option value="1">1명</option>
 									<option value="2">2명</option>
@@ -133,8 +133,11 @@
 								<button type="button" id="seemore-button"
 									onclick="func1(<%= f.getFripNo()%>);">조회하기</button>
 							</div>
-							<div class="select-area">
-								<!--여기는 날짜, 인원으로 ajax로 조회한 그 날짜의 인원, 시간 목록이 뜨게한다.-->
+							<div class="reserve-area">
+								<div class="search-result">
+								<!--여기는 날짜, 인원으로 ajax로 조회한 그 날짜의 인원, 시간 목록이 뜨게한다.-->								
+								</div>
+								<button class="reserve-button" style="display:none;">예약하기</button>
 							</div>
 						</div>
 					</form>
