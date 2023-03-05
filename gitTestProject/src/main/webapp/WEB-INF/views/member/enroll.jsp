@@ -16,27 +16,27 @@
         </div>
         <hr>
         <div class="join-content">
-            <form action="join.html" method="post" autocomplete="off">
+            <form action="/enroll.do" method="post" autocomplete="off">
                 <div class="inputs-wrap">
                     <div class="join-input-wrap">
                         <div>
-                            <label for="id">이메일 <sup>*</sup></label>
+                            <label for="memberId">이메일 <sup>*</sup></label>
                         </div>
                         <div>
-                            <input type="text" name="id" id="id"  placeholder="이메일을 입력해주세요." onfocus="this.placeholder=''" onblur="this.placeholder='이메일을 입력해주세요.'" required> 
+                            <input type="text" name="memberId" id="memberId"  placeholder="이메일을 입력해주세요." onfocus="this.placeholder=''" onblur="this.placeholder='이메일을 입력해주세요.'" required> 
                             <button type="button" class="auth-btn">인증요청</button>
                         </div>
                         <div>
-                            <input type="text" name="id-auth" id="id-auth" placeholder="인증번호를 입력해주세요." onfocus="this.placeholder=''" onblur="this.placeholder='인증번호를 입력해주세요.'" required> <!--길이 제외 나머지 디자인은 한번에 지정-->
+                            <input type="text" name="id-auth" id="id-auth" placeholder="인증번호를 입력해주세요." onfocus="this.placeholder=''" onblur="this.placeholder='인증번호를 입력해주세요.'" > 
                             <button type="button" class="chk-btn">확인</button>
                         </div>
                     </div>
                     <div class="join-input-wrap">
                         <div>
-                            <label for="pw">비밀번호 <sup>*</sup></label>
+                            <label for="memberPw">비밀번호 <sup>*</sup></label>
                         </div>
                         <div>
-                            <input type="text" name="pw" id="pw" placeholder="비밀번호를 입력해주세요." onfocus="this.placeholder=''" onblur="this.placeholder='비밀번호를 입력해주세요.'" required>
+                            <input type="password" name="memberPw" id="memberPw" placeholder="비밀번호를 입력해주세요." onfocus="this.placeholder=''" onblur="this.placeholder='비밀번호를 입력해주세요.'" required>
                         </div>
                     </div>
                     <div class="join-input-wrap">
@@ -44,23 +44,23 @@
                             <label for="pwre">비밀번호 확인 <sup>*</sup></label>
                         </div>
                         <div>
-                            <input type="text" name="pwre" id="pwre" placeholder="비밀번호를 입력해주세요." onfocus="this.placeholder=''" onblur="this.placeholder='비밀번호를 입력해주세요.'" required>
+                            <input type="password" name="pwre" id="pwre" placeholder="비밀번호를 입력해주세요." onfocus="this.placeholder=''" onblur="this.placeholder='비밀번호를 입력해주세요.'" required>
                         </div>
                     </div>
                     <div class="join-input-wrap">
                         <div>
-                            <label for="name">이름 <sup>*</sup></label>
+                            <label for="memberName">이름 <sup>*</sup></label>
                         </div>
                         <div>
-                            <input type="text" name="name" id="name" placeholder="이름을 입력해주세요." onfocus="this.placeholder=''" onblur="this.placeholder='이름을 입력해주세요.'" required>
+                            <input type="text" name="memberName" id="memberName" placeholder="이름을 입력해주세요." onfocus="this.placeholder=''" onblur="this.placeholder='이름을 입력해주세요.'" required>
                         </div>
                     </div>
                     <div class="join-input-wrap">
                         <div>
-                            <label for="name">전화번호</label>
+                            <label for="memberPhone">전화번호</label>
                         </div>
                         <div>
-                            <input type="text" name="name" id="name" class="long-input">
+                            <input type="text" name="memberPhone" id="memberPhone" class="long-input">
                         </div>
                     </div>
                     <div class="join-input-wrap">
@@ -68,18 +68,18 @@
                             <label>성별</label>
                         </div>
                         <div>
-                            <input type="radio" name="gender" id="m" value="m">
+                            <input type="radio" name="memberGender" id="m" value="m">
                             <label for="m">남자</label>
-                            <input type="radio" name="gender" id="f" value="f">
+                            <input type="radio" name="memberGender" id="f" value="f">
                             <label for="f">여자</label>
                         </div>
                     </div>
                     <div class="join-input-wrap">
                         <div>
-                            <label for="id">주소</label>
+                            <label for="memberAddr">주소</label>
                         </div>
                         <div>
-                            <input type="text" name="addr" id="addr" > 
+                            <input type="text" name="memberAddr" id="memberAddr" > 
                             <button type="button" class="addr-btn">주소검색</button>
                         </div>
                         <div>
