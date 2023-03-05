@@ -97,4 +97,11 @@ public class FripService {
 		JDBCTemplate.close(conn);
 		return list;
 	}
+
+	public String selectRating(int fripNo) {
+		Connection conn = JDBCTemplate.getConnection();
+		String avgRating = dao.selectRating(conn, fripNo);
+		JDBCTemplate.close(conn);
+		return avgRating;
+	}
 }

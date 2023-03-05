@@ -43,7 +43,7 @@
                 <%=f.getFripPrice() %>
             </div>
             <div class="rating">
-                ★5.0
+                <%=f.getAvgRating() %>
             </div>
         </div>
 	<%} %>
