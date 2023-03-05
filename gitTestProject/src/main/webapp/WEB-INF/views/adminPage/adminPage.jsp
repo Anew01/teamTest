@@ -64,8 +64,9 @@
                                         value="2022-12-12" disabled>
                                 </div>
                                 <div class="input-wrap">
-                                    <label for="memberDate">관리자 소개</label>
-                                    <textarea name="memberIntro" id="" cols="132" rows="20"></textarea>
+                                    <label for="memberIntro">관리자 소개</label>
+                                    <textarea name="memberIntro" id="memberIntro" cols="132" rows="20"
+                                        style="resize: none;"></textarea>
                                 </div>
                                 <div class="btn-box">
                                     <button type="submit" class="btn bc66 bs2">정보수정</button>

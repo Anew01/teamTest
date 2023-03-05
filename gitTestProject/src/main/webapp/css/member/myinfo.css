@@ -1,0 +1,130 @@
+body{
+    outline: none;
+}
+.profile-wrap{
+    text-align: center;
+    margin: 50px 0;
+}
+.join-wrap{
+    width: 1200px;
+    background-color: #fff;
+    margin: 100px auto;
+    
+}
+.join-header>h1{
+    text-align: left;
+    padding: 25px;
+    font-family: nn_eb;
+    font-size: 2em;
+}
+
+.join-content{
+    width: 900px;
+    margin: 30px auto;
+    /* input text 배경색 확인용 >transparent인지 white인지
+    background-color: aquamarine;
+    */
+}
+.join-input-wrap{
+    margin: 10px 0px;
+}
+.join-input-wrap>div>input{
+    width: 100%;
+}
+#memberAddr{
+    width: 700px;
+}
+
+.join-input-wrap>div:first-child>label{
+    font-weight: 700;
+    font-size: 20px;
+    color: #686b72;
+}
+.join-input-wrap>div:first-child>label>sup{
+    font-family: nn_eb;
+    color: #f00;
+}
+.join-input-wrap input{
+    box-sizing: border-box;
+    height: 30px;
+    border: none; /*날리는 이유: 길이제외하고 나머지 디자인 똑같이 하기 위함*/
+    outline: none; /*눌렀을때 테두리없이 커서만 나오게*/
+    border: 1px solid #ccc;
+    font-size: 18px;
+    padding: 20px 10px;
+    margin: 10px 0;
+    
+}
+.join-input-wrap input:focus{
+    border-color: #393c42;
+}
+
+.addr-btn{
+    width: 190px;
+    height: 43px;
+    font-size: 15px;
+    border: none;
+    box-sizing: border-box;
+    cursor: pointer;
+    background-color: #487be0;
+    border-radius: 10px;
+    color: #fff;
+}
+.chk-btn{
+    width: 90px;
+    height: 43px;
+    font-size: 15px;
+    border: none;
+    box-sizing: border-box;
+    cursor: pointer;
+    background-color: #686b72;
+    border-radius: 10px;
+    color: #fff;
+}
+.join-input-wrap input[type=radio]{
+    display: none;
+
+}
+.join-input-wrap input[type=radio]+label{
+    width: 50%;
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #686b72;
+    color: #686b72;
+    font-family: nn_b;
+    cursor: pointer;
+    /*여기까지하면 width안먹음*/
+    display: block;
+    float: left;/*높이처리안됨 hidden필요*/
+    box-sizing: border-box;
+}
+.join-input-wrap input[type=radio]:checked+label{
+   background-color: #487be0;
+    color: #fff;
+}
+.join-input-wrap>div:last-child{
+   overflow: hidden;
+}
+
+.join-btn-wrap{
+    padding: 30px 0px;
+}
+.join-btn-wrap>input[type=submit]{
+    width: 900px;
+    outline: none;
+    padding: 15px;
+    font-size: 18px;
+    background-color: #fff;
+    color: #686b72;
+    border: 2px solid #686b72;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.join-btn-wrap>input[type=submit]:hover{
+    background-color: #686b72;
+    color: #fff;
+   
+}
+.join-input-wrap>div:first-child{
+    padding: 15px 0px;
+}

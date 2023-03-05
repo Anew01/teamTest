@@ -7,6 +7,7 @@ public class Member {
 	private String memberName;
 	private String memberPhone;
 	private String memberAddr;
+	private String memberAddrDetail;
 	private String memberGender;
 	private int memberLevel;
 	private String memberProfile;
@@ -16,11 +17,10 @@ public class Member {
 
 	public Member() {
 		super();
-
 	}
 
 	public Member(int memberNo, String memberId, String memberPw, String memberName, String memberPhone,
-			String memberAddr, String memberGender, int memberLevel, String memberProfile, int memberLike,
+			String memberAddr, String memberAddrDetail, String memberGender, int memberLevel, String memberProfile, int memberLike,
 			String enrollDate, String memberIntro) {
 		super();
 		this.memberNo = memberNo;
@@ -29,6 +29,7 @@ public class Member {
 		this.memberName = memberName;
 		this.memberPhone = memberPhone;
 		this.memberAddr = memberAddr;
+		this.memberAddrDetail = memberAddrDetail;
 		this.memberGender = memberGender;
 		this.memberLevel = memberLevel;
 		this.memberProfile = memberProfile;
@@ -83,6 +84,14 @@ public class Member {
 
 	public void setMemberAddr(String memberAddr) {
 		this.memberAddr = memberAddr;
+	}
+
+	public String getMemberAddrDetail() {
+		return memberAddrDetail;
+	}
+
+	public void setMemberAddrDetail(String memberAddrDetail) {
+		this.memberAddrDetail = memberAddrDetail;
 	}
 
 	public String getMemberGender() {

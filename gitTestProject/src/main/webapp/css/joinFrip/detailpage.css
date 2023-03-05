@@ -1,0 +1,213 @@
+*{
+    margin: 0;
+    padding: 0;
+    outline: none;
+    border: none;
+}
+a{
+    text-decoration: none;
+    color:black;
+}
+.wrap{
+    width: 1200px;
+    margin: 100px auto;
+}
+.category{
+    background-color: #85C88A;
+    height: 40px;
+    width: 100px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+}
+.content{
+    padding: 20px;
+    margin: 20px;
+    overflow: hidden;
+    border-bottom: solid 0.5px rgb(215, 217, 215);
+}
+.star{
+    width: 250px;
+}
+.title{
+    font-size: 30px;
+    font-weight: 600;
+    line-height: 70px;
+    display: block;
+}
+.small-title{
+    font-size: 20px;
+    font-weight: 600;
+}
+.show-rating{
+    margin-bottom: 20px;
+   
+}
+.photo img{
+    width: 280px;
+    height: 340px;
+    margin: 10px;
+}
+.host-img{
+    width: 60px;
+    height: 60px;
+}
+.explain{
+    width: 650px;
+}
+.contact-host{
+    background-color: #85C88A;
+    height: 80px;
+    width: 160px;
+    border-radius: 10px;
+    margin-top: 20px;
+    text-align: center;
+    line-height: 80px
+}
+.contact-host>a{
+    font-size: 18px;
+    text-align: center;
+    line-height: 40px;
+    padding: 10px;
+    font-style: white;
+    display: inline-block;
+}
+.photo>a>img:first-child{
+    border-top-left-radius: 100px;
+    border-bottom-left-radius: 100px;
+}
+.photo>a>img:last-child{
+    border-top-right-radius: 100px;
+    border-bottom-right-radius: 100px;
+}
+.map>img{
+    width: 1000px;
+    height: 400px
+}
+.attend-box{
+    margin-top: 20px;
+    padding:10px;
+    width: 300px;
+    height: 550px;
+    border: 0.5px solid rgb(214, 214, 214);
+    border-radius: 20px;
+}
+.attend-info{
+    margin-top:30px;
+}
+#submit-button{
+    background-color: #85C88A;
+    width: 250px;
+    height: 30px;
+    border-radius: 5px;
+    padding: 10px;
+    margin-left: 12px;
+}
+#seemore-button{
+    width: 250px;
+    height: 60px;
+    margin-left: 12px;
+    border-radius: 5px;
+}
+
+.contents-bundle{
+    overflow: hidden;
+}
+.contents-left{
+    float:left;
+}
+.contents-right{
+    float:right;
+    padding: 20px 100px 20px 0px;
+}
+.button-area{
+    clear:left;
+}
+.select-box{
+    width: 120px;
+    height: 80px;
+    float:left;
+    border: 1px solid black;
+    margin-bottom: 30px;
+    text-align: center;
+    line-height: 40px;
+}
+.left{
+    margin-left: 15px;
+    margin-bottom: 5px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+.right{
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-left: none;
+}
+.select-button{
+    padding: 5px;
+}
+.attend-number{
+    pointer:cursor;
+}
+.material-symbols-rounded {
+    font-variation-settings:
+    'FILL' 1,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 48
+  }
+#calendar-button {
+        background-color: #007bff;
+        color: #ffffff;
+ }
+
+/*호스트에게 연락하기 모달창*/
+button:focus{
+    outline: none;
+    box-shadow: inset 0 0 19px rgba(0,0,0,0.1);
+}
+.modal-wrap{
+	display: flex;
+	width: 100vw;
+	height: 100vh;
+	justify-content: center;
+	align-items: center;
+	position:fixed;
+	top:0;
+}
+
+.modal{
+	position : static;
+    width: 300px;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.27), 0 2px 8px rgba(0,0,0,0.7);
+    
+}
+#message-to-host{
+    border: 1px solid black;
+    height: 200px;
+    width: 250px;
+    border-radius: 20px;
+    border: solid grey 1px;
+    padding: 20px;
+   
+}
+.modal .modal__closeBtn{
+    background-color: #d0d1d1;
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+}
+#send-to-host{
+    background-color: #85C88A;
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+}
+
+.hidden{
+    display:none;
+}

@@ -42,7 +42,6 @@ public class AllCategoryServlet extends HttpServlet {
 		//결과처리
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/category/categoryAll.jsp");
 		request.setAttribute("list", list);
-		
 		view.forward(request, response);
 	}
 

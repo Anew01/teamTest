@@ -23,9 +23,10 @@
 .profile-img {
   width: 200px;
   height: 200px;
-  border-radius: 50%;
   margin-bottom: 50px;
   position: absolute;
+  margin: 0px 0px 16px;
+  border-radius: 100%;
 }
 
 #upProfile {
@@ -42,41 +43,40 @@
 }
 
 .input-wrap>label {
-  font-size: 1.1em;
   margin-bottom: 30px;
   display: block;
+  color: rgb(102, 102, 102);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 22px;
+  letter-spacing: -0.03em;
+  text-align: left;
 }
 
 .input-form {
-  /* width: 100%;
-  display: block;
-  padding: 0.8rem;
-  background-color: #fff;
-  outline: none;
-  border: 1px solid #ccc;
-  box-sizing: border-box; */
-  display: block;
   width: 80%;
-  height: calc(1.5em + 1.8rem + 2px);
-  padding: 0.9rem 1rem;
+  border: 1px solid #eee;
+  box-sizing: border-box;
+  border-radius: 3px;
+  padding: 14px 14px 12px;
+  background: #fff;
+  color: rgb(17, 17, 17);
+  font-size: 14px;
   font-weight: 400;
-  line-height: 1.5;
-  color: #333;
-  background-color: #fff;
-  background-clip: padding-box;
-  border: 1px solid #ddd;
-  border-radius: 0.25rem;
-  box-shadow: 0 3px 2px hsl(0deg 0% 87% / 5%);
-  transition: all .15s cubic-bezier(.68, -.55, .265, 1.55);
+  line-height: 22px;
+  letter-spacing: -0.03em;
+  text-align: left;
 }
 
 .input-form:read-only:not(select),
 .input-form:disabled {
-  background-color: #f7f7f9;
+  /* background-color: #f7f7f9; */
+  background: rgb(238, 238, 238);
+  color: rgb(170, 170, 170);
 }
 
 .btn-box {
-  padding-left: 450px;
+  padding-left: 400px;
   margin-top: 30px;
 }
 
@@ -99,10 +99,26 @@
   letter-spacing: -0.03em;
   text-align: center;
   white-space: nowrap;
-  width: 100px;
+  width: 150px;
+  height: 45px;
   border-radius: 10px;
   padding: 10px 14px;
   font-size: 12px;
   line-height: 16px;
   cursor: pointer;
+}
+
+#memberIntro {
+  width: 80%;
+  border: 1px solid #eee;
+  box-sizing: border-box;
+  border-radius: 3px;
+  padding: 14px 14px 12px;
+  background: #fff;
+  color: rgb(17, 17, 17);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: -0.03em;
+  text-align: left;
 }

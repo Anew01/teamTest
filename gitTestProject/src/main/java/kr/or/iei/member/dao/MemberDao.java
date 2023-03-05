@@ -5,151 +5,158 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.function.Predicate;
 
 import common.JDBCTemplate;
 import kr.or.iei.member.vo.Member;
 
 public class MemberDao {
 
-	public ArrayList<Member> selectAllMember(Connection connection, int start, int end) {
-		PreparedStatement preparedStatement = null;
-
-		ResultSet resultSet = null;
-
-		ArrayList<Member> list = new ArrayList<Member>();
-
-		String query = "SELECT * FROM(SELECT ROWNUM AS rnum, n.* FROM (SELECT MEMBER_NO, MEMBER_ID, MEMBER_PW, MEMBER_NAME, MEMBER_ADDR, MEMBER_PHONE, MEMBER_GENDER, MEMBER_LEVEL, ENROLL_DATE FROM MEMBER_TBL ORDER BY 1 DESC) n) WHERE rnum BETWEEN ? and ?";
-
+	public ArrayList<Member> selectAllMember(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<Member> list = new ArrayList<>();
+		String query = "SELECT * FROM MEMBER_TBL";
 		try {
-			preparedStatement = connection.prepareStatement(query);
-
-			preparedStatement.setInt(1, start);
-			preparedStatement.setInt(2, end);
-
-			resultSet = preparedStatement.executeQuery();
-
-			while (resultSet.next()) {
-				Member member = new Member();
-
-				member.setMemberNo(resultSet.getInt("MEMBER_NO"));
-				member.setMemberId(resultSet.getString("MEMBER_ID"));
-				member.setMemberPw(resultSet.getString("MEMBER_PW"));
-				member.setMemberName(resultSet.getString("MEMBER_NAME"));
-				member.setMemberAddr(resultSet.getString("MEMBER_ADDR"));
-				member.setMemberPhone(resultSet.getString("MEMBER_PHONE"));
-				member.setMemberGender(resultSet.getString("MEMBER_GENDER"));
-				member.setMemberLevel(resultSet.getInt("MEMBER_LEVEL"));
-				member.setEnrollDate(resultSet.getString("ENROLL_DATE"));
-
-				list.add(member);
+			pstmt = conn.prepareStatement(query);
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				Member m = new Member();
+				m.setMemberNo(rset.getInt("member_no"));
+				m.setMemberId(rset.getString("member_id"));
+				m.setMemberPw(rset.getString("member_pw"));
+				m.setMemberName(rset.getString("member_name"));
+				m.setMemberAddr(rset.getString("member_addr"));
+				m.setMemberPhone(rset.getString("member_phone"));
+				m.setMemberGender(rset.getString("member_gender"));
+				m.setMemberLevel(rset.getInt("member_level"));
+				m.setMemberProfile(rset.getString("member_profile"));
+				m.setEnrollDate(rset.getString("enroll_date"));
+				m.setMemberIntro(rset.getString("member_intro"));
+				list.add(m);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			JDBCTemplate.close(resultSet);
-			JDBCTemplate.close(preparedStatement);
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
 		}
-
 		return list;
 	}
 
-	public int chageLevel(Connection connection, String memberId, int memberLevel) {
-		PreparedStatement preparedStatement = null;
-
+	public int insertMember(Connection conn, Member m) {
+		PreparedStatement pstmt = null;
 		int result = 0;
-
-		String query = "UPDATE MEMBER_TBL SET MEMBER_LEVEL = ? WHERE MEMBER_ID = ?";
-
+		String query = "insert into member_tbl values(member_no_seq.nextval,?,?,?,?,?,?,3,?,to_char(sysdate,'yyyy-mm-dd'),?,?)";
+		
 		try {
-			preparedStatement = connection.prepareStatement(query);
-
-			preparedStatement.setInt(1, memberLevel);
-			preparedStatement.setString(2, memberId);
-
-			result = preparedStatement.executeUpdate();
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, m.getMemberId());
+			pstmt.setString(2, m.getMemberPw());
+			pstmt.setString(3, m.getMemberName());
+			pstmt.setString(4, m.getMemberAddr());
+			pstmt.setString(5, m.getMemberPhone());
+			pstmt.setString(6, m.getMemberGender());
+			pstmt.setString(7, m.getMemberProfile());
+			pstmt.setString(8, m.getMemberIntro());
+			pstmt.setString(9, m.getMemberAddrDetail());
+			
+			
+			result = pstmt.executeUpdate();
+			
 		} catch (SQLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} finally {
-			JDBCTemplate.close(preparedStatement);
+		}finally {
+			JDBCTemplate.close(pstmt);
 		}
-
 		return result;
 	}
 
-	public int deleteMember(Connection connection, String memberId) {
-		PreparedStatement preparedStatement = null;
-
-		int result = 0;
-
-		String query = "DELETE FROM MEMBER_TBL WHERE MEMBER_ID = ?";
-
+	public Member selectOneMember(Connection conn, Member m) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Member member = null;
+		String query = "select * from member_tbl where member_id=? and member_pw=?";
+		
 		try {
-			preparedStatement = connection.prepareStatement(query);
-
-			preparedStatement.setString(1, memberId);
-
-			result = preparedStatement.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			JDBCTemplate.close(preparedStatement);
-		}
-
-		return result;
-	}
-
-	public int selectMemberCount(Connection connection) {
-		PreparedStatement preparedStatement = null;
-		ResultSet resultSet = null;
-
-		int totalCount = 0;
-
-		String query = "SELECT COUNT(*) AS CNT FROM MEMBER_TBL";
-
-		try {
-			preparedStatement = connection.prepareStatement(query);
-
-			resultSet = preparedStatement.executeQuery();
-
-			if (resultSet.next()) {
-				totalCount = resultSet.getInt("CNT");
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, m.getMemberId());
+			pstmt.setString(2, m.getMemberPw());
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				member = new Member();
+				member.setEnrollDate(rset.getString("enroll_date"));
+				member.setMemberAddr(rset.getString("member_addr"));
+				member.setMemberId(rset.getString("member_id"));
+				member.setMemberLevel(rset.getInt("member_level"));
+				member.setMemberName(rset.getString("member_name"));
+				member.setMemberNo(rset.getInt("member_no"));
+				member.setMemberPhone(rset.getString("member_phone"));
+				member.setMemberPw(rset.getString("member_pw"));
 			}
 		} catch (SQLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} finally {
-			JDBCTemplate.close(resultSet);
-			JDBCTemplate.close(preparedStatement);
+		}finally {
+			JDBCTemplate.close(pstmt);
+			JDBCTemplate.close(rset);
 		}
-
-		return totalCount;
+		return member;
 	}
 
-	public int updateMember(Connection connection, Member member) {
-		System.out.println(member.getMemberId());
-		PreparedStatement pStatement = null;
-
-		int result = 0;
-
-		String query = "UPDATE MEMBER_TBL SET MEMBER_PW = ?, MEMBER_PHONE = ?, MEMBER_ADDR = ?, MEMBER_PROFILE = ?, MEMBER_INTRO = ? WHERE MEMBER_ID = ?";
-
+	public Member selectOneMember(Connection conn, String memberId) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = "select * from member_tbl where member_id=?";
+		Member m = null;
 		try {
-			pStatement = connection.prepareStatement(query);
-
-			pStatement.setString(1, member.getMemberPw());
-			pStatement.setString(2, member.getMemberPhone());
-			pStatement.setString(3, member.getMemberAddr());
-			pStatement.setString(4, member.getMemberProfile());
-			pStatement.setString(5, member.getMemberIntro());
-			pStatement.setString(6, member.getMemberId());
-
-			result = pStatement.executeUpdate();
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, memberId);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				m = new Member();
+				m.setMemberNo(rset.getInt("member_no"));
+				m.setMemberId(rset.getString("member_id"));
+				m.setMemberPw(rset.getString("member_pw"));
+				m.setMemberName(rset.getString("member_name"));
+				m.setMemberPhone(rset.getString("member_phone"));
+				m.setMemberAddr(rset.getString("member_addr"));
+				m.setMemberLevel(rset.getInt("member_level"));
+				m.setEnrollDate(rset.getString("enroll_date"));
+				
+			}
 		} catch (SQLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} finally {
-			JDBCTemplate.close(pStatement);
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
 		}
-
-		return result;
+		return m;
 	}
+
+	public int updateMember(Connection conn, Member member) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "update member_tbl set member_pw=?, member_phone=?, member_addr=? where member_id=?";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, member.getMemberPw());
+			pstmt.setString(2, member.getMemberPhone());
+			pstmt.setString(3, member.getMemberAddr());
+			pstmt.setString(4, member.getMemberId());
+			result = pstmt.executeUpdate();	
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+		
+	}
+
 
 }

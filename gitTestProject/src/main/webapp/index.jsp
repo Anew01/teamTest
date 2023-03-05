@@ -7,6 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<script>
+		location.href="/allCategory.do";
+	</script>
 	<%@include file="/WEB-INF/views/common/header.jsp" %>
 	<%@include file="/WEB-INF/views/common/footer.jsp" %>
 </body>

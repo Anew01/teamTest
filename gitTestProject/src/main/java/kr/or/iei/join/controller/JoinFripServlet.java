@@ -1,6 +1,7 @@
 package kr.or.iei.join.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,8 +10,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import kr.or.iei.frip.service.FripService;
+import kr.or.iei.frip.vo.Frip;
+
 /**
- * Servlet implementation class SelectDateServlet
+ * Servlet implementation class JoinFripServlet
  */
 @WebServlet(name = "JoinFrip", urlPatterns = { "/joinFrip.do" })
 public class JoinFripServlet extends HttpServlet {
@@ -28,13 +32,16 @@ public class JoinFripServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//1. 인코딩
-		request.setCharacterEncoding("UTF-8");
-		//2. 값추출
-		String date = request.getParameter("date");
-		//3. 비즈니스로직
-		//4. 결과처리
+		request.setCharacterEncoding("utf-8");
+		int fripNo = Integer.parseInt(request.getParameter("fripNo"));
+		FripService fservice = new FripService();
+		Frip f = fservice.selectOneFripByNo(fripNo);
+		ArrayList<Frip> list = fservice.selectAllFrip();
 		
+		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/frip/checkJoinFrip.jsp");
+		request.setAttribute("f", f);
+		request.setAttribute("list", list);
+		view.forward(request, response);
 	}
 
 	/**
