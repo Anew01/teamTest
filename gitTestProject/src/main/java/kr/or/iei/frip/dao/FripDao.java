@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import common.JDBCTemplate;
 import kr.or.iei.frip.vo.Frip;
 import kr.or.iei.frip.vo.FripJoinableDate;
-import kr.or.iei.frip.vo.FripJoinableDateData;
 
 public class FripDao {
 
@@ -292,12 +291,19 @@ public class FripDao {
 		ResultSet rset = null;
 		ArrayList<Frip> list = new ArrayList<>();
 		Frip f = null;
-		String query = "select * from frip_tbl t join frip_category c using(frip_no) where c.category_name=?";
+		String query = "";
 		
 		try {
-			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, fripCategory);
-			rset = pstmt.executeQuery();
+			if ("all".equals(fripCategory)) {
+				query = "select * from frip_tbl t join frip_category c on (t.frip_no=c.frip_no)";
+				pstmt = conn.prepareStatement(query);
+				rset = pstmt.executeQuery();
+			} else {
+				query = "select * from frip_tbl t join frip_category c using(frip_no) where c.category_name=?";
+				pstmt = conn.prepareStatement(query);
+				pstmt.setString(1, fripCategory);
+				rset = pstmt.executeQuery();
+			}
 			while(rset.next()) {
 				f = new Frip();
 				f.setFripTitle(rset.getString("frip_title"));

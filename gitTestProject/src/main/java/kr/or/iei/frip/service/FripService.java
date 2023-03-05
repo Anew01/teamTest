@@ -1,16 +1,12 @@
 package kr.or.iei.frip.service;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 import common.JDBCTemplate;
 import kr.or.iei.frip.dao.FripDao;
 import kr.or.iei.frip.vo.Frip;
 import kr.or.iei.frip.vo.FripJoinableDate;
-import kr.or.iei.frip.vo.FripJoinableDateData;
 
 public class FripService {
 	private FripDao dao;
