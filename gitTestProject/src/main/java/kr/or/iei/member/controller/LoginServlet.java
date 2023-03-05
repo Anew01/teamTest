@@ -66,9 +66,6 @@ public class LoginServlet extends HttpServlet {
 			}else {
 				//관리자 또는 정회원인경우
 				
-				// -> 회원정보를 세션에 저장(서버가 회원 정보를 기억)
-				//session은 브라우저 닫을때까지 정보를 유지
-				// -> 세션의 정보를 파기하거나, 일정시간이 지나면(30분)
 				HttpSession session = request.getSession();
 				session.setAttribute("m", member);
 				request.setAttribute("title", "로그인성공");

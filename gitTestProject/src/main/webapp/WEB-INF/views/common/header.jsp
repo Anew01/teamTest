@@ -43,10 +43,10 @@
                      <% if (loginMember==null){ %>
         <a href="/loginFrm.do">로그인</a>
         <%}else{ %>
-        <%-- 
-        <a href="/myInfo.do?memberId=<%=member.getMemberId() %>">마이페이지</a>
-        --%>
-        <a href="#">마이페이지</a>
+        
+        <a href="/myInfo.do?memberId=<%=loginMember.getMemberId() %>">마이페이지</a>
+        
+        <%-- <a href="#">마이페이지</a> --%>
         <%} %>
         
         

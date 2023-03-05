@@ -31,7 +31,7 @@
                             <label for="memberId">이메일</label>
                         </div>
                         <div>
-                            <input type="text" name="memberId" id="memberId" value="<%=member.getMemberId() %>" disabled> 
+                            <input type="text" name="memberId" id="memberId" value="<%=member.getMemberId() %>" readonly> 
                            
                         </div>
                         
@@ -68,6 +68,7 @@
                             <input type="text" name="memberPhone" id="memberPhone" value="<%=member.getMemberPhone() %>">
                         </div>
                     </div>
+                    <!-- 
                     <div class="join-input-wrap">
                         <div>
                             <label>성별</label>
@@ -79,12 +80,13 @@
                             <label for="f">여자</label>
                         </div>
                     </div>
+                     -->
                     <div class="join-input-wrap">
                         <div>
                             <label for="memberAddr">주소</label>
                         </div>
                         <div>
-                            <input type="text" name="memberAddr" id="memberAddr" > 
+                            <input type="text" name="memberAddr" id="memberAddr" value="<%=member.getMemberAddr() %>"> 
                             <button type="button" class="addr-btn">주소검색</button>
                         </div>
                         <div>

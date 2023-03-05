@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import kr.or.iei.member.service.MemberService;
 import kr.or.iei.member.vo.Member;
@@ -43,8 +44,6 @@ public class UpdateMyInfoServlet extends HttpServlet {
 		MemberService service = new MemberService();
 		int result = service.updateMember(member);
 		//4.화면처리
-		//1) 다시 마이페이지를 바로 띄우는 방법
-		//2) msg.jsp이용해서 alert띄운 후 마이페이지로 가는 방법
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
 		if(result>0) {
 			Member m = new Member();
@@ -62,8 +61,9 @@ public class UpdateMyInfoServlet extends HttpServlet {
 			request.setAttribute("icon", "error");
 		
 		}
-		//request.setAttribute("loc", "/WEB-INF/views/member/mypage1.jsp"); //직접적으로 WEB-INF로 못감-> location.href="/mypage1.do"로 가야함
-		request.setAttribute("loc", "/myInfo.do?memberId="+member.getMemberId()); 
+		
+		request.setAttribute("loc", "/myInfo.do?memberId="+member.getMemberId());
+		
 		view.forward(request, response);
 	}
 

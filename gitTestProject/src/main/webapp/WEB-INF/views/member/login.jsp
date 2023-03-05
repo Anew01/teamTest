@@ -28,7 +28,8 @@
                             <input type="password" name="loginPw" id="loginPw" placeholder="비밀번호" onfocus="this.placeholder=''" onblur="this.placeholder='비밀번호'" required> 
                         </div>
                     </div>
-                    <div class="find-pw">
+                    <div class="subMenu">
+                        <span><a href="/enrollMain.do">회원가입</a></span>
                         <span><a href='#'>비밀번호 찾기</a></span>
                     </div>
                 <div class="join-btn-wrap">

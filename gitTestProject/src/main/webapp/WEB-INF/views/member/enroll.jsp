@@ -63,6 +63,7 @@
                             <input type="text" name="memberPhone" id="memberPhone" class="long-input">
                         </div>
                     </div>
+                    <!-- 
                     <div class="join-input-wrap">
                         <div>
                             <label>성별</label>
@@ -74,6 +75,7 @@
                             <label for="f">여자</label>
                         </div>
                     </div>
+                     -->
                     <div class="join-input-wrap">
                         <div>
                             <label for="memberAddr">주소</label>
@@ -83,7 +85,7 @@
                             <button type="button" class="addr-btn">주소검색</button>
                         </div>
                         <div>
-                            <input type="text" name="addr-detal" id="addr-detail" placeholder="상세주소를 입력해주세요." onfocus="this.placeholder=''" onblur="this.placeholder='상세주소를 입력해주세요.'" > 
+                            <input type="text" name="memberAddrDetail" id="memberAddrDetail" placeholder="상세주소를 입력해주세요." onfocus="this.placeholder=''" onblur="this.placeholder='상세주소를 입력해주세요.'" > 
                            
                         </div>
                     </div>
