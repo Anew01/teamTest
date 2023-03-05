@@ -31,7 +31,9 @@
             </div>
             <div class="header-button">
                 <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
-                    <button type="button" class="btn btn-outline-dark">피드</button>
+                	<form action="/feedList.do" method="post">
+                    <button type="submit" class="btn btn-outline-dark">피드</button>
+                    </form>
                     <button type="button" class="btn btn-outline-dark">Middle</button>
                     <button type="button" class="btn btn-outline-dark">Right</button>
                   </div>
