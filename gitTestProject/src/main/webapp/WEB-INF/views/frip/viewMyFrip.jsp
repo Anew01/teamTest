@@ -10,9 +10,11 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="css/fripPage/viewMyFrip.css">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 </head>
 <body>
 	<%@include file="/WEB-INF/views/common/header.jsp" %>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<div class="page-content">
 		<%@include file="/WEB-INF/views/frip/fripSideBar.jsp" %>
 		<div class="content">
@@ -131,6 +133,7 @@
 						<div class="input-group-prepend">
 							<label class="input-group-text" for="startDate">스프립 시작날짜</label>
 						</div>
+						<input type="hidden" name="fripNo" value="<%= f.getFripNo() %>">
 						<input type="date" class="form-control" name="startDate" id="startDate" required>
 					</div>
 					<div class="input-group mb-3">
@@ -139,10 +142,113 @@
 						</div>
 						<input type="date" class="form-control" name="endDate" id="endDate" required>
 					</div>
+					<div class="input-group mb-3">
+						<div class="input-group-prepend">
+							<label class="input-group-text" for="maxCount">스프립 인원</label>
+						</div>
+						<input type="text" class="form-control" name="maxCount" id="maxCount" required>
+					</div>
+					<div class="submit-btn-warpper">
+						<button type="submit" id="insertBtn" class="btn btn-primary btn-lg btn-block" style="width : 100%;">등록하기</button>
+					</div>
+				</div>
+				<div class="date-result-wrap">
+					<div class="date-result-print"></div>
+					<div class="date-result"></div>
+				</div>
+			</div>
+			<div class="frip-date-search-wrap">
+				<div class="date-search-title">날짜 조회</div>
+				<div class="date-search-content">
+					<div class="date-picker-wrap">
+						<input type="text" id="datepicker1" name="startDate"> ~
+						<input type="text" id="datepicker2" name="endDate">
+						<button class="btn btn-primary" id="searchDateBtn" type="button">조회하기</button>
+					</div>
+					<div class="date-tbl">
+						<table class="table">
+							<thead>
+						    	<tr class="table-success">
+					      			<th scope="col">No</th>
+								    <th scope="col">날짜</th>
+								    <th scope="col">참여인원</th>
+									<th scope="col">총인원</th>
+						    	</tr>
+							</thead>
+						  	<tbody>
+							   
+							 </tbody>
+						</table>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 	<%@include file="/WEB-INF/views/common/footer.jsp" %>
+	<script>
+		$.datepicker.setDefaults({
+		    dateFormat: 'yy-mm',
+		    prevText: '이전 달',
+		    nextText: '다음 달',
+		    monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+		    monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+		    dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+		    dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
+		    dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+		    showMonthAfterYear: true,
+		    yearSuffix: '년'
+		  });
+	
+		  $(function() {
+		    $("#datepicker1, #datepicker2").datepicker();
+		  });
+		  
+		  $("#insertBtn").on("click", function(){
+			const fripNo = $("[name=fripNo]").val();
+			const startDate = $("#startDate").val();
+			const endDate = $("#endDate").val();
+			const maxCount = $("#maxCount").val();
+			console.log(startDate);
+			if(startDate == "" || endDate == "" || maxCount == "" ){
+				$("[name=fripNo]").val("");
+				$("#startDate").val("");
+				$("#endDate").val("");
+				$("#maxCount").val("");
+				$(".date-result-print").empty();
+				$(".date-result-print").append("입력을 다 해주세요").css("color", "red");
+				return;
+			}
+			
+		  	$.ajax({
+				url : "insertJoinableDate.do",
+				type : "post",
+				data : {startDate : startDate, endDate : endDate, fripNo : fripNo, maxCount : maxCount},
+				dataType : "json",
+				success : function(data){
+					$("[name=fripNo]").val("");
+					$("#startDate").val("");
+					$("#endDate").val("");
+					$("#maxCount").val("");
+					$(".date-result-print").empty();
+					if(data == "null"){
+						$(".date-result-print").append("중복되는 날짜 입니다").css("color", "red");
+					} else {
+						const div = $("<div>");
+						const countDiv = $("<div>");
+						$(".date-result-print").append("날짜 등록 완료!").css("color", "green");
+						div.addClass("date-result-title");
+						countDiv.addClass("date-result-count");
+						countDiv.append("등록할 수 있는 최대 인원 : "+data.maxCount);
+						div.append("등록된 날짜 : "+data.startDate +" ~ "+data.endDate);
+						console.log(data);
+						$(".date-result").append(div).append(countDiv);
+					}
+					
+				},
+				error : function(){
+				}
+			  })
+		  })
+	</script>
 </body>
 </html>
