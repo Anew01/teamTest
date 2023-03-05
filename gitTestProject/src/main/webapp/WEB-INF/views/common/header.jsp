@@ -22,11 +22,10 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
     <!--기본css-->
     <link rel="stylesheet" href="/css/mokupCss/mockup.css">
-    
     <header>
     <div class="header">
         <div class="header-content-top">
-            <div class="header-logo"><a href="/allCategory.do" class="homeBtn"><span class="logo-text">Sprip</span></a></div>
+            <div class="header-logo"><a href="/selectAllFripByCategory.do?categoryName=all" class="homeBtn"><span class="logo-text">Sprip</span></a></div>
             <div class="header-searchBar">
                 <div class="input-group mb-3">
                     <input type="text" class="form-control" placeholder="Search" aria-label="Recipient's username" aria-describedby="button-addon2">
@@ -58,7 +57,7 @@
         <div class="header-content-bottom">
             <div class="category-bar">
                 <ul class="category-list">
-                    <li><a href="/allCategory.do" id="allBtn"><img src="/categoryImg/ALL.png" ><div class="img-text"><span>ALL</span></div></a></li>
+                    <li><a href="/selectAllFripByCategory.do?categoryName=all" id="allBtn"><img src="/categoryImg/ALL.png" ><div class="img-text"><span>ALL</span></div></a></li>
                     <li><a href="/selectAllFripByCategory.do?categoryName=아웃도어"><img src="/categoryImg/아웃도어.jpg" ><div class="img-text"><span>아웃도어</span></div></a></li>
                     <li><a href="/selectAllFripByCategory.do?categoryName=피트니스"><img src="/categoryImg/피트니스.png" ><div class="img-text"><span>피트니스</span></div></a></li>
                     <li><a href="/selectAllFripByCategory.do?categoryName=DIY"><img src="/categoryImg/DIY.png" ><div class="img-text"><span>공예DIY</span></div></a></li>
