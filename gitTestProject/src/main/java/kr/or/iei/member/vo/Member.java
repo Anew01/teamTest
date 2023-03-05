@@ -17,7 +17,6 @@ public class Member {
 
 	public Member() {
 		super();
-
 	}
 
 	public Member(int memberNo, String memberId, String memberPw, String memberName, String memberPhone,

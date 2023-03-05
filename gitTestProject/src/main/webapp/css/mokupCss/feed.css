@@ -1,0 +1,44 @@
+*{
+    margin: 0;
+    padding: 0;
+    outline: none;
+}
+body{
+    width: 100%;
+}
+.content-wrap{
+    width: 700px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    
+}
+.content-img>a>img{
+    width: 300px;
+    height: 300px;
+    border-radius: 30px;
+}
+.feed-direct-btn{
+    width: 300px;
+    border: 1px solid grey;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 20px;
+}
+.feed-direct-btn>a{
+    text-decoration: none;
+    font-weight: bold;
+    padding-left: 15px;
+}
+.content-info{
+    width: 300px;
+}
+.comment-btn{
+    width: 300px;
+    text-align: right;
+}
+.comment-btn>a>img{
+    width: 30px;
+    height: 30px;
+}
