@@ -43,12 +43,11 @@
                 <%=f.getFripPrice() %>
             </div>
             <div class="rating">
-                ★5.0
+                <%=f.getAvgRating() %>
             </div>
         </div>
 	<%} %>
     </div>		
 	<%@ include file="/WEB-INF/views/common/footer.jsp" %>
-	
 </body>
 </html>

@@ -24,7 +24,7 @@
             <div class="img-box">
 		<%for(int j=0; j<1; j++){ %>
    			<%String s = f.getFilePath().get(j); %>
-                <img src="/upload/photo/<%=s%>">
+                <a href="/joinFrip.do?fripNo=<%=f.getFripNo()%>"><img src="/upload/photo/<%=s%>"></a>
 			<%} %>
             </div>
             <div class="f-title">
@@ -43,7 +43,7 @@
                 <%=f.getFripPrice() %>
             </div>
             <div class="rating">
-                ★5.0
+                <%=f.getAvgRating() %>
             </div>
         </div>
 	<%} %>

@@ -20,6 +20,7 @@ public class Frip {
 	private String writeDate;
 	private ArrayList<String> filePath;
 	private ArrayList<FripJoinableDate> joinableDates;
+	private String avgRating;
 
 	
 	public Frip() {
@@ -150,5 +151,11 @@ public class Frip {
 	}
 	public void setJoinableDates(ArrayList<FripJoinableDate> joinableDates) {
 		this.joinableDates = joinableDates;
+	}
+	public String getAvgRating() {
+		return avgRating;
+	}
+	public void setAvgRating(String avgRating) {
+		this.avgRating = avgRating;
 	}
 }

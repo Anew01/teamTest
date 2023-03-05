@@ -32,9 +32,9 @@
                         </div>
                         <div>
                             <input type="text" name="memberId" id="memberId" value="<%=member.getMemberId() %>" readonly> 
+<<<<<<< HEAD
                            
                         </div>
-                        
                     </div>
                     <div class="join-input-wrap">
                         <div>

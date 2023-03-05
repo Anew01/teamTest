@@ -27,7 +27,7 @@ public class FripService {
 			
 			if(result2 > 0) {
 				
-				int result3 = dao.insertFripJoinableDate(conn, f, fripNo);
+				int result3= dao.insertFripJoinableDate(conn, f, fripNo);
 				if(result3 > 0) {
 					result4 = 1;
 					
@@ -96,5 +96,28 @@ public class FripService {
 		}
 		JDBCTemplate.close(conn);
 		return list;
+	}
+
+	public FripJoinableDate insertFripJoinableDate(Frip f) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.insertFripJoinableDate(conn, f, f.getFripNo());
+		FripJoinableDate date = null;
+		if(result != 0) {
+			JDBCTemplate.commit(conn);
+			int latestPK = dao.selectLastestFripJoinableDatePK(conn);
+			date = dao.selectOneFripJoinableDateByNo(conn, latestPK);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return date;
+	}
+	
+
+	public String selectRating(int fripNo) {
+		Connection conn = JDBCTemplate.getConnection();
+		String avgRating = dao.selectRating(conn, fripNo);
+		JDBCTemplate.close(conn);
+		return avgRating;
 	}
 }

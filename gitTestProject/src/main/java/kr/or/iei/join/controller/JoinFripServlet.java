@@ -34,6 +34,9 @@ public class JoinFripServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		int fripNo = Integer.parseInt(request.getParameter("fripNo"));
+		
+		System.out.println("받은값: "+fripNo);
+		
 		FripService fservice = new FripService();
 		Frip f = fservice.selectOneFripByNo(fripNo);
 		ArrayList<Frip> list = fservice.selectAllFrip();
@@ -41,6 +44,7 @@ public class JoinFripServlet extends HttpServlet {
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/frip/checkJoinFrip.jsp");
 		request.setAttribute("f", f);
 		request.setAttribute("list", list);
+		request.setAttribute("fripNo", fripNo);
 		view.forward(request, response);
 	}
 

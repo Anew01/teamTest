@@ -95,6 +95,7 @@ public class FripDao {
 
 	public int insertFripJoinableDate(Connection conn, Frip f, int fripNo) {
 		PreparedStatement pstmt = null;
+		ResultSet rset = null;
 		String query = "insert into frip_joinable_date values(joinable_date_seq.nextval,?,?,?,?)";
 		int result = 0;
 		
@@ -107,8 +108,6 @@ public class FripDao {
 				startDate = joinDate.getStartDate();
 				endDate = joinDate.getEndDate();
 			}
-			System.out.println(startDate);
-			System.out.println(endDate);
 			pstmt.setString(2, startDate);
 			pstmt.setInt(3, f.getMaxCount());
 			pstmt.setString(4, endDate);
@@ -292,12 +291,19 @@ public class FripDao {
 		ResultSet rset = null;
 		ArrayList<Frip> list = new ArrayList<>();
 		Frip f = null;
-		String query = "select * from frip_tbl t join frip_category c using(frip_no) where c.category_name=?";
+		String query = "";
 		
 		try {
-			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, fripCategory);
-			rset = pstmt.executeQuery();
+			if ("all".equals(fripCategory)) {
+				query = "select * from frip_tbl t join frip_category c on (t.frip_no=c.frip_no)";
+				pstmt = conn.prepareStatement(query);
+				rset = pstmt.executeQuery();
+			} else {
+				query = "select * from frip_tbl t join frip_category c using(frip_no) where c.category_name=?";
+				pstmt = conn.prepareStatement(query);
+				pstmt.setString(1, fripCategory);
+				rset = pstmt.executeQuery();
+			}
 			while(rset.next()) {
 				f = new Frip();
 				f.setFripTitle(rset.getString("frip_title"));
@@ -322,5 +328,91 @@ public class FripDao {
 			JDBCTemplate.close(pstmt);
 		}
 		return list;
+	}
+
+	public int selectLastestFripJoinableDatePK(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = "select max(joinable_date_no) as latestPK from frip_joinable_date";
+		int latestPK = 0;
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				latestPK = rset.getInt("latestPK");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return latestPK;
+	}
+
+	public FripJoinableDate selectOneFripJoinableDateByNo(Connection conn, int latestPK) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = "select * from frip_joinable_date where joinable_date_no=?";
+		FripJoinableDate date = null;
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, latestPK);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				date = new FripJoinableDate();
+				date.setEndDate(rset.getString("end_date"));
+				date.setFripNo(rset.getString("frip_no"));
+				date.setMaxCount(rset.getInt("max_count"));
+				date.setJoinableDateNo(rset.getInt("joinable_date_no"));
+				date.setStartDate(rset.getString("start_date"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return date;
+	}
+	
+	public String selectRating(Connection conn, int fripNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String avgRating = "0.0";
+		System.out.println(fripNo);
+		String query = "select ROUND(AVG(D.RATING),1)AS RATING\r\n"
+				+ "from frip_tbl A \r\n"
+				+ "LEFT JOIN feed_tbl C ON A.FRIP_NO = C.FRIP_NO\r\n"
+				+ "LEFT JOIN RATING_TBL D ON C.FEED_NO = D.FEED_NO\r\n"
+				+ "WHERE A.FRIP_NO = ?\r\n"
+				+ "GROUP BY A.FRIP_NO";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, fripNo);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				String rating = rset.getString("RATING");
+				System.out.println(rating);
+				if (rating==null) {
+					avgRating = "0.0";
+				} else {
+					avgRating = rating;
+				}
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		System.out.println(avgRating);
+		return avgRating;
 	}
 }
