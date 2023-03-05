@@ -5,7 +5,8 @@
 
 	<% 	
 	Frip f = (Frip) request.getAttribute("f");
-	ArrayList<Frip> list = (ArrayList<Frip>)request.getAttribute("list");
+	//ArrayList<Frip> list = (ArrayList<Frip>)request.getAttribute("list");
+	int fripNo = (int)request.getAttribute("fripNo");
 	%>
 
 <!DOCTYPE html>
@@ -28,6 +29,12 @@
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
+	
+	<input type="hidden" name="maxCnt" value=<%=f.getJoinableDates().get(0).getMaxCount()%>>
+	<input type="hidden" id="strDate" value=<%=f.getJoinableDates().get(0).getStartDate()%>>
+	<input type="hidden" id="endDate" value=<%=f.getJoinableDates().get(0).getEndDate()%>>
+	<input type="hidden" id="fripNo" value=<%=fripNo%>>
+	
 	<div class="modal-wrap hidden">
 		<div class="modal" id="jsModal">
 			<div class="text-area">
@@ -110,33 +117,42 @@
 							<div class="select-box left">
 								<!-- <p>날짜 <input type="text" id="datepicker"> </p>  -->
 								<p class="calendar">
-									날짜 <input type="text" id="gijgo" readonly>
+									날짜 <input type="text" id="datePicker" >
 								</p>
-							</div>
-							<div class="select-box right">
-								<div class="guest-number">인원</div>
-								<select class="attend-number">
-									<option value>참여자 수</option>
-									<option value="1">1명</option>
-									<option value="2">2명</option>
-									<option value="3">3명</option>
-									<option value="4">4명</option>
-									<option value="5">5명</option>
-									<option value="6">6명</option>
-									<option value="7">7명</option>
-									<option value="8">8명</option>
-									<option value="9">9명</option>
-									<option value="10">10명</option>
-								</select>
 							</div>
 							<div class="check">
 								<button type="button" id="seemore-button"
-									onclick="func1(<%= f.getFripNo()%>);">조회하기</button>
+									onclick="selectCntAjax()">가능한 참여자 수 조회</button>
 							</div>
+							
 							<div class="select-area">
 								<!--여기는 날짜, 인원으로 ajax로 조회한 그 날짜의 인원, 시간 목록이 뜨게한다.-->
 							</div>
 						</div>
+						
+						
+						
+						
+						<div class="attend-info">
+							<div class="select-box right">
+								<div class="guest-number">인원</div>
+								<select class="attend-number" id="select">
+									<option value>참여자 수</option>
+								</select>
+							</div>
+							<div class="check">
+								<button type="button" id="seemore-button"
+									onclick="func1()">예약하기</button>
+							</div>
+							
+							<div class="select-area">
+								<!--여기는 날짜, 인원으로 ajax로 조회한 그 날짜의 인원, 시간 목록이 뜨게한다.-->
+							</div>
+						</div>
+						
+						
+						
+						
 					</form>
 				</div>
 			</div>
@@ -147,10 +163,81 @@
 				<img src="/05_Semi_pj/IMG/네이버맵.jpg">
 			</div>
 		</div>
-		<script src="https://unpkg.com/gijgo@1.9.14/js/gijgo.min.js"></script>
-		<link href="https://unpkg.com/gijgo@1.9.14/css/gijgo.min.css"
+		<script src="https://cdn.jsdelivr.net/npm/gijgo@1.9.14/js/gijgo.min.js"></script>
+		<link href="https://cdn.jsdelivr.net/npm/gijgo@1.9.14/css/gijgo.min.css"
 			rel="stylesheet" />
 		<script src="/js/joinFrip/detailpage.js"></script>
+		
+		<script>
+		$(document).ready(function() {
+			var strDate = getFormatDate(
+					new Date($('#strDate').val())
+					);
+			
+			var endDate = getFormatDate(
+					new Date($('#endDate').val())
+					);
+			
+			$('#datePicker').datepicker({
+                disableDates: function(date) {
+                	
+                	var dateValue = getFormatDate(date);
+                	
+                	if (dateValue >= strDate && dateValue <= endDate) return true;
+
+                    return false;
+                }
+            });
+            
+            
+            
+        });
+		
+		function getFormatDate(date){
+		    var year = date.getFullYear();              //yyyy
+		    var month = (1 + date.getMonth());          //M
+		    month = month >= 10 ? month : '0' + month;  //month 두자리로 저장
+		    var day = date.getDate();                   //d
+		    day = day >= 10 ? day : '0' + day;          //day 두자리로 저장
+		    return  year + month + day;       
+		}
+		
+		function func1() {
+			const Dvalue = $("#datePicker").val();
+			//var selectedDate = $('#datePicker').datepicker('getDate');
+			alert(Dvalue);
+		}
+		
+		function selectCntAjax() {
+			
+			
+			$.ajax({
+				type:"GET",
+				url:"selectFripCnt.do",
+				data:{"date" : $("#datePicker").val(), "fripNo": $("#fripNo").val()},
+				success : function(data) {
+						const maxCnt = data.maxCnt;
+						const useCnt = data.useCnt;
+						var text;
+						$("#select").empty();
+						$("#select").append("<option>참여숫자</option>");
+					for(let i=1; i<=maxCnt; i++){
+						//if(max-use)
+							if (i>(maxCnt-useCnt)) {
+								text = i+"명[만료]";
+								$("#select").append("<option vlaue="+0+">"+text+"</option>")
+							} else {
+								text = i+"명";
+								$("#select").append("<option vlaue="+i+">"+text+"</option>")
+							}
+					}
+				}, error : function() {
+					
+				}
+			});
+		}
+ 		
+		</script>
 		
 </body>
 </html>

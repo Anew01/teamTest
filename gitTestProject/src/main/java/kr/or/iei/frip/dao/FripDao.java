@@ -127,8 +127,7 @@ public class FripDao {
 		ResultSet rset = null;
 		ArrayList<Frip> list = new ArrayList<>();
 		Frip f = null;
-		String query = "select * from frip_tbl t join frip_category c "
-				+ "on (t.frip_no=c.frip_no)";
+		String query = "select * from frip_tbl t join frip_category c on (t.frip_no=c.frip_no)";
 		try {
 			pstmt = conn.prepareStatement(query);
 			rset = pstmt.executeQuery();
@@ -292,12 +291,21 @@ public class FripDao {
 		ResultSet rset = null;
 		ArrayList<Frip> list = new ArrayList<>();
 		Frip f = null;
-		String query = "select * from frip_tbl t join frip_category c using(frip_no) where c.category_name=?";
+		
+		String query = "";
 		
 		try {
-			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, fripCategory);
-			rset = pstmt.executeQuery();
+			if ("all".equals(fripCategory)) {
+				query = "select * from frip_tbl t join frip_category c on (t.frip_no=c.frip_no)";
+				pstmt = conn.prepareStatement(query);
+				rset = pstmt.executeQuery();
+			} else {
+				query = "select * from frip_tbl t join frip_category c using(frip_no) where c.category_name=?";
+				pstmt = conn.prepareStatement(query);
+				pstmt.setString(1, fripCategory);
+				rset = pstmt.executeQuery();
+			}
+			
 			while(rset.next()) {
 				f = new Frip();
 				f.setFripTitle(rset.getString("frip_title"));
@@ -322,5 +330,42 @@ public class FripDao {
 			JDBCTemplate.close(pstmt);
 		}
 		return list;
+	}
+
+	public String selectRating(Connection conn, int fripNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String avgRating = "0.0";
+		System.out.println(fripNo);
+		String query = "select ROUND(AVG(D.RATING),1)AS RATING\r\n"
+				+ "from frip_tbl A \r\n"
+				+ "LEFT JOIN feed_tbl C ON A.FRIP_NO = C.FRIP_NO\r\n"
+				+ "LEFT JOIN RATING_TBL D ON C.FEED_NO = D.FEED_NO\r\n"
+				+ "WHERE A.FRIP_NO = ?\r\n"
+				+ "GROUP BY A.FRIP_NO";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, fripNo);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				String rating = rset.getString("RATING");
+				System.out.println(rating);
+				if (rating==null) {
+					avgRating = "0.0";
+				} else {
+					avgRating = rating;
+				}
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+			JDBCTemplate.close(rset);
+		}
+		
+		System.out.println(avgRating);
+		return avgRating;
 	}
 }

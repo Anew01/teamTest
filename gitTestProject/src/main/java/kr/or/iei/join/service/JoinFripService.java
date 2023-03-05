@@ -1,13 +1,17 @@
 package kr.or.iei.join.service;
 
+import java.sql.Connection;
+
+import common.JDBCTemplate;
 import kr.or.iei.join.dao.JoinFripDao;
+import kr.or.iei.join.vo.JoinFrip;
 
 public class JoinFripService {
-	private JoinFripDao joinFripDao;
+	private JoinFripDao dao;
 
 	public JoinFripService() {
 		super();
-		joinFripDao = new JoinFripDao();
+		dao = new JoinFripDao();
 	}
 
 	public int checkSchedule(int fripNo, String calendar, int attendNumber) {
@@ -32,6 +36,13 @@ public class JoinFripService {
 		  예약불가능하면 return 0;
 		 */
 		return 1;
+	}
+	
+	public JoinFrip selectCount(String date, int fripNo) {
+		Connection conn = JDBCTemplate.getConnection();
+		JoinFrip j = dao.selectCount(conn, date, fripNo);
+		JDBCTemplate.close(conn);
+		return j;
 	}
 	
 	
