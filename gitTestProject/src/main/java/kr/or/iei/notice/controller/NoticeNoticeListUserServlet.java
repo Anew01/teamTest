@@ -12,11 +12,11 @@ import javax.servlet.http.HttpServletResponse;
 import kr.or.iei.notice.service.NoticeService;
 import kr.or.iei.notice.vo.NoticePageData;
 
-@WebServlet(name = "NoticeListUser", urlPatterns = { "/noticeListUser.do" })
-public class NoticeListUserServlet extends HttpServlet {
+@WebServlet(name = "NoticeNoticeListUser", urlPatterns = { "/noticeNoticeListUser.do" })
+public class NoticeNoticeListUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public NoticeListUserServlet() {
+	public NoticeNoticeListUserServlet() {
 		super();
 	}
 
@@ -29,7 +29,7 @@ public class NoticeListUserServlet extends HttpServlet {
 
 		NoticeService service = new NoticeService();
 
-		NoticePageData nPageData = service.selectNoticeListUser(reqPage);
+		NoticePageData nPageData = service.selectNoticeNoticeList(reqPage);
 
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/adminPage/noticeListUser.jsp");
 

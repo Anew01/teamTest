@@ -18,10 +18,10 @@
                         <div class="notice-userList">
                             <h1 class="notice-head">공지사항</h1>
                             <div class="notice-tab">
-                                <span class="allNotice">전체</span>
-                                <span class="">공지</span>
-                                <span class="">이벤트</span>
-                                <span class="">자주 묻는 질문</span>
+                                <span class="all-notice">전체</span>
+                                <span class="notice-notice">공지</span>
+                                <span class="event-notice">이벤트</span>
+                                <span class="FAQ">자주 묻는 질문</span>
                             </div>
                             <ul class="notice-ul">
                                 <%for(int i=0; i<list.size(); i++){ %>
@@ -51,8 +51,24 @@
                         <%@ include file="/WEB-INF/views/common/footer.jsp" %>
                             <script>
                                 $(".notice-li").on("click", function () {
-                                    $(".notice-content").toggleClass("active");
-                                });            
+                                    $(this).parent().children().eq(1).toggleClass("active");
+                                });
+
+                                $(".all-notice").on("click", function () {
+                                    location.href = "/noticeListUser.do?reqPage=1";
+                                });
+
+                                $(".notice-notice").on("click", function () {
+                                    location.href = "/noticeNoticeListUser.do?reqPage=1";
+                                });
+
+                                $(".event-notice").on("click", function () {
+                                    location.href = "/noticeEventListUser.do?reqPage=1";
+                                })
+
+                                $(".FAQ").on("click", function () {
+                                    location.href = "/noticeFAQListUser.do?reqPage=1";
+                                })
                             </script>
                 </body>
 

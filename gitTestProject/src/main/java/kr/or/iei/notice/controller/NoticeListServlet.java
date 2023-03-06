@@ -29,7 +29,7 @@ public class NoticeListServlet extends HttpServlet {
 
 		NoticeService service = new NoticeService();
 
-		NoticePageData nPageData = service.selectNoticeList(reqPage);
+		NoticePageData nPageData = service.selectNoticeNoticeList(reqPage);
 
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/adminPage/noticeList.jsp");
 
