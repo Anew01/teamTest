@@ -25,7 +25,6 @@
             	<%}else{ %>
             	<a href="/joinFrip.do?fripNo=<%=f.getFripNo()%>"><img src="/upload/photo/noImg.gif"></a>
             	<%} %>
-            		
             </div>
             <div class="f-title">
                 <%=f.getFripTitle() %>
@@ -49,6 +48,5 @@
 		<%} %>
     </div>		
 	<%@ include file="/WEB-INF/views/common/footer.jsp" %>
-	
 </body>
 </html>
