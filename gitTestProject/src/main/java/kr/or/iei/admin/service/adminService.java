@@ -206,7 +206,7 @@ public class adminService {
 	public FripAndFeedPageDate selectAllFripAndFeed(int fripReqPage, int feedReqPage) {
 		Connection connection = JDBCTemplate.getConnection();
 
-		int numPerPage = 10;
+		int numPerPage = 10; // 10
 
 		int fripEnd = numPerPage * fripReqPage;
 		int fripStart = fripEnd - numPerPage + 1;
@@ -246,7 +246,7 @@ public class adminService {
 			// 시작 네비
 			fripPageNavi += "<li>";
 			fripPageNavi += "<a class='page-item' href='/firpAndFeed.do?fripReqPage=" + (fripPageNo - 1)
-					+ "&feedReqPage='" + feedPageNo + ">";
+					+ "&feedReqPage=" + feedReqPage + "'>";
 			fripPageNavi += "<span class='material-icons'>chevron_left</span>";
 			fripPageNavi += "</a></li>";
 		}
@@ -254,8 +254,8 @@ public class adminService {
 		if (feedPageNo != 1) { // 시작 페이지일아닐때
 			// 시작 네비
 			feedPageNavi += "<li>";
-			feedPageNavi += "<a class='page-item' href='/firpAndFeed.do?fripReqPage=" + fripPageNo + "&feedReqPage='"
-					+ (feedPageNo - 1) + ">";
+			feedPageNavi += "<a class='page-item' href='/firpAndFeed.do?fripReqPage=" + fripReqPage + "&feedReqPage="
+					+ (feedPageNo - 1) + "'>";
 			feedPageNavi += "<span class='material-icons'>chevron_left</span>";
 			feedPageNavi += "</a></li>";
 		}
@@ -265,13 +265,13 @@ public class adminService {
 			if (fripPageNo == fripReqPage) { // 현재 페이지랑 현재 요청 페이지가 같을때 검은색 효과
 				fripPageNavi += "<li>";
 				fripPageNavi += "<a class='page-item active-page' href='/firpAndFeed.do?fripReqPage=" + fripPageNo
-						+ "&feedReqPage='" + feedPageNo + ">";
+						+ "&feedReqPage=" + feedReqPage + "'>";
 				fripPageNavi += fripPageNo;
 				fripPageNavi += "</a></li>";
 			} else { // 아닐때
 				fripPageNavi += "<li>";
-				fripPageNavi += "<a class='page-item' href='/firpAndFeed.do?fripReqPage=" + fripPageNo
-						+ "&feedReqPage='" + feedPageNo + ">";
+				fripPageNavi += "<a class='page-item' href='/firpAndFeed.do?fripReqPage=" + fripPageNo + "&feedReqPage="
+						+ feedReqPage + "'>";
 				fripPageNavi += fripPageNo;
 				fripPageNavi += "</a></li>";
 
@@ -288,14 +288,14 @@ public class adminService {
 		for (int i = 0; i < pageNaviSize; i++) {
 			if (feedPageNo == feedReqPage) { // 현재 페이지랑 현재 요청 페이지가 같을때 검은색 효과
 				feedPageNavi += "<li>";
-				feedPageNavi += "<a class='page-item active-page' href='/firpAndFeed.do?fripReqPage=" + fripPageNo
-						+ "&feedReqPage='" + feedPageNo + ">";
+				feedPageNavi += "<a class='page-item active-page' href='/firpAndFeed.do?fripReqPage=" + fripReqPage
+						+ "&feedReqPage=" + feedPageNo + "'>";
 				feedPageNavi += feedPageNo;
 				feedPageNavi += "</a></li>";
 			} else { // 아닐때
 				feedPageNavi += "<li>";
-				feedPageNavi += "<a class='page-item' href='/firpAndFeed.do?fripReqPage=" + fripPageNo
-						+ "&feedReqPage='" + feedPageNo + ">";
+				feedPageNavi += "<a class='page-item' href='/firpAndFeed.do?fripReqPage=" + fripReqPage
+						+ "&feedReqPage=" + feedPageNo + "'>";
 				feedPageNavi += feedPageNo;
 				feedPageNavi += "</a></li>";
 
@@ -311,24 +311,22 @@ public class adminService {
 		// 다음 버튼
 		if (fripPageNo <= fripTotalPage) { // 최종 페이지가 되면 다음가면 안됨
 			fripPageNavi += "<li>";
-			fripPageNavi += "<a class='page-item' href='/firpAndFeed.do?fripReqPage=" + (fripPageNo) + "&feedReqPage='"
-					+ (feedPageNo) + ">";
+			fripPageNavi += "<a class='page-item' href='/firpAndFeed.do?fripReqPage=" + (fripPageNo) + "&feedReqPage="
+					+ feedReqPage + "'>";
 			fripPageNavi += "<span class='material-icons'>chevron_right</span>";
 			fripPageNavi += "</a></li>";
+			fripPageNavi += "</ul>";
 		}
-
-		fripPageNavi += "</ul>";
 
 		// 다음 버튼
 		if (feedPageNo <= feedTotalPage) { // 최종 페이지가 되면 다음가면 안됨
 			feedPageNavi += "<li>";
-			feedPageNavi += "<a class='page-item' href='/firpAndFeed.do?fripReqPage=" + (fripPageNo) + "&feedReqPage='"
-					+ (feedPageNo) + ">";
+			feedPageNavi += "<a class='page-item' href='/firpAndFeed.do?fripReqPage=" + fripReqPage + "&feedReqPage="
+					+ (feedPageNo) + "'>";
 			feedPageNavi += "<span class='material-icons'>chevron_right</span>";
 			feedPageNavi += "</a></li>";
+			feedPageNavi += "</ul>";
 		}
-
-		feedPageNavi += "</ul>";
 
 		JDBCTemplate.close(connection);
 
@@ -354,22 +352,6 @@ public class adminService {
 		return result;
 	}
 
-	public int fripDelete(int fripNo) {
-		Connection connection = JDBCTemplate.getConnection();
-
-		int result = dao.fripDelete(connection, fripNo);
-
-		if (result > 0) {
-			JDBCTemplate.commit(connection);
-		} else {
-			JDBCTemplate.rollback(connection);
-		}
-
-		JDBCTemplate.close(connection);
-
-		return result;
-	}
-
 	public boolean checkedfripAccept(String fripNos) {
 		Connection connection = JDBCTemplate.getConnection();
 
@@ -382,37 +364,6 @@ public class adminService {
 			int fripNo = Integer.parseInt(sT1.nextToken());
 
 			int changeResult = dao.fripAccept(connection, fripNo);
-
-			if (changeResult == 0) { // 하나라도 실패하면
-				result = false; // 모두 실패
-
-				break; // 하나라도 실패하면 뒤에거 update x
-			}
-		}
-
-		if (result) {
-			JDBCTemplate.commit(connection);
-		} else {
-			JDBCTemplate.rollback(connection);
-		}
-
-		JDBCTemplate.close(connection);
-
-		return result;
-	}
-
-	public boolean checkedfripDelete(String fripNos) {
-		Connection connection = JDBCTemplate.getConnection();
-
-		// no : 4/7 형태 level: 1/2/3 형태 처리 필요
-		StringTokenizer sT1 = new StringTokenizer(fripNos, "/");
-
-		boolean result = true;
-
-		while (sT1.hasMoreTokens()) {
-			int fripNo = Integer.parseInt(sT1.nextToken());
-
-			int changeResult = dao.fripDelete(connection, fripNo);
 
 			if (changeResult == 0) { // 하나라도 실패하면
 				result = false; // 모두 실패
@@ -469,6 +420,53 @@ public class adminService {
 		int result = dao.feedDelte(connection, feedNo);
 
 		if (result > 0) {
+			JDBCTemplate.commit(connection);
+		} else {
+			JDBCTemplate.rollback(connection);
+		}
+
+		JDBCTemplate.close(connection);
+
+		return result;
+	}
+
+	public int fripCancel(int fripNo) {
+		Connection connection = JDBCTemplate.getConnection();
+
+		int result = dao.fripCancel(connection, fripNo);
+
+		if (result > 0) {
+			JDBCTemplate.commit(connection);
+		} else {
+			JDBCTemplate.rollback(connection);
+		}
+
+		JDBCTemplate.close(connection);
+
+		return result;
+	}
+
+	public boolean checkedfripCancel(String fripNos) {
+		Connection connection = JDBCTemplate.getConnection();
+
+		// no : 4/7 형태 level: 1/2/3 형태 처리 필요
+		StringTokenizer sT1 = new StringTokenizer(fripNos, "/");
+
+		boolean result = true;
+
+		while (sT1.hasMoreTokens()) {
+			int fripNo = Integer.parseInt(sT1.nextToken());
+
+			int changeResult = dao.fripCancel(connection, fripNo);
+
+			if (changeResult == 0) { // 하나라도 실패하면
+				result = false; // 모두 실패
+
+				break; // 하나라도 실패하면 뒤에거 update x
+			}
+		}
+
+		if (result) {
 			JDBCTemplate.commit(connection);
 		} else {
 			JDBCTemplate.rollback(connection);

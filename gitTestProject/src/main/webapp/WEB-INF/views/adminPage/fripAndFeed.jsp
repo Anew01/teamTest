@@ -70,7 +70,8 @@
                                                                                 class="btc bc33 btn chageLevel fripAccept">등록
                                                                                 수락</button></td>
                                                                         <td><button
-                                                                                class="btc bc33 btn withdrawal  fripDelete">삭제</button>
+                                                                                class="btc bc33 btn withdrawal  fripCancel">등록
+                                                                                취소</button>
                                                                         </td>
                                                                     </tr>
                                                                     <%} %>
@@ -79,7 +80,7 @@
                                                                                 <button
                                                                                     class="select-btn checkedChangeLevel checkedfripAccept">선택프립등록수락</button>
                                                                                 <button
-                                                                                    class="select-btn checkedWithdrawal checkedfripDelete">선택프립삭제</button>
+                                                                                    class="select-btn checkedWithdrawal checkedfripCancel">선택프립등록취소</button>
                                                                             </th>
                                                                         </tr>
                                                         </table>
@@ -153,10 +154,10 @@
                                                 location.href = "/fripAccept.do?fripNo=" + fripNo;
                                             });
 
-                                            $(".fripDelete").on("click", function () {
+                                            $(".fripCancel").on("click", function () {
                                                 const fripNo = $(this).parent().parent().children().eq(3).text(); // 프립 번호       
 
-                                                location.href = "/fripDelete.do?fripNo=" + fripNo;
+                                                location.href = "/fripCancel.do?fripNo=" + fripNo;
                                             });
 
                                             $(".feedDelete").on("click", function () {
@@ -184,7 +185,7 @@
                                                 location.href = "/checkedfripAccept.do?fripNos=" + fripNos.join("/");
                                             });
 
-                                            $(".checkedfripDelete").on("click", function () {
+                                            $(".checkedfripCancel").on("click", function () {
                                                 const check = $(".fripChk:checked");
 
                                                 if (check.length == 0) {
@@ -200,7 +201,7 @@
                                                     fripNos.push(fripNo);
                                                 });
 
-                                                location.href = "/checkedfripDelete.do?fripNos" + fripNos.join("/");
+                                                location.href = "/checkedfripCancel.do?fripNos" + fripNos.join("/");
                                             });
 
                                             $(".checkedfeedDelete").on("click", function () {

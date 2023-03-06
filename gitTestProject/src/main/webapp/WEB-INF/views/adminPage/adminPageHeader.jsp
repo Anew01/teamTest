@@ -1,4 +1,8 @@
+<%@page import="kr.or.iei.member.vo.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%
+ Member loginMember = (Member) session.getAttribute("m");
+%>
     <!DOCTYPE html>
     <html lang="ko" dir="ltr">
 
@@ -35,8 +39,8 @@
             <div class="sidebar">
                 <div class="sidebar-menu">
                     <center class="profile">
-                        <img src="/upload/admin/user.png" alt="">
-                        <p>관리자 1</p>
+                   	    <img src="/upload/member/<%=loginMember.getMemberProfile() %>">
+                        <p><%=loginMember.getMemberId() %></p>
                     </center>
                     <li class="item">
                         <a href="/adminPage.do" class="menu-btn">
@@ -65,7 +69,7 @@
                         </div>
                     </li>
                     <li class="item">
-                        <a href="#" class="menu-btn">
+                        <a href="https://center-pf.kakao.com/_RTXDxj/chats" class="menu-btn">
                             <i class="fa-solid fa-question"></i><span>문의 관리</span>
                         </a>
                     </li>

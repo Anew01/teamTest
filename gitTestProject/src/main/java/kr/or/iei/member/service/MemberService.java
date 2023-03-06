@@ -61,4 +61,28 @@ public class MemberService {
 		return result;
 	}
 
+	public int updateDeleteMember(String memberId) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.updateDeleteMember(conn,memberId);
+		if(result>0) {
+			JDBCTemplate.commit(conn);;
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
+
+	public int updateHostMember(String memberId) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.updateHostMember(conn,memberId);
+		if(result>0) {
+			JDBCTemplate.commit(conn);;
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
+
 }

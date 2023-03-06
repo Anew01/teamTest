@@ -56,20 +56,9 @@ Member loginMember = (Member) session.getAttribute("m");
 						<button type="submit" class="btn btn-outline-dark">피드</button>
 					</form>
 					<button type="button" class="btn btn-outline-dark">Middle</button>
-					<%
-					if (loginMember == null) {
-					%>
-					<a href="/loginFrm.do">로그인</a>
-					<%
-					} else {
-					%>
-					<a href="/myPage.do?memberId=<%=loginMember.getMemberId()%>">
-						<button type="button" class="btn btn-outline-dark">마이페이지</button>
+					<a href="/logout.do">
+						<button type="button" class="btn btn-outline-dark">로그아웃</button>
 					</a>
-
-					<%
-					}
-					%>
 				</div>
 			</div>
 		</div>
