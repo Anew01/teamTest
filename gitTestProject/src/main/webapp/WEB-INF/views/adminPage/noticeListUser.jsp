@@ -67,7 +67,7 @@
                                 })
 
                                 $(".FAQ").on("click", function () {
-                                    location.href = "/noticeFAQListUser.do?reqPage=1";
+                                    location.href = "/noticeFAQListUser.do";
                                 })
                             </script>
                 </body>

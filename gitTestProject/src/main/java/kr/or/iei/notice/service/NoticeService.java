@@ -7,6 +7,7 @@ import common.JDBCTemplate;
 import kr.or.iei.notice.dao.NoticeDao;
 import kr.or.iei.notice.vo.Notice;
 import kr.or.iei.notice.vo.NoticePageData;
+import kr.or.iei.notice.vo.NoticeUserPageData;
 
 public class NoticeService {
 	private NoticeDao dao;
@@ -151,7 +152,7 @@ public class NoticeService {
 		return notice;
 	}
 
-	public NoticePageData selectNoticeListUser(int reqPage) {
+	public NoticeUserPageData selectNoticeListUser(int reqPage) {
 		Connection conn = JDBCTemplate.getConnection();
 
 		int numPerPage = 10;
@@ -212,12 +213,12 @@ public class NoticeService {
 
 		JDBCTemplate.close(conn);
 
-		NoticePageData noticePageData = new NoticePageData(list, pageNavi, start);
+		NoticeUserPageData noticePageData = new NoticeUserPageData(list, pageNavi, start);
 
 		return noticePageData;
 	}
 
-	public NoticePageData selectNoticeNoticeList(int reqPage) {
+	public NoticeUserPageData selectNoticeNoticeList(int reqPage) {
 		Connection conn = JDBCTemplate.getConnection();
 
 		int numPerPage = 10;
@@ -280,12 +281,12 @@ public class NoticeService {
 
 		JDBCTemplate.close(conn);
 
-		NoticePageData noticePageData = new NoticePageData(list, pageNavi, start);
+		NoticeUserPageData noticePageData = new NoticeUserPageData(list, pageNavi, start);
 
 		return noticePageData;
 	}
 
-	public NoticePageData selectEventNoticeList(int reqPage) {
+	public NoticeUserPageData selectEventNoticeList(int reqPage) {
 		Connection conn = JDBCTemplate.getConnection();
 
 		int numPerPage = 10;
@@ -311,7 +312,7 @@ public class NoticeService {
 
 		if (pageNo != 1) {
 			pageNavi += "<li>";
-			pageNavi += "<a class='page-item' href='/noticeNoticeListUser.do?reqPage=" + (pageNo - 1) + "'>";
+			pageNavi += "<a class='page-item' href='/noticeEventListUser.do?reqPage=" + (pageNo - 1) + "'>";
 			pageNavi += "<span class='material-icons'>chevron_left</span>";
 			pageNavi += "</a></li>";
 		}
@@ -319,13 +320,12 @@ public class NoticeService {
 		for (int i = 0; i < pageNaviSize; i++) {
 			if (pageNo == reqPage) {
 				pageNavi += "<li>";
-				pageNavi += "<a class='page-item active-page' href='/noticeNoticeListUser.do?reqPage=" + (pageNo)
-						+ "'>";
+				pageNavi += "<a class='page-item active-page' href='/noticeEventListUser.do?reqPage=" + (pageNo) + "'>";
 				pageNavi += pageNo;
 				pageNavi += "</a></li>";
 			} else {
 				pageNavi += "<li>";
-				pageNavi += "<a class='page-item' href='/noticeNoticeListUser.do?reqPage=" + (pageNo) + "'>";
+				pageNavi += "<a class='page-item' href='/noticeEventListUser.do?reqPage=" + (pageNo) + "'>";
 				pageNavi += pageNo;
 				pageNavi += "</a></li>";
 			}
@@ -337,7 +337,7 @@ public class NoticeService {
 
 		if (pageNo <= totalPage) {
 			pageNavi += "<li>";
-			pageNavi += "<a class='page-item' href='/noticeNoticeListUser.do?reqPage=" + (pageNo) + "'>";
+			pageNavi += "<a class='page-item' href='/noticeEventListUser.do?reqPage=" + (pageNo) + "'>";
 			pageNavi += "<span class='material-icons'>chevron_right</span>";
 			pageNavi += "</a></li>";
 		}
@@ -348,7 +348,7 @@ public class NoticeService {
 
 		JDBCTemplate.close(conn);
 
-		NoticePageData noticePageData = new NoticePageData(list, pageNavi, start);
+		NoticeUserPageData noticePageData = new NoticeUserPageData(list, pageNavi, start);
 
 		return noticePageData;
 	}

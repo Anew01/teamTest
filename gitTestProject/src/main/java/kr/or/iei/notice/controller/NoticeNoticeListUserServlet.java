@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kr.or.iei.notice.service.NoticeService;
-import kr.or.iei.notice.vo.NoticePageData;
+import kr.or.iei.notice.vo.NoticeUserPageData;
 
 @WebServlet(name = "NoticeNoticeListUser", urlPatterns = { "/noticeNoticeListUser.do" })
 public class NoticeNoticeListUserServlet extends HttpServlet {
@@ -29,7 +29,7 @@ public class NoticeNoticeListUserServlet extends HttpServlet {
 
 		NoticeService service = new NoticeService();
 
-		NoticePageData nPageData = service.selectNoticeNoticeList(reqPage);
+		NoticeUserPageData nPageData = service.selectNoticeNoticeList(reqPage);
 
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/adminPage/noticeListUser.jsp");
 
