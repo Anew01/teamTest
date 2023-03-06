@@ -18,6 +18,15 @@ public class Member {
 	public Member() {
 		super();
 	}
+	
+
+	public Member(int memberNo, String memberId, int memberLevel) {
+		super();
+		this.memberNo = memberNo;
+		this.memberId = memberId;
+		this.memberLevel = memberLevel;
+	}
+
 
 	public Member(int memberNo, String memberId, String memberPw, String memberName, String memberPhone,
 			String memberAddr, String memberAddrDetail, String memberGender, int memberLevel, String memberProfile, int memberLike,

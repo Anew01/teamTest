@@ -1,0 +1,27 @@
+.page-content{
+    width: 900px;
+    background-color: #fff;
+    margin: 100px auto;
+    border-radius: 10px;
+}
+.top{
+    overflow: hidden;
+}
+.profile-image{
+   float: left;
+}
+.profile-name>div{
+    padding: 10px;
+    margin-left: 50px;
+}
+.profile-detail{
+    overflow: hidden;
+}
+.profile-detail>div{
+    float: left;
+    margin: 0 20px;
+    text-align: center;
+}
+.sub-menu>div{
+    margin: 10px 0;
+}
