@@ -86,14 +86,16 @@ public class MemberDao {
 			rset = pstmt.executeQuery();
 			if(rset.next()) {
 				member = new Member();
-				member.setEnrollDate(rset.getString("enroll_date"));
-				member.setMemberAddr(rset.getString("member_addr"));
-				member.setMemberId(rset.getString("member_id"));
-				member.setMemberLevel(rset.getInt("member_level"));
-				member.setMemberName(rset.getString("member_name"));
 				member.setMemberNo(rset.getInt("member_no"));
-				member.setMemberPhone(rset.getString("member_phone"));
+				member.setMemberId(rset.getString("member_id"));
 				member.setMemberPw(rset.getString("member_pw"));
+				member.setMemberName(rset.getString("member_name"));
+				member.setMemberPhone(rset.getString("member_phone"));
+				member.setMemberAddr(rset.getString("member_addr"));
+				member.setMemberAddrDetail(rset.getString("member_addr_detail"));
+				member.setMemberLevel(rset.getInt("member_level"));
+				member.setMemberProfile(rset.getString("member_profile"));
+				member.setEnrollDate(rset.getString("enroll_date"));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -122,6 +124,7 @@ public class MemberDao {
 				m.setMemberName(rset.getString("member_name"));
 				m.setMemberPhone(rset.getString("member_phone"));
 				m.setMemberAddr(rset.getString("member_addr"));
+				m.setMemberAddrDetail(rset.getString("member_addr_detail"));
 				m.setMemberLevel(rset.getInt("member_level"));
 				m.setMemberProfile(rset.getString("member_profile"));
 				m.setEnrollDate(rset.getString("enroll_date"));
