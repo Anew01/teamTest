@@ -193,7 +193,6 @@ button:focus{
     border-radius: 20px;
     border: solid grey 1px;
     padding: 20px;
-   
 }
 .modal .modal__closeBtn{
     background-color: #d0d1d1;
