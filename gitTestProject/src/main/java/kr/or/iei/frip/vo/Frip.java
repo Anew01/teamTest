@@ -10,6 +10,7 @@ public class Frip {
 	private String fripTitle;
 	private String fripContent;
 	private String fripAddr;
+	private String fripAddrDetail;
 	private String fripLevel;
 	private String fripCategory;
 	private String fripTime;
@@ -26,10 +27,11 @@ public class Frip {
 	public Frip() {
 		super();
 	}
+	
 	public Frip(int fripNo, String fripWriter, String fripAuth, String fripTitle, String fripContent, String fripAddr,
-			String fripLevel, String fripCategory, String fripDate, String fripTime, int maxCount, int fripPrice,
+			String fripAddrDetail, String fripLevel, String fripCategory, String fripTime, int maxCount, int fripPrice,
 			int fripIncome, String fripStatus, String writeDate, ArrayList<String> filePath,
-			ArrayList<FripJoinableDate> joinableDates) {
+			ArrayList<FripJoinableDate> joinableDates, String avgRating) {
 		super();
 		this.fripNo = fripNo;
 		this.fripWriter = fripWriter;
@@ -37,6 +39,7 @@ public class Frip {
 		this.fripTitle = fripTitle;
 		this.fripContent = fripContent;
 		this.fripAddr = fripAddr;
+		this.fripAddrDetail = fripAddrDetail;
 		this.fripLevel = fripLevel;
 		this.fripCategory = fripCategory;
 		this.fripTime = fripTime;
@@ -47,6 +50,7 @@ public class Frip {
 		this.writeDate = writeDate;
 		this.filePath = filePath;
 		this.joinableDates = joinableDates;
+		this.avgRating = avgRating;
 	}
 
 	public int getFripNo() {
@@ -157,5 +161,11 @@ public class Frip {
 	}
 	public void setAvgRating(String avgRating) {
 		this.avgRating = avgRating;
+	}
+	public String getFripAddrDetail() {
+		return fripAddrDetail;
+	}
+	public void setFripAddrDetail(String fripAddrDetail) {
+		this.fripAddrDetail = fripAddrDetail;
 	}
 }

@@ -120,4 +120,42 @@ public class FripService {
 		JDBCTemplate.close(conn);
 		return avgRating;
 	}
+
+	public int deleteFripFilepath(int fripNo, String filepath) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.deleteFripFilepath(conn, fripNo, filepath);
+		if(result > 0) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		return result;
+	}
+	
+	public int updateFrip(Frip f) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.updateFrip(conn, f);
+		if(result > 0){
+			int result2 = dao.updateFripCategory(conn, f.getFripNo(), f.getFripCategory());
+			if(result2 > 0) {
+				int result3 = 1;
+				for(String filepath : f.getFilePath()) {
+					int result4 = dao.insertFripFile(conn, f.getFripNo(), filepath);
+					if(result4 == 0) {
+						result3 = 0;
+					}
+				}
+				if(result3 > 0) {
+					JDBCTemplate.commit(conn);					
+				} else {
+					JDBCTemplate.rollback(conn);
+				}
+			} else {
+				JDBCTemplate.rollback(conn);
+			}
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		return result;
+	}
 }
