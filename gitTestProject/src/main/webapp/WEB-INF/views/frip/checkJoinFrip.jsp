@@ -4,9 +4,8 @@
    pageEncoding="UTF-8"%>
 <%
 Frip f = (Frip) request.getAttribute("f");
-//ArrayList<Frip> list = (ArrayList<Frip>)request.getAttribute("list");
 int fripNo = (int) request.getAttribute("fripNo");
-Member m = (Member)request.getAttribute("m");
+ArrayList<Member> mlist = (ArrayList<Member>)request.getAttribute("mlist");
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -52,7 +51,7 @@ Member m = (Member)request.getAttribute("m");
       <div class="content">
          <div class="title"><%=f.getFripTitle() %></div>
          <div class="show-rating">
-            <span class="material-symbols-rounded">star</span><span> 평점</span class="rating"><span class="addr"> 주소</span>
+            <span class="material-symbols-rounded">star</span><span><%=f.getAvgRating() %></span class="rating"><span class="addr"> <%=f.getFripAddr() %></span>
             </p>
          </div>
          <div class="photo">
@@ -66,12 +65,12 @@ Member m = (Member)request.getAttribute("m");
       <div class="contents-left">
          <div class="content">
             <div class="title">
-               호스트 : <span><%=m.getMemberName() %></span>님
+            <%=f.getFripWriter() %>
             </div>
          </div>
          <div class="content">
             <div class="small-title"><%=f.getFripTitle() %></div>
-            <div class="explain">전문 조향사와 함께 특별한 나만의 향을 직접 만드는 원데이 클래스 입니다.
+            <div class="explain"><%=f.getFripContent() %>전문 조향사와 함께 특별한 나만의 향을 직접 만드는 원데이 클래스 입니다.
                80여 가지의 조합향료와 30여 가지의 천연향료 그리고 30여 가지의 합성향료 이용하여 세상에 하나뿐인 향수를 만들 수
                있는 클래스이며 사용되는 향료에 대한 간단한 설명과 함께 진행됩니다. ✔ 프랑스산 최상급 향료들을 재료로 사용합니다. ✔
                피부에 안전한 재료들을 사용하여 가장 아름다운 향을 만들 수 있도록 전문조향사가 함께 합니다. ✔ 200여종의 다양한
@@ -82,10 +81,10 @@ Member m = (Member)request.getAttribute("m");
          </div>
          <div class="content">
             <div class="small-title">
-               호스트 <span><%=m.getMemberName() %></span>님 소개
+               호스트 <span><%=f.getFripWriter() %></span>님 소개
             </div>
             <p>
-               ★<span class="rating">별점평점</span><span class="ratingcount">(평점준사람수)</span>
+               ★<span class="rating"></span>
             </p>
             <div class="explain">사람들에게 행복감을 선사할 수 있는 향기를 만들고 싶어, 조향 공부에
                매진하며 10년간 조향사로 일하고 있습니다. 지나간 세월의 어느 날을 기억해보려 최대한 그때와 똑같은 분위기, 그날의
