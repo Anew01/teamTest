@@ -65,7 +65,7 @@
                         </div>
                     </li>
                     <li class="item">
-                        <a href="#" class="menu-btn">
+                        <a href="/inqury.do" class="menu-btn">
                             <i class="fa-solid fa-question"></i><span>문의 관리</span>
                         </a>
                     </li>
