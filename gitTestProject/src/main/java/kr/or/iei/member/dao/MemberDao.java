@@ -123,6 +123,7 @@ public class MemberDao {
 				m.setMemberPhone(rset.getString("member_phone"));
 				m.setMemberAddr(rset.getString("member_addr"));
 				m.setMemberLevel(rset.getInt("member_level"));
+				m.setMemberProfile(rset.getString("member_profile"));
 				m.setEnrollDate(rset.getString("enroll_date"));
 				
 			}
