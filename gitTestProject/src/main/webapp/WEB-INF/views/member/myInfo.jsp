@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="/css/member/myinfo.css">
 </head>
 <body>
-<%@ include file="/WEB-INF/views/common/header.jsp" %>
+<%@ include file="/WEB-INF/views/common/header_mypage.jsp" %>
 <div class="page-content">
   <div class="join-wrap">
         <div class="join-header">
@@ -32,7 +32,6 @@
                         </div>
                         <div>
                             <input type="text" name="memberId" id="memberId" value="<%=member.getMemberId() %>" readonly> 
-<<<<<<< HEAD
                            
                         </div>
                     </div>
