@@ -39,6 +39,7 @@
             <div class="sidebar">
                 <div class="sidebar-menu">
                     <center class="profile">
+                   	    <img src="/upload/member/<%=loginMember.getMemberProfile() %>">
                         <p><%=loginMember.getMemberId() %></p>
                     </center>
                     <li class="item">

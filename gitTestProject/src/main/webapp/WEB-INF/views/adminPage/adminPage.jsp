@@ -22,7 +22,7 @@
                             <form action="/updateMember.do" method="post" class="profile-form"
                                 enctype="multipart/form-data">
                                 <div class="input-wrap">
-                                    <img src="/upload/admin/user.png" class="profile-img">
+                                    <img src="/upload/member/<%=loginMember.getMemberProfile() %>" class="profile-img">
                                     <label for="upProfile">
                                         <img src="/upload/admin/camera.png" id="camera">
                                     </label>
@@ -61,7 +61,7 @@
                                 <div class="input-wrap">
                                     <label for="memberDate">등록일</label>
                                     <input type="text" name="memberDate" id="memberDate" class="input-form"
-                                        value="2022-12-12" disabled>
+                                        value="<%=loginMember.getEnrollDate() %>" disabled>
                                 </div>
                                 <div class="input-wrap">
                                     <label for="memberIntro">관리자 소개</label>
