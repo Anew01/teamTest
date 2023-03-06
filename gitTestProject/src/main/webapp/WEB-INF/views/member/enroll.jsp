@@ -27,11 +27,12 @@
                         </div>
                         <div>
                             <input type="text" name="memberId" id="memberId"  placeholder="이메일을 입력해주세요." onfocus="this.placeholder=''" onblur="this.placeholder='이메일을 입력해주세요.'" required> 
-                            <button type="button" class="auth-btn">인증요청</button>
+                            <button type="button" class="auth-btn" id="auth-btn">인증요청</button>
                         </div>
                         <div>
                             <input type="text" name="id-auth" id="id-auth" placeholder="인증번호를 입력해주세요." onfocus="this.placeholder=''" onblur="this.placeholder='인증번호를 입력해주세요.'" > 
                             <button type="button" class="chk-btn">확인</button>
+                            <span id="timeZone"></span> <span id="authMsg"></span>
                         </div>
                     </div>
                     <div class="join-input-wrap">
@@ -85,7 +86,7 @@
                         </div>
                         <div>
                             <input type="text" name="memberAddr" id="memberAddr" readonly> 
-                            <button type="button" class="addr-btn">주소검색</button>
+                            <button type="button" class="addr-btn" onclick="searchAddr();">주소검색</button>
                         </div>
                         <div>
                             <input type="text" name="memberAddrDetail" id="memberAddrDetail" placeholder="상세주소를 입력해주세요." onfocus="this.placeholder=''" onblur="this.placeholder='상세주소를 입력해주세요.'" > 
@@ -133,14 +134,104 @@
 </div>
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
 <script>
-		
-		$("#addr-btn").on("click",function(){	
+function searchAddr() {
 			new daum.Postcode({
-		        oncomplete: function(data) {
-		        	$("#memberAddr").val(data.address)
-		        }
-		    }).open();
-		})
+				oncomplete : function(data) {
+					$("#memberAddr").val(data.address);
+				}
+			}).open();
+		}
+		
+		
+		
+		
+		
+		
+	
+<%-- 이메일 인증하기 --%> 
+	let mailCode;
+		$("#auth-btn").on("click", function() {
+			const email = $("#id").val();
+			$.ajax({
+				url : "/sendMail2.do",
+				data : {
+					email : email
+				},
+				type : "post",
+				success : function(data) {
+					if (data == "null") {
+						alert("이메일 주소를 확인해주세요.");
+					} else {
+						mailCode = data;
+						<%-- $("#auth").slideDown(); --%>
+						authTime();
+					}
+
+				},
+				error : function() {
+					console.log("에러발생");
+				}
+			});
+
+		});
+		
+		let intervalId;
+		function authTime() {
+			$("#timeZone").html(
+					"<span id='min'>3</span> : <span id='sec'>00</span>");
+			intervalId = window.setInterval(function() {
+					timeCount();
+			}, 1000);
+		}
+		function timeCount() {
+			const min = $("#min").text();
+			const sec = $("#sec").text();
+			if (sec == "00") {
+				if(min != "0"){
+				const newMin = Number(min) - 1;
+				$("#min").text(newMin);
+				$("#sec").text(59);
+				}else{
+					window.clearInterval(intervalId);
+					mailCode = null;
+					$("#authMsg").text("인증시간 만료");
+					$("#authMsg").css("color", "red");
+				}
+			} else {
+				const newSec = Number(sec) - 1;
+				if (newSec < 10) {
+					$("#sec").text("0"+newSec);
+				} else {
+					$("#sec").text(newSec);
+
+				}
+			}
+
+		}
+
+		$("#authBtn").on("click", function() {
+			if(mailCode == null){
+				$("#authMsg").text("인증시간 만료");
+				$("#authMsg").css("color", "red");
+			}else{
+				const authCode = $("#authCode").val();
+				
+				if (authCode == mailCode) {
+					$("#authCode").prop("readonly",true);
+					$("#authMsg").text("인증완료");
+					$("#authMsg").css("color", "blue");
+					window.clearInterval(intervalId);
+				} else {
+					$("#authMsg").text("인증실패");
+					$("#authMsg").css("color", "red");
+				}
+			}
+		});
+
+
+
+		
+		
 	</script>
 </body>
 </html>
