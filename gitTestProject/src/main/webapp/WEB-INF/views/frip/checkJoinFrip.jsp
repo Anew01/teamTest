@@ -101,7 +101,7 @@ ArrayList<Member> mlist = (ArrayList<Member>)request.getAttribute("mlist");
       <div class="contents-right">
          <div class="attend-box">
             <div class="small-title">
-               최저가 ₩<span>price</span>/인
+               최저가 ₩<span><%=f.getFripPrice() %></span>/인
             </div>
             <form action="/payment.do" method="get">
                <div class="attend-info">
