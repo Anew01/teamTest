@@ -38,9 +38,10 @@
                     </div>
                 </div>
                 <div class="content">
-                    <h2>결제 수단</h2>
+                    <h2>결제</h2>
                		 <div class="pay-content">
-                	<div class="page-title">결제모듈</div>
+                	<div class="pay-amount">결제금액(KRW)</div>
+                	<div id="pay"><%=f.getFripPrice() * attendNumber%></div>
                 </div>
                     <button id="payBtn">확인 및 결제</button>
                 </div>
@@ -93,6 +94,15 @@
 				}
 			});
 		});
+		
+		$(document).ready(function() {
+			  $('.material-symbols-rounded').on('click', function() {
+			    window.location.href = 'joinFrip.do?fripNo='+<%=f.getFripNo()%>;
+			  });
+			});
+
+		
+		
 	</script>
 </body>
 </html>
