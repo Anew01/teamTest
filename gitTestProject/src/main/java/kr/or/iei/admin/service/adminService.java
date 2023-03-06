@@ -246,7 +246,7 @@ public class adminService {
 			// 시작 네비
 			fripPageNavi += "<li>";
 			fripPageNavi += "<a class='page-item' href='/firpAndFeed.do?fripReqPage=" + (fripPageNo - 1)
-					+ "&feedReqPage=" + feedPageNo + "'>";
+					+ "&feedReqPage=" + feedReqPage + "'>";
 			fripPageNavi += "<span class='material-icons'>chevron_left</span>";
 			fripPageNavi += "</a></li>";
 		}
@@ -254,7 +254,7 @@ public class adminService {
 		if (feedPageNo != 1) { // 시작 페이지일아닐때
 			// 시작 네비
 			feedPageNavi += "<li>";
-			feedPageNavi += "<a class='page-item' href='/firpAndFeed.do?fripReqPage=" + fripPageNo + "&feedReqPage="
+			feedPageNavi += "<a class='page-item' href='/firpAndFeed.do?fripReqPage=" + fripReqPage + "&feedReqPage="
 					+ (feedPageNo - 1) + "'>";
 			feedPageNavi += "<span class='material-icons'>chevron_left</span>";
 			feedPageNavi += "</a></li>";
@@ -265,13 +265,13 @@ public class adminService {
 			if (fripPageNo == fripReqPage) { // 현재 페이지랑 현재 요청 페이지가 같을때 검은색 효과
 				fripPageNavi += "<li>";
 				fripPageNavi += "<a class='page-item active-page' href='/firpAndFeed.do?fripReqPage=" + fripPageNo
-						+ "&feedReqPage=" + feedPageNo + "'>";
+						+ "&feedReqPage=" + feedReqPage + "'>";
 				fripPageNavi += fripPageNo;
 				fripPageNavi += "</a></li>";
 			} else { // 아닐때
 				fripPageNavi += "<li>";
 				fripPageNavi += "<a class='page-item' href='/firpAndFeed.do?fripReqPage=" + fripPageNo + "&feedReqPage="
-						+ feedPageNo + "'>";
+						+ feedReqPage + "'>";
 				fripPageNavi += fripPageNo;
 				fripPageNavi += "</a></li>";
 
@@ -288,8 +288,8 @@ public class adminService {
 		for (int i = 0; i < pageNaviSize; i++) {
 			if (feedPageNo == feedReqPage) { // 현재 페이지랑 현재 요청 페이지가 같을때 검은색 효과
 				feedPageNavi += "<li>";
-				feedPageNavi += "<a class='page-item active-page' href='/firpAndFeed.do?fripReqPage=" + fripPageNo
-						+ "&feedReqPage=" + feedReqPage + "'>";
+				feedPageNavi += "<a class='page-item active-page' href='/firpAndFeed.do?fripReqPage=" + fripReqPage
+						+ "&feedReqPage=" + feedPageNo + "'>";
 				feedPageNavi += feedPageNo;
 				feedPageNavi += "</a></li>";
 			} else { // 아닐때
@@ -312,23 +312,21 @@ public class adminService {
 		if (fripPageNo <= fripTotalPage) { // 최종 페이지가 되면 다음가면 안됨
 			fripPageNavi += "<li>";
 			fripPageNavi += "<a class='page-item' href='/firpAndFeed.do?fripReqPage=" + (fripPageNo) + "&feedReqPage="
-					+ (feedPageNo) + "'>";
+					+ feedReqPage + "'>";
 			fripPageNavi += "<span class='material-icons'>chevron_right</span>";
 			fripPageNavi += "</a></li>";
+			fripPageNavi += "</ul>";
 		}
-
-		fripPageNavi += "</ul>";
 
 		// 다음 버튼
 		if (feedPageNo <= feedTotalPage) { // 최종 페이지가 되면 다음가면 안됨
 			feedPageNavi += "<li>";
-			feedPageNavi += "<a class='page-item' href='/firpAndFeed.do?fripReqPage=" + (fripPageNo) + "&feedReqPage="
+			feedPageNavi += "<a class='page-item' href='/firpAndFeed.do?fripReqPage=" + fripReqPage + "&feedReqPage="
 					+ (feedPageNo) + "'>";
 			feedPageNavi += "<span class='material-icons'>chevron_right</span>";
 			feedPageNavi += "</a></li>";
+			feedPageNavi += "</ul>";
 		}
-
-		feedPageNavi += "</ul>";
 
 		JDBCTemplate.close(connection);
 
