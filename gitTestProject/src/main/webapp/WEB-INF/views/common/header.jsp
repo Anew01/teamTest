@@ -41,17 +41,14 @@
         <% if (loginMember==null){ %>
         <a href="/loginFrm.do">로그인</a>
         <%}else{ %>
-<<<<<<< HEAD
         
         <a href="/myInfo.do?memberId=<%=loginMember.getMemberId() %>">마이페이지</a>
         
         <%-- <a href="#">마이페이지</a> --%>
-=======
         <%-- 
         <a href="/myInfo.do?memberId=<%=member.getMemberId() %>">마이페이지</a>
         --%>
         <a href="/myInfo.do?memberId=<%=loginMember.getMemberId() %>">마이페이지</a>
->>>>>>> main
         <%} %>
                   </div>
                 </div>
@@ -60,7 +57,7 @@
         <div class="header-content-bottom">
             <div class="category-bar">
                 <ul class="category-list">
-                    <li><a href="/selectAllFripByCategory.do?categoryName=all" id="allBtn"><img src="/categoryImg/ALL.png" ><div class="img-text"><span>ALL</span></div></a></li>
+                    <li><a href="/selectAllFripByCategory.do?categoryName=ALL" id="allBtn"><img src="/categoryImg/ALL.png" ><div class="img-text"><span>ALL</span></div></a></li>
                     <li><a href="/selectAllFripByCategory.do?categoryName=아웃도어"><img src="/categoryImg/아웃도어.jpg" ><div class="img-text"><span>아웃도어</span></div></a></li>
                     <li><a href="/selectAllFripByCategory.do?categoryName=피트니스"><img src="/categoryImg/피트니스.png" ><div class="img-text"><span>피트니스</span></div></a></li>
                     <li><a href="/selectAllFripByCategory.do?categoryName=DIY"><img src="/categoryImg/DIY.png" ><div class="img-text"><span>공예DIY</span></div></a></li>

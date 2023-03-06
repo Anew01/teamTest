@@ -35,7 +35,7 @@ public class PaymentServlet extends HttpServlet {
 		//4. 결과처리
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/api/pay.jsp");
 		view.forward(request, response);
-		response.getWriter().println("<script>alert('결제 성공!'); history.back();</script>");
+		//response.getWriter().println("<script>alert('결제 성공!'); history.back();</script>");
 	}
 
 	/**

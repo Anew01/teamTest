@@ -105,7 +105,7 @@ int fripNo = (int) request.getAttribute("fripNo");
 				<div class="small-title">
 					최저가 ₩<span>price</span>/인
 				</div>
-				<form action="#" method="get">
+				<form action="/payment.do" method="get">
 					<div class="attend-info">
 						<div class="select-box left">
 							<!-- <p>날짜 <input type="text" id="datepicker"> </p>  -->
@@ -129,7 +129,7 @@ int fripNo = (int) request.getAttribute("fripNo");
 							</select>
 						</div>
 						<div class="check">
-							<button type="button" id="seemore-button" onclick="func1()">예약하기</button>
+							<button type="submit" id="seemore-button" onclick="func1()">예약하기</button>
 						</div>
 						<div class="select-area">
 							<!--여기는 날짜, 인원으로 ajax로 조회한 그 날짜의 인원, 시간 목록이 뜨게한다.-->
