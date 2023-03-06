@@ -19,57 +19,56 @@ import kr.or.iei.frip.vo.Frip;
 @WebServlet(name = "SelectAllFripByCategory", urlPatterns = { "/selectAllFripByCategory.do" })
 public class SelectAllFripByCategoryServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public SelectAllFripByCategoryServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//인
+	public SelectAllFripByCategoryServlet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// 인
 		request.setCharacterEncoding("utf-8");
-		//값
+		// 값
 		RequestDispatcher view = null;
 		FripService service = new FripService();
 		String categoryName = request.getParameter("categoryName");
-		
-		/*if ("main".equals(categoryName)) {
-			//main 화면
-			//비
-			ArrayList<Frip> list1 = service.selectAllFripByCategory("rating");
-			ArrayList<Frip> list2 = service.selectAllFripByCategory("new");
-			
-			request.setAttribute("list1", list1);
-			request.setAttribute("list2", list2);
-		} else {*/
-			//main 화면이 아닐때
-			//비
-			ArrayList<Frip> list = service.selectAllFripByCategory(categoryName);
-			System.out.println(list.get(0).getFilePath().get(0));
-			for(Frip f : list) {
-				String avgRating = service.selectRating(f.getFripNo());
-				f.setAvgRating(avgRating);
-				System.out.println(f.getFripNo()+"의 별점은 : "+avgRating);
-			}
-			request.setAttribute("list", list);
-			view = request.getRequestDispatcher("/WEB-INF/views/category/selectAllFripByCategory.jsp");
-			view.forward(request, response);
+
+		/*
+		 * if ("main".equals(categoryName)) { //main 화면 //비 ArrayList<Frip> list1 =
+		 * service.selectAllFripByCategory("rating"); ArrayList<Frip> list2 =
+		 * service.selectAllFripByCategory("new");
+		 * 
+		 * request.setAttribute("list1", list1); request.setAttribute("list2", list2); }
+		 * else {
+		 */
+		// main 화면이 아닐때
+		// 비
+		ArrayList<Frip> list = service.selectAllFripByCategory(categoryName);
+		for (Frip f : list) {
+			String avgRating = service.selectRating(f.getFripNo());
+			f.setAvgRating(avgRating);
+			System.out.println(f.getFripNo() + "의 별점은 : " + avgRating);
 		}
-		//결
-		
-		
-	
+		request.setAttribute("list", list);
+		view = request.getRequestDispatcher("/WEB-INF/views/category/selectAllFripByCategory.jsp");
+		view.forward(request, response);
+	}
+	// 결
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
