@@ -46,7 +46,7 @@
 								<% } %>
 							<% } %>
 						<% } else { %>
-							<div class="carousel-item active">
+							<div class="carousel-item active" onclick="viewFrip(<%= f.getFripNo() %>)">
 								<img src="/upload/photo/noImg.gif" class="d-block w-100" alt="...">
 						]	</div>
 						<% } %>

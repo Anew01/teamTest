@@ -4,9 +4,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import common.JDBCTemplate;
-
+import kr.or.iei.frip.vo.FripJoinableDate;
 import kr.or.iei.join.vo.JoinFrip;
 
 public class JoinFripDao {
@@ -42,6 +43,30 @@ public class JoinFripDao {
 			JDBCTemplate.close(pstmt);
 		}
 		return j;
+	}
+
+	public ArrayList<JoinFrip> selectFripByDate(Connection conn, FripJoinableDate joinableDate) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<JoinFrip> list = new ArrayList<>();
+		JoinFrip jf = null;
+		String query = "select * from join_frip where frip_no=? and to_date(join_date) between to_date(?,'YYYY-MM-DD') and to_date(?,'YYYY-MM-DD')";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, Integer.parseInt(joinableDate.getFripNo()));
+			pstmt.setString(2, joinableDate.getStartDate());
+			pstmt.setString(3, joinableDate.getEndDate());
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
 	}
 
 }

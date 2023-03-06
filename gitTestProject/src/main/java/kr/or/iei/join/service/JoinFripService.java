@@ -1,8 +1,12 @@
 package kr.or.iei.join.service;
 
 import java.sql.Connection;
+import java.util.ArrayList;
+
+import org.apache.catalina.valves.JDBCAccessLogValve;
 
 import common.JDBCTemplate;
+import kr.or.iei.frip.vo.FripJoinableDate;
 import kr.or.iei.join.dao.JoinFripDao;
 import kr.or.iei.join.vo.JoinFrip;
 
@@ -56,6 +60,12 @@ public class JoinFripService {
 		JoinFrip j = dao.selectCount(conn, date, fripNo);
 		JDBCTemplate.close(conn);
 		return j;
+	}
+
+	public ArrayList<JoinFrip> selectFripByDate(FripJoinableDate joinableDate) {
+		Connection conn = JDBCTemplate.getConnection();
+		ArrayList<JoinFrip> list = dao.selectFripByDate(conn, joinableDate);
+		return list;
 	}
 	
 	

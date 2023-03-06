@@ -47,7 +47,7 @@
 							<% } else { %>
 								<div class="carousel-item active">
 									<img src="/upload/photo/noImg.gif" class="d-block w-100" alt="...">
-							]	</div>
+								</div>
 							<% } %>
 						</div>
 						<button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
@@ -197,18 +197,17 @@
 		    dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
 		    showMonthAfterYear: true,
 		    yearSuffix: '년'
-		  });
+		 });
 	
-		  $(function() {
-		    $("#datepicker1, #datepicker2").datepicker();
-		  });
+		 $(function() {
+		 	$("#datepicker1, #datepicker2").datepicker();
+		 });
 		  
-		  $("#insertBtn").on("click", function(){
+		 $("#insertBtn").on("click", function(){
 			const fripNo = $("[name=fripNo]").val();
 			const startDate = $("#startDate").val();
 			const endDate = $("#endDate").val();
 			const maxCount = $("#maxCount").val();
-			console.log(startDate);
 			if(startDate == "" || endDate == "" || maxCount == "" ){
 				$("[name=fripNo]").val("");
 				$("#startDate").val("");
@@ -247,8 +246,27 @@
 				},
 				error : function(){
 				}
-			  })
-		  })
+			  });
+		  });
+		 
+		 $("#searchDateBtn").on("click", function(){
+			 const startDate = $("#datepicker1").val();
+			 const endDate =$("#datepicker2").val();
+			 const fripNo = $("[name=fripNo]").val();
+			 
+			 $.ajax({
+				 url : "selectJoinableDate.do",
+					type : "post",
+					data : {startDate : startDate, endDate, endDate, fripNo : fripNo},
+					dataType : "json",
+					success : function(data){
+						console.log(data)
+					},
+					error : function(){
+						
+					}
+			 })
+		 })
 	</script>
 </body>
 </html>

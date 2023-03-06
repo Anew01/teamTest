@@ -34,12 +34,10 @@ public class FripDao {
 		}
 		return result;
 	}
-
 	public int insertFripCategory(Connection conn, int fripNo, String fripCategory) {
 		PreparedStatement pstmt = null;
 		String query = "insert into frip_category values(frip_category_seq.nextval,?,?)";
 		int result = 0;
-		
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, fripNo);
@@ -53,13 +51,11 @@ public class FripDao {
 		}
 		return result;
 	}
-
 	public int selectFripNo(Connection conn, Frip f) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		String query = "select frip_no from frip_tbl where frip_title=? and frip_writer=?";
 		int fripNo = 0;
-		
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, f.getFripTitle());
@@ -74,7 +70,6 @@ public class FripDao {
 		}
 		return fripNo;
 	}
-
 	public int insertFripFile(Connection conn, int fripNo, String filepath) {
 		PreparedStatement pstmt = null;
 		String query = "insert into frip_file values(frip_file_seq.nextval,?,?)";
@@ -92,7 +87,6 @@ public class FripDao {
 		}
 		return result;
 	}
-
 	public int insertFripJoinableDate(Connection conn, Frip f, int fripNo) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -120,7 +114,6 @@ public class FripDao {
 		}
 		return result;
 	}
-
 	public ArrayList<Frip> selectAllFrip(Connection conn) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -147,7 +140,6 @@ public class FripDao {
 				f.setFripWriter(rset.getString("frip_writer"));
 				list.add(f);
 			}
-			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -157,14 +149,12 @@ public class FripDao {
 		}
 		return list;
 	}
-
 	public ArrayList<String> selectFripFiles(Connection conn, int fripNo) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		ArrayList<String> list = new ArrayList<>();
 		String filepath = "";
 		String query = "select * from frip_file where frip_no=?";
-		
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, fripNo);
@@ -182,7 +172,6 @@ public class FripDao {
 		}
 		return list;
 	}
-
 	public ArrayList<FripJoinableDate> selectJoinableDates(Connection conn, int fripNo) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -210,7 +199,6 @@ public class FripDao {
 		}
 		return list;
 	}
-
 	public ArrayList<Frip> selectMyFrip(Connection conn, String fripWriter) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -219,7 +207,6 @@ public class FripDao {
 		String query = "select * from frip_tbl t join frip_category c\n"
 				+ "on (t.frip_no=c.frip_no) \n"
 				+ "where frip_writer=?";
-		
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, fripWriter);
@@ -250,13 +237,11 @@ public class FripDao {
 		}
 		return list;
 	}
-
 	public Frip selectOneFripByNo(Connection conn, int fripNo) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		Frip f = null;
 		String query = "select * from frip_tbl t join frip_category c on (t.frip_no=c.frip_no) where t.frip_no=?";
-		
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, fripNo);
@@ -285,16 +270,15 @@ public class FripDao {
 		}
 		return f;
 	}
-
 	public ArrayList<Frip> selectAllFripByCategory(Connection conn, String fripCategory) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		ArrayList<Frip> list = new ArrayList<>();
 		Frip f = null;
 		String query = "";
-		
+		System.out.println("카테고리네임 : "+fripCategory);
 		try {
-			if ("all".equals(fripCategory)) {
+			if (fripCategory.equals("ALL")) {
 				query = "select * from frip_tbl t join frip_category c on (t.frip_no=c.frip_no)";
 				pstmt = conn.prepareStatement(query);
 				rset = pstmt.executeQuery();
@@ -329,7 +313,6 @@ public class FripDao {
 		}
 		return list;
 	}
-
 	public int selectLastestFripJoinableDatePK(Connection conn) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -351,7 +334,6 @@ public class FripDao {
 		}
 		return latestPK;
 	}
-
 	public FripJoinableDate selectOneFripJoinableDateByNo(Connection conn, int latestPK) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -379,7 +361,6 @@ public class FripDao {
 		}
 		return date;
 	}
-	
 	public String selectRating(Connection conn, int fripNo) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -404,7 +385,6 @@ public class FripDao {
 					avgRating = rating;
 				}
 			}
-			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -414,5 +394,67 @@ public class FripDao {
 		}
 		System.out.println(avgRating);
 		return avgRating;
+	}
+
+	public int deleteFripFilepath(Connection conn, int fripNo, String filepath) {
+		PreparedStatement pstmt = null;
+		String query = "delete from frip_file where frip_no=? and file_path=?";
+		int result = 0;
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, fripNo);
+			pstmt.setString(2, filepath);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+
+	public int updateFrip(Connection conn, Frip f) {
+		PreparedStatement pstmt = null;
+		String query = "update frip_tbl set frip_title=?, frip_addr=?, frip_detail_addr=?, frip_level=?, frip_price=?, frip_content=? where frip_no=?";
+		int result = 0;
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, f.getFripTitle());
+			pstmt.setString(2, f.getFripAddr());
+			pstmt.setString(3, f.getFripAddrDetail());
+			pstmt.setString(4, f.getFripLevel());
+			pstmt.setInt(5, f.getFripPrice());
+			pstmt.setString(6, f.getFripContent());
+			pstmt.setInt(7, f.getFripNo());
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+
+	public int updateFripCategory(Connection conn, int fripNo, String fripCategory) {
+		PreparedStatement pstmt = null;
+		String query = "update frip_category set category_name=? where frip_no=?";
+		int result = 0;
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, fripCategory);
+			pstmt.setInt(2, fripNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
 	}
 }
