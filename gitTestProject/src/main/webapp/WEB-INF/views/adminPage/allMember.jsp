@@ -55,18 +55,28 @@
                                                                     <option value="1" selected>운영자</option>
                                                                     <option value="2">호스트</option>
                                                                     <option value="3">회원</option>
+                                                                    <option value="4">탈퇴 회원</option>
                                                                 </select>
                                                                 <%} else if(member.getMemberLevel()==2) {%>
                                                                     <select class="input">
                                                                         <option value="1">운영자</option>
                                                                         <option value="2" selected>호스트</option>
                                                                         <option value="3">회원</option>
+                                                                        <option value="4">탈퇴 회원</option>
                                                                     </select>
                                                                     <%} else if(member.getMemberLevel()==3) {%>
                                                                         <select class="input">
-                                                                            <option value="1" selected>운영자</option>
+                                                                            <option value="1">운영자</option>
                                                                             <option value="2">호스트</option>
                                                                             <option value="3" selected>회원</option>
+                                                                            <option value="4">탈퇴 회원</option>
+                                                                        </select>
+                                                                        <%} else if(member.getMemberLevel()==4) {%>
+                                                                         	<select class="input">
+                                                                            <option value="1">운영자</option>
+                                                                            <option value="2">호스트</option>
+                                                                            <option value="3">회원</option>
+                                                                            <option value="4" selected>탈퇴 회원</option>
                                                                         </select>
                                                                         <%} %>
                                                         </td>
