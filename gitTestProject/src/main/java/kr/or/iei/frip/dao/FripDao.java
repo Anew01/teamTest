@@ -316,7 +316,6 @@ public class FripDao {
 				f.setFripStatus(rset.getString("frip_status"));
 				f.setWriteDate(rset.getString("write_date"));
 				f.setFripWriter(rset.getString("frip_writer"));
-				f.setAvgRating(rset.getString("rating"));
 				list.add(f);
 			}
 		} catch (SQLException e) {
