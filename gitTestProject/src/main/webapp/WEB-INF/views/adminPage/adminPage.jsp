@@ -31,32 +31,32 @@
                                 </div>
                                 <div class="input-wrap">
                                     <label for="memberId">아이디</label>
-                                    <input type="text" name="memberId" id="memberId" class="input-form" value="user21"
+                                    <input type="text" name="memberId" id="memberId" class="input-form" value="<%=loginMember.getMemberId() %>"
                                         readonly>
                                 </div>
                                 <div class="input-wrap">
                                     <label for="memberPw">비밀번호</label>
-                                    <input type="password" name="memberPw" id="memberPw" class="input-form"
-                                        value="1234">
+                                    <input type="text" name="memberPw" id="memberPw" class="input-form"
+                                        value="<%=loginMember.getMemberPw() %>">
                                 </div>
                                 <div class="input-wrap">
                                     <label for="memberName">이름</label>
-                                    <input type="text" name="memberName" id="memberName" class="input-form" value="유저1"
+                                    <input type="text" name="memberName" id="memberName" class="input-form" value="<%=loginMember.getMemberName() %>"
                                         disabled>
                                 </div>
                                 <div class="input-wrap">
                                     <label for="memberPhone">전화번호</label>
                                     <input type="text" name="memberPhone" id="memberPhone" class="input-form"
-                                        value="010-1111-1111">
+                                        value="<%=loginMember.getMemberPhone() %>">
                                 </div>
                                 <div class="input-wrap">
                                     <label for="memberAddr">주소</label>
-                                    <input type="text" name="memberAddr" id="memberAddr" class="input-form" value="서울시">
+                                    <input type="text" name="memberAddr" id="memberAddr" class="input-form" value="<%=loginMember.getMemberAddr() %>">
                                 </div>
                                 <div class="input-wrap">
                                     <label for="memberLevel">등급</label>
                                     <input type="text" name="memberLevel" id="memberLevel" class="input-form"
-                                        value="관리자" disabled>
+                                        value="<%=loginMember.getMemberLevel() %>" disabled>
                                 </div>
                                 <div class="input-wrap">
                                     <label for="memberDate">등록일</label>
@@ -66,7 +66,9 @@
                                 <div class="input-wrap">
                                     <label for="memberIntro">관리자 소개</label>
                                     <textarea name="memberIntro" id="memberIntro" cols="132" rows="20"
-                                        style="resize: none;"></textarea>
+                                        style="resize: none;">                               
+                                        <%=loginMember.getMemberIntro() %>       
+                                        </textarea>
                                 </div>
                                 <div class="btn-box">
                                     <button type="submit" class="btn bc66 bs2">정보수정</button>

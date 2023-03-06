@@ -1,4 +1,8 @@
+<%@page import="kr.or.iei.member.vo.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%
+ Member loginMember = (Member) session.getAttribute("m");
+%>
     <!DOCTYPE html>
     <html lang="ko" dir="ltr">
 
@@ -35,8 +39,7 @@
             <div class="sidebar">
                 <div class="sidebar-menu">
                     <center class="profile">
-                        <img src="/upload/admin/user.png" alt="">
-                        <p>관리자 1</p>
+                        <p><%=loginMember.getMemberId() %></p>
                     </center>
                     <li class="item">
                         <a href="/adminPage.do" class="menu-btn">

@@ -349,4 +349,27 @@ public class adminDao {
 
 		return result;
 	}
+
+	public int fripCancel(Connection connection, int fripNo) {
+		PreparedStatement preparedStatement = null;
+
+		int result = 0;
+
+		String query = "UPDATE FRIP_TBL SET FRIP_AUTH = 0 WHERE FRIP_NO = ?";
+
+		try {
+			preparedStatement = connection.prepareStatement(query);
+
+			preparedStatement.setInt(1, fripNo);
+
+			result = preparedStatement.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(preparedStatement);
+		}
+
+		return result;
+	}
+
 }
