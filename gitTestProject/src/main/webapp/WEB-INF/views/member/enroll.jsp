@@ -30,7 +30,7 @@
                             <button type="button" class="auth-btn" id="auth-btn">인증요청</button>
                         </div>
                         <div>
-                            <input type="text" name="id-auth" id="id-auth" placeholder="인증번호를 입력해주세요." onfocus="this.placeholder=''" onblur="this.placeholder='인증번호를 입력해주세요.'" > 
+                            <input type="text" name="id-auth" id="id-auth" placeholder="인증번호를 입력해주세요." onfocus="this.placeholder=''" onblur="this.placeholder='인증번호를 입력해주세요.'" required> 
                             <button type="button" class="chk-btn">확인</button>
                             <span id="timeZone"></span> <span id="authMsg"></span>
                         </div>
@@ -126,7 +126,7 @@
                     </div>
                 </div>
                 <div class="join-btn-wrap">
-                    <input type="submit" value="회원가입">
+                    <input type="submit" value="회원가입" onsubmit="checkAuth();">
                 </div>
             </form>
         </div>
@@ -151,9 +151,13 @@ function searchAddr() {
 <%-- 이메일 인증하기 --%> 
 	let mailCode;
 		$("#auth-btn").on("click", function() {
-			const email = $("#id").val();
+			const email = $("#memberId").val();
+			$("#timeZone").html("");
+			$("#authMsg").text("");
+			$("#id-auth").val("");
+			
 			$.ajax({
-				url : "/sendMail2.do",
+				url : "/sendMail.do",
 				data : {
 					email : email
 				},
@@ -209,18 +213,20 @@ function searchAddr() {
 
 		}
 
-		$("#authBtn").on("click", function() {
+		$(".chk-btn").on("click", function() {
 			if(mailCode == null){
 				$("#authMsg").text("인증시간 만료");
 				$("#authMsg").css("color", "red");
 			}else{
-				const authCode = $("#authCode").val();
+				const authCode = $("#id-auth").val();
 				
 				if (authCode == mailCode) {
 					$("#authCode").prop("readonly",true);
+					$("#memberId").prop("readonly",true);
 					$("#authMsg").text("인증완료");
 					$("#authMsg").css("color", "blue");
 					window.clearInterval(intervalId);
+					
 				} else {
 					$("#authMsg").text("인증실패");
 					$("#authMsg").css("color", "red");
@@ -228,7 +234,14 @@ function searchAddr() {
 			}
 		});
 
-
+function checkAuth(){
+	if($("#authMsg").text("인증완료")){
+		return true;
+	}else{
+		return false;
+	}
+		
+};
 
 		
 		
