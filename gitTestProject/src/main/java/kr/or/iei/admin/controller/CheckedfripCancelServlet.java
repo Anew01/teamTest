@@ -11,14 +11,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import kr.or.iei.admin.service.adminService;
 
-/**
- * Servlet implementation class FripDeleteServlet
- */
-@WebServlet(name = "FripDelete", urlPatterns = { "/fripDelete.do" })
-public class FripDeleteServlet extends HttpServlet {
+@WebServlet(name = "CheckedfripCancel", urlPatterns = { "/checkedfripCancel.do" })
+public class CheckedfripCancelServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public FripDeleteServlet() {
+	public CheckedfripCancelServlet() {
 		super();
 	}
 
@@ -27,23 +24,27 @@ public class FripDeleteServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
 
-		int fripNo = Integer.parseInt(request.getParameter("fripNo"));
+		String fripNos = request.getParameter("fripNos");
 
 		adminService service = new adminService();
 
-		int result = service.fripDelete(fripNo);
+		boolean result = service.checkedfripCancel(fripNos);
 
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
 
-		if (result > 0) {
-			response.sendRedirect("/firpAndFeed.do?fripReqPage=1&feedReqPage=1");
+		if (result) {
+			request.setAttribute("title", "프립 등록 취소 성공");
+			request.setAttribute("msg", "요청이 처리되었습니다.");
+			request.setAttribute("icon", "success");
 		} else {
-			request.setAttribute("title", "프립 삭제 실패");
-			request.setAttribute("msg", "홈페이지에 문제가 발생했습니다.");
+			request.setAttribute("title", "프립 수락 실패");
+			request.setAttribute("msg", "요청이 처리중 문제가 발생했습니다. 홈페이지에 문의해주세요.");
 			request.setAttribute("icon", "error");
-			request.setAttribute("loc", "/firpAndFeed.do?fripReqPage=1&feedReqPage=1");
-			view.forward(request, response);
 		}
+
+		request.setAttribute("loc", "/firpAndFeed.do?fripReqPage=1&feedReqPage=1");
+
+		view.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
