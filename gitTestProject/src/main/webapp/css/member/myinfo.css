@@ -125,6 +125,23 @@ body{
     color: #fff;
    
 }
+
+#deleteMemberBtn{
+    width: 900px;
+    outline: none;
+    padding: 15px;
+    font-size: 18px;
+    background-color: #fff;
+    color: #686b72;
+    border: 2px solid #686b72;
+    border-radius: 10px;
+    cursor: pointer;
+}
+#deleteMemberBtn{
+    background-color: #686b72;
+    color: #fff;
+   
+}
 .join-input-wrap>div:first-child{
     padding: 15px 0px;
 }
