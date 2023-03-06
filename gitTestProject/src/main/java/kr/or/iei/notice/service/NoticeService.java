@@ -141,4 +141,14 @@ public class NoticeService {
 		return result;
 	}
 
+	public Notice slectOneNotice(int noticeNo) {
+		Connection connection = JDBCTemplate.getConnection();
+
+		Notice notice = dao.selectOneNotice(connection, noticeNo);
+
+		JDBCTemplate.close(connection);
+
+		return notice;
+	}
+
 }
