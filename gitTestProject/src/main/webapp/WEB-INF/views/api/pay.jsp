@@ -40,7 +40,6 @@
                 <div class="content">
                     <h2>결제 수단</h2>
                		 <div class="pay-content">
-                	<<input type="text" id="pay">
                 	<div class="page-title">결제모듈</div>
                 </div>
                     <button id="payBtn">확인 및 결제</button>
@@ -56,7 +55,7 @@
                             <div class="title">요금 세부정보 </div>
                             <div class="pricebox"><%=f.getFripPrice() %> 원/인당</div>
                             <div class="totalprice">총 합계 (KRW)</div>
-                            <div class="total-price-box"><%=f.getFripPrice() * attendNumber%> 원</div>
+                            <div class="pricebox"><%=f.getFripPrice() * attendNumber%> 원</div>
                         </div>
                         <div class="attend-info">
                             <div class="title">환불 정책</div>
