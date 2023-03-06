@@ -57,7 +57,7 @@
                                                             <td class="notice-No"><%=notice.getNoticeNo() %></td>
                                                         </tr>
                                                         <tr class="notice-content">
-                                                            <td colspan="5">
+                                                            <td colspan="7">
                                                                 <%=notice.getNoticeContent() %>
                                                             </td>
                                                         </tr>
@@ -73,7 +73,7 @@
                             </div>
                             <script>
                                 $(".notice-content-view").on("click", function () {
-                                    $(this).parent().parent().next().css("display", "table-cell");
+                                    $(this).parent().parent().next().css("display", "table-row");
                                 });
 
                                 $(".upadte-btn").on("click", function () {
