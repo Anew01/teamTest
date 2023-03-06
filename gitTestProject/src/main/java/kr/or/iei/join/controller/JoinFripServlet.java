@@ -40,7 +40,6 @@ public class JoinFripServlet extends HttpServlet {
 		FripService fservice = new FripService();
 		Frip f = fservice.selectOneFripByNo(fripNo);
 		ArrayList<Frip> list = fservice.selectAllFrip();
-		
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/frip/checkJoinFrip.jsp");
 		request.setAttribute("f", f);
 		request.setAttribute("list", list);
