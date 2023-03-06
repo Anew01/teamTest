@@ -97,15 +97,16 @@ public class UpdateFripServlet extends HttpServlet {
 						break;
 					case "delFilepath" :
 						String[] list = str.split(",");
-						int fripNo = f.getFripNo();
-						for(String delFilepath : list) {
-							int result = service.deleteFripFilepath(fripNo, delFilepath);
-							if(result == 0) {
+						if(list.length > 0) {
+							int fripNo = f.getFripNo();
+							for(String delFilepath : list) {
+								int result = service.deleteFripFilepath(fripNo, delFilepath);
+								if(result == 0) {
 								System.out.println("삭제실패");
-								return;
-							}							
+								}							
 						}
 						break;
+						}
 					}
 				} else {
 					if(item.getSize() > 0) {
