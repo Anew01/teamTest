@@ -123,6 +123,7 @@ public class MemberDao {
 				m.setMemberPhone(rset.getString("member_phone"));
 				m.setMemberAddr(rset.getString("member_addr"));
 				m.setMemberLevel(rset.getInt("member_level"));
+				m.setMemberProfile(rset.getString("member_profile"));
 				m.setEnrollDate(rset.getString("enroll_date"));
 				
 			}
@@ -162,6 +163,24 @@ public class MemberDao {
 		PreparedStatement pstmt = null;
 		int result = 0;
 		String query = "update member_tbl set member_level=4 where member_id=?";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, memberId);
+			result = pstmt.executeUpdate();	
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+
+	public int updateHostMember(Connection conn, String memberId) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "update member_tbl set member_level=2 where member_id=?";
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, memberId);

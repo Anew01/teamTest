@@ -63,7 +63,7 @@ Member loginMember = (Member) session.getAttribute("m");
 					<%
 					} else {
 					%>
-					<a href="/myInfo.do?memberId=<%=loginMember.getMemberId()%>">
+					<a href="/myPage.do?memberId=<%=loginMember.getMemberId()%>">
 						<button type="button" class="btn btn-outline-dark">마이페이지</button>
 					</a>
 
