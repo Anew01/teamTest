@@ -24,7 +24,7 @@
     <header>
     <div class="header">
         <div class="header-content-top">
-            <div class="header-logo"><a href="/selectAllFripByCategory.do?categoryName=all" class="homeBtn"><span class="logo-text">Sprip</span></a></div>
+            <div class="header-logo"><a href="/selectAllFripByCategory.do?categoryName=main" class="homeBtn"><span class="logo-text">Sprip</span></a></div>
             <div class="header-searchBar">
                 <div class="input-group mb-3">
                     <input type="text" class="form-control" placeholder="Search" aria-label="Recipient's username" aria-describedby="button-addon2">

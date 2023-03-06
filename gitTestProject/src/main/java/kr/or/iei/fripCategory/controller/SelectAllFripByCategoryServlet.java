@@ -40,28 +40,34 @@ public class SelectAllFripByCategoryServlet extends HttpServlet {
 		RequestDispatcher view = null;
 		FripService service = new FripService();
 		String categoryName = request.getParameter("categoryName");
-
-		/*
-		 * if ("main".equals(categoryName)) { //main 화면 //비 ArrayList<Frip> list1 =
-		 * service.selectAllFripByCategory("rating"); ArrayList<Frip> list2 =
-		 * service.selectAllFripByCategory("new");
-		 * 
-		 * request.setAttribute("list1", list1); request.setAttribute("list2", list2); }
-		 * else {
-		 */
-		// main 화면이 아닐때
-		// 비
-		ArrayList<Frip> list = service.selectAllFripByCategory(categoryName);
-		for (Frip f : list) {
-			String avgRating = service.selectRating(f.getFripNo());
-			f.setAvgRating(avgRating);
-			System.out.println(f.getFripNo() + "의 별점은 : " + avgRating);
+		
+		if ("main".equals(categoryName)) {
+			//main 화면
+			//비
+			ArrayList<Frip> list = service.selectAllFripByCategory(categoryName);
+			ArrayList<Frip> rList = service.selectAllFripByCategory("rList");
+			ArrayList<Frip> nList = service.selectAllFripByCategory("nList");
+			
+			request.setAttribute("list", list);
+			request.setAttribute("rList", rList);
+			view = request.getRequestDispatcher("/WEB-INF/views/common/mainPage.jsp");
+		} else {
+			//main 화면이 아닐때
+			//비
+			ArrayList<Frip> list = service.selectAllFripByCategory(categoryName);
+			for(Frip f : list) {
+				String avgRating = service.selectRating(f.getFripNo());
+				f.setAvgRating(avgRating);
+			}
+			request.setAttribute("list", list);
+			view = request.getRequestDispatcher("/WEB-INF/views/category/selectAllFripByCategory.jsp");
 		}
-		request.setAttribute("list", list);
-		view = request.getRequestDispatcher("/WEB-INF/views/category/selectAllFripByCategory.jsp");
 		view.forward(request, response);
 	}
-	// 결
+		//결
+		
+		
+	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse

@@ -1,20 +1,19 @@
 <%@page import="kr.or.iei.frip.vo.FripJoinableDate"%>
-<%@page import="kr.or.iei.frip.vo.Frip"%>
-<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%
-    ArrayList<Frip> list = (ArrayList<Frip>)request.getAttribute("list");
+    	ArrayList<Frip> list = (ArrayList<Frip>)request.getAttribute("list");
+    	ArrayList<Frip> rList = (ArrayList<Frip>)request.getAttribute("rList");
+    	
     %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-	<link rel="stylesheet" href="/css/mokupCss/Frip.css">
 </head>
 <body>
-	<%@ include file="/WEB-INF/views/common/header.jsp" %>
+	<%@include file="/WEB-INF/views/common/header.jsp" %>
 	 <div class="content-wrap">
 	 	<% for(Frip f : list) { %>
         <div class="frip-box">
@@ -25,7 +24,6 @@
             	<%}else{ %>
             	<a href="/joinFrip.do?fripNo=<%=f.getFripNo()%>"><img src="/upload/photo/noImg.gif"></a>
             	<%} %>
-            		
             </div>
             <div class="f-title">
                 <%=f.getFripTitle() %>
@@ -48,7 +46,6 @@
         </div>
 		<%} %>
     </div>		
-	<%@ include file="/WEB-INF/views/common/footer.jsp" %>
-	
+	<%@include file="/WEB-INF/views/common/footer.jsp" %>
 </body>
 </html>
