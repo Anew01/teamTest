@@ -13,10 +13,11 @@ Member member = (Member) request.getAttribute("m");
 <link rel="stylesheet" href="/css/member/myinfo.css">
 <link rel="stylesheet" href="/css/summernote/summernote-lite.css">
 <link rel="stylesheet" href="/css/fripPage/insertFripFrm.css">
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script
+	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </head>
 <body>
-	<%@ include file="/WEB-INF/views/common/header_mypage.jsp"%>
+	<%@ include file="/WEB-INF/views/common/header.jsp"%>
 	<div class="page-content">
 		<div class="join-wrap">
 			<div class="join-header">
@@ -97,10 +98,11 @@ Member member = (Member) request.getAttribute("m");
 							<div>
 								<input type="text" name="memberAddr" id="memberAddr"
 									value="<%=member.getMemberAddr()%>" readonly>
-								<button type="button" class="addr-btn">주소검색</button>
+								<button type="button" class="addr-btn" onclick="searchAddr();">주소검색</button>
 							</div>
 							<div>
-								<input type="text" name="memberAddrDetail" id="memberAddrDetail">
+								<input type="text" name="memberAddrDetail" id="memberAddrDetail"
+								value="<%=member.getMemberAddrDetail()%>">
 
 							</div>
 						</div>
@@ -108,28 +110,49 @@ Member member = (Member) request.getAttribute("m");
 					<div class="join-btn-wrap">
 						<input type="submit" value="수정하기"> <a
 							href="/updateDeleteMember.do?memberId="<%=loginMember.getMemberId()%>">
-							<input type="button" value="탈퇴하기" id="deleteMemberBtn" onclick="func1();">
+							<input type="button" value="탈퇴하기" id="deleteMemberBtn"
+							onclick="func1();">
 						</a>
 					</div>
 				</form>
 			</div>
 		</div>
 		<script>
+		function uploadFiles(fs){
+			if(fs.files.length != 0 && fs.files[0] != 0){
+				for(let i=0;i<fs.files.length;i++){
+					const reader = new FileReader();
+					reader.readAsDataURL(fs.files[i]);
+					reader.onload = function(e){
+						const div = $("<div>").addClass("carousel-item");
+						if(i == 0){
+							div.addClass("active");
+						}
+						const img = $("<img>").attr("src", e.target.result);
+						div.append(img);
+						$(".carousel-inner").append(div);
+					}
+				}
+			} else {
+				const div = $("<div>").addClass("carousel-item");
+				div.addClass("active");
+				const img = $("<img>").attr("src", "");
+				$(".carousel-inner").append(img);
+			}
+		}
 			function func1() {
 				confirm("회원탈퇴를 진행하시겠습니까?");
+			}
+
+			function searchAddr() {
+				new daum.Postcode({
+					oncomplete : function(data) {
+						$("#memberAddr").val(data.address);
+					}
+				}).open();
 			}
 		</script>
 	</div>
 	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
-	<script>
-		
-		$("#addr-btn").on("click",function(){	
-			new daum.Postcode({
-		        oncomplete: function(data) {
-		        	$("#memberAddr").val(data.address)
-		        }
-		    }).open();
-		})
-	</script>
 </body>
 </html>
