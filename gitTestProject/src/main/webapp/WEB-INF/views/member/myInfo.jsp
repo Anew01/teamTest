@@ -11,6 +11,9 @@ Member member = (Member) request.getAttribute("m");
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="/css/member/myinfo.css">
+<link rel="stylesheet" href="/css/summernote/summernote-lite.css">
+<link rel="stylesheet" href="/css/fripPage/insertFripFrm.css">
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/common/header_mypage.jsp"%>
@@ -93,7 +96,7 @@ Member member = (Member) request.getAttribute("m");
 							</div>
 							<div>
 								<input type="text" name="memberAddr" id="memberAddr"
-									value="<%=member.getMemberAddr()%>">
+									value="<%=member.getMemberAddr()%>" readonly>
 								<button type="button" class="addr-btn">주소검색</button>
 							</div>
 							<div>
@@ -118,5 +121,15 @@ Member member = (Member) request.getAttribute("m");
 		</script>
 	</div>
 	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
+	<script>
+		
+		$("#addr-btn").on("click",function(){	
+			new daum.Postcode({
+		        oncomplete: function(data) {
+		        	$("#memberAddr").val(data.address)
+		        }
+		    }).open();
+		})
+	</script>
 </body>
 </html>

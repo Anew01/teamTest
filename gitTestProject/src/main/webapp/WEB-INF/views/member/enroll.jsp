@@ -6,6 +6,9 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="/css/member/enroll.css">
+<link rel="stylesheet" href="/css/summernote/summernote-lite.css">
+<link rel="stylesheet" href="/css/fripPage/insertFripFrm.css">
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </head>
 <body>
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
@@ -81,7 +84,7 @@
                             <label for="memberAddr">주소</label>
                         </div>
                         <div>
-                            <input type="text" name="memberAddr" id="memberAddr" > 
+                            <input type="text" name="memberAddr" id="memberAddr" readonly> 
                             <button type="button" class="addr-btn">주소검색</button>
                         </div>
                         <div>
@@ -129,5 +132,15 @@
     </div>
 </div>
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
+<script>
+		
+		$("#addr-btn").on("click",function(){	
+			new daum.Postcode({
+		        oncomplete: function(data) {
+		        	$("#memberAddr").val(data.address)
+		        }
+		    }).open();
+		})
+	</script>
 </body>
 </html>
