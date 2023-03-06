@@ -282,6 +282,20 @@ public class FripDao {
 				query = "select * from frip_tbl t join frip_category c on (t.frip_no=c.frip_no)";
 				pstmt = conn.prepareStatement(query);
 				rset = pstmt.executeQuery();
+			}else if("main".equals(fripCategory)) {
+				query = "select \r\n"
+						+ "*\r\n"
+						+ "from (select a.frip_no as ratingNo, decode(AVG(c.RATING), null, 0, ROUND(AVG(c.RATING),1)) as rating\r\n"
+						+ "from frip_tbl a\r\n"
+						+ "left join feed_tbl b on a.frip_no = b.frip_no\r\n"
+						+ "left join rating_tbl c on b.feed_no = c.feed_no\r\n"
+						+ "group by a.frip_no\r\n"
+						+ "order by 2 desc) a\r\n"
+						+ "inner join frip_tbl b on a.ratingNo = b.frip_no\r\n"
+						+ "inner join frip_category c on b.frip_no = c.frip_no\r\n"
+						+ "where rownum < 4\r\n";
+				pstmt = conn.prepareStatement(query);
+				rset = pstmt.executeQuery();
 			} else {
 				query = "select * from frip_tbl t join frip_category c using(frip_no) where c.category_name=?";
 				pstmt = conn.prepareStatement(query);
@@ -302,6 +316,7 @@ public class FripDao {
 				f.setFripStatus(rset.getString("frip_status"));
 				f.setWriteDate(rset.getString("write_date"));
 				f.setFripWriter(rset.getString("frip_writer"));
+				f.setAvgRating(rset.getString("rating"));
 				list.add(f);
 			}
 		} catch (SQLException e) {
