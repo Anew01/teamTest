@@ -41,17 +41,6 @@ public class SelectAllFripByCategoryServlet extends HttpServlet {
 		FripService service = new FripService();
 		String categoryName = request.getParameter("categoryName");
 		
-		if ("main".equals(categoryName)) {
-			//main 화면
-			//비
-			ArrayList<Frip> list = service.selectAllFripByCategory(categoryName);
-			ArrayList<Frip> rList = service.selectAllFripByCategory("rList");
-			ArrayList<Frip> nList = service.selectAllFripByCategory("nList");
-			
-			request.setAttribute("list", list);
-			request.setAttribute("rList", rList);
-			view = request.getRequestDispatcher("/WEB-INF/views/common/mainPage.jsp");
-		} else {
 			//main 화면이 아닐때
 			//비
 			ArrayList<Frip> list = service.selectAllFripByCategory(categoryName);
@@ -61,9 +50,8 @@ public class SelectAllFripByCategoryServlet extends HttpServlet {
 			}
 			request.setAttribute("list", list);
 			view = request.getRequestDispatcher("/WEB-INF/views/category/selectAllFripByCategory.jsp");
+			view.forward(request, response);
 		}
-		view.forward(request, response);
-	}
 		//결
 		
 		
