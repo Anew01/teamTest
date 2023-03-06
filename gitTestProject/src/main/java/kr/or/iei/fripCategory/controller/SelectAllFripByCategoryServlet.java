@@ -35,11 +35,11 @@ public class SelectAllFripByCategoryServlet extends HttpServlet {
 		//인
 		request.setCharacterEncoding("utf-8");
 		//값
-		String categoryName = request.getParameter("categoryName");
 		RequestDispatcher view = null;
 		FripService service = new FripService();
+		String categoryName = request.getParameter("categoryName");
 		
-		if ("main".equals(categoryName)) {
+		/*if ("main".equals(categoryName)) {
 			//main 화면
 			//비
 			ArrayList<Frip> list1 = service.selectAllFripByCategory("rating");
@@ -47,11 +47,11 @@ public class SelectAllFripByCategoryServlet extends HttpServlet {
 			
 			request.setAttribute("list1", list1);
 			request.setAttribute("list2", list2);
-		} else {
+		} else {*/
 			//main 화면이 아닐때
 			//비
 			ArrayList<Frip> list = service.selectAllFripByCategory(categoryName);
-			
+			System.out.println(list.get(0).getFilePath().get(0));
 			for(Frip f : list) {
 				String avgRating = service.selectRating(f.getFripNo());
 				f.setAvgRating(avgRating);
@@ -59,12 +59,12 @@ public class SelectAllFripByCategoryServlet extends HttpServlet {
 			}
 			request.setAttribute("list", list);
 			view = request.getRequestDispatcher("/WEB-INF/views/category/selectAllFripByCategory.jsp");
+			view.forward(request, response);
 		}
 		//결
 		
-		view.forward(request, response);
 		
-	}
+	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

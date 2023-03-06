@@ -5,8 +5,6 @@
     pageEncoding="UTF-8"%>
     <%
     ArrayList<Frip> list = (ArrayList<Frip>)request.getAttribute("list");
-    ArrayList<String> fripFiles = (ArrayList<String>)request.getAttribute("fripFiles");
-    ArrayList<FripJoinableDate> joinableDates = (ArrayList<FripJoinableDate>)request.getAttribute("joinableDates");
     %>
 <!DOCTYPE html>
 <html>
@@ -18,14 +16,12 @@
 <body>
 	<%@ include file="/WEB-INF/views/common/header.jsp" %>
 	 <div class="content-wrap">
-	<%for(int i=0; i<list.size(); i++){ %>
-		<%Frip f = list.get(i); %>
+	 	<% for(Frip f : list) { %>
         <div class="frip-box">
             <div class="img-box">
-		<%for(int j=0; j<1; j++){ %>
-   			<%String s = f.getFilePath().get(j); %>
-                <a href="/joinFrip.do?fripNo=<%=f.getFripNo()%>"><img src="/upload/photo/<%=s%>"></a>
-			<%} %>
+            	<% for(String filePath : f.getFilePath()) { %>
+            		<img src="/upload/photo/<%=filePath%>">
+            	<% } %>
             </div>
             <div class="f-title">
                 <%=f.getFripTitle() %>
@@ -46,7 +42,7 @@
                 <%=f.getAvgRating() %>
             </div>
         </div>
-	<%} %>
+		<%} %>
     </div>		
 	<%@ include file="/WEB-INF/views/common/footer.jsp" %>
 	
