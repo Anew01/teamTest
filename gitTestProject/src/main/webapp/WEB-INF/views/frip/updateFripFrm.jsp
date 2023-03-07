@@ -22,6 +22,7 @@
 			<div class="page-title"><h2>스프립 수정</h2></div>
 			<form action="updateFrip.do" method="post" enctype="multipart/form-data">
 				<input type="hidden" id="fripNo" name="fripNo" value="<%=f.getFripNo()%>">
+				<input type="hidden" name="fripWriter" value="<%= loginMember.getMemberId() %>">
 				<input type="hidden" id="delFilepath" name="delFilepath">
 				<div class="input-group mb-3">
 					<div class="input-group-prepend">
@@ -45,7 +46,6 @@
 						<button type="button" class="btn btn-outline-secondary" id="findAddrBtn">주소찾기</button>
 					</div>
 				</div>
-				<input type="hidden" value="">
 				<div class="input-group mb-3">
 					<div class="input-group-prepend">
 						<label class="input-group-text" for="fripAddrDetail">스프립 상세주소</label>

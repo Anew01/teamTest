@@ -1,9 +1,6 @@
 <%@page import="kr.or.iei.member.vo.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%
-    	Member mem = (Member)request.getAttribute("member");
-    %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,7 +20,7 @@
 		<div class="form-content" style="width: 700px;">
 			<div class="page-title"><h2>스프립 등록</h2></div>
 			<form action="insertFrip.do" method="post" enctype="multipart/form-data">
-				<input type="hidden" name="fripWriter">
+				<input type="hidden" name="fripWriter" value="<%= loginMember.getMemberId() %>">
 				<div class="input-group mb-3">
 					<div class="input-group-prepend">
 						<span class="input-group-text">스프립 제목</span>

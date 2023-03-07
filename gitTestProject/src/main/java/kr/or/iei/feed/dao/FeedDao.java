@@ -49,7 +49,7 @@ public class FeedDao {
 	public int insertFeed(Connection conn, String feedWriter, String feedContent, int fripNo) {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		String query = "INSERT INTO FEED_TBL VALUES(FEED_TBL_SEQ.NEXTVAL, ?, ?, ?, null, null, null, TO_CHAR(SYSDATE, 'YYYY-MM-DD'))";
+		String query = "INSERT INTO FEED_TBL VALUES(FEED_TBL_SEQ.NEXTVAL, ?, ?, ?, null, null, null, SYSDATE)";
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, feedWriter);
@@ -119,6 +119,28 @@ public class FeedDao {
 		}
 		return list;
 	}
+
+	public int insertFeedComment(Connection conn, String feedWriter, String feedContent, int fripNo, int fdNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "INSERT INTO FEED_TBL VALUES(FEED_TBL_SEQ.NEXTVAL, ?, ?, ?, null, null, ?, SYSDATE)";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, feedWriter);
+			pstmt.setInt(2, fripNo);
+			pstmt.setString(3, feedContent);
+			pstmt.setInt(4, fdNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+
 	public int firstFeed(Connection conn, int fripNo, String feedWriter) {
 		PreparedStatement pstmt = null; 
 		int result = 0;

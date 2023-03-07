@@ -90,7 +90,7 @@ public class UpdateFripServlet extends HttpServlet {
 						f.setFripTime(str);
 						break;
 					case "fripWriter" :
-						f.setFripWriter("user01");
+						f.setFripWriter("fripWriter");
 						break;
 					case "fripAddrDetail" :
 						f.setFripAddrDetail(str);
