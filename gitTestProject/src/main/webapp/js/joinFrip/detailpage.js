@@ -18,12 +18,14 @@
 		});
 });
 		//호스트에게 연락하기 모달 
+	/*
 		document.addEventListener("DOMContentLoaded", function() {
 		  const open = document.querySelector(".contact-host");
 		  const close = document.querySelector(".modal__closeBtn");
 		  const modal = document.querySelector(".modal-wrap");
+		  
 		  function init() {
-		    open.addEventListener("click", function() {
+		      open.addEventListener("click", function() {
 		      console.log("hidden사라져랏!");
 		      modal.classList.remove("hidden");
 		    });
@@ -31,8 +33,10 @@
 		      modal.classList.add("hidden");
 		    });
 		  }
-		  init();
+		 
 		});
+		
+	*/
 
 
         //조회하기 
