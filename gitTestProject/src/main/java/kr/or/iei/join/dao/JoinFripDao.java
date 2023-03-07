@@ -59,7 +59,13 @@ public class JoinFripDao {
 			pstmt.setString(3, joinableDate.getEndDate());
 			rset = pstmt.executeQuery();
 			while(rset.next()) {
-				
+				jf = new JoinFrip();
+				jf.setJoinFripNo(rset.getInt("join_frip_no"));
+				jf.setMemberNo(rset.getInt("member_no"));
+				jf.setFripNo(rset.getInt("frip_no"));
+				jf.setJoinableDateNo(rset.getInt("joinable_date_no"));
+				jf.setPaymentNo(rset.getInt("payment_no"));
+				jf.setJoinCount(rset.getInt("join_count"));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

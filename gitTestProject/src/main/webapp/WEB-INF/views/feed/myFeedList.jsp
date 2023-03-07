@@ -18,6 +18,15 @@
 		<div class="content">
 			<div class="feed-wrap">
 				<% if(list.size() > 0) { %>
+					<form id="commentFrm" action="/insertFeedComment.do" method="post">
+						<div class="input-group">
+							<input type="hidden" name="feedWriter" value="user01">
+							<input type="hidden" name="fripNo" value="<%= list.get(0).getF().getFripNo() %>">
+							<input type="hidden" name="fdNo">
+							<textarea class="form-control" name="feedContent" aria-label="With textarea" style="resize: none;"></textarea>
+							<button type="submit" class="btn btn-outline-secondary">댓글등록</button>
+						</div>
+					</form>
 					<% for(ViewFripFeedData data : list) { %>
 						<div class="feed-box">
 							<div class="writer-info">
@@ -36,29 +45,35 @@
 								<div class="content-wrap">
 									<%= data.getF().getFeedContent() %>
 								</div>
-								<button class="btn btn-primary feedCommentBtn" type="button">댓글달기</button>
+								<input type="hidden" name="fbNo" value="<%= data.getF().getFeedNo() %>">
+								<button class="btn btn-secondary" type="button" onclick="inserFrm(this)">댓글달기</button>
 							</div>
 						</div>
-						<% if(data.getF().getFdNo() != 0) { %>
-						<div class="feed-comment-wrap">
-							<div class="writer-info">
-								<div class="img-wrap">
-									<%if(data.getMemProfilepath() != null) { %>
-										<img src="/upload/member/<%=data.getMemProfilepath()%>">
-									<% } else {%>
-										<img src="/upload/member/no-profile.png">
-									<% } %>
+						<% for(ViewFripFeedData commentData : list) { %>
+							<% if(commentData.getF().getFdNo() != 0 && commentData.getF().getFdNo() == data.getF().getFeedNo()) { %>
+								<img src="/upload/photo/arrow.svg" style="width: 60px; margin-left: 20px;"></img>
+								<div class="feed-comment-box">
+									<div class="writer-info">
+										<div class="img-wrap">
+											<%if(commentData.getMemProfilepath() != null) { %>
+												<img src="/upload/member/<%=commentData.getMemProfilepath()%>">
+											<% } else {%>
+												<img src="/upload/member/no-profile.png">
+											<% } %>
+										</div>
+										<div class="writer-id-wrap">
+											<span id="writer-id"><%= commentData.getF().getFeedWriter() %></span>
+										</div>								
+									</div>
+									<div class="feed-content">
+										<div class="content-wrap">
+											<%= commentData.getF().getFeedContent() %>
+										</div>
+										<button class="btn btn-primary updateFeedCommentBtn" type="button">댓글수정</button>
+										<button class="btn btn-danger deleteFeedCommentBtn" type="button">댓글삭제</button>
+									</div>
 								</div>
-								<div class="writer-id-wrap">
-									<span id="writer-id"><%= data.getF().getFeedWriter() %></span>
-								</div>								
-							</div>
-							<div class="comment-content">
-								<div class="content-wrap">
-									<%= data.getF().getFeedContent() %>
-								</div>
-							</div>
-						</div>
+							<% } %>
 						<% } %>
 					<% } %>
 				<% } %>
@@ -67,23 +82,20 @@
 	</div>
 	<%@include file="/WEB-INF/views/common/footer.jsp" %>
 	<script>
-		$(".feedCommentBtn").on("click", function(){
-			const div = $("<div>");
-			div.css("width","80%");
-			const form = $("<form>");
-			form.attr("action","/insertFeed.do");
-			div.addClass("input-group");
-			const span = $("<span>");
-			const textArea = $("<textarea>");
-			textArea.css("width","100%").css("height","100px").css("resize","none");
-			const button = $("<button>");
-			button.attr("type","submit");
-			button.text("댓글등록");
-			button.addClass("btn btn-primary");
-			form.append(textArea).append(button);
-			div.append(form);
-			$(this).parents(".feed-box").after(div);
-		})
+		function inserFrm(obj){
+			const form = $("#commentFrm").clone().css("display","block");
+			const fbNo = $(obj).prev().val();
+			form.find("input[name=fdNo]").val(fbNo);
+			$(obj).parents(".feed-box").after(form);		
+			$(obj).text("댓글취소");
+			$(obj).attr("onclick","cancelFrm(this)")
+		}
+		
+		function cancelFrm(obj){
+			$(obj).parents(".feed-box").next().remove();
+			$(obj).text("댓글등록");
+			$(obj).attr("onclick","inserFrm(this)");
+		}
 	</script>
 </body>
 </html>

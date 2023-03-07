@@ -64,9 +64,6 @@
   				</div>
 				<% } %>
   			</div>
-  			<div class="d-grid gap-2 col-6 mx-auto">
-  				<button class="btn btn-success">더보기</button>
-  			</div>
 		</div>
 	</div>
 	<%@include file="/WEB-INF/views/common/footer.jsp" %>

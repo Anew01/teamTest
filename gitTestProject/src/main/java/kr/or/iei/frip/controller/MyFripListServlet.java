@@ -33,9 +33,9 @@ public class MyFripListServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
+		String fripWriter = request.getParameter("memberId");
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/frip/myFripList.jsp");
 		FripService service = new FripService();
-		String fripWriter = "user01";
 		ArrayList<Frip> list = service.selectMyFrip(fripWriter);
 		request.setAttribute("list", list);
 		view.forward(request, response);

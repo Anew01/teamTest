@@ -121,7 +121,7 @@ public class InsertFripServlet extends HttpServlet {
 						f.setMaxCount(Integer.parseInt(str));
 						break;
 					case "fripWriter" :
-						f.setFripWriter("user01");
+						f.setFripWriter("fripWriter");
 						break;
 					}
 				}
