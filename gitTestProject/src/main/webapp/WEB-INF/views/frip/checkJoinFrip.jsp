@@ -144,6 +144,8 @@ ArrayList<Member> mlist = (ArrayList<Member>)request.getAttribute("mlist");
          <img src="/05_Semi_pj/IMG/네이버맵.jpg">
       </div>
    </div>
+   <!-- 여기부터 피드를 위한 코드작성 충돌방지 용 주석 -->
+   <a href="/insertFeedFrm.do?fripNo=<%=f.getFripNo()%>">피드작성</a>
    <script src="https://cdn.jsdelivr.net/npm/gijgo@1.9.14/js/gijgo.min.js"></script>
    <link
       href="https://cdn.jsdelivr.net/npm/gijgo@1.9.14/css/gijgo.min.css"
