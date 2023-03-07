@@ -48,7 +48,7 @@
 						<% } else { %>
 							<div class="carousel-item active" onclick="viewFrip(<%= f.getFripNo() %>)">
 								<img src="/upload/photo/noImg.gif" class="d-block w-100" alt="...">
-						]	</div>
+							</div>
 						<% } %>
 					</div>
 					<button class="carousel-control-prev" type="button" data-bs-target="#carousel-<%= i %>" data-bs-slide="prev">

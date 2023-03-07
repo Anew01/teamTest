@@ -85,6 +85,9 @@
 					<a href="/updateFripFrm.do?fripNo=<%=f.getFripNo()%>">
 						<button class="btn btn-primary">수정하기</button>
 					</a>
+					<a href="viewMyFripFeed.do?fripNo=<%=f.getFripNo()%>">
+						<button class="btn btn-primary">피드보기</button>
+					</a>
 				</div>
 			</div>
 			<div class="frip-right-wrap">
