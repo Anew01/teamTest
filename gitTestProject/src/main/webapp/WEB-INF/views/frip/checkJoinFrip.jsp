@@ -19,9 +19,8 @@ ArrayList<Member> mlist = (ArrayList<Member>)request.getAttribute("mlist");
    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <link rel="stylesheet"
    href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
-<link rel="stylesheet" href="/resources/demos/style.css">
+<!--  <link rel="stylesheet" href="/resources/demos/style.css"> -->
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-<!-- <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script> -->
  <!--카카오 지도 API-->
    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=47b529e9eac0ea1c6c378c29238f4160&libraries=services"></script>
 </head>
@@ -35,17 +34,38 @@ ArrayList<Member> mlist = (ArrayList<Member>)request.getAttribute("mlist");
       value=<%=f.getJoinableDates().get(0).getStartDate()%>>
    <input type="hidden" id="endDate"
       value=<%=f.getJoinableDates().get(0).getEndDate()%>>
-   <div class="modal-wrap hidden">
-      <div class="modal" id="jsModal">
-         <div class="text-area">
-            <textarea name="message-to-host" id="message-to-host"placeholder="호스트에게 필요한 메세지를 적어주세요."></textarea>
-         </div>
-         <div class="modal-button">
-            <button class="modal__closeBtn" id="jsCloseBtn">X</button>
-            <button class="send-to-host" id="send-to-host">보내기</button>
-         </div>
+      
+      <!-- 모달!! -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">New message</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-   </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">호스트 이메일:</label>
+            <input type="text" class="form-control" id="recipient-name" value="<%=loginMember.getMemberId()%>">
+          </div>
+          <div class="mb-3">
+            <label for="message-text" class="col-form-label">Message:</label>
+            <textarea class="form-control" id="message-text"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Send message</button>
+      </div>
+    </div>
+  </div>
+</div>
+	<!-- 모달 끝 -->
+      
+      
+      
    <div class="wrap">
       <div class="content">
          <div class="button">
@@ -78,12 +98,11 @@ ArrayList<Member> mlist = (ArrayList<Member>)request.getAttribute("mlist");
             	<%} %>
          </div>
       </div>
-   </div>
    <div class="contents-bundle">
       <div class="contents-left">
          <div class="content">
             <div class="title">
-            <%=f.getFripWriter() %>
+            <%=f.getFripWriter() %>님이 진행하는 Sprip입니다.
             </div>
          </div>
          <div class="content">
@@ -99,19 +118,14 @@ ArrayList<Member> mlist = (ArrayList<Member>)request.getAttribute("mlist");
          </div>
          <div class="content">
             <div class="small-title">
-               호스트 <span><%=f.getFripWriter() %></span>님 소개
+              	 호스트 <span><%=f.getFripWriter() %></span>님 
             </div>
-            <p>
-               ★<span class="rating"></span>
+            <p>후기 별점
+               ★<span class="rating"><%=f.getAvgRating() %></span>
             </p>
-            <div class="explain">사람들에게 행복감을 선사할 수 있는 향기를 만들고 싶어, 조향 공부에
-               매진하며 10년간 조향사로 일하고 있습니다. 지나간 세월의 어느 날을 기억해보려 최대한 그때와 똑같은 분위기, 그날의
-               미소까지도 떠올리게 하는 향수를 만드는 사람들도 있고 지금 이 순간의 행복을 위해 향수를 만드는 사람들도 있습니다.
-               비푸머스를 운영하며 향을 사랑하는 분들이 마음껏 향을 맡고 느끼고 배울 수 있는 환경이 될 수 있도록 늘 노력하고
-               있습니다. ✔ 고려대 바이오향료공학 석사 ✔ 프랑스 gip 국제과정 수료 ✔ 기업 향기 마케팅 컨설팅 진행 ✔ 셀러브리티
-               향수 출시 ✔ 관공서, 백화점, 기업 등 퍼퓸클래스 진행</div>
+            <div class="explain"></div>
             <div>
-               <button class="contact-host" id="jsBtn" onclick="init()">호스트에게 연락</button>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="<%=loginMember.getMemberId()%>" style="background-color: #85C88A; border : none;">호스트에게 연락</button>
             </div>
          </div>
       </div>
@@ -157,6 +171,7 @@ ArrayList<Member> mlist = (ArrayList<Member>)request.getAttribute("mlist");
       <div class="small-title">방문 장소</div>
       <div id="map" style="width:100%; height: 500px;"></div>
 	</div>
+   </div>
    </div>
    <!-- 여기부터 피드를 위한 코드작성 충돌방지 용 주석 -->
    <a href="/insertFeedFrm.do?fripNo=<%=f.getFripNo()%>&feedWriter=<%=loginMember.getMemberId()%>">피드작성</a>
@@ -258,7 +273,26 @@ geocoder.addressSearch('<%=f.getFripAddr()%>', function(result, status) {
         map.setCenter(coords);
     } 
 });    
+
+//모달
+	const exampleModal = document.getElementById('exampleModal')
+exampleModal.addEventListener('show.bs.modal', event => {
+  // Button that triggered the modal
+  const button = event.relatedTarget
+  // Extract info from data-bs-* attributes
+  const recipient = button.getAttribute('data-bs-whatever')
+  // If necessary, you could initiate an AJAX request here
+  // and then do the updating in a callback.
+  //
+  // Update the modal's content.
+  const modalTitle = exampleModal.querySelector('.modal-title')
+  const modalBodyInput = exampleModal.querySelector('.modal-body input')
+
+  modalTitle.textContent = `New message to ${recipient}`
+  modalBodyInput.value = recipient
+})
    </script>
+ 
    
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>
 </body>
