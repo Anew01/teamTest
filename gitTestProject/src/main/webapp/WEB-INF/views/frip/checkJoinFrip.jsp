@@ -27,9 +27,22 @@ ArrayList<Member> mlist = (ArrayList<Member>)request.getAttribute("mlist");
    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=47b529e9eac0ea1c6c378c29238f4160"></script>
     
 
+<style>
+	.photo img:first-child{
+    border-top-left-radius: 100px;
+    border-bottom-left-radius: 100px;
+	}
+	.photo img:last-child{
+    border-top-right-radius: 100px;
+    border-bottom-right-radius: 100px;
+	}
+	
+</style>
 </head>
 <body>
    <%@ include file="/WEB-INF/views/common/header.jsp"%>
+   <%--지도주소용 변수 --%>
+   <input type="hidden" name="addr" id="addr" value="<%=f.getFripAddr()%>">
    <input type="hidden" name="maxCnt"
       value=<%=f.getJoinableDates().get(0).getMaxCount()%>>
    <input type="hidden" id="strDate"
@@ -60,9 +73,34 @@ ArrayList<Member> mlist = (ArrayList<Member>)request.getAttribute("mlist");
             </p>
          </div>
          <div class="photo">
-            <a href="#"> <img src="/05_Semi_pj/IMG/한강.png"> <img
-               src="/05_Semi_pj/IMG/한강2.png"> <img src="IMG/한강3.png">
-            </a>
+        	<%if(f.getFilePath().size() >= 3) {%>
+        		<%for(int i=0; i<3; i++){ %>
+            		<img src="/upload/photo/<%=f.getFilePath().get(i)%>">
+            	<%} %>
+            	<%}else if(f.getFilePath().size() == 2){%>
+		           	<img src="/upload/photo/<%=f.getFilePath().get(1)%>"> 
+		           	<img src="/upload/photo/<%=f.getFilePath().get(0)%>">
+		           	<img src="/upload/photo/noImg.gif">
+            	<%}else if(f.getFilePath().size() == 1){%>
+	            	<img src="/upload/photo/noImg.gif">
+	            	<img src="/upload/photo/<%=f.getFilePath().get(0)%>">
+	            	<img src="/upload/photo/noImg.gif">
+            	<%}else if(f.getFilePath().size() < 1){%>
+	            	<img src="/upload/photo/noImg.gif">
+	            	<img src="/upload/photo/noImg.gif">
+	            	<img src="/upload/photo/noImg.gif">
+            	<%} %>
+            	<%--<%if(f.getFilePath().size() != 0) {%>
+        		<%for(int i=0; i<3; i++){ %>
+        			<%if(f.getFilePath().size() != 0){%>
+            		<img src="/upload/photo/<%=f.getFilePath().get(i)%>">
+            		<%} else { %>
+            		<img src="/upload/photo/noImg.gif">
+            	<%} %>
+            	<%} %>
+            	<%}else{ %>
+            	<img src="/upload/photo/noImg.gif">
+            	<%} %> --%>
          </div>
       </div>
    </div>
@@ -214,10 +252,49 @@ ArrayList<Member> mlist = (ArrayList<Member>)request.getAttribute("mlist");
       //카카오 지도 API
   		var container = document.getElementById('map');
 		var options = {
-			center: new kakao.maps.LatLng(33.450701, 126.570667),
+			center: new kakao.maps.LatLng(<%=f.getFripAddr()%>, <%=f.getFripAddr()%>),
 			level: 3
 		};
 		var map = new kakao.maps.Map(container, options);
+		
+		//주소로 장소 표시하기
+		//var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+   // mapOption = {
+       // center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+      //  level: 3 // 지도의 확대 레벨
+   // };  
+
+// 지도를 생성합니다    
+var map = new kakao.maps.Map(mapContainer, mapOption); 
+
+// 주소-좌표 변환 객체를 생성합니다
+var geocoder = new kakao.maps.services.Geocoder();
+
+// 주소로 좌표를 검색합니다
+//var addr= $("#addr").val();
+//geocoder.addressSearch(addr, function(result, status) {
+
+    // 정상적으로 검색이 완료됐으면 
+     if (status === kakao.maps.services.Status.OK) {
+
+        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+        // 결과값으로 받은 위치를 마커로 표시합니다
+        var marker = new kakao.maps.Marker({
+            map: map,
+            position: coords
+        });
+
+        // 인포윈도우로 장소에 대한 설명을 표시합니다
+        var infowindow = new kakao.maps.InfoWindow({
+            content: '<div style="width:150px;text-align:center;padding:6px 0;">우리회사</div>'
+        });
+        infowindow.open(map, marker);
+
+        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+        map.setCenter(coords);
+    } 
+});    
    </script>
    
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>
