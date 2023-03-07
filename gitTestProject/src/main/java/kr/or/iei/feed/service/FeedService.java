@@ -66,4 +66,17 @@ public class FeedService {
 		JDBCTemplate.close(conn);
 		return list;
 	}
+
+	public int firstFeed(int fripNo, String feedWriter) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.firstFeed(conn, fripNo, feedWriter);
+		if(result > 0) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
+
 }

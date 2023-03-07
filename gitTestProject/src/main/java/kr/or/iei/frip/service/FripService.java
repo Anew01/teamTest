@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 
 import common.JDBCTemplate;
+import kr.or.iei.feed.vo.Feed;
 import kr.or.iei.frip.dao.FripDao;
 import kr.or.iei.frip.vo.Frip;
 import kr.or.iei.frip.vo.FripJoinableDate;
@@ -158,4 +159,6 @@ public class FripService {
 		}
 		return result;
 	}
-}
+
+
+	}
