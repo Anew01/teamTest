@@ -26,6 +26,20 @@ public class Member {
 		this.memberId = memberId;
 		this.memberLevel = memberLevel;
 	}
+	
+
+
+	public Member(String memberId, String memberPw, String memberName, String memberPhone, String memberAddr,
+			String memberAddrDetail, String memberProfile) {
+		super();
+		this.memberId = memberId;
+		this.memberPw = memberPw;
+		this.memberName = memberName;
+		this.memberPhone = memberPhone;
+		this.memberAddr = memberAddr;
+		this.memberAddrDetail = memberAddrDetail;
+		this.memberProfile = memberProfile;
+	}
 
 
 	public Member(int memberNo, String memberId, String memberPw, String memberName, String memberPhone,

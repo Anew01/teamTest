@@ -1,8 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%
-Member member = (Member) request.getAttribute("m");
-%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,7 +17,7 @@ Member member = (Member) request.getAttribute("m");
         <div class="top">
             <div class="profile-wrap">
             <a href="/myInfo.do?memberId=<%=loginMember.getMemberId() %>">
-				<div class="profile-image"><img src="/upload/member/<%=member.getMemberProfile() %>" class="profile-img" width="50px"></div>
+				<div class="profile-image"><img src="img/iconmonstr-user-20-240.png" width="50px"></div>
                 <div class="profile-name">
                     <div><%=loginMember.getMemberName() %></div>
                 </div>
