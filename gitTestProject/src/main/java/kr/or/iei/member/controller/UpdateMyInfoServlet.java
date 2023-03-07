@@ -1,5 +1,6 @@
 package kr.or.iei.member.controller;
 
+import java.io.File;
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
@@ -49,13 +50,23 @@ public class UpdateMyInfoServlet extends HttpServlet {
 		MultipartRequest mRequest = new MultipartRequest(request, saveDirectory, maxsize, "utf-8",
 				new DefaultFileRenamePolicy());
 		
+		String status = mRequest.getParameter("status");
+		
+		
+		String oldProfile = mRequest.getParameter("oldProfile");
+		String upProfile = mRequest.getParameter("upProfile");
+		
+		if(oldProfile != null && status.equals("stay")) {
+			upProfile = oldProfile;
+		}
 		Member member = new Member();
 		member.setMemberId(mRequest.getParameter("memberId"));
 		member.setMemberPw(mRequest.getParameter("memberPw"));
 		member.setMemberPhone(mRequest.getParameter("memberPhone"));
 		member.setMemberAddr(mRequest.getParameter("memberAddr"));
 		member.setMemberAddrDetail(mRequest.getParameter("memberAddrDetail"));
-		member.setMemberProfile(mRequest.getFilesystemName("upProfile"));
+		member.setMemberProfile(upProfile);
+		member.setMemberOldProfile(oldProfile);
 		//3.비즈니스로직
 		MemberService service = new MemberService();
 		int result = service.updateMember(member);
@@ -66,6 +77,10 @@ public class UpdateMyInfoServlet extends HttpServlet {
 			request.setAttribute("title", "변경성공");
 			request.setAttribute("msg", "정보가 성공적으로 변경되었습니다.");
 			request.setAttribute("icon", "success");
+			if(status.equals("delete")) {
+				File delFile = new File(saveDirectory+"/"+oldProfile);
+				delFile.delete();
+			}
 			
 		}else{
 			request.setAttribute("title", "변경실패");

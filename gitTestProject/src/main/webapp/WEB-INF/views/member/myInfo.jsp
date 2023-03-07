@@ -29,12 +29,26 @@ Member member = (Member) request.getAttribute("m");
 					<div class="inputs-wrap">
 						<div class="join-input-wrap">
 							<div class="profile-image">
+							<input type="hidden" name="status" value="stay">
+							
+							<%if(member.getMemberProfile() != null) { %>
+							
 								<img src="/upload/member/<%=member.getMemberProfile() %>" class="profile-img" width="100px">
 								<label for="upProfile">
                                         <img src="/upload/member/camera.png" id="camera">
                                     </label>
                                     <input type="file" name="upProfile" id="upProfile" class="input-form"
                                         accept=".jpg,.png,.jpeg" onchange="loadImg(this);">
+                                        <input type="hidden" name="oldProfile" value="<%=member.getMemberProfile() %>">
+                                        <%}else{ %>
+                                        
+                                        <img src="/upload/member/no-profile.png" class="profile-img" width="100px">
+								<label for="upProfile">
+                                        <img src="/upload/member/camera.png" id="camera">
+                                    </label>
+                                    <input type="file" name="upProfile" id="upProfile" class="input-form"
+                                        accept=".jpg,.png,.jpeg" onchange="loadImg(this);">
+                                        <%} %>
 							</div>
 						</div>
 						<div class="join-input-wrap">

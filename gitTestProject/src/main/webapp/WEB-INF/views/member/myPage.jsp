@@ -43,8 +43,6 @@ Member member = (Member) request.getAttribute("m");
         <hr>
         <div class="sub-menu">
             <div>고객센터</div><br>
-            <div>공지사항</div>
-            <div>FAQ</div>
              <div id="kakao-talk-channel-chat-button" data-channel-public-id="_RTXDxj" data-title="question"
             data-size="large" data-color="yellow" data-shape="pc" data-support-multiple-densities="true"></div>
         </div>
@@ -70,7 +68,6 @@ Member member = (Member) request.getAttribute("m");
         <hr>
         <div class="sub-menu">
             <div>설정</div><br>
-            <div>설정</div>
             <div>약관 및 정책</div>
         </div>
     </div>
