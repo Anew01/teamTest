@@ -93,6 +93,9 @@ public class InsertFripServlet extends HttpServlet {
 					case "fripAddr" :
 						f.setFripAddr(str);
 						break;
+					case "fripAddrDetail" :
+						f.setFripAddrDetail(str);
+						break;
 					case "fripLevel" :
 						f.setFripLevel(str);
 						break;
