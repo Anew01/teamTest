@@ -75,12 +75,7 @@
                                 <a href="https://center-pf.kakao.com/_RTXDxj/chats" class="menu-btn" target="_blank">
                                     <i class="fa-solid fa-question"></i><span>문의 관리</span>
                                 </a>
-                            </li>
-                            <li class="item">
-                                <a href="#" class="menu-btn">
-                                    <i class="fa-solid fa-tags"></i><span>쿠폰 관리</span>
-                                </a>
-                            </li>
+                            </li>                          
                         </div>
                     </div>
             </body>
