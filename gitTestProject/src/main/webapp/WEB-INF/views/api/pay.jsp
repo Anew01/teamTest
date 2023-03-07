@@ -18,6 +18,7 @@
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
 </head>
 <body>
+   <%@ include file="/WEB-INF/views/common/header.jsp"%>
 	<div class="wrap">
         <div class="top">
             <span class="material-symbols-rounded">arrow_back_ios_new</span><h1>확인 및 결제</h1>
@@ -100,9 +101,7 @@
 			    window.location.href = 'joinFrip.do?fripNo='+<%=f.getFripNo()%>;
 			  });
 			});
-
-		
-		
 	</script>
+	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
 </body>
 </html>
