@@ -80,27 +80,16 @@ ArrayList<Member> mlist = (ArrayList<Member>)request.getAttribute("mlist");
             	<%}else if(f.getFilePath().size() == 2){%>
 		           	<img src="/upload/photo/<%=f.getFilePath().get(1)%>"> 
 		           	<img src="/upload/photo/<%=f.getFilePath().get(0)%>">
-		           	<img src="/upload/photo/noImg.gif">
+		           	<img src="/upload/photo/no-photo.png">
             	<%}else if(f.getFilePath().size() == 1){%>
-	            	<img src="/upload/photo/noImg.gif">
+	            	<img src="/upload/photo/no-photo.png">
 	            	<img src="/upload/photo/<%=f.getFilePath().get(0)%>">
-	            	<img src="/upload/photo/noImg.gif">
+	            	<img src="/upload/photo/no-photo.png">
             	<%}else if(f.getFilePath().size() < 1){%>
 	            	<img src="/upload/photo/noImg.gif">
 	            	<img src="/upload/photo/noImg.gif">
 	            	<img src="/upload/photo/noImg.gif">
             	<%} %>
-            	<%--<%if(f.getFilePath().size() != 0) {%>
-        		<%for(int i=0; i<3; i++){ %>
-        			<%if(f.getFilePath().size() != 0){%>
-            		<img src="/upload/photo/<%=f.getFilePath().get(i)%>">
-            		<%} else { %>
-            		<img src="/upload/photo/noImg.gif">
-            	<%} %>
-            	<%} %>
-            	<%}else{ %>
-            	<img src="/upload/photo/noImg.gif">
-            	<%} %> --%>
          </div>
       </div>
    </div>
@@ -250,19 +239,11 @@ ArrayList<Member> mlist = (ArrayList<Member>)request.getAttribute("mlist");
          });
       }
       //카카오 지도 API
-  		var container = document.getElementById('map');
-		var options = {
-			center: new kakao.maps.LatLng(<%=f.getFripAddr()%>, <%=f.getFripAddr()%>),
-			level: 3
-		};
-		var map = new kakao.maps.Map(container, options);
-		
-		//주소로 장소 표시하기
-		//var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-   // mapOption = {
-       // center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-      //  level: 3 // 지도의 확대 레벨
-   // };  
+  		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+    mapOption = {
+        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+        level: 3 // 지도의 확대 레벨
+    };  
 
 // 지도를 생성합니다    
 var map = new kakao.maps.Map(mapContainer, mapOption); 
@@ -271,8 +252,7 @@ var map = new kakao.maps.Map(mapContainer, mapOption);
 var geocoder = new kakao.maps.services.Geocoder();
 
 // 주소로 좌표를 검색합니다
-//var addr= $("#addr").val();
-//geocoder.addressSearch(addr, function(result, status) {
+geocoder.addressSearch('제주특별자치도 제주시 첨단로 242', function(result, status) {
 
     // 정상적으로 검색이 완료됐으면 
      if (status === kakao.maps.services.Status.OK) {
