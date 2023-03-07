@@ -66,7 +66,7 @@ public class NoticeDao {
 
 		ArrayList<Notice> list = new ArrayList<>();
 
-		String query = "SELECT * FROM(SELECT ROWNUM AS rnum, n.* from(SELECT NOTICE_NO, NOTICE_TITLE, NOTICE_CONTENT, NOTICE_WRITER, ENROLL_DATE FROM NOTICE_TBL ORDER BY 1 DESC)n) WHERE rnum BETWEEN ? and ?";
+		String query = "SELECT * FROM(SELECT ROWNUM AS rnum, n.* from(SELECT NOTICE_NO, NOTICE_TITLE, NOTICE_CATEGORY, NOTICE_CONTENT, NOTICE_WRITER, ENROLL_DATE FROM NOTICE_TBL ORDER BY 1 DESC)n) WHERE rnum BETWEEN ? and ?";
 
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -82,6 +82,7 @@ public class NoticeDao {
 				notice.setNoticeNo(rset.getInt("NOTICE_NO"));
 				notice.setNoticeTitle(rset.getString("NOTICE_TITLE"));
 				notice.setNoticeContent(rset.getString("NOTICE_CONTENT"));
+				notice.setNoticeCategory(rset.getString("NOTICE_CATEGORY"));
 				notice.setNoticeWriter(rset.getString("NOTICE_WRITER"));
 				notice.setEnrollDate(rset.getString("ENROLL_DATE"));
 
@@ -173,6 +174,130 @@ public class NoticeDao {
 		}
 
 		return result;
+	}
+
+	public int selectNoticeNoticeCount(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+
+		int totalCount = 0;
+		String query = "SELECT COUNT(*) as cnt FROM NOTICE_TBL WHERE NOTICE_CATEGORY = '공지'";
+
+		try {
+			pstmt = conn.prepareStatement(query);
+			rset = pstmt.executeQuery();
+
+			if (rset.next()) {
+				totalCount = rset.getInt("cnt");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+
+		return totalCount;
+	}
+
+	public ArrayList<Notice> selectNoticeNoticeList(Connection conn, int start, int end) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+
+		ArrayList<Notice> list = new ArrayList<>();
+
+		String query = "SELECT * FROM(SELECT ROWNUM AS rnum, n.* from(SELECT NOTICE_NO, NOTICE_TITLE, NOTICE_CATEGORY, NOTICE_CONTENT, NOTICE_WRITER, ENROLL_DATE FROM NOTICE_TBL WHERE NOTICE_CATEGORY = '공지' ORDER BY 1 DESC)n) WHERE rnum BETWEEN ? and ?";
+
+		try {
+			pstmt = conn.prepareStatement(query);
+
+			pstmt.setInt(1, start);
+			pstmt.setInt(2, end);
+
+			rset = pstmt.executeQuery();
+
+			while (rset.next()) {
+				Notice notice = new Notice();
+
+				notice.setNoticeNo(rset.getInt("NOTICE_NO"));
+				notice.setNoticeTitle(rset.getString("NOTICE_TITLE"));
+				notice.setNoticeContent(rset.getString("NOTICE_CONTENT"));
+				notice.setNoticeCategory(rset.getString("NOTICE_CATEGORY"));
+				notice.setNoticeWriter(rset.getString("NOTICE_WRITER"));
+				notice.setEnrollDate(rset.getString("ENROLL_DATE"));
+
+				list.add(notice);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+
+		return list;
+	}
+
+	public int selectEventNoticeCount(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+
+		int totalCount = 0;
+		String query = "SELECT COUNT(*) as cnt FROM NOTICE_TBL WHERE NOTICE_CATEGORY = '이벤트'";
+
+		try {
+			pstmt = conn.prepareStatement(query);
+			rset = pstmt.executeQuery();
+
+			if (rset.next()) {
+				totalCount = rset.getInt("cnt");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+
+		return totalCount;
+	}
+
+	public ArrayList<Notice> selectEventNoticeList(Connection conn, int start, int end) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+
+		ArrayList<Notice> list = new ArrayList<>();
+
+		String query = "SELECT * FROM(SELECT ROWNUM AS rnum, n.* from(SELECT NOTICE_NO, NOTICE_TITLE, NOTICE_CATEGORY, NOTICE_CONTENT, NOTICE_WRITER, ENROLL_DATE FROM NOTICE_TBL WHERE NOTICE_CATEGORY = '이벤트' ORDER BY 1 DESC)n) WHERE rnum BETWEEN ? and ?";
+
+		try {
+			pstmt = conn.prepareStatement(query);
+
+			pstmt.setInt(1, start);
+			pstmt.setInt(2, end);
+
+			rset = pstmt.executeQuery();
+
+			while (rset.next()) {
+				Notice notice = new Notice();
+
+				notice.setNoticeNo(rset.getInt("NOTICE_NO"));
+				notice.setNoticeTitle(rset.getString("NOTICE_TITLE"));
+				notice.setNoticeContent(rset.getString("NOTICE_CONTENT"));
+				notice.setNoticeCategory(rset.getString("NOTICE_CATEGORY"));
+				notice.setNoticeWriter(rset.getString("NOTICE_WRITER"));
+				notice.setEnrollDate(rset.getString("ENROLL_DATE"));
+
+				list.add(notice);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+
+		return list;
 	}
 
 }

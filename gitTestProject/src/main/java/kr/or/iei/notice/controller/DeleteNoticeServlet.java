@@ -26,6 +26,7 @@ public class DeleteNoticeServlet extends HttpServlet {
 		int noticeNo = Integer.parseInt(request.getParameter("noticeNo"));
 
 		NoticeService service = new NoticeService();
+
 		int result = service.deleteNotice(noticeNo);
 
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");

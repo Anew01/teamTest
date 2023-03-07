@@ -10,8 +10,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
 import kr.or.iei.frip.service.FripService;
 import kr.or.iei.frip.vo.Frip;
+import kr.or.iei.member.service.MemberService;
+import kr.or.iei.member.vo.Member;
 
 /**
  * Servlet implementation class JoinFripServlet
@@ -39,8 +42,9 @@ public class JoinFripServlet extends HttpServlet {
 		
 		FripService fservice = new FripService();
 		Frip f = fservice.selectOneFripByNo(fripNo);
+		String categoryName = request.getParameter("categoryName");
 		ArrayList<Frip> list = fservice.selectAllFrip();
-		
+		MemberService service = new MemberService();
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/frip/checkJoinFrip.jsp");
 		request.setAttribute("f", f);
 		request.setAttribute("list", list);

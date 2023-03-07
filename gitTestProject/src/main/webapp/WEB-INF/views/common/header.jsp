@@ -38,7 +38,7 @@ Member loginMember = (Member) session.getAttribute("m");
 	<div class="header">
 		<div class="header-content-top">
 			<div class="header-logo">
-				<a href="/selectAllFripByCategory.do?categoryName=all"
+				<a href="/selectAllFripByCategory.do?categoryName=ALL"
 					class="homeBtn"><span class="logo-text">Sprip</span></a>
 			</div>
 			<div class="header-searchBar">
@@ -77,7 +77,7 @@ Member loginMember = (Member) session.getAttribute("m");
 	<div class="header-content-bottom">
 		<div class="category-bar">
 			<ul class="category-list">
-				<li><a href="/selectAllFripByCategory.do?categoryName=all"
+				<li><a href="/selectAllFripByCategory.do?categoryName=ALL"
 					id="allBtn"><img src="/categoryImg/ALL.png">
 					<div class="img-text">
 							<span>ALL</span>

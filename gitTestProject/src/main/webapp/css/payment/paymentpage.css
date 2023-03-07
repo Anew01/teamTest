@@ -2,6 +2,9 @@
     width: 1200px;
     margin: 0 auto;
 }
+.material-symbols-rounded{
+	cursor: pointer;
+}
 .contents-bundle{
     display: flex;
     flex-direction: row;
@@ -35,14 +38,17 @@
 .attend-box{
     border: 1px solid rgb(206, 204, 204);
     width: 400px;
-    height: 500px;
+    height: 550px;
     border-radius: 10px;
     margin-left: 100px;
 }
 .title{
     font-size: 25px;
     font-weight: 800;
-    margin-bottom: 60px;
+    margin-bottom: 20px;
+}
+.pay-amount{
+	
 }
 .small-title{
     font-weight: 800;
@@ -69,15 +75,27 @@
 }
 .totalprice{
     font-weight: 900;
+    margin-top: 60px;
+    margin-bottom: 60px;
 }
-#pay{
+.content>#payBtn{
     background-color: #85C88A;
     width: 160px;
     height: 80px;
     border-radius: 5px;
     padding: 10px;
-    margin: 20px;
+	margin-top: 20px;
+    font-size: 15px;
 }
+.pricebox {
+  position: relative;
+  top: 0;
+  left: 0;
+}
+.totalprice{
+	margin-bottom: 20px;
+}
+
 button{
     background-color: #85C88A;
     border: none;
