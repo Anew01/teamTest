@@ -22,6 +22,17 @@ ArrayList<Member> mlist = (ArrayList<Member>)request.getAttribute("mlist");
 <link rel="stylesheet" href="/resources/demos/style.css">
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <!-- <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script> -->
+<style>
+	.photo img:first-child{
+    border-top-left-radius: 100px;
+    border-bottom-left-radius: 100px;
+	}
+	.photo img:last-child{
+    border-top-right-radius: 100px;
+    border-bottom-right-radius: 100px;
+	}
+	
+</style>
 </head>
 <body>
    <%@ include file="/WEB-INF/views/common/header.jsp"%>
@@ -55,9 +66,34 @@ ArrayList<Member> mlist = (ArrayList<Member>)request.getAttribute("mlist");
             </p>
          </div>
          <div class="photo">
-            <a href="#"> <img src="/05_Semi_pj/IMG/한강.png"> <img
-               src="/05_Semi_pj/IMG/한강2.png"> <img src="IMG/한강3.png">
-            </a>
+        	<%if(f.getFilePath().size() >= 3) {%>
+        		<%for(int i=0; i<3; i++){ %>
+            		<img src="/upload/photo/<%=f.getFilePath().get(i)%>">
+            	<%} %>
+            	<%}else if(f.getFilePath().size() == 2){%>
+		           	<img src="/upload/photo/<%=f.getFilePath().get(1)%>"> 
+		           	<img src="/upload/photo/<%=f.getFilePath().get(0)%>">
+		           	<img src="/upload/photo/noImg.gif">
+            	<%}else if(f.getFilePath().size() == 1){%>
+	            	<img src="/upload/photo/noImg.gif">
+	            	<img src="/upload/photo/<%=f.getFilePath().get(0)%>">
+	            	<img src="/upload/photo/noImg.gif">
+            	<%}else if(f.getFilePath().size() < 1){%>
+	            	<img src="/upload/photo/noImg.gif">
+	            	<img src="/upload/photo/noImg.gif">
+	            	<img src="/upload/photo/noImg.gif">
+            	<%} %>
+            	<%--<%if(f.getFilePath().size() != 0) {%>
+        		<%for(int i=0; i<3; i++){ %>
+        			<%if(f.getFilePath().size() != 0){%>
+            		<img src="/upload/photo/<%=f.getFilePath().get(i)%>">
+            		<%} else { %>
+            		<img src="/upload/photo/noImg.gif">
+            	<%} %>
+            	<%} %>
+            	<%}else{ %>
+            	<img src="/upload/photo/noImg.gif">
+            	<%} %> --%>
          </div>
       </div>
    </div>
