@@ -18,6 +18,10 @@
     cursor: pointer;
 }
 
+.table .tr-active {
+    display: table-row;
+}
+
 .table th,
 td {
     padding: 1rem;
@@ -25,21 +29,17 @@ td {
 }
 
 .table th {
-    background-color: #e5f0f9;
-    color: #392f31;
     font-weight: 500;
 }
 
-.table .tr-1 th {
+.table .fripColor {
     background-color: #e5f0f9;
     color: #392f31;
-    font-weight: 500;
 }
 
-.table .tr-2 th {
+.table .feedColor {
     background-color: #b1a5c8;
     color: #f5f5dc;
-    font-weight: 500;
 }
 
 .table td {
@@ -103,6 +103,15 @@ td {
     font-size: 12px;
     line-height: 16px;
     cursor: pointer;
+}
+
+.table .notice-content {
+    display: none;
+    min-height: 84px;
+    background-color: rgb(239, 247, 255);
+    color: rgb(74, 74, 74);
+    font-size: 14px;
+    line-height: 24px;
 }
 
 .chageLevel:hover {

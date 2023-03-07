@@ -31,7 +31,7 @@
                                                     </div>
                                                     <div>
                                                         <table class="table">
-                                                            <tr class="tr-1">
+                                                            <tr class="tr-1 fripColor">
                                                                 <th>선택</th>
                                                                 <th>번호</th>
                                                                 <th>작성자</th>
@@ -53,7 +53,9 @@
                                                                         <td>
                                                                             <%=frip.getFripWriter() %>
                                                                         </td>
-                                                                        <td class="frip-no"><%=frip.getFripNo() %></td>
+                                                                        <td class="frip-no">
+                                                                            <%=frip.getFripNo() %>
+                                                                        </td>
                                                                         <td>
                                                                             <%=frip.getFripTitle() %>
                                                                         </td>
@@ -95,7 +97,7 @@
                                                     </div>
                                                     <div>
                                                         <table class="table">
-                                                            <tr class="tr-2">
+                                                            <tr class="tr-1 feedColor">
                                                                 <th>선택</th>
                                                                 <th>번호</th>
                                                                 <th>프립</th>
@@ -105,14 +107,18 @@
                                                             </tr>
                                                             <%for(int i=0; i < feeds.size(); i++) {%>
                                                                 <%Feed feed=feeds.get(i);%>
-                                                                    <tr>
+                                                                    <tr class="tr-2 feedView">
                                                                         <td><input type="checkbox" class="chk feedChk">
                                                                         </td>
                                                                         <td>
                                                                             <%=i+feedStart %>
                                                                         </td>
-                                                                        <td class="feed-no"><%=feed.getFeedNo() %></td>
-                                                                        <td><%=feed.getFripTitle() %></td>
+                                                                        <td class="feed-no">
+                                                                            <%=feed.getFeedNo() %>
+                                                                        </td>
+                                                                        <td>
+                                                                            <%=feed.getFripTitle() %>
+                                                                        </td>
                                                                         <td>
                                                                             <%=feed.getFeedWriter() %>
                                                                         </td>
@@ -121,6 +127,11 @@
                                                                         </td>
                                                                         <td><button
                                                                                 class="btc bc33 btn withdrawal feedDelete">삭제</button>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="notice-content">
+                                                                        <td colspan="7">
+                                                                            <%=feed.getFeedContent() %>
                                                                         </td>
                                                                     </tr>
                                                                     <%} %>
@@ -225,6 +236,10 @@
                                                 const fripNo = $(this).children().eq(3).text();
 
                                                 location.href = "/joinFrip.do?fripNo=" + fripNo;
+                                            });
+
+                                            $(".feedView").on("click", function () {
+                                                $(this).next().toggle("tr-active");
                                             });
                                         </script>
                                         <script src="/js/adminPage/sidebar.js"></script>

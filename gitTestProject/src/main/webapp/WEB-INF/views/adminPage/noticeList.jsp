@@ -60,12 +60,7 @@
                                                             <td colspan="7">
                                                                 <%=notice.getNoticeContent() %>
                                                             </td>
-                                                        </tr>
-                                                        <tr class="notice-content">
-                                                            <td colspan="7">
-                                                                <%=notice.getNoticeContent() %>
-                                                            </td>
-                                                        </tr>
+                                                        </tr>                                                     
                                                         <%} %>
                                             </table>
                                             <div id="pageNavi">
