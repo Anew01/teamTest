@@ -33,7 +33,7 @@ public class MapServlet extends HttpServlet {
 		//2. 값추출
 		//3. 비즈니스로직
 		//4. 결과처리
-		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/api/map.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/frip/checkJoinFrip.jsp");
 		view.forward(request, response);
 	}
 

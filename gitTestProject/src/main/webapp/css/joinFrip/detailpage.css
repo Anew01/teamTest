@@ -37,10 +37,10 @@ a{
 .small-title{
     font-size: 20px;
     font-weight: 600;
+    margin-bottom: 20px;
 }
 .show-rating{
     margin-bottom: 20px;
-   
 }
 .photo img{
     width: 280px;
@@ -112,11 +112,12 @@ a{
     overflow: hidden;
 }
 .contents-left{
+	padding: 30px;
     float:left;
 }
 .contents-right{
     float:right;
-    padding: 20px 100px 20px 0px;
+    padding: 30px 100px 30px 0px;
 }
 .button-area{
     clear:left;
@@ -137,7 +138,17 @@ a{
 }
 .attend-number{
     pointer:cursor;
+	font-size: 12px;
+	font-weight: 200;
+	color: darkgrey;
 }
+#datePicker{
+	pointer:cursor;
+	font-size: 15px;
+	font-weight: 200;
+	text-align: center;
+}
+
 .material-symbols-rounded {
     font-variation-settings:
     'FILL' 1,
@@ -149,6 +160,11 @@ a{
     background-color: #007bff;
     color: #ffffff;
  }
+
+
+.map{
+	margin-top:20px;
+}
 
 
 /*호스트에게 연락하기 모달창*/
