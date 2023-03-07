@@ -87,4 +87,23 @@ public class FeedDao {
 		return list;
 	}
 
+	public int firstFeed(Connection conn, int fripNo, String feedWriter) {
+		PreparedStatement pstmt = null; 
+		int result = 0;
+		String query = "INSERT INTO FEED_TBL VALUES(FEED_TBL_SEQ.NEXTVAL, ?, ?, 'sprip',null,null,null, TO_CHAR(SYSDATE, 'YYYY-MM-DD'))";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, feedWriter);
+			pstmt.setInt(2, fripNo);
+			System.out.println("feedDao에서 feedWriter 값 : "+feedWriter);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+
 }
