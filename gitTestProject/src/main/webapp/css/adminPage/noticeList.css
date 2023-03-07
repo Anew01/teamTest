@@ -22,6 +22,10 @@
     cursor: pointer;
 }
 
+.table .tr-active {
+    display: table-row;
+}
+
 .table th,
 td {
     padding: 1rem;

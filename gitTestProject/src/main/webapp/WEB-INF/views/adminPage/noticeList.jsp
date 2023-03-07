@@ -52,7 +52,9 @@
                                                             <td>
                                                                 <button type="button" class="btn delete-btn">삭제</button>
                                                             </td>
-                                                            <td class="notice-No"><%=notice.getNoticeNo() %></td>
+                                                            <td class="notice-No">
+                                                                <%=notice.getNoticeNo() %>
+                                                            </td>
                                                         </tr>
                                                         <tr class="notice-content">
                                                             <td colspan="7">
@@ -76,7 +78,7 @@
                             </div>
                             <script>
                                 $(".notice-content-view").on("click", function () {
-                                    $(this).next().css("display", "table-row");
+                                    $(this).next().toggle("tr-active");
                                 });
 
                                 $(".upadte-btn").on("click", function () {
