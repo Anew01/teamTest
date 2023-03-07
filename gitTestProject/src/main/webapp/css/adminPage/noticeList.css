@@ -18,6 +18,10 @@
     height: 90px;
 }
 
+.table .tr-2 {
+    cursor: pointer;
+}
+
 .table th,
 td {
     padding: 1rem;

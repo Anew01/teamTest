@@ -33,14 +33,12 @@
                                                 </tr>
                                                 <%for(int i=0; i<list.size(); i++){ %>
                                                     <%Notice notice=list.get(i); %>
-                                                        <tr class="tr-2">
+                                                        <tr class="tr-2 notice-content-view">
                                                             <td>
                                                                 <%=i+start %>
                                                             </td>
                                                             <td>
-                                                                <a href="#" class="notice-content-view">
-                                                                    <%=notice.getNoticeTitle() %>
-                                                                </a>
+                                                                <%=notice.getNoticeTitle() %>
                                                             </td>
                                                             <td>
                                                                 <%=notice.getNoticeWriter() %>
@@ -61,6 +59,11 @@
                                                                 <%=notice.getNoticeContent() %>
                                                             </td>
                                                         </tr>
+                                                        <tr class="notice-content">
+                                                            <td colspan="7">
+                                                                <%=notice.getNoticeContent() %>
+                                                            </td>
+                                                        </tr>
                                                         <%} %>
                                             </table>
                                             <div id="pageNavi">
@@ -73,7 +76,7 @@
                             </div>
                             <script>
                                 $(".notice-content-view").on("click", function () {
-                                    $(this).parent().parent().next().css("display", "table-row");
+                                    $(this).next().css("display", "table-row");
                                 });
 
                                 $(".upadte-btn").on("click", function () {
