@@ -31,8 +31,8 @@
                                 </div>
                                 <div class="input-wrap">
                                     <label for="memberId">아이디</label>
-                                    <input type="text" name="memberId" id="memberId" class="input-form" value="<%=loginMember.getMemberId() %>"
-                                        readonly>
+                                    <input type="text" name="memberId" id="memberId" class="input-form"
+                                        value="<%=loginMember.getMemberId() %>" readonly>
                                 </div>
                                 <div class="input-wrap">
                                     <label for="memberPw">비밀번호</label>
@@ -41,8 +41,8 @@
                                 </div>
                                 <div class="input-wrap">
                                     <label for="memberName">이름</label>
-                                    <input type="text" name="memberName" id="memberName" class="input-form" value="<%=loginMember.getMemberName() %>"
-                                        disabled>
+                                    <input type="text" name="memberName" id="memberName" class="input-form"
+                                        value="<%=loginMember.getMemberName() %>" disabled>
                                 </div>
                                 <div class="input-wrap">
                                     <label for="memberPhone">전화번호</label>
@@ -51,7 +51,8 @@
                                 </div>
                                 <div class="input-wrap">
                                     <label for="memberAddr">주소</label>
-                                    <input type="text" name="memberAddr" id="memberAddr" class="input-form" value="<%=loginMember.getMemberAddr() %>">
+                                    <input type="text" name="memberAddr" id="memberAddr" class="input-form"
+                                        value="<%=loginMember.getMemberAddr() %>">
                                 </div>
                                 <div class="input-wrap">
                                     <label for="memberLevel">등급</label>
@@ -66,8 +67,12 @@
                                 <div class="input-wrap">
                                     <label for="memberIntro">관리자 소개</label>
                                     <textarea name="memberIntro" id="memberIntro" cols="132" rows="20"
-                                        style="resize: none;">                               
-                                        <%=loginMember.getMemberIntro() %>       
+                                        style="resize: none;">
+                                     <%if(loginMember.getMemberIntro() == null) {%>
+관리자는 소개를 꼭 작성해주세요.
+                                     <%} else {%>
+<%=loginMember.getMemberIntro() %>
+                                     <%} %>              
                                         </textarea>
                                 </div>
                                 <div class="btn-box">

@@ -1,4 +1,4 @@
-package kr.or.iei.api.controller;
+
 
 import java.io.IOException;
 
@@ -10,16 +10,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class MapServlet
+ * Servlet implementation class FindPwServlet
  */
-@WebServlet(name = "Map", urlPatterns = { "/map.do" })
-public class MapServlet extends HttpServlet {
+@WebServlet(name = "FindPw", urlPatterns = { "/findPw.do" })
+public class FindPwServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MapServlet() {
+    public FindPwServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,17 +28,17 @@ public class MapServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//1. 인코딩
-		request.setCharacterEncoding("utf-8");
-		//2. 값추출
-		//3. 비즈니스로직
-		//4. 결과처리
-		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/frip/checkJoinFrip.jsp");
-		view.forward(request, response);
+		//1.인코딩
+				request.setCharacterEncoding("utf-8");
+				//2.값추출
+				//3.비즈니스로직
+				//4.결과처리
+				RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/member/findPw.jsp");
+				view.forward(request, response);
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServleitResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub

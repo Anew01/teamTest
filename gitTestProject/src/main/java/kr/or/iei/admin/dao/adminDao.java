@@ -20,7 +20,7 @@ public class adminDao {
 
 		ArrayList<Member> list = new ArrayList<Member>();
 
-		String query = "SELECT * FROM(SELECT ROWNUM AS rnum, n.* FROM (SELECT MEMBER_NO, MEMBER_ID, MEMBER_PW, MEMBER_NAME, MEMBER_ADDR, MEMBER_PHONE, MEMBER_GENDER, MEMBER_LEVEL, ENROLL_DATE FROM MEMBER_TBL ORDER BY 1 DESC) n) WHERE rnum BETWEEN ? and ?";
+		String query = "SELECT * FROM(SELECT ROWNUM AS rnum, n.* FROM (SELECT MEMBER_NO, MEMBER_ID, MEMBER_PW, MEMBER_NAME, NVL(MEMBER_ADDR, '없음') AS NVLADDR, NVL(MEMBER_PHONE, '없음') AS NVLPHONE, NVL(MEMBER_GENDER, '없음') AS NVLGENDER, MEMBER_LEVEL, ENROLL_DATE FROM MEMBER_TBL ORDER BY 1 DESC) n) WHERE rnum BETWEEN ? and ?";
 
 		try {
 			preparedStatement = connection.prepareStatement(query);
@@ -37,9 +37,9 @@ public class adminDao {
 				member.setMemberId(resultSet.getString("MEMBER_ID"));
 				member.setMemberPw(resultSet.getString("MEMBER_PW"));
 				member.setMemberName(resultSet.getString("MEMBER_NAME"));
-				member.setMemberAddr(resultSet.getString("MEMBER_ADDR"));
-				member.setMemberPhone(resultSet.getString("MEMBER_PHONE"));
-				member.setMemberGender(resultSet.getString("MEMBER_GENDER"));
+				member.setMemberAddr(resultSet.getString("NVLADDR"));
+				member.setMemberPhone(resultSet.getString("NVLPHONE"));
+				member.setMemberGender(resultSet.getString("NVLGENDER"));
 				member.setMemberLevel(resultSet.getInt("MEMBER_LEVEL"));
 				member.setEnrollDate(resultSet.getString("ENROLL_DATE"));
 
@@ -161,7 +161,7 @@ public class adminDao {
 
 		ArrayList<Frip> frips = new ArrayList<Frip>();
 
-		String query = "SELECT * FROM(SELECT ROWNUM AS rnum, n.* FROM (SELECT FRIP_NO, FRIP_WRITER, FRIP_AUTH, FRIP_TITLE, FRIP_ADDR, FRIP_LEVEL, FRIP_PRICE, WRITE_DATE FROM FRIP_TBL ORDER BY 1 DESC) n) WHERE rnum BETWEEN ? and ?";
+		String query = "SELECT * FROM(SELECT ROWNUM AS rnum, n.* FROM (SELECT FRIP_NO, FRIP_WRITER, FRIP_AUTH, FRIP_TITLE, FRIP_ADDR, NVL(FRIP_LEVEL, '없음') AS NVLFRIP, FRIP_PRICE, WRITE_DATE FROM FRIP_TBL ORDER BY 1 DESC) n) WHERE rnum BETWEEN ? and ?";
 
 		try {
 			preparedStatement = connection.prepareStatement(query);
@@ -179,7 +179,7 @@ public class adminDao {
 				frip.setFripAuth(resultSet.getString("FRIP_AUTH"));
 				frip.setFripTitle(resultSet.getString("FRIP_TITLE"));
 				frip.setFripAddr(resultSet.getString("FRIP_ADDR"));
-				frip.setFripLevel(resultSet.getString("FRIP_LEVEL"));
+				frip.setFripLevel(resultSet.getString("NVLFRIP"));
 				frip.setFripPrice(resultSet.getInt("FRIP_PRICE"));
 				frip.setWriteDate(resultSet.getString("WRITE_DATE"));
 
@@ -202,7 +202,7 @@ public class adminDao {
 
 		ArrayList<Feed> feeds = new ArrayList<Feed>();
 
-		String query = "SELECT * FROM(SELECT ROWNUM AS rnum, n.* FROM (SELECT FEED_NO, FRIP_NO, FEED_WRITER, WRITE_DATE FROM FEED_TBL ORDER BY 1 DESC) n) WHERE rnum BETWEEN ? and ?";
+		String query = "SELECT * FROM(SELECT ROWNUM AS rnum, n.* FROM (SELECT FEED_NO, FRIP_TITLE, FEED_WRITER, FEED_TBL.WRITE_DATE FROM FEED_TBL JOIN FRIP_TBL USING(FRIP_NO) ORDER BY 1 DESC) n) WHERE rnum BETWEEN ? and ?";
 
 		try {
 			preparedStatement = connection.prepareStatement(query);
@@ -216,9 +216,9 @@ public class adminDao {
 				Feed feed = new Feed();
 
 				feed.setFeedNo(resultSet.getInt("FEED_NO"));
-				feed.setFripNo(resultSet.getInt("FRIP_NO"));
 				feed.setFeedWriter(resultSet.getString("FEED_WRITER"));
 				feed.setWriteDate(resultSet.getString("WRITE_DATE"));
+				feed.setFripTitle(resultSet.getString("FRIP_TITLE"));
 
 				feeds.add(feed);
 			}

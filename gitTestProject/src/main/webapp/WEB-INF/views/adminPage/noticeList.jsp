@@ -33,14 +33,12 @@
                                                 </tr>
                                                 <%for(int i=0; i<list.size(); i++){ %>
                                                     <%Notice notice=list.get(i); %>
-                                                        <tr class="tr-2">
+                                                        <tr class="tr-2 notice-content-view">
                                                             <td>
                                                                 <%=i+start %>
                                                             </td>
                                                             <td>
-                                                                <a href="#" class="notice-content-view">
-                                                                    <%=notice.getNoticeTitle() %>
-                                                                </a>
+                                                                <%=notice.getNoticeTitle() %>
                                                             </td>
                                                             <td>
                                                                 <%=notice.getNoticeWriter() %>
@@ -54,7 +52,14 @@
                                                             <td>
                                                                 <button type="button" class="btn delete-btn">삭제</button>
                                                             </td>
-                                                            <td class="notice-No"><%=notice.getNoticeNo() %></td>
+                                                            <td class="notice-No">
+                                                                <%=notice.getNoticeNo() %>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="notice-content">
+                                                            <td colspan="7">
+                                                                <%=notice.getNoticeContent() %>
+                                                            </td>
                                                         </tr>
                                                         <tr class="notice-content">
                                                             <td colspan="7">
@@ -73,7 +78,7 @@
                             </div>
                             <script>
                                 $(".notice-content-view").on("click", function () {
-                                    $(this).parent().parent().next().css("display", "table-row");
+                                    $(this).next().toggle("tr-active");
                                 });
 
                                 $(".upadte-btn").on("click", function () {

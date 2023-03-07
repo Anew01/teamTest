@@ -35,8 +35,12 @@
 			<%=f.getFripTitle() %><span> > 스프립에 대한 피드작성</span>
 		</div>
 		<div class="choiceFripImg">
+			<%if(f.getFilePath().size() != 0) {%>
 			<%String filePath = f.getFilePath().get(0); %>
 			<img src="/upload/photo/<%=filePath %>" style="width:300px; height:300px;">
+			<%} else {%>
+			<img src="/upload/photo/noImg.gif >" style="width:300px; height:300px;">
+			<%} %>
 		</div>
 		<div class="rating">
 			<div>

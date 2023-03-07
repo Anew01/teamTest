@@ -49,6 +49,7 @@
 									placeholder="비밀번호를 입력해주세요." onfocus="this.placeholder=''"
 									onblur="this.placeholder='비밀번호를 입력해주세요.'" required>
 							</div>
+							<span id="pwChk"></span>
 						</div>
 						<div class="join-input-wrap">
 							<div>
@@ -108,10 +109,6 @@
 							</div>
 						</div>
 						<h3 class="title">이용약관 확인 및 동의</h3>
-						<div>
-							<input type="checkbox" id="allAgreement"> <label
-								for="allAgreement">이용약관 전체체크</label>
-						</div>
 						<div class="agreebox">
 							<div>
 								<input type="checkbox" id="privacyAgreement" class="agreeCheck">
@@ -124,25 +121,12 @@
 										<li>보유 및 이용기간 : 회원탈퇴 시 까지</li>
 									</ul>
 								</div>
-							</div>
-						</div>
-						<div class="agreebox">
-							<div>
-								<input type="checkbox" id="optionalAgreement" class="agreeCheck">
-								<label for="optionalAgreement">개인정보 수집 및 이용에 동의 <span
-									class="fc-blue">(선택)</span></label>
-								<div class="agreeContent">
-									<ul>
-										<li>수집항목 : 이름, 휴대전화번호, 생년월일, 비밀번호</li>
-										<li>수집·이용목적 : 회원제 서비스 제공</li>
-										<li>보유 및 이용기간 : 회원탈퇴 시 까지</li>
-									</ul>
-								</div>
+								<span class="chkMsg">이용약관 동의가 필요합니다.</span>
 							</div>
 						</div>
 					</div>
 					<div class="join-btn-wrap">
-						<input type="submit" value="회원가입" onsubmit="checkAuth();">
+						<input type="submit" value="회원가입" onclick="return checkAuth();" required>
 					</div>
 				</form>
 			</div>
@@ -150,6 +134,7 @@
 	</div>
 	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
 	<script>
+	<%-- 주소찾기 api --%>
 		function searchAddr() {
 			new daum.Postcode({
 				oncomplete : function(data) {
@@ -158,7 +143,9 @@
 			}).open();
 		}
 	<%-- 이메일 인증하기 --%>
+	
 		let mailCode;
+		
 		$("#auth-btn").on("click", function() {
 			const email = $("#memberId").val();
 			$("#timeZone").html("");
@@ -176,7 +163,6 @@
 						alert("이메일 주소를 확인해주세요.");
 					} else {
 						mailCode = data;
-	<%-- $("#auth").slideDown(); --%>
 		authTime();
 					}
 
@@ -235,6 +221,7 @@
 					$("#authMsg").text("인증완료");
 					$("#authMsg").css("color", "blue");
 					window.clearInterval(intervalId);
+					$("#timeZone").hide();
 
 				} else {
 					$("#authMsg").text("인증실패");
@@ -242,15 +229,44 @@
 				}
 			}
 		});
-
+		
+		
+	<%-- 이메일 인증완료, 비밀번호 일치, 이용약관 동의해야  submit가능--%>
+	
+	$(".chkMsg").hide();
 		function checkAuth() {
-			if ($("#authMsg").text("인증완료")) {
+			if ($("#authMsg").text("인증완료") && $("#pwChk").text("비밀번호가 일치합니다.") && $('#privacyAgreement').is(':checked')) {
+				
 				return true;
+				
 			} else {
+				if(!($("#privacyAgreement").is(":checked"))){
+					$(".chkMsg").show();
+					$(".chkMsg").css("color", "red");
+				}
 				return false;
 			}
 
 		};
+		
+		
+		
+	<%-- 비밀번호 일치 확인 --%>
+		$("#pwre").on("keyup",function(){
+		    const pwValue = $("#memberPw").val();
+		    const pwReValue = $(this).val();
+		    if(pwValue==pwReValue){
+		        $("#pwChk").css("color", "blue");
+		        $("#pwChk").text("비밀번호가 일치합니다.");
+		        result[1] = true;
+		    }
+		    else{
+		        $("#pwChk").css("color", "red");
+		        $("#pwChk").text("비밀번호가 일치하지 않습니다.");
+		        result[1] = false;
+		    }
+		});
+		
 	</script>
 
 </body>

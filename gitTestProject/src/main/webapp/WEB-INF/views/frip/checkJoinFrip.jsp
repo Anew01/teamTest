@@ -22,9 +22,13 @@ ArrayList<Member> mlist = (ArrayList<Member>)request.getAttribute("mlist");
 <link rel="stylesheet" href="/resources/demos/style.css">
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <!-- <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script> -->
+ <!--카카오 지도 API-->
+   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=47b529e9eac0ea1c6c378c29238f4160"></script>
 </head>
 <body>
    <%@ include file="/WEB-INF/views/common/header.jsp"%>
+   <%--지도주소용 변수 --%>
+   <input type="hidden" name="addr" id="addr" value="<%=f.getFripAddr()%>">
    <input type="hidden" name="maxCnt"
       value=<%=f.getJoinableDates().get(0).getMaxCount()%>>
    <input type="hidden" id="strDate"
@@ -55,9 +59,23 @@ ArrayList<Member> mlist = (ArrayList<Member>)request.getAttribute("mlist");
             </p>
          </div>
          <div class="photo">
-            <a href="#"> <img src="/05_Semi_pj/IMG/한강.png"> <img
-               src="/05_Semi_pj/IMG/한강2.png"> <img src="IMG/한강3.png">
-            </a>
+        	<%if(f.getFilePath().size() >= 3) {%>
+        		<%for(int i=0; i<3; i++){ %>
+            		<img src="/upload/photo/<%=f.getFilePath().get(i)%>">
+            	<%} %>
+            	<%}else if(f.getFilePath().size() == 2){%>
+		           	<img src="/upload/photo/<%=f.getFilePath().get(1)%>"> 
+		           	<img src="/upload/photo/<%=f.getFilePath().get(0)%>">
+		           	<img src="/upload/photo/no-photo.png">
+            	<%}else if(f.getFilePath().size() == 1){%>
+	            	<img src="/upload/photo/no-photo.png">
+	            	<img src="/upload/photo/<%=f.getFilePath().get(0)%>">
+	            	<img src="/upload/photo/no-photo.png">
+            	<%}else if(f.getFilePath().size() < 1){%>
+	            	<img src="/upload/photo/noImg.gif">
+	            	<img src="/upload/photo/noImg.gif">
+	            	<img src="/upload/photo/noImg.gif">
+            	<%} %>
          </div>
       </div>
    </div>
@@ -123,7 +141,7 @@ ArrayList<Member> mlist = (ArrayList<Member>)request.getAttribute("mlist");
                   <div class="select-box right">
                      <div class="guest-number">인원</div>
                      <select class="attend-number" id="select" name="attendNumber">
-                        <option >참여자 수</option>
+                        <option>날짜 설정 후 선택 해주세요</option>
                      </select>
                   </div>
                   <div class="check">
@@ -139,13 +157,12 @@ ArrayList<Member> mlist = (ArrayList<Member>)request.getAttribute("mlist");
       </div>
    </div>
    <div class="content">
-      <div class="small-title">방문장소</div>
-      <div class="map">
-         <img src="/05_Semi_pj/IMG/네이버맵.jpg">
-      </div>
+      <div class="small-title">방문 장소</div>
+      <div id="map" style="width:100%; height: 500px;"></div>
+	</div>
    </div>
    <!-- 여기부터 피드를 위한 코드작성 충돌방지 용 주석 -->
-   <a href="/insertFeedFrm.do?fripNo=<%=f.getFripNo()%>">피드작성</a>
+   <a href="/insertFeedFrm.do?fripNo=<%=f.getFripNo()%>&feedWriter=<%=loginMember.getMemberId()%>">피드작성</a>
    <script src="https://cdn.jsdelivr.net/npm/gijgo@1.9.14/js/gijgo.min.js"></script>
    <link
       href="https://cdn.jsdelivr.net/npm/gijgo@1.9.14/css/gijgo.min.css"
@@ -207,9 +224,45 @@ ArrayList<Member> mlist = (ArrayList<Member>)request.getAttribute("mlist");
             }
          });
       }
+      //카카오 지도 API
+  	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+    mapOption = {
+        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+        level: 3 // 지도의 확대 레벨
+    };  
+
+// 지도를 생성합니다    
+var map = new kakao.maps.Map(mapContainer, mapOption); 
+
+// 주소-좌표 변환 객체를 생성합니다
+var geocoder = new kakao.maps.services.Geocoder();
+// 주소로 좌표를 검색합니다
+geocoder.addressSearch('<%=f.getFripAddr()%>', function(result, status) {
+
+
+    // 정상적으로 검색이 완료됐으면 
+     if (status === kakao.maps.services.Status.OK) {
+
+        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+        // 결과값으로 받은 위치를 마커로 표시합니다
+        var marker = new kakao.maps.Marker({
+            map: map,
+            position: coords
+        });
+
+        // 인포윈도우로 장소에 대한 설명을 표시합니다
+        var infowindow = new kakao.maps.InfoWindow({
+            content: '<div style="width:150px;text-align:center;padding:6px 0;">우리회사</div>'
+        });
+        infowindow.open(map, marker);
+
+        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+        map.setCenter(coords);
+    } 
+});    
    </script>
-</body>
-</html>
+   
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>
 </body>
 </html>

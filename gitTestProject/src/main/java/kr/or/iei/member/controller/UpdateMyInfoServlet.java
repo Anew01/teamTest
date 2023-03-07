@@ -40,6 +40,7 @@ public class UpdateMyInfoServlet extends HttpServlet {
 		member.setMemberPw(request.getParameter("memberPw"));
 		member.setMemberPhone(request.getParameter("memberPhone"));
 		member.setMemberAddr(request.getParameter("memberAddr"));
+		member.setMemberAddrDetail(request.getParameter("memberAddrDetail"));
 		//3.비즈니스로직
 		MemberService service = new MemberService();
 		int result = service.updateMember(member);
@@ -50,6 +51,7 @@ public class UpdateMyInfoServlet extends HttpServlet {
 			m.setMemberPw(member.getMemberPw());
 			m.setMemberPhone(member.getMemberPhone());
 			m.setMemberAddr(member.getMemberAddr());
+			m.setMemberAddr(member.getMemberAddrDetail());
 			
 			request.setAttribute("title", "변경성공");
 			request.setAttribute("msg", "정보가 성공적으로 변경되었습니다.");

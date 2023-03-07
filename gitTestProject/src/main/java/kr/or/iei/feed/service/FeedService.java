@@ -70,6 +70,18 @@ public class FeedService {
 	public int insertFeed(String feedWriter, String feedContent, int fripNo, int fdNo) {
 		Connection conn = JDBCTemplate.getConnection();
 		int result = dao.insertFeedComment(conn, feedWriter, feedContent, fripNo, fdNo);
+			if(result > 0) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
+
+	public int firstFeed(int fripNo, String feedWriter) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.firstFeed(conn, fripNo, feedWriter);
 		if(result > 0) {
 			JDBCTemplate.commit(conn);
 		} else {
@@ -79,3 +91,5 @@ public class FeedService {
 		return result;
 	}
 }
+
+
