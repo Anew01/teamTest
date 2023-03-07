@@ -24,7 +24,7 @@ ArrayList<Member> mlist = (ArrayList<Member>)request.getAttribute("mlist");
 <!-- <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script> -->
 
  <!--카카오 지도 API-->
-   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=47b529e9eac0ea1c6c378c29238f4160"></script>
+   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=47b529e9eac0ea1c6c378c29238f4160&libraries=services"></script>
 </head>
 <body>
    <%@ include file="/WEB-INF/views/common/header.jsp"%>
@@ -112,16 +112,13 @@ ArrayList<Member> mlist = (ArrayList<Member>)request.getAttribute("mlist");
                있습니다. ✔ 고려대 바이오향료공학 석사 ✔ 프랑스 gip 국제과정 수료 ✔ 기업 향기 마케팅 컨설팅 진행 ✔ 셀러브리티
                향수 출시 ✔ 관공서, 백화점, 기업 등 퍼퓸클래스 진행</div>
             <div>
-               <button class="contact-host" id="jsBtn" onclick="init()">호스트에게
-                  연락</button>
+               <button class="contact-host" id="jsBtn" onclick="init()">호스트에게 연락</button>
             </div>
          </div>
       </div>
       <div class="contents-right">
          <div class="attend-box">
-            <div class="small-title">
-               최저가 ₩<span><%=f.getFripPrice() %></span>/인
-            </div>
+            <div class="small-title"> 최저가 ₩<span><%=f.getFripPrice() %></span>/인 </div>
             <form action="/payment.do" method="get">
                <div class="attend-info">
                   <div class="select-box left">
@@ -254,7 +251,7 @@ geocoder.addressSearch('<%=f.getFripAddr()%>', function(result, status) {
 
         // 인포윈도우로 장소에 대한 설명을 표시합니다
         var infowindow = new kakao.maps.InfoWindow({
-            content: '<div style="width:150px;text-align:center;padding:6px 0;">우리회사</div>'
+            content: '<div style="width:150px;text-align:center;padding:6px 0;">Sprip!</div>'
         });
         infowindow.open(map, marker);
 
