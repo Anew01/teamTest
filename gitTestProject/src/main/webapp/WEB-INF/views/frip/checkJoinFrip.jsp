@@ -22,6 +22,11 @@ ArrayList<Member> mlist = (ArrayList<Member>)request.getAttribute("mlist");
 <link rel="stylesheet" href="/resources/demos/style.css">
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <!-- <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script> -->
+
+ <!--카카오 지도 API-->
+   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=47b529e9eac0ea1c6c378c29238f4160"></script>
+    
+
 </head>
 <body>
    <%@ include file="/WEB-INF/views/common/header.jsp"%>
@@ -123,7 +128,7 @@ ArrayList<Member> mlist = (ArrayList<Member>)request.getAttribute("mlist");
                   <div class="select-box right">
                      <div class="guest-number">인원</div>
                      <select class="attend-number" id="select" name="attendNumber">
-                        <option >참여자 수</option>
+                        <option>날짜 설정 후 선택 해주세요</option>
                      </select>
                   </div>
                   <div class="check">
@@ -139,10 +144,9 @@ ArrayList<Member> mlist = (ArrayList<Member>)request.getAttribute("mlist");
       </div>
    </div>
    <div class="content">
-      <div class="small-title">방문장소</div>
-      <div class="map">
-         <img src="/05_Semi_pj/IMG/네이버맵.jpg">
-      </div>
+      <div class="small-title">방문 장소</div>
+      <div id="map" style="width:100%; height: 500px;"></div>
+	</div>
    </div>
    <!-- 여기부터 피드를 위한 코드작성 충돌방지 용 주석 -->
    <a href="/insertFeedFrm.do?fripNo=<%=f.getFripNo()%>">피드작성</a>
@@ -207,9 +211,15 @@ ArrayList<Member> mlist = (ArrayList<Member>)request.getAttribute("mlist");
             }
          });
       }
+      //카카오 지도 API
+  		var container = document.getElementById('map');
+		var options = {
+			center: new kakao.maps.LatLng(33.450701, 126.570667),
+			level: 3
+		};
+		var map = new kakao.maps.Map(container, options);
    </script>
-</body>
-</html>
+   
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>
 </body>
 </html>
