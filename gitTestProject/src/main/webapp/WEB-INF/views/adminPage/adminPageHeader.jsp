@@ -31,7 +31,7 @@
                             </div>
                             <ul>
                                 <li><a href="#"><i class="fa-solid fa-user"></i></a></li>
-                                <li><a href="/allCategory.do"><i class="fa-solid fa-right-from-bracket"></i></a></li>
+                                <li><a href="/selectAllFripByCategory.do?categoryName=main"><i class="fa-solid fa-right-from-bracket"></i></a></li>
                             </ul>
                         </div>
                     </div>
