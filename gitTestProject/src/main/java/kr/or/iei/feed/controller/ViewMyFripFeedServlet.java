@@ -3,6 +3,7 @@ package kr.or.iei.feed.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import kr.or.iei.feed.service.FeedService;
 import kr.or.iei.feed.vo.Feed;
+import kr.or.iei.feed.vo.ViewFripFeedData;
 
 /**
  * Servlet implementation class ViewMyFripFeedServlet
@@ -34,7 +36,10 @@ public class ViewMyFripFeedServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		int fripNo = Integer.parseInt(request.getParameter("fripNo"));
 		FeedService service = new FeedService();
-		ArrayList<Feed> list = service.selectAllMyFripFeed(fripNo);
+		ArrayList<ViewFripFeedData> list = service.selectAllMyFripFeed(fripNo);
+		RequestDispatcher view = request.getRequestDispatcher("WEB-INF/views/feed/myFeedList.jsp");
+		request.setAttribute("list", list);
+		view.forward(request, response);
 	}
 
 	/**
