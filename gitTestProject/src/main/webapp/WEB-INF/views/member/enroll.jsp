@@ -49,6 +49,7 @@
 									placeholder="비밀번호를 입력해주세요." onfocus="this.placeholder=''"
 									onblur="this.placeholder='비밀번호를 입력해주세요.'" required>
 							</div>
+							<span id="pwChk"></span>
 						</div>
 						<div class="join-input-wrap">
 							<div>
@@ -244,13 +245,36 @@
 		});
 
 		function checkAuth() {
-			if ($("#authMsg").text("인증완료")) {
+			if ($("#authMsg").text("인증완료") && $("#pwChk").text("비밀번호가 일치합니다.")) {
 				return true;
 			} else {
 				return false;
 			}
 
 		};
+		
+		$("#pwre").on("keyup",function(){
+		    const pwValue = $("#memberPw").val();
+		    const pwReValue = $(this).val();
+		    if(pwValue==pwReValue){
+		        $("#pwChk").css("color", "blue");
+		        $("#pwChk").text("비밀번호가 일치합니다.");
+		        result[1] = true;
+		    }
+		    else{
+		        $("#pwChk").css("color", "red");
+		        $("#pwChk").text("비밀번호가 일치하지 않습니다.");
+		        result[1] = false;
+		    }
+		});
+		
+		$("#allAgreement").on("change", function () {
+		    
+		        $("[type=checkbox]:checked");
+		    
+		   
+		});
+		
 	</script>
 
 </body>
