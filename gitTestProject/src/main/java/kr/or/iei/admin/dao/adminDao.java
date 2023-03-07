@@ -202,7 +202,7 @@ public class adminDao {
 
 		ArrayList<Feed> feeds = new ArrayList<Feed>();
 
-		String query = "SELECT * FROM(SELECT ROWNUM AS rnum, n.* FROM (SELECT FEED_NO, FRIP_NO, FEED_WRITER, WRITE_DATE FROM FEED_TBL ORDER BY 1 DESC) n) WHERE rnum BETWEEN ? and ?";
+		String query = "SELECT * FROM(SELECT ROWNUM AS rnum, n.* FROM (SELECT FEED_NO, FRIP_TITLE, FEED_WRITER, FEED_TBL.WRITE_DATE FROM FEED_TBL JOIN FRIP_TBL USING(FRIP_NO) ORDER BY 1 DESC) n) WHERE rnum BETWEEN ? and ?";
 
 		try {
 			preparedStatement = connection.prepareStatement(query);
@@ -216,9 +216,9 @@ public class adminDao {
 				Feed feed = new Feed();
 
 				feed.setFeedNo(resultSet.getInt("FEED_NO"));
-				feed.setFripNo(resultSet.getInt("FRIP_NO"));
 				feed.setFeedWriter(resultSet.getString("FEED_WRITER"));
 				feed.setWriteDate(resultSet.getString("WRITE_DATE"));
+				feed.setFripTitle(resultSet.getString("FRIP_TITLE"));
 
 				feeds.add(feed);
 			}

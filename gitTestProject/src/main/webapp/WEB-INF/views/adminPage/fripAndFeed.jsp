@@ -44,7 +44,7 @@
                                                             </tr>
                                                             <%for(int i=0; i < frips.size(); i++) {%>
                                                                 <%Frip frip=frips.get(i);%>
-                                                                    <tr>
+                                                                    <tr class="tr-2 fripView">
                                                                         <td><input type="checkbox" class="chk fripChk">
                                                                         </td>
                                                                         <td>
@@ -112,11 +112,9 @@
                                                                             <%=i+feedStart %>
                                                                         </td>
                                                                         <td class="feed-no"><%=feed.getFeedNo() %></td>
+                                                                        <td><%=feed.getFripTitle() %></td>
                                                                         <td>
-                                                                            <%=feed.getFripNo() %>
-                                                                        </td>
-                                                                        <td>
-                                                                            <%=feed.getFripNo() %>
+                                                                            <%=feed.getFeedWriter() %>
                                                                         </td>
                                                                         <td>
                                                                             <%=feed.getWriteDate() %>
@@ -221,6 +219,12 @@
                                                 });
 
                                                 location.href = "/checkedfeedDelete.do?feedNos" + feedNos.join("/");
+                                            });
+
+                                            $(".fripView").on("click", function () {
+                                                const fripNo = $(this).children().eq(3).text();
+
+                                                location.href = "/joinFrip.do?fripNo=" + fripNo;
                                             });
                                         </script>
                                         <script src="/js/adminPage/sidebar.js"></script>
