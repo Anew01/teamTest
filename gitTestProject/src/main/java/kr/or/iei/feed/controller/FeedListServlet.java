@@ -9,6 +9,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import kr.or.iei.feed.service.FeedService;
 import kr.or.iei.feed.vo.Feed;
 import kr.or.iei.frip.service.FripService;
 import kr.or.iei.frip.vo.Frip;
@@ -40,9 +42,13 @@ public class FeedListServlet extends HttpServlet {
 		MemberService mService = new MemberService();
 		ArrayList<Member> mList = mService.selectAllMember();
 		
+		FeedService feedService = new FeedService();
+		ArrayList<Feed> feedList = feedService.selectFeedInfo();
+		
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/feed/feedList.jsp");
 		request.setAttribute("mList", mList);
 		request.setAttribute("fList", fList);
+		request.setAttribute("feedList", feedList);
 		view.forward(request, response);
 	}
 

@@ -8,7 +8,7 @@
 </head>
 <body>
 	<script>
-		//location.href="selectAllFripByCategory.do?categoryName=ALL";
+		location.href="selectAllFripByCategory.do?categoryName=main";
 	</script>
 	<%@include file="/WEB-INF/views/common/header.jsp" %>
 	<%@include file="/WEB-INF/views/common/footer.jsp" %>
