@@ -14,7 +14,7 @@ public class FripDao {
 
 	public int insertFrip(Connection conn, Frip f) {
 		PreparedStatement pstmt = null;
-		String query = "insert into frip_tbl values(frip_seq.nextval,?,0,?,?,?,?,?,0,0,to_char(sysdate,'yyyy-mm-dd'))";
+		String query = "insert into frip_tbl values(frip_seq.nextval,?,0,?,?,?,?,?,0,0,to_char(sysdate,'yyyy-mm-dd'),?)";
 		int result = 0;
 		
 		try {
@@ -25,6 +25,7 @@ public class FripDao {
 			pstmt.setString(4, f.getFripAddr());
 			pstmt.setString(5, f.getFripLevel());
 			pstmt.setInt(6, f.getFripPrice());
+			pstmt.setString(7, f.getFripAddrDetail());
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

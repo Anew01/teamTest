@@ -36,7 +36,7 @@
 								<div class="content-wrap">
 									<%= data.getF().getFeedContent() %>
 								</div>
-								<button class="btn btn-primary" type="button" id="feedCommentBtn">댓글달기</button>
+								<button class="btn btn-primary feedCommentBtn" type="button">댓글달기</button>
 							</div>
 						</div>
 						<% if(data.getF().getFdNo() != 0) { %>
@@ -67,14 +67,22 @@
 	</div>
 	<%@include file="/WEB-INF/views/common/footer.jsp" %>
 	<script>
-		$("#feedCommentBtn").on("click", function(){
+		$(".feedCommentBtn").on("click", function(){
 			const div = $("<div>");
+			div.css("width","80%");
 			const form = $("<form>");
-			form.attr("action","/insertFeed.do")
-			div.addClass("write-feed-comment-wrap");
+			form.attr("action","/insertFeed.do");
+			div.addClass("input-group");
+			const span = $("<span>");
 			const textArea = $("<textarea>");
-			div.append(textArea);
-			$(this).parents(".feed-box").append(div);
+			textArea.css("width","100%").css("height","100px").css("resize","none");
+			const button = $("<button>");
+			button.attr("type","submit");
+			button.text("댓글등록");
+			button.addClass("btn btn-primary");
+			form.append(textArea).append(button);
+			div.append(form);
+			$(this).parents(".feed-box").after(div);
 		})
 	</script>
 </body>
