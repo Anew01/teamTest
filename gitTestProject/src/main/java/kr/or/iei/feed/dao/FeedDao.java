@@ -23,7 +23,7 @@ public class FeedDao {
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, fripNo);
-			rset = pstmt.executeQuery()
+			rset = pstmt.executeQuery();
 			while(rset.next()) {
 				f = new Feed();
 				f.setFeedNo(rset.getInt("feed_no"));

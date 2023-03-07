@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import common.JDBCTemplate;
 import kr.or.iei.feed.dao.FeedDao;
 import kr.or.iei.feed.vo.Feed;
+import kr.or.iei.feed.vo.ViewFripFeedData;
+import kr.or.iei.member.service.MemberService;
+import kr.or.iei.member.vo.Member;
 
 public class FeedService {
 	private FeedDao dao;
