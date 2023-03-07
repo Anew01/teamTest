@@ -25,16 +25,12 @@ Member member = (Member) request.getAttribute("m");
 			</div>
 			<hr>
 			<div class="join-content">
-				<form action="/updateMyInfo.do" method="post" class="profile-form" enctype="multipart/form-data">
+				<form action="/updateMyInfo.do" method="post" autocomplete="off">
 					<div class="inputs-wrap">
-						<div class="join-input-wrap">
+						<div class="profile-wrap">
 							<div class="profile-image">
-								<img src="/upload/member/<%=member.getMemberProfile() %>" class="profile-img" width="100px">
-								<label for="upProfile">
-                                        <img src="/upload/member/camera.png" id="camera">
-                                    </label>
-                                    <input type="file" name="upProfile" id="upProfile" class="input-form"
-                                        accept=".jpg,.png,.jpeg" onchange="loadImg(this);">
+								<a href='#'><img src="img/iconmonstr-user-20-240.png"
+									width="100px"></a>
 							</div>
 						</div>
 						<div class="join-input-wrap">
@@ -154,24 +150,6 @@ Member member = (Member) request.getAttribute("m");
 						$("#memberAddr").val(data.address);
 					}
 				}).open();
-			}
-			
-			function loadImg(f){
-				//첨부파일이 여러개일 수 있어서 항상 배열로 처리
-				console.log(f.files);
-				//파일갯수가 0개가 아니고 && 첫번째 파일이 정상파일이면
-				if(f.files.length != 0 && f.files[0] !=0){
-					const reader = new FileReader(); //파일정보를 얻어올 수 있는 객체
-					//선택한 파일 정보를 읽어옴
-					reader.readAsDataURL(f.files[0]);
-					//파일리더가 정보를 다 읽어오면 동작할 함수
-					reader.onload = function(e){
-						$(".profile-img").attr("src",e.target.result);
-					}
-				}else{
-					$(".profile-img").attr("src","");
-				}
-				
 			}
 		</script>
 	</div>
