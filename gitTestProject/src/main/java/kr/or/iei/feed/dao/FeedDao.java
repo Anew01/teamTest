@@ -131,7 +131,6 @@ public class FeedDao {
 			pstmt.setInt(2, fripNo);
 			pstmt.setString(3, feedContent);
 			pstmt.setInt(4, fdNo);
-			System.out.println("feedDao에서 feedWriter 값 : "+feedWriter);
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
