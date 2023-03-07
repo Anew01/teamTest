@@ -30,7 +30,7 @@
                     </div>
                     <div class="subMenu">
                         <span><a href="/enrollMain.do">회원가입</a></span>
-                        <span><a href='#'>비밀번호 찾기</a></span>
+                        <span><a href="/findPwFrm.do">비밀번호 찾기</a></span>
                     </div>
                 <div class="join-btn-wrap">
                     <input type="submit" value="로그인">
