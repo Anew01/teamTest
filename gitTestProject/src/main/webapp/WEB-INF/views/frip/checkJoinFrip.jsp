@@ -311,7 +311,7 @@ geocoder.addressSearch('<%=f.getFripAddr()%>', function(result, status) {
 
 //모달
 	const exampleModal = document.getElementById('exampleModal')
-	exampleModal.addEventListener('show.bs.modal', event = {
+	exampleModal.addEventListener('show.bs.modal', event => {
   // Button that triggered the modal
   const button = event.relatedTarget
   // Extract info from data-bs-* attributes
