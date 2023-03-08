@@ -30,7 +30,7 @@ public class MailSender {
 				new Authenticator() {
 					protected PasswordAuthentication getPasswordAuthentication() {
 						PasswordAuthentication pa
-						= new PasswordAuthentication(hostmail, "bbnxnrhapgofsqsu"); //인증정보
+						= new PasswordAuthentication(hostmail, "vznvfwtmnqsafifk"); //인증정보
 						return pa;
 					}
 				}

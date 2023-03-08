@@ -128,7 +128,8 @@ a{
     float:right;
     padding: 0;
     width: 30%;
-    margin-left: 10%;
+    margin-left: 7%;
+    margin-right: 3%;
 }
 .button-area{
     clear:left;
@@ -178,12 +179,11 @@ a{
     color: #ffffff;
  }
 
-
-.map{
-	width: 80%;
+#map{
+	width: 60%;
 	margin-top:20px;
+	border-radius: 50px;
 }
-
 
 
 	

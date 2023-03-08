@@ -48,7 +48,7 @@ public class SendRequestToHostServlet extends HttpServlet {
 			request.setAttribute("icon", "success");
 		}else {
 			request.setAttribute("title", "메일 전송 실패");
-			request.setAttribute("msg", "이메일이 전송 오류");
+			request.setAttribute("msg", "이메일 전송 오류");
 			request.setAttribute("icon", "error");
 		}
 		request.setAttribute("loc", "/joinFrip.do?fripNo="+fripNo);
