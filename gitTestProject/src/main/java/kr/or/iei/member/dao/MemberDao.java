@@ -47,7 +47,7 @@ public class MemberDao {
 	public int insertMember(Connection conn, Member m) {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		String query = "insert into member_tbl values(member_no_seq.nextval,?,?,?,?,?,?,3,?,to_char(sysdate,'yyyy-mm-dd'),?,?)";
+		String query = "insert into member_tbl values(member_no_seq.nextval,?,?,?,?, ?, '', 3 , '', to_char(sysdate,'yyyy-mm-dd') ,'' ,?, '' )";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -56,10 +56,7 @@ public class MemberDao {
 			pstmt.setString(3, m.getMemberName());
 			pstmt.setString(4, m.getMemberAddr());
 			pstmt.setString(5, m.getMemberPhone());
-			pstmt.setString(6, m.getMemberGender());
-			pstmt.setString(7, m.getMemberProfile());
-			pstmt.setString(8, m.getMemberIntro());
-			pstmt.setString(9, m.getMemberAddrDetail());
+			pstmt.setString(6, m.getMemberAddrDetail());
 			
 			
 			result = pstmt.executeUpdate();
