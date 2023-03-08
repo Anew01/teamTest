@@ -24,7 +24,7 @@
 					<% } else { %>
 						<img src="/upload/member/no-profile.png">
 					<% } %>
-					<span><%= loginMember.getMemberId() %>님</span>	
+					<div><%= loginMember.getMemberId() %>님</div>	
 				</div>
 				<a href="/myFripList.do?memberId=<%= loginMember.getMemberId()%>"><button class="btn btn-primary">내 스프립 목록</button></a>
 			</div>
@@ -38,25 +38,26 @@
 							<tr>
 								<td>
 									<span>전체 프립 수</span>
-									<span><%= data.getTotalFripCount() %></span>
+									<div><%= data.getTotalFripCount() %></div>
 								</td>
 								<td>
 									<span>전체 결제 수</span>
-									<span><%= data.getTotalPaymentCount() %></span>
+									<div><%= data.getTotalPaymentCount() %></div>
 								</td>
 								<td>
 									<span>총 완료 프립 수</span>
-									<span><%= data.getTotalExpiredFripCount() %></span>
+									<div><%= data.getTotalExpiredFripCount() %></div>
 								</td>
 							</tr>
 							<tr>
 								<td>
 									<span>전체 후기 수</span>
-									<span><%= data.getTotalFeedCount() %></span>
+									<div><%= data.getTotalFeedCount() %></div>
 								</td>
 								<td>
 									<span>평균 별점</span>
-									<span><%= data.getTotalrankCount() %></span>
+									<% String result = String.format("%.1f",data.getTotalrankCount() ); %>
+									<div><%= result %></div>
 								</td>
 								<td>
 									<span>전체 문의 수</span>

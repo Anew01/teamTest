@@ -121,7 +121,7 @@ public class InsertFripServlet extends HttpServlet {
 						f.setMaxCount(Integer.parseInt(str));
 						break;
 					case "fripWriter" :
-						f.setFripWriter("fripWriter");
+						f.setFripWriter(str);
 						break;
 					}
 				}
@@ -147,7 +147,7 @@ public class InsertFripServlet extends HttpServlet {
 			request.setAttribute("msg", "관리자에게 문의 하세요");
 			request.setAttribute("icon", "error");
 		}
-		request.setAttribute("loc", "/fripMain.do");
+		request.setAttribute("loc", "/fripMain.do?memberId="+f.getFripWriter());
 		view.forward(request, response);
 	}
 
