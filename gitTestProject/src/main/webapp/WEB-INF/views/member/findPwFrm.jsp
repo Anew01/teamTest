@@ -20,7 +20,7 @@
                 <div class="inputs-wrap">
                     <div class="join-input-wrap">
                         <div>
-                            <input type="text" name="memberId" id="memberId" value="아이디(이메일)" required> 
+                            <input type="email" name="memberId" id="memberId" value="아이디(이메일)" required> 
                         </div>
                         <span>재설정하려는 비밀번호의 아이디(이메일)을 입력해주세요.</span>
                     </div>
