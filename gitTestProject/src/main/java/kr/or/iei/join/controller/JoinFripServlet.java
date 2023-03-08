@@ -40,9 +40,17 @@ public class JoinFripServlet extends HttpServlet {
 		System.out.println("받은값: "+fripNo);
 		FripService fservice = new FripService();
 		Frip f = fservice.selectOneFripByNo(fripNo);
+		
 		String categoryName = request.getParameter("categoryName");
 		ArrayList<Frip> list = fservice.selectAllFrip();
+		for(Frip f1 : list) {
+			String avgRating = fservice.selectRating(f1.getFripNo());
+			f.setAvgRating(avgRating);
+		}
 		MemberService service = new MemberService();
+		
+		
+		
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/frip/checkJoinFrip.jsp");
 		request.setAttribute("f", f);
 		request.setAttribute("list", list);

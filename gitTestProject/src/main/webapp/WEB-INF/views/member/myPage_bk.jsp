@@ -1,8 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%
-Member member = (Member) request.getAttribute("m");
-%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,7 +17,7 @@ Member member = (Member) request.getAttribute("m");
         <div class="top">
             <div class="profile-wrap">
             <a href="/myInfo.do?memberId=<%=loginMember.getMemberId() %>">
-				<div class="profile-image"><img src="/upload/member/<%=member.getMemberProfile() %>" class="profile-img" width="50px"></div>
+				<div class="profile-image"><img src="img/iconmonstr-user-20-240.png" width="50px"></div>
                 <div class="profile-name">
                     <div><%=loginMember.getMemberName() %></div>
                 </div>
@@ -43,6 +40,8 @@ Member member = (Member) request.getAttribute("m");
         <hr>
         <div class="sub-menu">
             <div>고객센터</div><br>
+            <div>공지사항</div>
+            <div>FAQ</div>
              <div id="kakao-talk-channel-chat-button" data-channel-public-id="_RTXDxj" data-title="question"
             data-size="large" data-color="yellow" data-shape="pc" data-support-multiple-densities="true"></div>
         </div>
@@ -68,6 +67,7 @@ Member member = (Member) request.getAttribute("m");
         <hr>
         <div class="sub-menu">
             <div>설정</div><br>
+            <div>설정</div>
             <div>약관 및 정책</div>
         </div>
     </div>

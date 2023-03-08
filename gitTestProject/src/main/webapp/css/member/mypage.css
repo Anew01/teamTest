@@ -10,6 +10,15 @@
 .profile-image{
    float: left;
 }
+.profile-img {
+  margin-bottom: 50px;
+  margin: 0px 0px 16px;
+  border-radius: 50%;
+  
+}
+#upProfile {
+  display: none;
+}
 .profile-name>div{
     padding: 10px;
     margin-left: 50px;

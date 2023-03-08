@@ -37,6 +37,7 @@
                                                 </tr>
                                                 <%for(int i = 0; i < list.size(); i++) {%>
                                                 <%Member member = list.get(i); %>
+                                                <%if(!member.getMemberId().equals(loginMember.getMemberId())) {%>                                                                                                                              
                                                     <tr>
                                                         <td><input type="checkbox" class="chk"></td>
                                                         <td>
@@ -86,6 +87,7 @@
                                                         <td><button class="btc bc33 btn chageLevel">회원등급변경</button></td>
                                                         <td><button class="btc bc33 btn  withdrawal">탈퇴</button></td>
                                                     </tr>
+                                                    <%} %>
                                                     <%} %>
                                                         <tr>
                                                             <th colspan="9">

@@ -46,6 +46,7 @@ public class EnrollServlet extends HttpServlet {
 		//1.인코딩
 				request.setCharacterEncoding("utf-8");
 				//2.값추출
+				String memberId = request.getParameter("memberId");
 				Member m = new Member();
 				m.setMemberId(request.getParameter("memberId"));
 				m.setMemberPw(request.getParameter("memberPw"));
@@ -57,9 +58,11 @@ public class EnrollServlet extends HttpServlet {
 				m.setEnrollDate(request.getParameter("enrollDate"));
 				//3.비즈니스로직
 				MemberService service = new MemberService();
+				Member ChkId = service.selectOneMember(memberId);
 				int result = service.insertMember(m);
 				//4.결과처리
 				RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
+				if(ChkId==null) {
 				if(result>0) {
 					request.setAttribute("title", "회원가입 성공");
 					request.setAttribute("msg", "환영합니다.");
@@ -67,6 +70,12 @@ public class EnrollServlet extends HttpServlet {
 					request.setAttribute("loc", "/");
 				}else{
 					request.setAttribute("title", "회원가입 실패");
+					request.setAttribute("msg", "입력하신 정보를 다시한번 확인하세요.");
+					request.setAttribute("icon", "error");
+					request.setAttribute("loc", "/");
+				}
+				}else {
+					request.setAttribute("title", "아이디 중복");
 					request.setAttribute("msg", "입력하신 정보를 다시한번 확인하세요.");
 					request.setAttribute("icon", "error");
 					request.setAttribute("loc", "/");

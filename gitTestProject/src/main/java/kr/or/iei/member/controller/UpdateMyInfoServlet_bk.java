@@ -1,6 +1,5 @@
 package kr.or.iei.member.controller;
 
-import java.io.File;
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
@@ -11,9 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.oreilly.servlet.MultipartRequest;
-import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
-
 import kr.or.iei.member.service.MemberService;
 import kr.or.iei.member.vo.Member;
 
@@ -21,13 +17,13 @@ import kr.or.iei.member.vo.Member;
  * Servlet implementation class UpdateMyInfoServlet
  */
 @WebServlet(name = "UpdateMyInfo", urlPatterns = { "/updateMyInfo.do" })
-public class UpdateMyInfoServlet extends HttpServlet {
+public class UpdateMyInfoServlet_bk extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UpdateMyInfoServlet() {
+    public UpdateMyInfoServlet_bk() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -38,49 +34,28 @@ public class UpdateMyInfoServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//1.인코딩
 		request.setCharacterEncoding("utf-8");
-		response.setContentType("text/html;charset=utf-8");
-		
-		
 		//2.값추출
-		
-		String root = getServletContext().getRealPath("/");
-		String saveDirectory = root + "upload/member";
-		int maxsize = 10 * 1024 * 1024;
-
-		MultipartRequest mRequest = new MultipartRequest(request, saveDirectory, maxsize, "utf-8",
-				new DefaultFileRenamePolicy());
-		
-		String status = mRequest.getParameter("status");
-		
-		
-		String oldProfile = mRequest.getParameter("oldProfile");
-		String upProfile = mRequest.getParameter("upProfile");
-		
-		if(oldProfile != null && status.equals("stay")) {
-			upProfile = oldProfile;
-		}
 		Member member = new Member();
-		member.setMemberId(mRequest.getParameter("memberId"));
-		member.setMemberPw(mRequest.getParameter("memberPw"));
-		member.setMemberPhone(mRequest.getParameter("memberPhone"));
-		member.setMemberAddr(mRequest.getParameter("memberAddr"));
-		member.setMemberAddrDetail(mRequest.getParameter("memberAddrDetail"));
-		member.setMemberProfile(upProfile);
-		member.setMemberOldProfile(oldProfile);
+		member.setMemberId(request.getParameter("memberId"));
+		member.setMemberPw(request.getParameter("memberPw"));
+		member.setMemberPhone(request.getParameter("memberPhone"));
+		member.setMemberAddr(request.getParameter("memberAddr"));
+		member.setMemberAddrDetail(request.getParameter("memberAddrDetail"));
 		//3.비즈니스로직
 		MemberService service = new MemberService();
 		int result = service.updateMember(member);
 		//4.화면처리
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
 		if(result>0) {
+			Member m = new Member();
+			m.setMemberPw(member.getMemberPw());
+			m.setMemberPhone(member.getMemberPhone());
+			m.setMemberAddr(member.getMemberAddr());
+			m.setMemberAddr(member.getMemberAddrDetail());
 			
 			request.setAttribute("title", "변경성공");
 			request.setAttribute("msg", "정보가 성공적으로 변경되었습니다.");
 			request.setAttribute("icon", "success");
-			if(status.equals("delete")) {
-				File delFile = new File(saveDirectory+"/"+oldProfile);
-				delFile.delete();
-			}
 			
 		}else{
 			request.setAttribute("title", "변경실패");
@@ -89,7 +64,7 @@ public class UpdateMyInfoServlet extends HttpServlet {
 		
 		}
 		
-		request.setAttribute("loc", "/myPage.do?memberId="+member.getMemberId());
+		request.setAttribute("loc", "/myInfo.do?memberId="+member.getMemberId());
 		
 		view.forward(request, response);
 	}

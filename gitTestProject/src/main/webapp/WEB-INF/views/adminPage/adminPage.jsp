@@ -50,9 +50,14 @@
                                         value="<%=loginMember.getMemberPhone() %>">
                                 </div>
                                 <div class="input-wrap">
-                                    <label for="memberAddr">주소</label>
-                                    <input type="text" name="memberAddr" id="memberAddr" class="input-form"
-                                        value="<%=loginMember.getMemberAddr() %>">
+                                    <label for="memberAddr">상세주소 변경</label>
+                                    <%if(loginMember.getMemberAddrDetail() == null) {%>
+                                     <input type="text" name="memberAddr" id="memberAddr" class="input-form"
+                                        value="상세 주소 없음">
+                                    <%} else { %>
+                                     <input type="text" name="memberAddr" id="memberAddr" class="input-form"
+                                        value="<%=loginMember.getMemberAddrDetail() %>">
+                                    <%} %>                                 
                                 </div>
                                 <div class="input-wrap">
                                     <label for="memberLevel">등급</label>

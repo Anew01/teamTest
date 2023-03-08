@@ -80,7 +80,7 @@ a {
     line-height: 40px;
     outline: 0px;
     padding: 0px 15px;
-    transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1) 0s;
+    /* transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1) 0s; */
     width: 100%;
 }
 

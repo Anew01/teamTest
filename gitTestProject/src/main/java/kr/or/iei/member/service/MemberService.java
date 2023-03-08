@@ -49,6 +49,7 @@ public class MemberService {
 		return m;
 	}
 
+
 	public int updateMember(Member member) {
 		Connection conn = JDBCTemplate.getConnection();
 		int result = dao.updateMember(conn,member);

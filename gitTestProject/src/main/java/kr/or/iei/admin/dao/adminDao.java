@@ -132,14 +132,14 @@ public class adminDao {
 
 		int result = 0;
 
-		String query = "UPDATE MEMBER_TBL SET MEMBER_PW = ?, MEMBER_PHONE = ?, MEMBER_ADDR = ?, MEMBER_PROFILE = ?, MEMBER_INTRO = ? WHERE MEMBER_ID = ?";
+		String query = "UPDATE MEMBER_TBL SET MEMBER_PW = ?, MEMBER_PHONE = ?, MEMBER_ADDR_DETAIL = ?, MEMBER_PROFILE = ?, MEMBER_INTRO = ? WHERE MEMBER_ID = ?";
 
 		try {
 			pStatement = connection.prepareStatement(query);
 
 			pStatement.setString(1, member.getMemberPw());
 			pStatement.setString(2, member.getMemberPhone());
-			pStatement.setString(3, member.getMemberAddr());
+			pStatement.setString(3, member.getMemberAddrDetail());
 			pStatement.setString(4, member.getMemberProfile());
 			pStatement.setString(5, member.getMemberIntro());
 			pStatement.setString(6, member.getMemberId());
@@ -202,7 +202,7 @@ public class adminDao {
 
 		ArrayList<Feed> feeds = new ArrayList<Feed>();
 
-		String query = "SELECT * FROM(SELECT ROWNUM AS rnum, n.* FROM (SELECT FEED_NO, FRIP_TITLE, FEED_WRITER, FEED_TBL.WRITE_DATE FROM FEED_TBL JOIN FRIP_TBL USING(FRIP_NO) ORDER BY 1 DESC) n) WHERE rnum BETWEEN ? and ?";
+		String query = "SELECT * FROM(SELECT ROWNUM AS rnum, n.* FROM (SELECT FEED_NO, FRIP_TITLE, FEED_CONTENT, FEED_WRITER, FEED_TBL.WRITE_DATE FROM FEED_TBL JOIN FRIP_TBL USING(FRIP_NO) ORDER BY 1 DESC) n) WHERE rnum BETWEEN ? and ?";
 
 		try {
 			preparedStatement = connection.prepareStatement(query);
@@ -219,6 +219,7 @@ public class adminDao {
 				feed.setFeedWriter(resultSet.getString("FEED_WRITER"));
 				feed.setWriteDate(resultSet.getString("WRITE_DATE"));
 				feed.setFripTitle(resultSet.getString("FRIP_TITLE"));
+				feed.setFeedContent(resultSet.getString("FEED_CONTENT"));
 
 				feeds.add(feed);
 			}

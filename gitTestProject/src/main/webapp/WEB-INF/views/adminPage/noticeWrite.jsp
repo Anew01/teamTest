@@ -29,10 +29,10 @@
 									</td>
 								</tr>
 								<tr class="tr1">
-									<th class="td-3">작성자</th>
+									<th class="td-3"><%=loginMember.getMemberId() %></th>
 									<td>
-										user01
-										<input type="hidden" name="noticeWriter" value="user01">
+										<%=loginMember.getMemberId() %>
+										<input type="hidden" name="noticeWriter" value="<%=loginMember.getMemberId() %>">
 									</td>
 									<th class="td-3">분류</th>
 									<td>

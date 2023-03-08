@@ -11,6 +11,7 @@ public class Member {
 	private String memberGender;
 	private int memberLevel;
 	private String memberProfile;
+	private String memberOldProfile;
 	private int memberLike;
 	private String enrollDate;
 	private String memberIntro;
@@ -25,6 +26,21 @@ public class Member {
 		this.memberNo = memberNo;
 		this.memberId = memberId;
 		this.memberLevel = memberLevel;
+	}
+	
+
+
+	public Member(String memberId, String memberPw, String memberName, String memberPhone, String memberAddr,
+			String memberAddrDetail, String memberProfile, String memberOldProfile) {
+		super();
+		this.memberId = memberId;
+		this.memberPw = memberPw;
+		this.memberName = memberName;
+		this.memberPhone = memberPhone;
+		this.memberAddr = memberAddr;
+		this.memberAddrDetail = memberAddrDetail;
+		this.memberProfile = memberProfile;
+		this.memberOldProfile = memberOldProfile;
 	}
 
 
@@ -126,6 +142,14 @@ public class Member {
 	public void setMemberProfile(String memberProfile) {
 		this.memberProfile = memberProfile;
 	}
+	public String getMemberOldProfile() {
+		return memberOldProfile;
+	}
+
+	public void setMemberOldProfile(String memberOldProfile) {
+		this.memberOldProfile = memberOldProfile;
+	}
+
 
 	public int getMemberLike() {
 		return memberLike;

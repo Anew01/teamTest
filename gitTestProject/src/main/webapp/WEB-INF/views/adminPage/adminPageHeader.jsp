@@ -25,13 +25,16 @@
                 <div class="wrapper">
                     <div class="header">
                         <div class="header-menu">
-                            <div class="title"><span>Sprip</span> Admin</div>
+                            <a href="/selectAllFripByCategory.do?categoryName=main">
+                                <div class="title"><span>Sprip</span> Admin</div>
+                            </a>
                             <div class="sidebar-btn">
                                 <i class="fas fa-bars"></i>
                             </div>
                             <ul>
-                                <li><a href="#"><i class="fa-solid fa-user"></i></a></li>
-                                <li><a href="/selectAllFripByCategory.do?categoryName=main"><i class="fa-solid fa-right-from-bracket"></i></a></li>
+                                <li><a href="/myPage.do?memberId=<%=loginMember.getMemberId() %>"><i class="fa-solid fa-user"></i></a></li>
+                                <li><a href="/selectAllFripByCategory.do?categoryName=main"><i
+                                            class="fa-solid fa-right-from-bracket"></i></a></li>
                             </ul>
                         </div>
                     </div>
@@ -75,7 +78,7 @@
                                 <a href="https://center-pf.kakao.com/_RTXDxj/chats" class="menu-btn" target="_blank">
                                     <i class="fa-solid fa-question"></i><span>문의 관리</span>
                                 </a>
-                            </li>                          
+                            </li>
                         </div>
                     </div>
             </body>
