@@ -373,4 +373,45 @@ public class adminDao {
 		return result;
 	}
 
+	public ArrayList<Member> selectSearchMember(Connection connection, String searchId) {
+		PreparedStatement preparedStatement = null;
+
+		ResultSet resultSet = null;
+
+		ArrayList<Member> list = new ArrayList<Member>();
+
+		String query = "SELECT MEMBER_NO, MEMBER_ID, MEMBER_PW, MEMBER_NAME, NVL(MEMBER_ADDR, '없음') AS NVLADDR, NVL(MEMBER_PHONE, '없음') AS NVLPHONE, NVL(MEMBER_GENDER, '없음') AS NVLGENDER, MEMBER_LEVEL, ENROLL_DATE FROM MEMBER_TBL WHERE MEMBER_ID LIKE ? ORDER BY 1 DESC";
+
+		try {
+			preparedStatement = connection.prepareStatement(query);
+
+			preparedStatement.setString(1, "%" + searchId + "%");
+
+			resultSet = preparedStatement.executeQuery();
+
+			while (resultSet.next()) {
+				Member member = new Member();
+
+				member.setMemberNo(resultSet.getInt("MEMBER_NO"));
+				member.setMemberId(resultSet.getString("MEMBER_ID"));
+				member.setMemberPw(resultSet.getString("MEMBER_PW"));
+				member.setMemberName(resultSet.getString("MEMBER_NAME"));
+				member.setMemberAddr(resultSet.getString("NVLADDR"));
+				member.setMemberPhone(resultSet.getString("NVLPHONE"));
+				member.setMemberGender(resultSet.getString("NVLGENDER"));
+				member.setMemberLevel(resultSet.getInt("MEMBER_LEVEL"));
+				member.setEnrollDate(resultSet.getString("ENROLL_DATE"));
+
+				list.add(member);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(resultSet);
+			JDBCTemplate.close(preparedStatement);
+		}
+
+		return list;
+	}
+
 }

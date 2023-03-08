@@ -2,10 +2,10 @@
     <%@page import="java.util.ArrayList" %>
         <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
             <% 
-            	ArrayList<Member> list = (ArrayList<Member>)request.getAttribute("list");
-            	String pageNavi = (String)request.getAttribute("pageNavi");
-            	int start = (int)request.getAttribute("start");
-			%>
+            		ArrayList<Member> list = (ArrayList<Member>)request.getAttribute("list");
+                    String pageNavi = (String)request.getAttribute("pageNavi");
+                    int start = (int)request.getAttribute("start");
+                    %>
                     <!DOCTYPE html>
                     <html lang="ko" dir="ltr">
 
@@ -18,8 +18,20 @@
                         <%@ include file="/WEB-INF/views/adminPage/adminPageHeader.jsp" %>
                             <div class="main-container">
                                 <div class="main-content">
-                                    <div class="main-header">
-                                        <h1>전체 회원 관리</h1>
+                                    <div class="card">
+                                        <div class="main-header">
+                                            <h1>전체 회원 관리</h1>
+                                        </div>
+                                        <div class="search">
+                                            <div class="search-padding">
+                                                <form action="/memberSearch.do" method="get">
+                                                    <h2>검색:</h2>
+                                                    <input type="text" name="searchId" placeholder="아이디를 입력해주세요">
+                                                    <button type="submit">검색</button>
+                                                    <button class="reset" type="reset">초기화</button>
+                                                </form>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="card">
                                         <div>
@@ -35,70 +47,79 @@
                                                     <th>등급 변경</th>
                                                     <th>탈퇴</th>
                                                 </tr>
-                                                <%for(int i = 0; i < list.size(); i++) {%>
-                                                <%Member member = list.get(i); %>
-                                                <%if(!member.getMemberId().equals(loginMember.getMemberId())) {%>                                                                                                                              
-                                                    <tr>
-                                                        <td><input type="checkbox" class="chk"></td>
-                                                        <td>
-                                                            <%=i+start%>
-                                                        </td>
-                                                        <td><%=member.getMemberId() %></td>
-                                                        <td>
-                                                            <%=member.getMemberName() %>
-                                                        </td>
-                                                        <td>
-                                                            <%=member.getMemberPhone() %>
-                                                        </td>
-                                                        <td>
-                                                            <%if(member.getMemberLevel()==1) {%>
-                                                                <select class="input">
-                                                                    <option value="1" selected>운영자</option>
-                                                                    <option value="2">호스트</option>
-                                                                    <option value="3">회원</option>
-                                                                    <option value="4">탈퇴 회원</option>
-                                                                </select>
-                                                                <%} else if(member.getMemberLevel()==2) {%>
-                                                                    <select class="input">
-                                                                        <option value="1">운영자</option>
-                                                                        <option value="2" selected>호스트</option>
-                                                                        <option value="3">회원</option>
-                                                                        <option value="4">탈퇴 회원</option>
-                                                                    </select>
-                                                                    <%} else if(member.getMemberLevel()==3) {%>
+                                                <%for(int i=0; i < list.size(); i++) {%>
+                                                    <%Member member=list.get(i); %>
+                                                        <%if(!member.getMemberId().equals(loginMember.getMemberId()))
+                                                            {%>
+                                                            <tr>
+                                                                <td><input type="checkbox" class="chk"></td>
+                                                                <td>
+                                                                    <%=i+start%>
+                                                                </td>
+                                                                <td><%=member.getMemberId() %></td>
+                                                                <td>
+                                                                    <%=member.getMemberName() %>
+                                                                </td>
+                                                                <td>
+                                                                    <%=member.getMemberPhone() %>
+                                                                </td>
+                                                                <td>
+                                                                    <%if(member.getMemberLevel()==1) {%>
                                                                         <select class="input">
-                                                                            <option value="1">운영자</option>
-                                                                            <option value="2">호스트</option>
-                                                                            <option value="3" selected>회원</option>
-                                                                            <option value="4">탈퇴 회원</option>
-                                                                        </select>
-                                                                        <%} else if(member.getMemberLevel()==4) {%>
-                                                                         	<select class="input">
-                                                                            <option value="1">운영자</option>
+                                                                            <option value="1" selected>운영자</option>
                                                                             <option value="2">호스트</option>
                                                                             <option value="3">회원</option>
-                                                                            <option value="4" selected>탈퇴 회원</option>
+                                                                            <option value="4">탈퇴 회원</option>
                                                                         </select>
-                                                                        <%} %>
-                                                        </td>
-                                                        <td>
-                                                            <%=member.getEnrollDate() %>
-                                                        </td>
-                                                        <td><button class="btc bc33 btn chageLevel">회원등급변경</button></td>
-                                                        <td><button class="btc bc33 btn  withdrawal">탈퇴</button></td>
-                                                    </tr>
-                                                    <%} %>
-                                                    <%} %>
-                                                        <tr>
-                                                            <th colspan="9">
-                                                                <button
-                                                                    class="select-btn checkedChangeLevel">선택회원등급변경</button>
-                                                                <button
-                                                                    class="select-btn checkedWithdrawal">선택회원탈퇴</button>
-                                                            </th>
-                                                        </tr>
+                                                                        <%} else if(member.getMemberLevel()==2) {%>
+                                                                            <select class="input">
+                                                                                <option value="1">운영자</option>
+                                                                                <option value="2" selected>호스트</option>
+                                                                                <option value="3">회원</option>
+                                                                                <option value="4">탈퇴 회원</option>
+                                                                            </select>
+                                                                            <%} else if(member.getMemberLevel()==3) {%>
+                                                                                <select class="input">
+                                                                                    <option value="1">운영자</option>
+                                                                                    <option value="2">호스트</option>
+                                                                                    <option value="3" selected>회원
+                                                                                    </option>
+                                                                                    <option value="4">탈퇴 회원</option>
+                                                                                </select>
+                                                                                <%} else if(member.getMemberLevel()==4)
+                                                                                    {%>
+                                                                                    <select class="input">
+                                                                                        <option value="1">운영자</option>
+                                                                                        <option value="2">호스트</option>
+                                                                                        <option value="3">회원</option>
+                                                                                        <option value="4" selected>탈퇴 회원
+                                                                                        </option>
+                                                                                    </select>
+                                                                                    <%} %>
+                                                                </td>
+                                                                <td>
+                                                                    <%=member.getEnrollDate() %>
+                                                                </td>
+                                                                <td><button
+                                                                        class="btc bc33 btn chageLevel">회원등급변경</button>
+                                                                </td>
+                                                                <td><button class="btc bc33 btn  withdrawal">탈퇴</button>
+                                                                </td>
+                                                            </tr>
+                                                            <%} %>
+                                                                <%} %>
+                                                                    <tr>
+                                                                        <th colspan="9">
+                                                                            <button
+                                                                                class="select-btn checkedChangeLevel">선택회원등급변경</button>
+                                                                            <button
+                                                                                class="select-btn checkedWithdrawal">선택회원탈퇴</button>
+                                                                        </th>
+                                                                    </tr>
                                             </table>
-                                            <div id="pageNavi"><%=pageNavi %></div>                                         
+                                            <div id="pageNavi">
+                                                <%=pageNavi %>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="card">
@@ -108,7 +129,7 @@
                                         </p>
                                     </div>
                                 </div>
-                            </div>                        
+                            </div>
                             </div>
                             <script>
                                 $(".chageLevel").on("click", function () {

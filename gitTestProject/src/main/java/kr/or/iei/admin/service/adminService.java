@@ -477,4 +477,14 @@ public class adminService {
 		return result;
 	}
 
+	public ArrayList<Member> selectSearchMember(String searchId) {
+		Connection connection = JDBCTemplate.getConnection();
+
+		ArrayList<Member> list = dao.selectSearchMember(connection, searchId);
+
+		JDBCTemplate.close(connection);
+
+		return list;
+	}
+
 }
