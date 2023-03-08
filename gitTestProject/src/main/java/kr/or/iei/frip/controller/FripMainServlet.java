@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kr.or.iei.feed.service.FeedService;
-import kr.or.iei.feed.vo.Feed;
 import kr.or.iei.feed.vo.ViewFripFeedData;
 import kr.or.iei.frip.service.FripService;
 import kr.or.iei.frip.vo.Frip;
@@ -43,11 +42,10 @@ public class FripMainServlet extends HttpServlet {
 		FripService service = new FripService();
 		String fripWriter = request.getParameter("memberId");
 		ArrayList<Frip> list = service.selectMyFrip(fripWriter);
-		System.out.println(list);
 		int totalIncome = 0;
 		int totalInquiryCount = 0;
 		int feedTotalRating = 0;
-		int totalRatingAvg = 0;
+		double totalRatingAvg = 0;
 		int totalFripCount = list.size();
 		int totalPaymentCount = 0;
 		int	totalFeedCount = 0;
@@ -58,15 +56,14 @@ public class FripMainServlet extends HttpServlet {
 			PaymentService pService = new PaymentService();
 			FeedService fService = new FeedService();
 			feedList = fService.selectAllMyFripFeed(f.getFripNo());
-			System.out.println(1);
 			if(feedList.size() > 0) {
+				totalFeedCount += feedList.size();
 				for(ViewFripFeedData data : feedList) {
-					System.out.println(2);
 					RatingService rService = new RatingService();
 					feedTotalRating += rService.selectAllMyFripRating(data.getF().getFeedNo());
 				}
-				totalRatingAvg = feedTotalRating / feedList.size();				
 			}
+			totalRatingAvg = (double)feedTotalRating / totalFeedCount;				
 			totalPaymentCount += pService.selectCountMyFripPayment(f.getFripNo());
 			totalIncome += f.getFripIncome();
 			if( Integer.parseInt(f.getFripStatus()) == 1) {
