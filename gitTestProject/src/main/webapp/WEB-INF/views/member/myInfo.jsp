@@ -31,7 +31,7 @@ Member member = (Member) request.getAttribute("m");
 							<input type="hidden" name="status" value="stay">
 							
 							<%if(member.getMemberProfile() != null) { %>
-							
+							<button type="button" class="delFile" style="background-color: parent;"><img src="/upload/member/삭제.png" id="delProfile"></button>
 								<img src="/upload/member/<%=member.getMemberProfile() %>" class="profile-img" width="100px">
 								<label for="upProfile">
                                         <img src="/upload/member/camera.png" id="camera">
