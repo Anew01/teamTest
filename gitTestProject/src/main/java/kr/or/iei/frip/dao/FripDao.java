@@ -472,4 +472,5 @@ public class FripDao {
 		}
 		return result;
 	}
+	
 }

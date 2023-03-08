@@ -65,6 +65,13 @@ public class JoinFripService {
 	public ArrayList<JoinFrip> selectFripByDate(FripJoinableDate joinableDate) {
 		Connection conn = JDBCTemplate.getConnection();
 		ArrayList<JoinFrip> list = dao.selectFripByDate(conn, joinableDate);
+		for(JoinFrip jf : list ) {
+			String date = jf.getJoinDate();
+			int fripNo = jf.getFripNo();
+			JoinFrip j = dao.selectCount(conn, date, fripNo);
+			jf.setMaxCnt(j.getMaxCnt());
+			jf.setUseCnt(j.getUseCnt());
+		}
 		return list;
 	}
 	
