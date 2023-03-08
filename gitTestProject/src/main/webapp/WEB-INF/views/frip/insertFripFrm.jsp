@@ -103,6 +103,8 @@
 					</div>
 					<input type="date" class="form-control" name="endDate" id="endDate" required>
 				</div>
+				<div class="date-result">
+				</div>
 				<div class="input-group mb-3">
 					<div class="input-group-prepend">
 						<label class="input-group-text" for="maxCount">스프립 인원</label>
@@ -181,6 +183,19 @@
 		        	$("#fripAddr").val(data.address)
 		        }
 		    }).open();
+		})
+		$("#endDate").on("focusout",function(){
+				const startDate = $("#startDate").val();
+				$(".date-result").children().remove();
+			if(startDate > $(this).val()){
+				$(this).empty();
+				$(this).text("");
+				$("#startDate").empty();
+				$("#startDate").text("");
+				const span = $("<span>");
+				span.text("시작날짜가 마감날짜보다 이전이어야 합니다.").css("color","red");
+				$(".date-result").append(span);
+			}
 		})
 	</script>
 </body>
