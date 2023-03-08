@@ -60,7 +60,7 @@
 					    <span class="visually-hidden">Next</span>
 					</button>
 				</div>
-				<div class="slide-title"><%= f.getFripTitle() %></div>
+					<div class="slide-title"><%= f.getFripTitle() %></div>
   				</div>
 				<% } %>
   			</div>

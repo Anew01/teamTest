@@ -13,7 +13,7 @@
 <body>
 	<div class="d-flex flex-column flex-shrink-0 p-3" style="width: 160px; background-color : #FFFBC1; border : none;">
     <a href="/fripMain.do?memberId=<%= mem.getMemberId() %>" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-      <span class="fs-4" style="color : #85c88a">내프립 관리</span>
+      <span class="fs-4" style="color : black">내프립 관리</span>
     </a>
     <hr style="color : #FEBE8C;">
     <ul class="nav nav-pills flex-column mb-auto">
