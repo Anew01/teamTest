@@ -44,7 +44,7 @@ public class UpdateMyInfoServlet extends HttpServlet {
 		//2.값추출
 		
 		String root = getServletContext().getRealPath("/");
-		String saveDirectory = root + "upload/member";
+		String saveDirectory = root + "upload/member/";
 		int maxsize = 10 * 1024 * 1024;
 
 		MultipartRequest mRequest = new MultipartRequest(request, saveDirectory, maxsize, "utf-8",
@@ -54,7 +54,7 @@ public class UpdateMyInfoServlet extends HttpServlet {
 		
 		
 		String oldProfile = mRequest.getParameter("oldProfile");
-		String upProfile = mRequest.getParameter("upProfile");
+		String upProfile = mRequest.getFilesystemName("upProfile");
 		
 		if(oldProfile != null && status.equals("stay")) {
 			upProfile = oldProfile;
@@ -63,10 +63,10 @@ public class UpdateMyInfoServlet extends HttpServlet {
 		member.setMemberId(mRequest.getParameter("memberId"));
 		member.setMemberPw(mRequest.getParameter("memberPw"));
 		member.setMemberPhone(mRequest.getParameter("memberPhone"));
+		member.setMemberName(mRequest.getParameter("memberName"));
 		member.setMemberAddr(mRequest.getParameter("memberAddr"));
 		member.setMemberAddrDetail(mRequest.getParameter("memberAddrDetail"));
 		member.setMemberProfile(upProfile);
-		member.setMemberOldProfile(oldProfile);
 		//3.비즈니스로직
 		MemberService service = new MemberService();
 		int result = service.updateMember(member);
