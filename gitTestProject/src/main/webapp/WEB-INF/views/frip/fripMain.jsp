@@ -38,20 +38,25 @@
 							<tr>
 								<td>
 									<span>전체 프립 수</span>
+									<span><%= data.getTotalFripCount() %></span>
 								</td>
 								<td>
 									<span>전체 결제 수</span>
+									<span><%= data.getTotalPaymentCount() %></span>
 								</td>
 								<td>
 									<span>총 완료 프립 수</span>
+									<span><%= data.getTotalExpiredFripCount() %></span>
 								</td>
 							</tr>
 							<tr>
 								<td>
 									<span>전체 후기 수</span>
+									<span><%= data.getTotalFeedCount() %></span>
 								</td>
 								<td>
 									<span>평균 별점</span>
+									<span><%= data.getTotalrankCount() %></span>
 								</td>
 								<td>
 									<span>전체 문의 수</span>

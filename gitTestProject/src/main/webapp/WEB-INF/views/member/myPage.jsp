@@ -58,7 +58,7 @@ Member member = (Member) request.getAttribute("m");
            <%if(loginMember.getMemberLevel()==1) {%>
 					<div><a href="/adminPage.do">회원관리</a></div>
 			<%} else if(loginMember.getMemberLevel()==2) {%>
-					<div><a href="/fripMain.do">나의 스프립</a></div>
+					<div><a href="/fripMain.do?memberId=<%= loginMember.getMemberId() %>">나의 스프립</a></div>
 			<%}else{ %>
 					<div><a href="/updateHostMember.do">신청하기</a></div>
 			<%} %>

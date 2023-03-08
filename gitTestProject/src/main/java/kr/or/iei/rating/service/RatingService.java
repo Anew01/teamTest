@@ -24,4 +24,11 @@ public class RatingService {
 		JDBCTemplate.close(conn);
 		return result;
 	}
+
+	public int selectAllMyFripRating(int feedNo) {
+		Connection conn = JDBCTemplate.getConnection();
+		int feedTotalRating = dao.selectAllMyFripRating(conn, feedNo);
+		JDBCTemplate.close(conn);
+		return feedTotalRating;
+	}
 }
