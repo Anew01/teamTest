@@ -32,6 +32,7 @@ public class SendRequestToHostServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		//2. 값추출
 		String hostmail  = request.getParameter("hostmail");
+		System.out.println("여기여"+hostmail);
 		String guestmail = request.getParameter("guestmail");
 		String messageText = request.getParameter("messageText");
 		int fripNo = Integer.parseInt(request.getParameter("fripNo"));

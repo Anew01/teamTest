@@ -86,4 +86,11 @@ public class MemberService {
 		return result;
 	}
 
+	
+	public Member selectOneMemberByJoin(int fripNo) {
+		Connection conn = JDBCTemplate.getConnection();
+		Member m = dao.selectOneMemberByJoin(conn, fripNo);
+		return m;
+	}
+
 }

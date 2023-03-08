@@ -45,6 +45,7 @@ public class JoinFripServlet extends HttpServlet {
 		ArrayList<Feed> fList = feedService.selectOneFeed(fripNo);
 		      
 		MemberService mService = new MemberService();
+		Member m = mService.selectOneMemberByJoin(fripNo);
 		ArrayList<Member> mList = mService.selectAllMember();
 		
 		String categoryName = request.getParameter("categoryName");
@@ -61,6 +62,7 @@ public class JoinFripServlet extends HttpServlet {
 		request.setAttribute("fripNo", fripNo);
 		request.setAttribute("fList", fList);
 		request.setAttribute("mList", mList);
+		request.setAttribute("m", m);
 		view.forward(request, response);
 	}
 
