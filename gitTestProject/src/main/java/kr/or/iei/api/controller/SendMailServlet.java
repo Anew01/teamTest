@@ -31,7 +31,7 @@ public class SendMailServlet extends HttpServlet {
 		//1.인코딩
 				request.setCharacterEncoding("utf-8");
 				//2.값추출
-				String email = request.getParameter("email");
+				String email = request.getParameter("memberId");
 				//3.비즈니스로직
 				MailSender sender = new MailSender();
 				String randomCode = sender.sendMail(email);
