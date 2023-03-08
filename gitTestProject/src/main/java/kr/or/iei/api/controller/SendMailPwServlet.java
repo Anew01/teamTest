@@ -34,10 +34,10 @@ public class SendMailPwServlet extends HttpServlet {
 		//1.인코딩
 		request.setCharacterEncoding("utf-8");
 		//2.값추출
-		String email = request.getParameter("email");
+		String email = request.getParameter("memberId");
 		
 		Member member = new Member();
-		member.setMemberId(request.getParameter("email"));
+		member.setMemberId(request.getParameter("memberId"));
 		
 		
 		//3.비즈니스로직
