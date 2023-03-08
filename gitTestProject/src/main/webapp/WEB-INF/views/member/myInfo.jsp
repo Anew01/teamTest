@@ -129,7 +129,7 @@ Member member = (Member) request.getAttribute("m");
 						<input type="submit" value="수정하기"> <a
 							href="/updateDeleteMember.do?memberId="<%=loginMember.getMemberId()%>">
 							<input type="button" value="탈퇴하기" id="deleteMemberBtn"
-							onclick="func1();">
+							onclick="return func1();">
 						</a>
 					</div>
 				</form>
@@ -159,7 +159,10 @@ Member member = (Member) request.getAttribute("m");
 			}
 		}
 			function func1() {
-				confirm("회원탈퇴를 진행하시겠습니까?");
+				var result = confirm("회원탈퇴를 진행하시겠습니까?");
+				if(result == false){
+					return false;
+				}
 			}
 
 			function searchAddr() {
