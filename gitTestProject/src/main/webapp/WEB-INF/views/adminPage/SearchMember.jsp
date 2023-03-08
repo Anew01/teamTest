@@ -23,7 +23,8 @@
                                     <div class="search">
                                         <div class="search-padding">
                                             <label for="searchId" style="font-size: 0.9rem;">검색:</label>
-                                            <input type="text" name="searchId" placeholder="아이디를 입력해주세요">
+                                            <input type="text" name="searchId" id="searchId" placeholder="아이디를 입력해주세요"
+                                                onkeyup="if(window.event.keyCode==13){inputEnter();}">
                                             <button class="submit" type="submit">검색</button>
                                             <button class="reset" type="reset">초기화</button>
                                         </div>
@@ -194,6 +195,12 @@
 
                                 location.href = "/memberSearch.do?reqPage=1&searchId=" + searchId;
                             });
+
+                            function inputEnter() {
+                                const searchId = $("#searchId").val();
+
+                                location.href = "/memberSearch.do?reqPage=1&searchId=" + searchId;
+                            }
                         </script>
                         <!-- sidebar.js -->
                         <script src="/js/adminPage/sidebar.js"></script>
