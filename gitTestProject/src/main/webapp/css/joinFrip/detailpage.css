@@ -25,6 +25,9 @@ a{
     overflow: hidden;
     border-bottom: solid 0.5px rgb(215, 217, 215);
 }
+.content-visit{
+	padding-left: 70px;
+}
 .star{
     width: 250px;
 }
