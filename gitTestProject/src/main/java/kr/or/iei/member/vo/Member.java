@@ -28,6 +28,13 @@ public class Member {
 		this.memberLevel = memberLevel;
 	}
 	
+	public Member(String memberId,String memberPw ) {
+		super();
+		
+		this.memberId = memberId;
+		this.memberPw = memberPw;
+		
+	}
 
 
 	public Member(String memberId, String memberPw, String memberName, String memberPhone, String memberAddr,
