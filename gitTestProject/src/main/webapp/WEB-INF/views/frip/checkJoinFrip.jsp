@@ -53,7 +53,9 @@ ArrayList<Member> mList = (ArrayList<Member>)request.getAttribute("mList");
         <form>
           <div class="mb-3">
             <label for="recipient-name" class="col-form-label">호스트 이메일:</label>
+            <%if(loginMember != null){ %>
             <input type="text" class="form-control" id="recipient-name" value="<%=loginMember.getMemberId()%>">
+           <%} %>
           </div>
           <div class="mb-3">
             <label for="message-text" class="col-form-label">호스트에게 보낼 메세지를 적어주세요</label>
@@ -131,7 +133,9 @@ ArrayList<Member> mList = (ArrayList<Member>)request.getAttribute("mList");
             </p>
             <div class="explain"></div>
             <div>
+            <%if(loginMember != null){ %>
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="<%=loginMember.getMemberId()%>" style="background-color: #85C88A; border : none;">호스트에게 연락</button>
+            <%} %>
             </div>
          </div>
       </div>

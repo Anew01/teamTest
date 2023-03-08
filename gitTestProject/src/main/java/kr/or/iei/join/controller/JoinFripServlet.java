@@ -50,6 +50,13 @@ public class JoinFripServlet extends HttpServlet {
 		}
 		MemberService service = new MemberService();
 		
+		//상세페이지에 피드를 불러오기 위한 비즈니스 로직
+		FeedService feedService = new FeedService();
+		ArrayList<Feed> fList = feedService.selectOneFeed(fripNo);
+		
+		MemberService mService = new MemberService();
+		ArrayList<Member> mList = mService.selectAllMember();
+		
 		
 		
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/frip/checkJoinFrip.jsp");
