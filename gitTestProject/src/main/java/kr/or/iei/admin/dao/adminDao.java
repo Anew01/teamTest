@@ -373,19 +373,21 @@ public class adminDao {
 		return result;
 	}
 
-	public ArrayList<Member> selectSearchMember(Connection connection, String searchId) {
+	public ArrayList<Member> selectSearchMember(Connection connection, String searchId, int start, int end) {
 		PreparedStatement preparedStatement = null;
 
 		ResultSet resultSet = null;
 
 		ArrayList<Member> list = new ArrayList<Member>();
 
-		String query = "SELECT MEMBER_NO, MEMBER_ID, MEMBER_PW, MEMBER_NAME, NVL(MEMBER_ADDR, '없음') AS NVLADDR, NVL(MEMBER_PHONE, '없음') AS NVLPHONE, NVL(MEMBER_GENDER, '없음') AS NVLGENDER, MEMBER_LEVEL, ENROLL_DATE FROM MEMBER_TBL WHERE MEMBER_ID LIKE ? ORDER BY 1 DESC";
+		String query = "SELECT * FROM(SELECT ROWNUM AS rnum, n.* FROM (SELECT MEMBER_NO, MEMBER_ID, MEMBER_PW, MEMBER_NAME, NVL(MEMBER_ADDR, '없음') AS NVLADDR, NVL(MEMBER_PHONE, '없음') AS NVLPHONE, NVL(MEMBER_GENDER, '없음') AS NVLGENDER, MEMBER_LEVEL, ENROLL_DATE FROM MEMBER_TBL WHERE MEMBER_ID LIKE ? ORDER BY 1 DESC) n) WHERE rnum BETWEEN ? and ?";
 
 		try {
 			preparedStatement = connection.prepareStatement(query);
 
 			preparedStatement.setString(1, "%" + searchId + "%");
+			preparedStatement.setInt(2, start);
+			preparedStatement.setInt(3, end);
 
 			resultSet = preparedStatement.executeQuery();
 
@@ -412,6 +414,34 @@ public class adminDao {
 		}
 
 		return list;
+	}
+
+	public int selectSearchMemberCount(Connection connection, String searchId) {
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+
+		int totalCount = 0;
+
+		String query = "SELECT COUNT(*) AS CNT FROM MEMBER_TBL WHERE MEMBER_ID LIKE ?";
+
+		try {
+			preparedStatement = connection.prepareStatement(query);
+
+			preparedStatement.setString(1, "%" + searchId + "%");
+
+			resultSet = preparedStatement.executeQuery();
+
+			if (resultSet.next()) {
+				totalCount = resultSet.getInt("CNT");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(resultSet);
+			JDBCTemplate.close(preparedStatement);
+		}
+
+		return totalCount;
 	}
 
 }

@@ -1,7 +1,10 @@
 <%@page import="java.util.ArrayList" %>
     <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
         <!DOCTYPE html>
-        <%ArrayList<Member> list = (ArrayList<Member>)request.getAttribute("searchList"); %>
+        <% ArrayList<Member> list = (ArrayList<Member>)request.getAttribute("searchList");
+                String pageNavi = (String)request.getAttribute("pageNavi");
+                int start = (int)request.getAttribute("start");
+                %>
                 <html lang="ko" dir="ltr">
 
                 <head>
@@ -19,12 +22,10 @@
                                     </div>
                                     <div class="search">
                                         <div class="search-padding">
-                                            <form action="/memberSearch.do" method="get">
-                                                <h2>검색:</h2>
-                                                <input type="text" name="searchId" placeholder="아이디를 입력해주세요">
-                                                <button type="submit">검색</button>
-                                                <button class="reset" type="reset">초기화</button>
-                                            </form>
+                                            <label for="searchId" style="font-size: 0.9rem;">검색:</label>
+                                            <input type="text" name="searchId" placeholder="아이디를 입력해주세요">
+                                            <button class="submit" type="submit">검색</button>
+                                            <button class="reset" type="reset">초기화</button>
                                         </div>
                                     </div>
                                 </div>
@@ -48,9 +49,11 @@
                                                         <tr>
                                                             <td><input type="checkbox" class="chk"></td>
                                                             <td>
-                                                                <%=i%>
+                                                                <%=i+start%>
                                                             </td>
-                                                            <td><%=member.getMemberId() %></td>
+                                                            <td>
+                                                                <%=member.getMemberId() %>
+                                                            </td>
                                                             <td>
                                                                 <%=member.getMemberName() %>
                                                             </td>
@@ -109,6 +112,9 @@
                                                                     </th>
                                                                 </tr>
                                         </table>
+                                        <div id="pageNavi">
+                                            <%=pageNavi %>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="card">
@@ -181,6 +187,12 @@
 
                             $(".reset").on("click", function () {
                                 location.href = "/allMember.do?reqPage=1";
+                            });
+
+                            $(".submit").on("click", function () {
+                                const searchId = $(this).prev().val();
+
+                                location.href = "/memberSearch.do?reqPage=1&searchId=" + searchId;
                             });
                         </script>
                         <!-- sidebar.js -->

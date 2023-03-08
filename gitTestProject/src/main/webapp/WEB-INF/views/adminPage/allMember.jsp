@@ -1,8 +1,7 @@
 <%@page import="kr.or.iei.member.vo.Member" %>
     <%@page import="java.util.ArrayList" %>
         <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-            <% 
-            		ArrayList<Member> list = (ArrayList<Member>)request.getAttribute("list");
+            <% ArrayList<Member> list = (ArrayList<Member>)request.getAttribute("list");
                     String pageNavi = (String)request.getAttribute("pageNavi");
                     int start = (int)request.getAttribute("start");
                     %>
@@ -24,12 +23,11 @@
                                         </div>
                                         <div class="search">
                                             <div class="search-padding">
-                                                <form action="/memberSearch.do" method="get">
-                                                    <h2>검색:</h2>
-                                                    <input type="text" name="searchId" placeholder="아이디를 입력해주세요">
-                                                    <button type="submit">검색</button>
-                                                    <button class="reset" type="reset">초기화</button>
-                                                </form>
+                                                <label for="searchId" style="font-size: 0.9rem;">검색:</label>
+                                                <input type="text" name="searchId" placeholder="아이디를 입력해주세요"
+                                                    id="searchId">
+                                                <button class="submit" type="submit">검색</button>
+                                                <button class="reset" type="reset">초기화</button>
                                             </div>
                                         </div>
                                     </div>
@@ -56,7 +54,9 @@
                                                                 <td>
                                                                     <%=i+start%>
                                                                 </td>
-                                                                <td><%=member.getMemberId() %></td>
+                                                                <td>
+                                                                    <%=member.getMemberId() %>
+                                                                </td>
                                                                 <td>
                                                                     <%=member.getMemberName() %>
                                                                 </td>
@@ -188,6 +188,12 @@
                                     });
 
                                     location.href = "/checkedWithdrawal.do?id=" + Id.join("/");
+                                });
+
+                                $(".submit").on("click", function () {
+                                    const searchId = $(this).prev().val();
+
+                                    location.href = "/memberSearch.do?reqPage=1&searchId=" + searchId;
                                 });
                             </script>
                             <!-- sidebar.js -->
