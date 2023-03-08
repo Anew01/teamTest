@@ -160,4 +160,35 @@ public class FeedDao {
 		return result;
 	}
 
+	public ArrayList<Feed> selectOneFeed(Connection conn, int fripNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<Feed> fList = new ArrayList<>();
+		String query = "SELECT * FROM FEED_TBL WHERE FRIP_NO = ?";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, fripNo);
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				Feed feed = new Feed();
+				feed.setFeedNo(rset.getInt("feed_no"));
+				feed.setFeedWriter(rset.getString("feed_writer"));
+				feed.setFripNo(rset.getInt("frip_no"));
+				feed.setFeedContent(rset.getString("feed_content"));
+				feed.setFilename(rset.getString("file_name"));
+				feed.setFilepath(rset.getString("file_path"));
+				feed.setFdNo(rset.getInt("fd_no"));
+				feed.setWriteDate(rset.getString("write_date"));
+				fList.add(feed);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return fList;
+	}
+
 }

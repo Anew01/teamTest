@@ -37,8 +37,8 @@
 }
 .my-info-content{
 	display: flex;
-	justify-content : center;
 	flex-direction : column;
+	align-items : center;
 }
 .my-info-content>img{
 	margin-left : 10px;
@@ -99,3 +99,7 @@
 .income-info>div:last-of-type{
 	text-align : right;
 }
+.income-info>div:last-of-type>span{
+	margin-left : 10px;
+}
+

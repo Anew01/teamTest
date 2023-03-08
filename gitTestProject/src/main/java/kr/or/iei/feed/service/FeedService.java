@@ -90,6 +90,13 @@ public class FeedService {
 		JDBCTemplate.close(conn);
 		return result;
 	}
+
+	public ArrayList<Feed> selectOneFeed(int fripNo) {
+		Connection conn = JDBCTemplate.getConnection();
+		ArrayList<Feed> fList = dao.selectOneFeed(conn, fripNo);
+		JDBCTemplate.close(conn);
+		return fList;
+	}
 }
 
 

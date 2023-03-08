@@ -10,7 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
+import kr.or.iei.feed.service.FeedService;
+import kr.or.iei.feed.vo.Feed;
 import kr.or.iei.frip.service.FripService;
 import kr.or.iei.frip.vo.Frip;
 import kr.or.iei.member.service.MemberService;
@@ -55,6 +56,8 @@ public class JoinFripServlet extends HttpServlet {
 		request.setAttribute("f", f);
 		request.setAttribute("list", list);
 		request.setAttribute("fripNo", fripNo);
+		request.setAttribute("fList", fList);
+		request.setAttribute("mList", mList);
 		view.forward(request, response);
 	}
 

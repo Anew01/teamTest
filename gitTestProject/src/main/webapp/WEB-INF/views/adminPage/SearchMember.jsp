@@ -199,6 +199,10 @@
 
                                 location.href = "/memberSearch.do?reqPage=1&searchId=" + searchId;
                             }
+                            
+                            $(".reset").on("click", function () {
+                                location.href = "/allMember.do?reqPage=1";
+                            });
                         </script>
                         <!-- sidebar.js -->
                         <script src="/js/adminPage/sidebar.js"></script>

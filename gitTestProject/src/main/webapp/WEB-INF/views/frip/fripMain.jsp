@@ -68,7 +68,7 @@
 				</div>
 				<div class="income-info">
 					<div class="income-title">총 수익금</div>
-					<div><%= data.getTotalIncome() %></div>
+					<div><%= data.getTotalIncome() %><span>원</span></div>
 				</div>
 			</div>
 		</div>
