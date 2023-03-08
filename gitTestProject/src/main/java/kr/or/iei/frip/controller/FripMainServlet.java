@@ -10,9 +10,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import kr.or.iei.feed.service.FeedService;
+import kr.or.iei.feed.vo.Feed;
+import kr.or.iei.feed.vo.ViewFripFeedData;
 import kr.or.iei.frip.service.FripService;
 import kr.or.iei.frip.vo.Frip;
 import kr.or.iei.frip.vo.FripMainDate;
+import kr.or.iei.payment.service.PaymentService;
+import kr.or.iei.rating.service.RatingService;
 
 /**
  * Servlet implementation class FripMainServlet
@@ -36,17 +41,33 @@ public class FripMainServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/frip/fripMain.jsp");
 		FripService service = new FripService();
-		String fripWriter = "user01";
+		String fripWriter = request.getParameter("memberId");
 		ArrayList<Frip> list = service.selectMyFrip(fripWriter);
+		System.out.println(list);
 		int totalIncome = 0;
 		int totalInquiryCount = 0;
-		int totalrankAvg = 0;
-		int totalFeedCount = 0;
-		int totalPaymentCount = 0;
+		int feedTotalRating = 0;
+		int totalRatingAvg = 0;
 		int totalFripCount = list.size();
+		int totalPaymentCount = 0;
+		int	totalFeedCount = 0;
 		int totalExpiredFripCount = 0;
+		ArrayList<ViewFripFeedData> feedList = new ArrayList<>();
 		
 		for(Frip f : list) {
+			PaymentService pService = new PaymentService();
+			FeedService fService = new FeedService();
+			feedList = fService.selectAllMyFripFeed(f.getFripNo());
+			System.out.println(1);
+			if(feedList.size() > 0) {
+				for(ViewFripFeedData data : feedList) {
+					System.out.println(2);
+					RatingService rService = new RatingService();
+					feedTotalRating += rService.selectAllMyFripRating(data.getF().getFeedNo());
+				}
+				totalRatingAvg = feedTotalRating / feedList.size();				
+			}
+			totalPaymentCount += pService.selectCountMyFripPayment(f.getFripNo());
 			totalIncome += f.getFripIncome();
 			if( Integer.parseInt(f.getFripStatus()) == 1) {
 				totalExpiredFripCount++;
@@ -59,7 +80,7 @@ public class FripMainServlet extends HttpServlet {
 		data.setTotalIncome(totalIncome);
 		data.setTotalInquiryCount(totalInquiryCount);
 		data.setTotalPaymentCount(totalPaymentCount);
-		data.setTotalrankCount(totalrankAvg);
+		data.setTotalrankCount(totalRatingAvg);
 		
 		request.setAttribute("data", data);
 		view.forward(request, response);

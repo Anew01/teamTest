@@ -190,7 +190,7 @@
 	<%@include file="/WEB-INF/views/common/footer.jsp" %>
 	<script>
 		$.datepicker.setDefaults({
-		    dateFormat: 'yy-mm',
+		    dateFormat: 'yy-mm-dd',
 		    prevText: '이전 달',
 		    nextText: '다음 달',
 		    monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
@@ -211,6 +211,8 @@
 			const startDate = $("#startDate").val();
 			const endDate = $("#endDate").val();
 			const maxCount = $("#maxCount").val();
+			const date1 = new Date(startDate);
+			const date2 = new Date(endDate);
 			if(startDate == "" || endDate == "" || maxCount == "" ){
 				$("[name=fripNo]").val("");
 				$("#startDate").val("");
@@ -218,6 +220,11 @@
 				$("#maxCount").val("");
 				$(".date-result-print").empty();
 				$(".date-result-print").append("입력을 다 해주세요").css("color", "red");
+				return;
+			} else if(date2 < date1){
+				const span = $("<span>");
+				span.css("color","red").text("시작날짜는 마지막날짜보다 전이여야합니다");
+				$(".date-result-print").append(span);
 				return;
 			}
 			
@@ -257,13 +264,39 @@
 			 const endDate =$("#datepicker2").val();
 			 const fripNo = $("[name=fripNo]").val();
 			 
+			 const date1 = new Date(startDate);
+			 const date2 = new Date(endDate);
+			 if(date2 < date1) {
+			 	const span = $("<span>");
+				span.css("color","red").css("margin-left","20px").text("시작날짜는 마지막날짜보다 전이여야합니다");
+				$("#searchDateBtn").after(span);
+				return;
+			 }
 			 $.ajax({
 				 url : "selectJoinableDate.do",
 					type : "post",
 					data : {startDate : startDate, endDate, endDate, fripNo : fripNo},
 					dataType : "json",
-					success : function(data){
-						console.log(data)
+					success : function(list){
+						$("tr.result").remove();
+						for(let i=0;i<list.length;i++){
+							const tr = $("<tr>");
+							tr.addClass("result");
+							const td1 = $("<td>");
+							td1.text(list[i].joinFripNo);
+							const td2 = $("<td>");
+							td2.text(list[i].joinDate);
+							const td3 = $("<td>");
+							if(list[i].useCnt == null){
+								td3.text("0");							
+							} else {
+								td3.text(list[i].useCnt);
+							}
+							const td4 = $("<td>");
+							td4.text(list[i].maxCnt);
+							tr.append(td1).append(td2).append(td3).append(td4);
+							$("tr.table-success").after(tr);
+						}
 					},
 					error : function(){
 						
