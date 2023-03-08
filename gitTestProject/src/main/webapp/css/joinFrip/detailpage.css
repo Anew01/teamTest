@@ -51,11 +51,11 @@ a{
     margin: 10px;
     padding: 10px;
 }
-.photo>a>img:first-child{
+.photo img:first-child{
     border-top-left-radius: 100px;
     border-bottom-left-radius: 100px;
 }
-.photo>a>img:last-child{
+.photo img:last-child{
     border-top-right-radius: 100px;
     border-bottom-right-radius: 100px;
 }
@@ -176,7 +176,6 @@ a{
 	margin-top:20px;
 }
 
-/*호스트에게 연락하기 모달창*/
 
 
 	
