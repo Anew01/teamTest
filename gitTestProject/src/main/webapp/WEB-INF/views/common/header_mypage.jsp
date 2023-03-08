@@ -52,7 +52,7 @@ Member loginMember = (Member) session.getAttribute("m");
 			<div class="header-button">
                 <ul>
                     <li><a href="#"><img src="/headerBtnImage/북마크.png"><div><span>호스트지원</span></div></a></li>
-                    <li><a href="#"><img src="/headerBtnImage/피드.png"><div><span>피드</span></div></a></li>
+                    <li><a href="/noticeListUser.do?reqPage=1"><img src="/headerBtnImage/피드.png"><div><span>공지사항</span></div></a></li>
                     <li><a href="/logout.do"><img src="/headerBtnImage/마이페이지.png"><div><span>로그아웃</span></div></a></li>
                     
                 </ul>
