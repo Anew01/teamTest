@@ -31,7 +31,7 @@
 					<div class="input-group-prepend">
 						<span class="input-group-text">스프립 프로필 사진</span>
 					</div>
-					<input type="file" class="form-control" multiple="multiple" accept=".jpg,.png,.jpeg" name="fripFiles" id="fripFiles" onChange="uploadFiles(this)">
+					<input type="file" class="form-control" style="line-height : 35px;" multiple="multiple" accept=".jpg,.png,.jpeg" name="fripFiles" id="fripFiles" onChange="uploadFiles(this)">
 				</div>		
 				<div class="input-group">
 					<div class="input-group-prepend">
@@ -39,7 +39,7 @@
 					</div>
 					<input type="text" class="form-control" name="fripAddr" id="fripAddr" readonly required>
 					<div class="input-group-append">
-						<button type="button" class="btn btn-outline-secondary" id="findAddrBtn">주소찾기</button>
+						<button type="button" class="btn btn-outline-secondary" style="height : 45px;" id="findAddrBtn">주소찾기</button>
 					</div>
 				</div>
 				<input type="hidden" value="">
@@ -118,11 +118,10 @@
 					<input type="text" class="form-control" name="fripPrice" id="fripPrice" required>
 				</div>
 				<div class="form-group">
-					<label for="fripContent">스프립 내용</label>
 					<textarea id="summernote" name="editordata" required></textarea>
 				</div>
 				<div class="submit-btn-warpper">
-					<button type="submit" class="btn btn-primary btn-lg btn-block" style="width : 100%;">등록하기</button>
+					<button type="submit" class="btn btn-lg btn-block" style="width : 100%; color : white; background-color : #FEBE8C">등록하기</button>
 				</div>
 			</form>
 		</div>
