@@ -20,12 +20,32 @@
                   
                 <div class="join-btn-wrap">
                     <input type="submit" value="이메일로 시작하기" id="join_email">
-                    <input type="submit" value="카카오로 시작하기" id="join_kakao">
+                    <input type="button" value="카카오로 시작하기" id="join_kakao" onclick="kakaoLogin();">
                 </div>
             </form>
         </div>
     </div>
 </div>
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<script>
+window.Kakao.init("1b393750329a5ae6070542c223e360b1");
+
+function kakaoLogin(){
+	window.Kakao.Auth.login({
+		scope:"account_email",
+		success: function(authObj){
+		console.log(authObj);
+		window.kakao.API.request({
+			url:'/v2/user/me',
+			success: res =>{
+				const kakao_account = res.kakao_account;
+				console.log(kakao_account);
+			}
+		});
+		}
+	});
+};
+</script>
 </body>
 </html>

@@ -50,7 +50,7 @@ public class JoinFripDao {
 		ResultSet rset = null;
 		ArrayList<JoinFrip> list = new ArrayList<>();
 		JoinFrip jf = null;
-		String query = "select * from join_frip where frip_no=? and to_date(join_date) between to_date(?,'YYYY-MM-DD') and to_date(?,'YYYY-MM-DD')";
+		String query = "select * from join_frip where frip_no=? and to_date(join_date,'YYYY-MM-DD') between to_date(?,'YYYY-MM-DD') and to_date(?,'YYYY-MM-DD')";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -66,13 +66,17 @@ public class JoinFripDao {
 				jf.setJoinableDateNo(rset.getInt("joinable_date_no"));
 				jf.setPaymentNo(rset.getInt("payment_no"));
 				jf.setJoinCount(rset.getInt("join_count"));
+				jf.setJoinDate(rset.getString("join_date"));
+				list.add(jf);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
 		}
-		
-		return null;
+		return list;
 	}
 
 }

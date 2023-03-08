@@ -3,7 +3,7 @@ package kr.or.iei.frip.vo;
 public class FripMainDate {
 	private int totalIncome;
 	private int totalInquiryCount;
-	private int totalrankCount;
+	private double totalrankCount;
 	private int totalFeedCount;
 	private int totalPaymentCount;
 	private int totalFripCount;
@@ -20,10 +20,10 @@ public class FripMainDate {
 	public void setTotalInquiryCount(int totalInquiryCount) {
 		this.totalInquiryCount = totalInquiryCount;
 	}
-	public int getTotalrankCount() {
+	public double getTotalrankCount() {
 		return totalrankCount;
 	}
-	public void setTotalrankCount(int totalrankCount) {
+	public void setTotalrankCount(double totalrankCount) {
 		this.totalrankCount = totalrankCount;
 	}
 	public int getTotalFeedCount() {

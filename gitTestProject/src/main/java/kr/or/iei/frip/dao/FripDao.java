@@ -291,10 +291,11 @@ public class FripDao {
 						+ "left join feed_tbl b on a.frip_no = b.frip_no\r\n"
 						+ "left join rating_tbl c on b.feed_no = c.feed_no\r\n"
 						+ "group by a.frip_no\r\n"
-						+ "order by 2 desc) a\r\n"
+						+ ") a\r\n"
 						+ "inner join frip_tbl b on a.ratingNo = b.frip_no\r\n"
 						+ "inner join frip_category c on b.frip_no = c.frip_no\r\n"
-						+ "where rownum < 4\r\n";
+						+ "where rownum < 6\r\n"
+						+ "order by RATING DESC\r\n";
 				pstmt = conn.prepareStatement(query);
 				rset = pstmt.executeQuery();
 			} else {
@@ -381,7 +382,8 @@ public class FripDao {
 		ResultSet rset = null;
 		String avgRating = "0.0";
 		System.out.println(fripNo);
-		String query = "select ROUND(AVG(D.RATING),1)AS RATING\r\n"
+		String query = 
+				"select ROUND(AVG(D.RATING),1)AS RATING\r\n"
 				+ "from frip_tbl A \r\n"
 				+ "LEFT JOIN feed_tbl C ON A.FRIP_NO = C.FRIP_NO\r\n"
 				+ "LEFT JOIN RATING_TBL D ON C.FEED_NO = D.FEED_NO\r\n"
@@ -472,4 +474,5 @@ public class FripDao {
 		}
 		return result;
 	}
+	
 }

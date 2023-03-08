@@ -52,9 +52,7 @@
                                                             <td>
                                                                 <button type="button" class="btn delete-btn">삭제</button>
                                                             </td>
-                                                            <td class="notice-No">
-                                                                <%=notice.getNoticeNo() %>
-                                                            </td>
+                                                            <td class="notice-No"><%=notice.getNoticeNo() %></td>
                                                         </tr>
                                                         <tr class="notice-content">
                                                             <td colspan="7">

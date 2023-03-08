@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+
 import kr.or.iei.feed.service.FeedService;
 import kr.or.iei.rating.service.RatingService;
 
@@ -32,12 +35,20 @@ public class InsertFeedServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		String feedWriter = request.getParameter("memberId");
-		String fripTitle = request.getParameter("fripTitle");
-		String feedContent = request.getParameter("editordata");
-		int fripNo = Integer.parseInt(request.getParameter("fripNo"));
-		int rating = Integer.parseInt(request.getParameter("rating"));
-		int feedNo = Integer.parseInt(request.getParameter("feedNo"));
+		response.setContentType("text/html;charset=utf-8");
+
+		String root = getServletContext().getRealPath("/");
+		String saveDirectory = root + "upload/member";
+		int maxsize = 10 * 1024 * 1024;
+
+		MultipartRequest mRequest = new MultipartRequest(request, saveDirectory, maxsize, "utf-8", new DefaultFileRenamePolicy());
+		request.setCharacterEncoding("utf-8");
+		String feedWriter = mRequest.getParameter("memberId");
+		String fripTitle = mRequest.getParameter("fripTitle");
+		String feedContent = mRequest.getParameter("editordata");
+		int fripNo = Integer.parseInt(mRequest.getParameter("fripNo"));
+		int rating = Integer.parseInt(mRequest.getParameter("rating"));
+		int feedNo = Integer.parseInt(mRequest.getParameter("feedNo"));
 		System.out.println("인서트jsp에서 넘어온 memberId 값 : "+feedWriter);
 		System.out.println("인서트jsp에서 넘어온 fripTitle 값 : "+fripTitle);
 		System.out.println("인서트jsp에서 넘어온 feedContent 값 : "+feedContent);

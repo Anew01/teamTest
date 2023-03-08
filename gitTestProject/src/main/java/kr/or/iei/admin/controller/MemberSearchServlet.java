@@ -10,12 +10,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kr.or.iei.admin.service.adminService;
+import kr.or.iei.admin.vo.MemberSearchPageData;
 
-@WebServlet(name = "Withdrawal", urlPatterns = { "/withdrawal.do" })
-public class WithdrawalServlet extends HttpServlet {
+@WebServlet(name = "MemberSearch", urlPatterns = { "/memberSearch.do" })
+public class MemberSearchServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public WithdrawalServlet() {
+	public MemberSearchServlet() {
 		super();
 	}
 
@@ -24,24 +25,20 @@ public class WithdrawalServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
 
-		String memberId = request.getParameter("memberId");
+		String searchId = request.getParameter("searchId");
+		int reqPage = Integer.parseInt(request.getParameter("reqPage"));
 
 		adminService service = new adminService();
 
-		int result = service.deleteMember(memberId);
+		MemberSearchPageData memberSearchPageData = service.selectSearchMember(searchId, reqPage);
 
-		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/adminPage/SearchMember.jsp");
 
-		if (result > 0) {
-			response.sendRedirect("/allMember.do?reqPage=1");
-		} else {
-			request.setAttribute("title", "회원 삭제 실패");
-			request.setAttribute("msg", "홈페이지에 문제가 발생했습니다.");
-			request.setAttribute("icon", "error");
-			request.setAttribute("loc", "/allMember.do?reqPage=1");
-			view.forward(request, response);
-		}
+		request.setAttribute("searchList", memberSearchPageData.getList());
+		request.setAttribute("pageNavi", memberSearchPageData.getPageNavi());
+		request.setAttribute("start", memberSearchPageData.getStart());
 
+		view.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

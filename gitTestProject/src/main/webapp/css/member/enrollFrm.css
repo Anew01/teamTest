@@ -114,7 +114,7 @@ body{
     cursor: pointer;
     margin-bottom: 20px;
 }
-.join-btn-wrap>input[type=submit]:last-child{
+.join-btn-wrap>input[type=button]:last-child{
     width: 500px;
     outline: none;
     padding: 15px;

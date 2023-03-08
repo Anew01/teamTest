@@ -1,2 +1,105 @@
 @charset "UTF-8";
 
+.page-content{
+	display: flex;
+}
+
+.content{
+	width : 100%;
+	display :flex;
+	margin-top : 50px;
+	flex-direction : row;
+	flex-wrap : wrap;
+	padding-right : 20px;
+	margin-left : 50px;
+}
+
+.wrap{
+	width : 500px;
+	border : 1px solid #dedede;
+	padding : 20px;
+	display : flex;
+	margin  : 20px;
+	margin-right : none;
+	flex-wrap : wrap;
+	box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
+}
+
+.info-title ,.my-info-content {
+	width : 100%;
+	text-indent : 10px;
+	height: fit-content;
+	margin-bottom : 20px;
+}
+
+.info-title {
+	font-size : 30px;
+}
+.my-info-content{
+	display: flex;
+	flex-direction : column;
+	align-items : center;
+}
+.my-info-content>img{
+	margin-left : 10px;
+	width : 100px;
+	height : 100px;
+}
+.my-info-content>div{
+	font-size : 20px;
+}
+.my-info{
+	display :flex;
+	flex-direction : column;
+}
+
+.my-info>a{
+	text-align : center;
+	margin-top : 20px;
+}
+
+.my-info>a>button{
+	width : 60%;
+	height : 50px;
+}
+
+.all-frip-info{
+	width : 100%;
+}
+
+.tbl{
+	width : 500px;
+	text-align : center;
+}
+.tbl>tbody>tr>td{
+	height : 80px;
+	border : 1px solid #dedede;
+	border-top : none;
+}
+
+.tbl>tbody>tr>td>div{
+	margin-top : 10px;
+	margin-bottom : 10px;
+}
+
+.tbl>tbody>tr:last-of-type>td{
+	border-bottom : none;
+}
+
+.income-info{
+	margin-left : 60px;
+	width : 400px;
+	padding : 20px;
+}
+.income-info>div:first-of-type{
+	font-size : 20px;
+	height : 60%;
+}
+
+.income-info>div:last-of-type{
+	text-align : right;
+}
+.income-info>div:last-of-type>span{
+	margin-left : 10px;
+}
+
