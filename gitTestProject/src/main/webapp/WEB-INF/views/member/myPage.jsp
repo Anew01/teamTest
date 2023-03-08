@@ -28,23 +28,12 @@ Member member = (Member) request.getAttribute("m");
             </div>
         </div>
         <br>
-        <div class="profile-detail">
-            <div>후기<br><span>0</span></div>
-            <div>피드<br><span>0</span></div>
-            <div>좋아요<br><span>0</span></div>
-        </div>
-        <br>
         <hr>
         <div class="sub-menu">
             <div>내 활동</div><br>
             <div>결제내역</div>
-        </div>
-        <br>
-        <hr>
-        <div class="sub-menu">
-            <div>고객센터</div><br>
-             <div id="kakao-talk-channel-chat-button" data-channel-public-id="_RTXDxj" data-title="question"
-            data-size="large" data-color="yellow" data-shape="pc" data-support-multiple-densities="true"></div>
+            <div>후기</div>
+            <div>좋아요</div>
         </div>
         <br>
         <hr>
@@ -63,6 +52,13 @@ Member member = (Member) request.getAttribute("m");
 					<div><a href="/updateHostMember.do">신청하기</a></div>
 			<%} %>
             </div>
+        </div>
+        <br>
+        <hr>
+        <div class="sub-menu">
+            <div>고객센터</div><br>
+             <div id="kakao-talk-channel-chat-button" data-channel-public-id="_RTXDxj" data-title="question"
+            data-size="large" data-color="yellow" data-shape="pc" data-support-multiple-densities="true"></div>
         </div>
         <br>
         <hr>
