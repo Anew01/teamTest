@@ -1,6 +1,7 @@
 package kr.or.iei.frip.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
@@ -8,6 +9,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.google.gson.Gson;
 
 import kr.or.iei.frip.service.FripService;
 import kr.or.iei.frip.vo.FripJoinableDate;
@@ -42,6 +45,11 @@ public class SelectJoinableDateServlet extends HttpServlet {
 		FripService service = new FripService(); 
 		JoinFripService JoinService = new JoinFripService();
 		ArrayList<JoinFrip> list = JoinService.selectFripByDate(joinableDate);
+		
+		response.setCharacterEncoding("UTF-8");
+		PrintWriter out = response.getWriter();
+		Gson gson = new Gson();
+		gson.toJson(list, out);
 	}
 
 	/**
