@@ -36,24 +36,27 @@ public class SelectAllFripByCategoryServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// 인
 		request.setCharacterEncoding("utf-8");
-		// 값
-		RequestDispatcher view = null;
 		FripService service = new FripService();
 		String categoryName = request.getParameter("categoryName");
+		RequestDispatcher view = null;
 		
-		//if ("main".equals(categoryName)) {
+		if ("main".equals(categoryName)) {
 			//main 화면
-			//비
-			//ArrayList<Frip> list = service.selectAllFripByCategory(categoryName);
-			//ArrayList<Frip> rList = service.selectAllFripByCategory("rList");
-			//ArrayList<Frip> nList = service.selectAllFripByCategory("nList");
+			ArrayList<Frip> list = service.selectAllFripByCategory(categoryName);
+			ArrayList<Frip> rList = service.selectAllFripByCategory("rList");
+			ArrayList<Frip> nList = service.selectAllFripByCategory("nList");
 			
-			//request.setAttribute("list", list);
-			//request.setAttribute("rList", rList);
-			//view = request.getRequestDispatcher("/WEB-INF/views/common/mainPage.jsp");
-		//} else {
+			for(Frip f : list) {
+				String avgRating = service.selectRating(f.getFripNo());
+				f.setAvgRating(avgRating);
+				System.out.println("if main rating : "+avgRating);
+			}
+			request.setAttribute("list", list);
+			request.setAttribute("rList", rList);
+			view = request.getRequestDispatcher("/WEB-INF/views/common/mainPage.jsp");
+			view.forward(request, response);
+		} else {
 			//main 화면이 아닐때
-			//비
 			ArrayList<Frip> list = service.selectAllFripByCategory(categoryName);
 			for(Frip f : list) {
 				String avgRating = service.selectRating(f.getFripNo());
@@ -63,7 +66,7 @@ public class SelectAllFripByCategoryServlet extends HttpServlet {
 			view = request.getRequestDispatcher("/WEB-INF/views/category/selectAllFripByCategory.jsp");
 			view.forward(request, response);
 		}
-//	}
+	}
 		//결
 		
 		

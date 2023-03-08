@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
  <footer>
     <div class="footer">
         <div class="footer-info-box"></div>
-        <div>© 2023 Airbnb, Inc.·개인정보 처리방침이용약관사이트맵한국의 변경된 환불 정책회사 세부정보</div>
-        <div>한국어 (KR) 통화 선택 ₩ KRW 지원 및 참고 자료</div>
-        <div>웹사이트 제공자: Airbnb Ireland UC, private unlimited company, 8 Hanover Quay Dublin 2, D02 DP23 Ireland | 이사: Dermot Clarke, Killian Pattwell, Andrea Finnegan | VAT 번호: IE9827384L | 사업자 등록 번호: IE 511825 | 연락처: terms@airbnb.com, 웹사이트, 080-822-0230 | 호스팅 서비스 제공업체: 아마존 웹서비스 | 에어비앤비는 통신판매 중개자로 에어비앤비 플랫폼을 통하여 게스트와 호스트 사이에 이루어지는 통신판매의 당사자가 아닙니다. 에어비앤비 플랫폼을 통하여 예약된 숙소, 체험, 호스트 서비스에 관한 의무와 책임은 해당 서비스를 제공하는 호스트에게 있습니다.</div>
+        <div class="explain">© 2023 Sprip, Inc.개인정보 처리방침이용약관사이트맵 변경된 환불 정책회사 세부정보</div>
+        <div class="explain">1조 세미프로젝트</div>
+        <div class="explain">웹사이트 제공자: 김명훈 구민주 신혜진 이상화 심민섭</div>
     </div>
     </footer>
     

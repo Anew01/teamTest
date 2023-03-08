@@ -1,3 +1,4 @@
+<%-- <%@page import="kr.or.iei.frip.vo.FripJoinableDate"%> --%>
 <%@page import="kr.or.iei.frip.vo.FripJoinableDate"%>
 <%@page import="kr.or.iei.frip.vo.Frip"%>
 <%@page import="java.util.ArrayList"%>
@@ -42,7 +43,7 @@
                 <%=f.getFripPrice() %>
             </div>
             <div class="rating">
-                <img src="/mainContentImg/star.png" style="width: 20px; height:20px;"> <%=f.getAvgRating() %>
+                <img src="/mainContentImg/star.png" style="width: 20px; height:20px;"> <%=f.getAvgRating()%>
             </div>
         </div>
 		<%} %>
