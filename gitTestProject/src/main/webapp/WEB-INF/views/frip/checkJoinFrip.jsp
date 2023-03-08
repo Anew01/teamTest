@@ -189,27 +189,7 @@ ArrayList<Member> mList = (ArrayList<Member>)request.getAttribute("mList");
       <div id="map" style="width:100%; height: 500px;"></div>
    </div>
    </div>
-   <!-- 여기부터 피드를 위한 코드작성 충돌방지 용 주석 -->
 
-   <%if(loginMember != null){ %>
-   <a href="/insertFeedFrm.do?fripNo=<%=f.getFripNo()%>&feedWriter=<%=loginMember.getMemberId()%>">피드작성</a>
-   <%} %>
-   	<%for(int i=0; i<fList.size(); i++){ %>
-	<%Feed feed = fList.get(i); %>
-	<div class="feed-box">
-	<h6>작성자 : <%=feed.getFeedWriter() %></h6>
-	<div class="feed-img-box">
-        	<%if(f.getFilePath().size() >= 1) {%>
-        		<%for(int j=0; j<1; j++){ %>
-            		<img src="/upload/photo/<%=f.getFilePath().get(j)%>">
-            	<%} %>
-           	<%}else if(f.getFilePath().size() == 0){%>
-		           	<img src="/upload/photo/no-photo.png">
-           	<%} %>
-         </div>
-	<h6>피드내용: <%=feed.getFeedContent()%></h6>
-	</div>
-	<%} %>
    <script src="https://cdn.jsdelivr.net/npm/gijgo@1.9.14/js/gijgo.min.js"></script>
    <link
       href="https://cdn.jsdelivr.net/npm/gijgo@1.9.14/css/gijgo.min.css"
