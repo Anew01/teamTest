@@ -156,8 +156,9 @@ body{
     border: 2px solid #686b72;
     border-radius: 10px;
     cursor: pointer;
+    margin-top : 20px;
 }
-#deleteMemberBtn{
+#deleteMemberBtn:hover{
     background-color: #686b72;
     color: #fff;
    
