@@ -33,7 +33,7 @@ public class WithdrawalServlet extends HttpServlet {
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
 
 		if (result > 0) {
-			response.sendRedirect("/allMember.do");
+			response.sendRedirect("/allMember.do?reqPage=1");
 		} else {
 			request.setAttribute("title", "회원 삭제 실패");
 			request.setAttribute("msg", "홈페이지에 문제가 발생했습니다.");
