@@ -10,7 +10,6 @@ ArrayList<Member> mlist = (ArrayList<Member>)request.getAttribute("mlist");
 ArrayList<Feed> fList = (ArrayList<Feed>)request.getAttribute("fList");
 ArrayList<Frip> list = (ArrayList<Frip>)request.getAttribute("list");
 ArrayList<Member> mList = (ArrayList<Member>)request.getAttribute("mList");
-
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -24,14 +23,14 @@ ArrayList<Member> mList = (ArrayList<Member>)request.getAttribute("mList");
    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <link rel="stylesheet"
    href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
-<!--  <link rel="stylesheet" href="/resources/demos/style.css"> -->
+<link rel="stylesheet" href="/resources/demos/style.css">
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
  <!--카카오 지도 API-->
-   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=47b529e9eac0ea1c6c378c29238f4160&libraries=services"></script>
+ <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=47b529e9eac0ea1c6c378c29238f4160&libraries=services"></script>
 </head>
 <body>
+
    <%@ include file="/WEB-INF/views/common/header.jsp"%>
-   
    <%--지도주소용 변수 --%>
    <input type="hidden" name="addr" id="addr" value="<%=f.getFripAddr()%>">
    <input type="hidden" name="maxCnt"
@@ -73,7 +72,6 @@ ArrayList<Member> mList = (ArrayList<Member>)request.getAttribute("mList");
         <button type="submit" class="btn btn-primary">보내기</button>
        </div>
         </form>
-     
     </div>
   </div>
 </div>
@@ -91,7 +89,6 @@ ArrayList<Member> mList = (ArrayList<Member>)request.getAttribute("mList");
          <div class="title"><%=f.getFripTitle() %></div>
          <div class="show-rating">
             <span class="material-symbols-rounded">star</span><span><%=f.getAvgRating() %></span class="rating"><span class="addr"> <%=f.getFripAddr() %></span>
-            </p>
          </div>
          <div class="photo"> <!-- 대표 이미지 3장씩 -->
         	<%if(f.getFilePath().size() >= 3) {%>
@@ -194,6 +191,7 @@ ArrayList<Member> mList = (ArrayList<Member>)request.getAttribute("mList");
    <%if(loginMember != null){ %>
    <a href="/insertFeedFrm.do?fripNo=<%=f.getFripNo()%>&feedWriter=<%=loginMember.getMemberId()%>">피드작성</a>
    <%} %>
+   <!-- 
    	<%for(int i=0; i<fList.size(); i++){ %>
 	<%Feed feed = fList.get(i); %>
 	<div class="feed-box">
@@ -210,11 +208,11 @@ ArrayList<Member> mList = (ArrayList<Member>)request.getAttribute("mList");
 	<h6>피드내용: <%=feed.getFeedContent()%></h6>
 	</div>
 	<%} %>
+	 -->
    <script src="https://cdn.jsdelivr.net/npm/gijgo@1.9.14/js/gijgo.min.js"></script>
-   <link
-      href="https://cdn.jsdelivr.net/npm/gijgo@1.9.14/css/gijgo.min.css"
-      rel="stylesheet" />
+   <link href="https://cdn.jsdelivr.net/npm/gijgo@1.9.14/css/gijgo.min.css" rel="stylesheet" >
    <script src="/js/joinFrip/detailpage.js"></script>
+   
    <script>
       $(document).ready(function() {
          var strDate = getFormatDate(new Date($('#strDate').val()));
@@ -311,7 +309,7 @@ geocoder.addressSearch('<%=f.getFripAddr()%>', function(result, status) {
 
 //모달
 	const exampleModal = document.getElementById('exampleModal')
-	exampleModal.addEventListener('show.bs.modal', event = {
+	exampleModal.addEventListener('show.bs.modal', event => {
   // Button that triggered the modal
   const button = event.relatedTarget
   // Extract info from data-bs-* attributes
@@ -327,8 +325,6 @@ geocoder.addressSearch('<%=f.getFripAddr()%>', function(result, status) {
   modalBodyInput.value = recipient
 })
    </script>
- 
-   
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>
 </body>
 </html>
