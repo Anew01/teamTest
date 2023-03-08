@@ -23,57 +23,34 @@ Member loginMember = (Member) session.getAttribute("m");
 <!--jQuery-->
 <script src="/js/jquery-3.6.3.min.js"></script>
 <!--bootstrap-->
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
-	crossorigin="anonymous">
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-	integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
-	crossorigin="anonymous"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
 <!--기본css-->
 <link rel="stylesheet" href="/css/mokupCss/mockup.css">
 <header>
 	<div class="header">
-		<div class="header-content-top">
-			<div class="header-logo">
-				<a href="/selectAllFripByCategory.do?categoryName=ALL"
-					class="homeBtn"><span class="logo-text">Sprip</span></a>
-			</div>
-			<div class="header-searchBar">
-				<div class="input-group mb-3">
-					<input type="text" class="form-control" placeholder="Search"
-						aria-label="Recipient's username" aria-describedby="button-addon2">
-					<button class="btn btn-outline-secondary" type="button"
-						id="button-addon2">입력</button>
-				</div>
-			</div>
-			<div class="header-button">
-				<div class="btn-group btn-group-sm" role="group"
-					aria-label="Small button group">
-					<form action="/feedList.do" method="post">
-						<button type="submit" class="btn btn-outline-dark">피드</button>
-					</form>
-					<button type="button" class="btn btn-outline-dark">Middle</button>
-					<%
-					if (loginMember == null) {
-					%>
-					<a href="/loginFrm.do">로그인</a>
-					<%
-					} else {
-					%>
-					<a href="/myPage.do?memberId=<%=loginMember.getMemberId()%>">
-						<button type="button" class="btn btn-outline-dark">마이페이지</button>
-					</a>
-
-					<%
-					}
-					%>
-				</div>
-			</div>
-		</div>
-	</div>
+        <div class="header-content-top">
+            <div class="header-logo"><a href="#"><span class="logo-text">Sprip</span></a></div>
+            <div class="header-searchBar">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="봄날의 여행같은 시간을 검색하세요!" aria-label="Recipient's username" aria-describedby="button-addon2">
+                    <button class="btn btn-outline-secondary" type="button" id="button-addon2">입력</button>
+                </div>
+            </div>
+            <div class="header-button">
+                <ul>
+                    <li><a href="#"><img src="/headerBtnImage/북마크.png"><div><span>호스트지원</span></div></a></li>
+                    <li><a href="#"><img src="/headerBtnImage/피드.png"><div><span>피드</span></div></a></li>
+                    <%if (loginMember == null) {%>
+                    <li><a href="/loginFrm.do"><img src="/headerBtnImage/마이페이지.png"><div><span>로그인</span></div></a></li>
+                    <%} else {%>
+                    <li><a href="/myPage.do?memberId=<%=loginMember.getMemberId()%>"><button type="button" class="btn btn-outline-dark">마이페이지</button></a>
+                    <%}	%>
+                </ul>
+                </div>
+            </div>
+        </div>
 	<div class="header-content-bottom">
 		<div class="category-bar">
 			<ul class="category-list">

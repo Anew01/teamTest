@@ -20,7 +20,7 @@ import kr.or.iei.member.vo.Member;
 /**
  * Servlet implementation class FeedListServlet
  */
-@WebServlet("/feedList.do")
+@WebServlet(name = "FeedList", urlPatterns = { "/feedList.do" })
 public class FeedListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -37,17 +37,25 @@ public class FeedListServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		FripService fService = new FripService();
-		ArrayList<Frip> fList = fService.selectAllFrip();
-		MemberService mService = new MemberService();
-		ArrayList<Member> mList = mService.selectAllMember();
 		
+		
+		//프립전체를 조회
+		FripService fService = new FripService();
+		ArrayList<Frip> fripList = fService.selectAllFrip();
+		
+		
+		//멤버 전체를 조회
+		MemberService mService = new MemberService();
+		ArrayList<Member> memberList = mService.selectAllMember();
+		
+		//피드 전체를 조회
 		FeedService feedService = new FeedService();
 		ArrayList<Feed> feedList = feedService.selectFeedInfo();
 		
+		
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/feed/feedList.jsp");
-		request.setAttribute("mList", mList);
-		request.setAttribute("fList", fList);
+		request.setAttribute("memberList", memberList);
+		request.setAttribute("feedList", fripList);
 		request.setAttribute("feedList", feedList);
 		view.forward(request, response);
 	}

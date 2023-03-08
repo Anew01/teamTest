@@ -10,7 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
+import kr.or.iei.feed.service.FeedService;
+import kr.or.iei.feed.vo.Feed;
 import kr.or.iei.frip.service.FripService;
 import kr.or.iei.frip.vo.Frip;
 import kr.or.iei.member.service.MemberService;
@@ -43,10 +44,22 @@ public class JoinFripServlet extends HttpServlet {
 		String categoryName = request.getParameter("categoryName");
 		ArrayList<Frip> list = fservice.selectAllFrip();
 		MemberService service = new MemberService();
+		
+		//상세페이지에 피드를 불러오기 위한 비즈니스 로직
+		FeedService feedService = new FeedService();
+		ArrayList<Feed> fList = feedService.selectOneFeed(fripNo);
+		
+		MemberService mService = new MemberService();
+		ArrayList<Member> mList = mService.selectAllMember();
+		
+		
+		
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/frip/checkJoinFrip.jsp");
 		request.setAttribute("f", f);
 		request.setAttribute("list", list);
 		request.setAttribute("fripNo", fripNo);
+		request.setAttribute("fList", fList);
+		request.setAttribute("mList", mList);
 		view.forward(request, response);
 	}
 
