@@ -53,10 +53,10 @@ ArrayList<Member> mList = (ArrayList<Member>)request.getAttribute("mList");
         <form action="/sendRequestToHost.do" method="post">
           <div class="mb-3">
             <%--<label for="recipient-name" class="col-form-label">호스트 이메일:</label> --%>
-            <input type="text" class="form-control" id="hostmail" value="<%=f.getFripWriter() %>" name="hostmail">
             <label for="recipient-name" class="col-form-label">호스트 이메일:</label>
+            <input type="text" class="form-control" id="hostmail" value="<%=f.getFripWriter() %>" name="hostmail">
             <%if(loginMember != null){ %>
-            <input type="text" class="form-control" id="recipient-name" value="<%=loginMember.getMemberId()%>">
+            <input type="hidden" class="form-control" id="recipient-name" value="<%=loginMember.getMemberId()%>">
            <%} %>
           </div>
           <div class="mb-3">

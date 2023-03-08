@@ -55,9 +55,6 @@ public class JoinFripServlet extends HttpServlet {
 		}
 		MemberService service = new MemberService();
 		
-		
-		
-		
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/frip/checkJoinFrip.jsp");
 		request.setAttribute("f", f);
 		request.setAttribute("list", list);
