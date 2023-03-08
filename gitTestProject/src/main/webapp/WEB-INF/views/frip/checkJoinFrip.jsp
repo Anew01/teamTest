@@ -78,7 +78,7 @@ ArrayList<Member> mlist = (ArrayList<Member>)request.getAttribute("mlist");
             <span class="material-symbols-rounded">star</span><span><%=f.getAvgRating() %></span class="rating"><span class="addr"> <%=f.getFripAddr() %></span>
             </p>
          </div>
-         <div class="photo">
+         <div class="photo"> <!-- 대표 이미지 3장씩 -->
         	<%if(f.getFilePath().size() >= 3) {%>
         		<%for(int i=0; i<3; i++){ %>
             		<img src="/upload/photo/<%=f.getFilePath().get(i)%>">
