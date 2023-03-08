@@ -50,17 +50,14 @@ Member loginMember = (Member) session.getAttribute("m");
 				</div>
 			</div>
 			<div class="header-button">
-				<div class="btn-group btn-group-sm" role="group"
-					aria-label="Small button group">
-					<form action="/feedList.do" method="post">
-						<button type="submit" class="btn btn-outline-dark">피드</button>
-					</form>
-					<button type="button" class="btn btn-outline-dark">Middle</button>
-					<a href="/logout.do">
-						<button type="button" class="btn btn-outline-dark">로그아웃</button>
-					</a>
-				</div>
-			</div>
+                <ul>
+                    <li><a href="#"><img src="/headerBtnImage/북마크.png"><div><span>호스트지원</span></div></a></li>
+                    <li><a href="#"><img src="/headerBtnImage/피드.png"><div><span>피드</span></div></a></li>
+                    <li><a href="/logout.do"><img src="/headerBtnImage/마이페이지.png"><div><span>로그아웃</span></div></a></li>
+                    
+                </ul>
+                </div>
+            </div>
 		</div>
 	</div>
 	<div class="header-content-bottom">

@@ -45,7 +45,7 @@ Member loginMember = (Member) session.getAttribute("m");
                     <%if (loginMember == null) {%>
                     <li><a href="/loginFrm.do"><img src="/headerBtnImage/마이페이지.png"><div><span>로그인</span></div></a></li>
                     <%} else {%>
-                    <li><a href="/myPage.do?memberId=<%=loginMember.getMemberId()%>"><button type="button" class="btn btn-outline-dark">마이페이지</button></a>
+                    <li><a href="/myPage.do?memberId=<%=loginMember.getMemberId()%>"><img src="/headerBtnImage/마이페이지.png"><div><span>마이페이지</span></div></a></li>
                     <%}	%>
                 </ul>
                 </div>
