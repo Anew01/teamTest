@@ -38,9 +38,7 @@
                                             <th class="td-3">작성자</th>
                                             <td>
                                                 <%=notice.getNoticeWriter() %>
-                                                    <input type="hidden" name="noticeWriter"
-                                                        value="<%=notice.getNoticeWriter() %>">
-                                            </td>
+                                                    <input type="hidden" name="noticeWriter"value="<%=notice.getNoticeWriter() %>"></td>
                                             <th class="td-3">분류</th>
                                             <td>
                                                 <select name="noticeCategory" id="noticeCategory">
