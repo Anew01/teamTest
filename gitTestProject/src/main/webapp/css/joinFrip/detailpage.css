@@ -9,7 +9,7 @@ a{
     color:black;
 }
 .wrap{
-    width: 1200px;
+    width: 60%;
     margin: 100px auto;
 }
 .category{
@@ -24,6 +24,9 @@ a{
     margin: 20px;
     overflow: hidden;
     border-bottom: solid 0.5px rgb(215, 217, 215);
+}
+.content-visit{
+	padding-left: 70px;
 }
 .star{
     width: 250px;
@@ -43,7 +46,7 @@ a{
     margin-bottom: 20px;
 }
 .photo{
-	padding-left: 80px;
+	padding-left: 200px;
 }
 .photo img{
     width: 280px;
@@ -91,7 +94,7 @@ a{
 .attend-box{
     margin-top: 20px;
     padding:20px;
-    width: 350px;
+    width: 450px;
     height: 550px;
     border: 0.5px solid rgb(214, 214, 214);
     border-radius: 20px;
@@ -101,14 +104,14 @@ a{
 }
 #submit-button{
     background-color: #85C88A;
-    width: 250px;
+    width: 300px;
     height: 30px;
     border-radius: 5px;
     padding: 10px;
-    margin-left: 12px;
+    margin-left: 20px;
 }
 #seemore-button{
-    width: 300px;
+    width: 400px;
     height: 60px;
     border-radius: 5px;
 }
@@ -119,19 +122,24 @@ a{
 .contents-left{
 	padding: 30px;
     float:left;
+    width: 60%;
 }
 .contents-right{
     float:right;
     padding: 0;
+    width: 30%;
+    margin-left: 7%;
+    margin-right: 3%;
 }
 .button-area{
     clear:left;
 }
 .select-box.right{
-	width: 300px;
+	width: 400px;
     height: 80px;
     float:left;
     border: 1px solid black;
+    margin-top: 30px;
     margin-bottom: 30px;
     text-align: center;
     line-height: 40px;
@@ -171,11 +179,11 @@ a{
     color: #ffffff;
  }
 
-
-.map{
+#map{
+	width: 60%;
 	margin-top:20px;
+	border-radius: 50px;
 }
-
 
 
 	

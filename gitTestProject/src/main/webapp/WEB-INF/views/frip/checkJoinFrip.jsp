@@ -10,7 +10,6 @@ ArrayList<Member> mlist = (ArrayList<Member>)request.getAttribute("mlist");
 ArrayList<Feed> fList = (ArrayList<Feed>)request.getAttribute("fList");
 ArrayList<Frip> list = (ArrayList<Frip>)request.getAttribute("list");
 ArrayList<Member> mList = (ArrayList<Member>)request.getAttribute("mList");
-
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -24,14 +23,14 @@ ArrayList<Member> mList = (ArrayList<Member>)request.getAttribute("mList");
    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <link rel="stylesheet"
    href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
-<!--  <link rel="stylesheet" href="/resources/demos/style.css"> -->
+<link rel="stylesheet" href="/resources/demos/style.css">
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
  <!--카카오 지도 API-->
-   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=47b529e9eac0ea1c6c378c29238f4160&libraries=services"></script>
+ <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=47b529e9eac0ea1c6c378c29238f4160&libraries=services"></script>
 </head>
 <body>
+
    <%@ include file="/WEB-INF/views/common/header.jsp"%>
-   
    <%--지도주소용 변수 --%>
    <input type="hidden" name="addr" id="addr" value="<%=f.getFripAddr()%>">
    <input type="hidden" name="maxCnt"
@@ -50,21 +49,29 @@ ArrayList<Member> mList = (ArrayList<Member>)request.getAttribute("mList");
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form>
+        <form action="/sendRequestToHost.do" method="post">
           <div class="mb-3">
+            <%--<label for="recipient-name" class="col-form-label">호스트 이메일:</label> --%>
             <label for="recipient-name" class="col-form-label">호스트 이메일:</label>
-            <input type="text" class="form-control" id="recipient-name" value="<%=loginMember.getMemberId()%>">
+            <input type="text" class="form-control" id="hostmail" value="<%=f.getFripWriter() %>" name="hostmail">
+            <%if(loginMember != null){ %>
+            <input type="hidden" class="form-control" id="recipient-name" value="<%=loginMember.getMemberId()%>">
+           <%} %>
           </div>
           <div class="mb-3">
             <label for="message-text" class="col-form-label">호스트에게 보낼 메세지를 적어주세요</label>
-            <textarea class="form-control" id="message-text"></textarea>
+            <textarea class="form-control" id="message-text" name="messageText"></textarea>
+             <% if(loginMember!=null){ %>
+            <input type="hidden" id="guestmail" name="guestmail" value="<%=loginMember.getMemberId()%>">
+            <%} %>
+            <input type="hidden" id="fripNo" name="fripNo" value=<%=fripNo%>>
           </div>
-        </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-        <button type="button" class="btn btn-primary">보내기</button>
-      </div>
+        <button type="submit" class="btn btn-primary">보내기</button>
+       </div>
+        </form>
     </div>
   </div>
 </div>
@@ -82,7 +89,6 @@ ArrayList<Member> mList = (ArrayList<Member>)request.getAttribute("mList");
          <div class="title"><%=f.getFripTitle() %></div>
          <div class="show-rating">
             <span class="material-symbols-rounded">star</span><span><%=f.getAvgRating() %></span class="rating"><span class="addr"> <%=f.getFripAddr() %></span>
-            </p>
          </div>
          <div class="photo"> <!-- 대표 이미지 3장씩 -->
         	<%if(f.getFilePath().size() >= 3) {%>
@@ -131,7 +137,9 @@ ArrayList<Member> mList = (ArrayList<Member>)request.getAttribute("mList");
             </p>
             <div class="explain"></div>
             <div>
+            <%if(loginMember != null){ %>
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="<%=loginMember.getMemberId()%>" style="background-color: #85C88A; border : none;">호스트에게 연락</button>
+            <%} %>
             </div>
          </div>
       </div>
@@ -172,17 +180,18 @@ ArrayList<Member> mList = (ArrayList<Member>)request.getAttribute("mList");
             </form>
          </div>
       </div>
-   </div>
-   <div class="content">
+	</div>
+   <div class="content-visit">
       <div class="small-title">방문 장소</div>
       <div id="map" style="width:100%; height: 500px;"></div>
-	</div>
    </div>
    </div>
    <!-- 여기부터 피드를 위한 코드작성 충돌방지 용 주석 -->
+
    <%if(loginMember != null){ %>
    <a href="/insertFeedFrm.do?fripNo=<%=f.getFripNo()%>&feedWriter=<%=loginMember.getMemberId()%>">피드작성</a>
    <%} %>
+   <!-- 
    	<%for(int i=0; i<fList.size(); i++){ %>
 	<%Feed feed = fList.get(i); %>
 	<div class="feed-box">
@@ -199,11 +208,11 @@ ArrayList<Member> mList = (ArrayList<Member>)request.getAttribute("mList");
 	<h6>피드내용: <%=feed.getFeedContent()%></h6>
 	</div>
 	<%} %>
+	 -->
    <script src="https://cdn.jsdelivr.net/npm/gijgo@1.9.14/js/gijgo.min.js"></script>
-   <link
-      href="https://cdn.jsdelivr.net/npm/gijgo@1.9.14/css/gijgo.min.css"
-      rel="stylesheet" />
+   <link href="https://cdn.jsdelivr.net/npm/gijgo@1.9.14/css/gijgo.min.css" rel="stylesheet" >
    <script src="/js/joinFrip/detailpage.js"></script>
+   
    <script>
       $(document).ready(function() {
          var strDate = getFormatDate(new Date($('#strDate').val()));
@@ -300,11 +309,11 @@ geocoder.addressSearch('<%=f.getFripAddr()%>', function(result, status) {
 
 //모달
 	const exampleModal = document.getElementById('exampleModal')
-exampleModal.addEventListener('show.bs.modal', event => {
+	exampleModal.addEventListener('show.bs.modal', event => {
   // Button that triggered the modal
   const button = event.relatedTarget
   // Extract info from data-bs-* attributes
-  const recipient = button.getAttribute('data-bs-whatever')
+	const recipient = button.getAttribute(<%=f.getFripWriter()%>);
   // If necessary, you could initiate an AJAX request here
   // and then do the updating in a callback.
   //
@@ -316,8 +325,6 @@ exampleModal.addEventListener('show.bs.modal', event => {
   modalBodyInput.value = recipient
 })
    </script>
- 
-   
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>
 </body>
 </html>
