@@ -46,7 +46,7 @@ public class SendMailPwServlet extends HttpServlet {
 		member.setMemberPw(randomCode);
 		
 		MemberService service = new MemberService();
-		int result = service.updateMember(member);
+		int result = service.updateMemberPw(member);
 		
 		
 		//4.결과처리
