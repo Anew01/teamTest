@@ -5,7 +5,7 @@
     <head>
         <meta charset="UTF-8">
         <title>공지사항 FAQ</title>
-        <link rel="stylesheet" href="/css/adminPage/noticeUser.css">
+        <link rel="stylesheet" href="/css/adminPage/noticeFAQList.css">
         <title>Insert title here</title>
     </head>
 

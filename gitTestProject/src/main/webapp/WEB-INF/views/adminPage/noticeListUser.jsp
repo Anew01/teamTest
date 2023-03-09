@@ -71,10 +71,12 @@
                                 })
 
                                 $(document).ready(function () {
-                                    if ($(".notice-category").text() == "공지") {
-                                        $(".notice-category").css("background-color", "rgb(51, 151, 255)");
-                                    } else if ($(".notice-category").text() == "이벤트") {
-                                        $(".notice-category").css("background-color", "rgb(160, 130, 250)");
+                                    for (let index = 0; index < $(".notice-category").text().length; index++) {
+                                        if ($(".notice-category").text().eq(index) == "공지") {
+                                            $(".notice-category").text().eq(index).css("background-color", "rgb(51, 151, 255)");
+                                        } else if ($(".notice-category").text().eq(index) == "이벤트") {
+                                            $(".notice-category").text().eq(index).css("background-color", "rgb(160, 130, 250)");
+                                        }
                                     }
                                 });
                             </script>
