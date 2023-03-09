@@ -104,9 +104,9 @@ public class MemberService {
 		return m;
 	}
 
-	public  ArrayList<PaymentList> selectOnePayment(int memberNo) {
+	public  ArrayList<PaymentList> selectMemberPayment(int memberNo) {
 		Connection conn = JDBCTemplate.getConnection();
-		ArrayList<PaymentList> list = dao.selectOnePayment(conn, memberNo);
+		ArrayList<PaymentList> list = dao.selectMemberPayment(conn, memberNo);
 		JDBCTemplate.close(conn);
 		return list;
 	}

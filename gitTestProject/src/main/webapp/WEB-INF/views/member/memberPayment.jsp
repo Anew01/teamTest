@@ -5,8 +5,7 @@
     <%
     
     ArrayList<PaymentList> list = (ArrayList<PaymentList>)request.getAttribute("list");
-	Member member = (Member) request.getAttribute("m");
-	Frip f = (Frip)request.getAttribute("f");
+	PaymentList pl = (PaymentList)request.getAttribute("pl");
 %>
 <!DOCTYPE html>
 <html>
@@ -43,22 +42,24 @@
  			<th style="width:10%">결제금액</th>
  			<th style="width:10%">결제일자</th>
  		</tr>
- 		<%--  
+ 		  
  		<%for(int i=0;i<list.size();i++){ %> 
  		<!-- 0부터면 처음부터 -->
- 		<%Payment p = list.get(i); %>
+ 		<%PaymentList plt = list.get(i); %>
  			<tr class="tr-1">
  				<td><%=i+1 %></td>
  				<td>
- 					<a href="/joinFrip.do?fripNo=<%=f.getFripNo() %>">
- 				<%=f.getFripTitle() %>
+ 					<a href="/joinFrip.do?fripNo=<%=plt.getFripNo() %>">
+ 				<%=plt.getFripTitle() %>
  					</a>
  				</td>
- 				<td><%=p.getTotalPrice() %></td>
- 				<td><%=p.getPaymentDate() %></td>
+ 				<td><%=plt.getTotalPrice() %></td>
+ 				<td></td>
+ 				<td><%=plt.getWriteDate() %></td>
+ 				 
  			</tr>
  		<%} %>
- 		--%>
+ 		
  	</table>
 	</div>
 	<%@ include file="/WEB-INF/views/common/footer.jsp"%>

@@ -31,8 +31,14 @@ Member member = (Member) request.getAttribute("m");
         <hr>
         <div class="sub-menu">
             <div>내 활동</div><br>
-            <div><a href="/memberPayment.do?memberId=<%= member.getMemberId()%>">결제내역</a></div>
-            <div><a href="/memberReview.do?memberNo=<%= member.getMemberNo()%>">후기</a></div>
+            <form action="/memberPayment.do?memberNo=<%= member.getMemberNo()%>">
+            <input type="submit" value="결제내역">
+            <input type="hidden" name="memberNo" id="memberNo" value="<%= member.getMemberNo()%>">
+            </form>
+            <form action="/memberReview.do?memberNo=<%= member.getMemberNo()%>">
+            <div><input type="submit" value="후기">
+            <input type="hidden" name="memberNo" id="memberNo" value="<%= member.getMemberNo()%>">
+            </form>
         </div>
         <br>
         <hr>

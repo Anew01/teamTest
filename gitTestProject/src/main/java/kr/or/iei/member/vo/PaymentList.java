@@ -3,11 +3,12 @@ package kr.or.iei.member.vo;
 import java.util.ArrayList;
 
 public class PaymentList {
-	ArrayList<PaymentList> list = new ArrayList<PaymentList>();
 	private int start;
 	private String fripTitle;
 	private int totalPrice;
 	private String writeDate;
+	private int fripNo;
+	private int payMemberNo;
 	
 	public PaymentList() {
 		super();
@@ -17,21 +18,16 @@ public class PaymentList {
 	
 
 
-	public PaymentList(String fripTitle, int totalPrice, String writeDate) {
+	public PaymentList(int fripNo, int payMemberNo ,String fripTitle, int totalPrice, String writeDate) {
 		super();
+		this.fripNo = fripNo;
+		this.payMemberNo = payMemberNo;
 		this.fripTitle = fripTitle;
 		this.totalPrice = totalPrice;
 		this.writeDate = writeDate;
 	}
 
 
-
-	public ArrayList<PaymentList> getList() {
-		return list;
-	}
-	public void setList(ArrayList<PaymentList> list) {
-		this.list = list;
-	}
 	public int getStart() {
 		return start;
 	}
@@ -68,5 +64,34 @@ public class PaymentList {
 		this.totalPrice = totalPrice;
 	}
 
+
+
+
+	public int getFripNo() {
+		return fripNo;
+	}
+
+
+
+
+	public void setFripNo(int fripNo) {
+		this.fripNo = fripNo;
+	}
+
+
+
+
+	public int getPayMemberNo() {
+		return payMemberNo;
+	}
+
+
+
+
+	public void setPayMemberNo(int payMemberNo) {
+		this.payMemberNo = payMemberNo;
+	}
+	
+	
 	
 }

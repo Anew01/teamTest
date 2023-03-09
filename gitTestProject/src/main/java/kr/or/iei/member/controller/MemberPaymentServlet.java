@@ -38,7 +38,7 @@ public class MemberPaymentServlet extends HttpServlet {
 		int memberNo = Integer.parseInt(request.getParameter("memberNo"));
 		//3.비즈니스로직
 		MemberService service = new MemberService();
-		ArrayList<PaymentList> list = service.selectOnePayment(memberNo); 
+		ArrayList<PaymentList> list = service.selectMemberPayment(memberNo); 
 		
 		//4.결과처리
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/member/memberPayment.jsp");
