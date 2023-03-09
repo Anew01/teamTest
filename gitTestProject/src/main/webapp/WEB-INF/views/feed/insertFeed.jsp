@@ -1,8 +1,10 @@
+<%@page import="kr.or.iei.member.vo.Member"%>
+<%@page import="kr.or.iei.frip.vo.Frip"%>
 <%@page import="kr.or.iei.feed.vo.Feed"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%
-    Frip f = (Frip)request.getAttribute("f");
+    Frip frip = (Frip)request.getAttribute("f");
     Member feedMember = (Member)session.getAttribute("m");
     String memberId = request.getParameter("memberId");
     Feed feed = (Feed)request.getAttribute("feed");
@@ -17,22 +19,21 @@
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </head>
 <body>
-	<%@include file="/WEB-INF/views/common/header.jsp" %>
 	<script src="/js/summernote-lite.js"></script>
 	<script src="/js/summernote-ko-KR.js"></script>
 	<div class="page-content">
 		<form action="insertFeed.do" method="get">
 		<div class="hiddenInfo">
 			<input type="hidden" name="memberId" value="<%=feedMember.getMemberId()%>">
-			<input type="hidden" name="fripTitle" value="<%=f.getFripTitle()%>">
-			<input type="hidden" name="fripNo" value="<%=f.getFripNo() %>">
+			<input type="hidden" name="fripTitle" value="<%=frip.getFripTitle()%>">
+			<input type="hidden" name="fripNo" value="<%=frip.getFripNo() %>">
 			<input type="hidden" name="feedNo" value="<%=feed.getFeedNo() %>">
 		</div>
 		<div class="feedWriter">
 			<span>작성자 : </span><%=feedMember.getMemberId() %>
 		</div>
 		<div class="choiceFripTitle">
-			<%=f.getFripTitle() %><span> > 스프립에 대한 피드작성</span>
+			<%=frip.getFripTitle() %><span> > 스프립에 대한 피드작성</span>
 		</div>
 		<div class="choiceFripImg">
 			<input type="file" value="test">
@@ -63,7 +64,6 @@
 				<button type="submit">피드작성</button>
 			</form>
 	</div>
-	<%@include file="/WEB-INF/views/common/footer.jsp" %>
 <script>
 	$('#summernote').summernote({
 		  height: 100,                 // 에디터 높이

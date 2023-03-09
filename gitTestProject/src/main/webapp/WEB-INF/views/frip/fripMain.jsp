@@ -32,6 +32,9 @@
 					</button>
 				</a>
 			</div>
+			<div class="feed-inquiry wrap">
+			
+			</div>
 			<div class="all-frip-info wrap">
 				<div class="info-table-box">
 					<table class="tbl">
