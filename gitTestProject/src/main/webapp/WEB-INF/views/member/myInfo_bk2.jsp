@@ -136,7 +136,28 @@ Member member = (Member) request.getAttribute("m");
 			</div>
 		</div>
 		<script>
-	
+		function uploadFiles(fs){
+			if(fs.files.length != 0 && fs.files[0] != 0){
+				for(let i=0;i<fs.files.length;i++){
+					const reader = new FileReader();
+					reader.readAsDataURL(fs.files[i]);
+					reader.onload = function(e){
+						const div = $("<div>").addClass("carousel-item");
+						if(i == 0){
+							div.addClass("active");
+						}
+						const img = $("<img>").attr("src", e.target.result);
+						div.append(img);
+						$(".carousel-inner").append(div);
+					}
+				}
+			} else {
+				const div = $("<div>").addClass("carousel-item");
+				div.addClass("active");
+				const img = $("<img>").attr("src", "");
+				$(".carousel-inner").append(img);
+			}
+		}
 			function func1() {
 				var result = confirm("회원탈퇴를 진행하시겠습니까?");
 				if(result == false){
@@ -169,11 +190,6 @@ Member member = (Member) request.getAttribute("m");
 				}
 				
 			}
-			
-			$("button.delFile").on("click",function(){
-    			$("[name=status]").val("delete");
-    			$(".profile-img").attr("src","/upload/member/no-profile.png");
-    		});	
 		</script>
 	</div>
 	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
