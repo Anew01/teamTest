@@ -35,9 +35,9 @@ Member member = (Member) request.getAttribute("m");
             <input type="submit" value="결제내역">
             <input type="hidden" name="memberNo" id="memberNo" value="<%= member.getMemberNo()%>">
             </form>
-            <form action="/memberReview.do?memberNo=<%= member.getMemberNo()%>">
+            <form action="/memberReview.do?memberId=<%= member.getMemberId()%>">
             <div><input type="submit" value="후기">
-            <input type="hidden" name="memberNo" id="memberNo" value="<%= member.getMemberNo()%>">
+            <input type="hidden" name="memberId" id="memberId" value="<%= member.getMemberId()%>">
             </form>
         </div>
         <br>

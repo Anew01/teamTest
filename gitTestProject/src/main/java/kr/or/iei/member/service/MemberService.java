@@ -7,6 +7,7 @@ import common.JDBCTemplate;
 import kr.or.iei.member.dao.MemberDao;
 import kr.or.iei.member.vo.Member;
 import kr.or.iei.member.vo.PaymentList;
+import kr.or.iei.member.vo.ReviewList;
 
 public class MemberService {
 	private MemberDao dao;
@@ -107,6 +108,13 @@ public class MemberService {
 	public  ArrayList<PaymentList> selectMemberPayment(int memberNo) {
 		Connection conn = JDBCTemplate.getConnection();
 		ArrayList<PaymentList> list = dao.selectMemberPayment(conn, memberNo);
+		JDBCTemplate.close(conn);
+		return list;
+	}
+
+	public ArrayList<ReviewList> selectMemberReview(String memberId) {
+		Connection conn = JDBCTemplate.getConnection();
+		ArrayList<ReviewList> list = dao.selectMemberReview(conn, memberId);
 		JDBCTemplate.close(conn);
 		return list;
 	}
