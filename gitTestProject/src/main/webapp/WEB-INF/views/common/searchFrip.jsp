@@ -7,10 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<script>
-		location.href="mainPage.do?categoryName=main&newFeed=newFeed";
-	</script>
-	<%@include file="/WEB-INF/views/common/header.jsp" %>
-	<%@include file="/WEB-INF/views/common/footer.jsp" %>
+	ㅋㅋ 쿠쿠루삥뽕
 </body>
 </html>
