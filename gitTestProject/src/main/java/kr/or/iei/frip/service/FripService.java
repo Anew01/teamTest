@@ -160,4 +160,17 @@ public class FripService {
 		return result;
 	}
 
+	public ArrayList<Frip> selectNewFeed(String newFeed) {
+		Connection conn = JDBCTemplate.getConnection();
+		ArrayList<Frip> list = dao.selectNewFeed(conn, newFeed);
+		for(Frip f : list) {
+			ArrayList<String> fripFiles = dao.selectFripFiles(conn, f.getFripNo());
+			f.setFilePath(fripFiles);
+			ArrayList<FripJoinableDate> joinableDates = dao.selectJoinableDates(conn, f.getFripNo());
+			f.setJoinableDates(joinableDates);
+		}
+		JDBCTemplate.close(conn);
+		return list;
+	}
+
 }

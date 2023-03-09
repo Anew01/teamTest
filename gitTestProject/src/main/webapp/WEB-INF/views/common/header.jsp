@@ -28,10 +28,15 @@ Member loginMember = (Member) session.getAttribute("m");
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
 <!--기본css-->
 <link rel="stylesheet" href="/css/mokupCss/mockup.css">
+<style>
+	.category-list li{
+		text-align : center;
+	}
+</style>
 <header>
 	<div class="header">
         <div class="header-content-top">
-            <div class="header-logo"><a href="#"><span class="logo-text">Sprip</span></a></div>
+            <div class="header-logo"><a href="selectAllFripByCategory.do?categoryName=main&newFeed=newFeed""><span class="logo-text">Sprip</span></a></div>
             <div class="header-searchBar">
                 <div class="input-group mb-3">
                     <input type="text" class="form-control" placeholder="봄날의 여행같은 시간을 검색하세요!" aria-label="Recipient's username" aria-describedby="button-addon2">
@@ -54,11 +59,11 @@ Member loginMember = (Member) session.getAttribute("m");
 	<div class="header-content-bottom">
 		<div class="category-bar">
 			<ul class="category-list">
-				<li><a href="/selectAllFripByCategory.do?categoryName=ALL"
+				<li style="text-align : center;"><a href="/selectAllFripByCategory.do?categoryName=ALL"
 					id="allBtn"><img src="/categoryImg/ALL.png">
 					<div class="img-text">
 							<span>ALL</span>
-						</div></a></li>
+						</div></a></li">
 				<li><a href="/selectAllFripByCategory.do?categoryName=아웃도어"><img
 						src="/categoryImg/아웃도어.jpg">
 					<div class="img-text">
