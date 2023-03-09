@@ -31,9 +31,8 @@ Member member = (Member) request.getAttribute("m");
         <hr>
         <div class="sub-menu">
             <div>내 활동</div><br>
-            <div>결제내역</div>
-            <div>후기</div>
-            <div>좋아요</div>
+            <div><a href="/memberPayment.do">결제내역</a></div>
+            <div><a href="/memberReview.do">후기</a></div>
         </div>
         <br>
         <hr>
