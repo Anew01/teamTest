@@ -30,8 +30,9 @@ Member member = (Member) request.getAttribute("m");
 							<div class="profile-image-wrap">
 							<input type="hidden" name="status" value="stay">
 							
+							
+							<button type="button" class="delFile"><img src="/upload/member/삭제.png" id="delProfile"></button>
 							<%if(member.getMemberProfile() != null) { %>
-							<button type="button" class="delFile" style="background-color: parent;"><img src="/upload/member/삭제.png" id="delProfile"></button>
 								<img src="/upload/member/<%=member.getMemberProfile() %>" class="profile-img" width="100px">
 								<label for="upProfile">
                                         <img src="/upload/member/camera.png" id="camera">
@@ -42,7 +43,7 @@ Member member = (Member) request.getAttribute("m");
                                         <%}else{ %>
                                         
                                         <img src="/upload/member/no-profile.png" class="profile-img" width="100px">
-								<label for="upProfile">
+									<label for="upProfile">
                                         <img src="/upload/member/camera.png" id="camera">
                                     </label>
                                     <input type="file" name="upProfile" id="upProfile" class="input-form"
