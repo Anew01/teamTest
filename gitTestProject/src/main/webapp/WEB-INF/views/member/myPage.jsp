@@ -66,11 +66,6 @@ Member member = (Member) request.getAttribute("m");
             data-size="large" data-color="yellow" data-shape="pc" data-support-multiple-densities="true"></div>
         </div>
         <br>
-        <hr>
-        <div class="sub-menu">
-            <div>설정</div><br>
-            <div>약관 및 정책</div>
-        </div>
     </div>
     <script>
             window.kakaoAsyncInit = function () {
