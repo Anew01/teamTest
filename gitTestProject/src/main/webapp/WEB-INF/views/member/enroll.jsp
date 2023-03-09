@@ -134,6 +134,7 @@
 	</div>
 	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
 	<script>
+	
 	<%-- 주소찾기 api --%>
 		function searchAddr() {
 			new daum.Postcode({

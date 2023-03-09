@@ -59,10 +59,13 @@ public class EnrollServlet extends HttpServlet {
 				//3.비즈니스로직
 				MemberService service = new MemberService();
 				Member ChkId = service.selectOneMember(memberId);
-				int result = service.insertMember(m);
 				//4.결과처리
+				
 				RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
 				if(ChkId==null) {
+					
+				int result = service.insertMember(m);
+				
 				if(result>0) {
 					request.setAttribute("title", "회원가입 성공");
 					request.setAttribute("msg", "환영합니다.");
