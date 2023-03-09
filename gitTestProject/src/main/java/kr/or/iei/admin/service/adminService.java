@@ -555,4 +555,14 @@ public class adminService {
 		return memberSearchPageData;
 	}
 
+	public Member selectOneMember(String memberId) {
+		Connection connection = JDBCTemplate.getConnection();
+
+		Member member = dao.selectOneMember(connection, memberId);
+
+		JDBCTemplate.close(connection);
+
+		return member;
+	}
+
 }

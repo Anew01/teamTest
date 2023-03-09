@@ -450,4 +450,42 @@ public class adminDao {
 		return totalCount;
 	}
 
+	public Member selectOneMember(Connection connection, String memberId) {
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		Member member = null;
+
+		String query = "SELECT * FROM MEMBER_TBL WHERE MEMBER_ID = ?";
+
+		try {
+			preparedStatement = connection.prepareStatement(query);
+
+			preparedStatement.setString(1, memberId);
+
+			resultSet = preparedStatement.executeQuery();
+
+			if (resultSet.next()) {
+				member = new Member();
+
+				member.setMemberNo(resultSet.getInt("MEMBER_NO"));
+				member.setMemberId(resultSet.getString("MEMBER_ID"));
+				member.setMemberPw(resultSet.getString("MEMBER_PW"));
+				member.setMemberName(resultSet.getString("MEMBER_NAME"));
+				member.setMemberPhone(resultSet.getString("MEMBER_PHONE"));
+				member.setMemberAddrDetail(resultSet.getString("MEMBER_ADDR_DETAIL"));
+				member.setMemberLevel(resultSet.getInt("MEMBER_LEVEL"));
+				member.setEnrollDate(resultSet.getString("ENROLL_DATE"));
+				member.setMemberIntro(resultSet.getString("MEMBER_INTRO"));
+				member.setMemberProfile(resultSet.getString("MEMBER_PROFILE"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(resultSet);
+			JDBCTemplate.close(preparedStatement);
+		}
+
+		return member;
+	}
+
 }
