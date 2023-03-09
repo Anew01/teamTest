@@ -32,7 +32,8 @@
                                 <i class="fas fa-bars"></i>
                             </div>
                             <ul>
-                                <li><a href="/myPage.do?memberId=<%=loginMember.getMemberId() %>"><i class="fa-solid fa-user"></i></a></li>
+                                <li><a href="/myPage.do?memberId=<%=loginMember.getMemberId() %>"><i
+                                            class="fa-solid fa-user"></i></a></li>
                                 <li><a href="/selectAllFripByCategory.do?categoryName=main"><i
                                             class="fa-solid fa-right-from-bracket"></i></a></li>
                             </ul>
@@ -57,7 +58,8 @@
                                 </a>
                             </li>
                             <li class="item" id="messages">
-                                <a href="/firpAndFeed.do?fripReqPage=1&feedReqPage=1" class="menu-btn">
+                                <a href="/firpAndFeed.do?fripReqPage=1&feedReqPage=1&fripTitle=&feedWriter="
+                                    class="menu-btn">
                                     <i class="fa-brands fa-flipboard"></i>
                                     <span>프립/피드 관리</span>
                                 </a>

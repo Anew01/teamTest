@@ -52,7 +52,9 @@
                                                             <td>
                                                                 <%=i+start%>
                                                             </td>
-                                                            <td><%=member.getMemberId() %></td>
+                                                            <td>
+                                                                <%=member.getMemberId() %>
+                                                            </td>
                                                             <td>
                                                                 <%=member.getMemberName() %>
                                                             </td>
@@ -184,10 +186,6 @@
                                 location.href = "/checkedWithdrawal.do?id=" + Id.join("/");
                             });
 
-                            $(".reset").on("click", function () {
-                                location.href = "/allMember.do?reqPage=1";
-                            });
-
                             $(".submit").on("click", function () {
                                 const searchId = $(this).prev().val();
 
@@ -199,7 +197,7 @@
 
                                 location.href = "/memberSearch.do?reqPage=1&searchId=" + searchId;
                             }
-                            
+
                             $(".reset").on("click", function () {
                                 location.href = "/allMember.do?reqPage=1";
                             });

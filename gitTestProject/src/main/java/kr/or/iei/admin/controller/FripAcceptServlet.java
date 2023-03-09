@@ -35,7 +35,7 @@ public class FripAcceptServlet extends HttpServlet {
 			request.setAttribute("title", "프립 수락 실패");
 			request.setAttribute("msg", "홈페이지에 문제가 발생했습니다.");
 			request.setAttribute("icon", "error");
-			request.setAttribute("loc", "/firpAndFeed.do?fripReqPage=1&feedReqPage=1");
+			request.setAttribute("loc", "/firpAndFeed.do?fripReqPage=1&feedReqPage=1&fripTitle=&feedWriter=");
 
 			view.forward(request, response);
 		}

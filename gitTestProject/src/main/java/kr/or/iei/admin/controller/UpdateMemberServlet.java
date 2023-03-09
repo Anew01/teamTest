@@ -60,7 +60,7 @@ public class UpdateMemberServlet extends HttpServlet {
 			request.setAttribute("icon", "error");
 		}
 
-		request.setAttribute("loc", "/adminPage.do?reqPage=1");
+		request.setAttribute("loc", "/adminPage.do");
 
 		view.forward(request, response);
 	}
