@@ -1,21 +1,19 @@
 @charset "UTF-8";
 
 .page-content{
+	width : 80%;
+	margin : 0 auto;
 	display : flex;
 }
 
 .content{
-	width : 100%;
-	padding : 100px;
+	width : 800px;
 }
 
 .feed-wrap{
 	height : 700px;
 	overflow-y : scroll;
 	padding : 20px;
-	border : 1px solid #dedede;
-	border-radius : 12px;
-	box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
 }
 
 .feed-warp::-webkit-scrollbar-thumb{
@@ -31,13 +29,15 @@
 	display : flex;
 	width : 800px;
 	padding : 20px;
+	background-color : white;
 	border : 1px solid #dedede;
 	margin-bottom : 20px;
 }
 
 .feed-content{
 	width : 100%;
-	background-color :  #85C88A;
+	background-color : white;
+	border : 1px solid #dedede;
 	margin-left : 50px; 
 }
 .feed-content>button{
@@ -45,7 +45,7 @@
 }
 .content-wrap{
 	padding : 20px;
-	color : white;	
+	color : black;	
 }
 
 .img-wrap>img{
@@ -70,6 +70,7 @@ div.input-group{
 	float : right;
 	width : 600px;
 	padding : 20px;
+	background-color : white;
 	border : 1px solid #dedede;
 	margin-bottom : 20px;
 }

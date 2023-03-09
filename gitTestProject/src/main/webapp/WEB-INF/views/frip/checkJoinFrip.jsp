@@ -10,6 +10,7 @@ ArrayList<Member> mlist = (ArrayList<Member>)request.getAttribute("mlist");
 ArrayList<Feed> fList = (ArrayList<Feed>)request.getAttribute("fList");
 ArrayList<Frip> list = (ArrayList<Frip>)request.getAttribute("list");
 ArrayList<Member> mList = (ArrayList<Member>)request.getAttribute("mList");
+Member m = (Member)request.getAttribute("m");
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -114,19 +115,12 @@ ArrayList<Member> mList = (ArrayList<Member>)request.getAttribute("mList");
       <div class="contents-left">
          <div class="content">
             <div class="title">
-            <%=f.getFripWriter() %>님이 진행하는 Sprip입니다.
+            <%=m.getMemberName()%>님이 진행하는 Sprip입니다.
             </div>
          </div>
          <div class="content">
             <div class="small-title"><%=f.getFripTitle() %></div>
-            <div class="explain"><%=f.getFripContent() %>전문 조향사와 함께 특별한 나만의 향을 직접 만드는 원데이 클래스 입니다.
-               80여 가지의 조합향료와 30여 가지의 천연향료 그리고 30여 가지의 합성향료 이용하여 세상에 하나뿐인 향수를 만들 수
-               있는 클래스이며 사용되는 향료에 대한 간단한 설명과 함께 진행됩니다. ✔ 프랑스산 최상급 향료들을 재료로 사용합니다. ✔
-               피부에 안전한 재료들을 사용하여 가장 아름다운 향을 만들 수 있도록 전문조향사가 함께 합니다. ✔ 200여종의 다양한
-               향에서 내가 원하는 향을 선택할 수 있습니다. ✔ 전문조향사가 도와주기 때문에 어렵지 않게 원하는 향을 선택하고 만드실
-               수 있습니다. ✔ 현 아카데미 운영 경험을 바탕으로 더욱 체계적인 수업이 이루어집니다. 수업은 약1시간 30분정도
-               소요되며, 예약제로 운영되니 이용에 참고해 주세요. 공간은 최대 15명까지 수용 가능하니 따로 문의 주세요! 공방 위치는
-               홍대입구역 7번 출구 도보 4분, 신촌역 8번 출구 도보 11분으로 대중교통 접근성이 좋은 위치에 있습니다.</div>
+            <div class="explain"><%=f.getFripContent() %>✔여기 내용을 넣어주세요</div>
          </div>
          <div class="content">
             <div class="small-title">
@@ -292,7 +286,7 @@ geocoder.addressSearch('<%=f.getFripAddr()%>', function(result, status) {
   // Button that triggered the modal
   const button = event.relatedTarget
   // Extract info from data-bs-* attributes
-	const recipient = button.getAttribute("<%=f.getFripWriter()%>");
+	const recipient = button.getAttribute(<%=f.getFripWriter()%>);
   // If necessary, you could initiate an AJAX request here
   // and then do the updating in a callback.
   //
@@ -303,6 +297,38 @@ geocoder.addressSearch('<%=f.getFripAddr()%>', function(result, status) {
   modalTitle.textContent = `New message to ${recipient}`
   modalBodyInput.value = recipient
 })
+
+//메일 ajax
+	let mailCode;
+    		
+    		$(".btn btn-primary").on("click", function() {
+    			const email = $("#hostmail").val();
+    		
+
+    			$.ajax({
+    				url : "/sendRequestToHost.do",
+    				data : {
+    					email : email
+    				},
+    				type : "post",
+    				success : function(data) {
+    					if (data == "null") {
+    						alert("이메일 주소를 확인해주세요.");
+    					} else {
+    						mailCode = data;
+    						
+    					}
+
+    				},
+    				error : function() {
+    					console.log("에러발생");
+    				}
+    			});
+
+    		});
+
+
+
    </script>
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>
 </body>

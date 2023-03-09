@@ -1,8 +1,9 @@
 @charset "UTF-8";
 
 .page-content{
-	width: 100%;
+	width: 80%;
 	display: flex;
+	margin : 0 auto;
 }
 .content{
 	width : 100%;
@@ -43,10 +44,11 @@
 	width : 100%;
 	margin-top : 10px;
 	display: flex;
-	justify-content : space-evenly;
+	justify-content : flex-end;
 }
 .detail-btn-wrap>a>button{
 	width : 120px;
+	margin-left : 20px;
 }
 .frip-income-wrap{
 	width : 400px;
@@ -100,6 +102,9 @@
 	border : 1px solid #dedede;
 	box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
 }
+.input-group-text{
+	height : 45px;
+}
 .date-title{
 	width : 100%;
 	font-size : 30px;
@@ -124,6 +129,11 @@
 	border : 1px solid #dedede;
 	box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
 }
+.date-search-title{
+	font-size : 30px;
+	margin-bottom : 20px;
+}
+
 .date-tbl{
 	margin-top : 30px;
 }

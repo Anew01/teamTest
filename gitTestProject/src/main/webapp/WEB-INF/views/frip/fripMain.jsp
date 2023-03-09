@@ -26,10 +26,11 @@
 					<% } %>
 					<div><%= loginMember.getMemberId() %>님</div>	
 				</div>
-				<a href="/myFripList.do?memberId=<%= loginMember.getMemberId()%>"><button class="btn btn-primary">내 스프립 목록</button></a>
-			</div>
-			<div class="notice-info wrap">
-				<a href="/noticeListUser.do?reqPage=1"><button>공지사항 바로가기</button></a>
+				<a href="/myFripList.do?memberId=<%= loginMember.getMemberId()%>">
+					<button class="btn" style="background-color : #FEBE8C; color : white;">
+						내 스프립 목록
+					</button>
+				</a>
 			</div>
 			<div class="all-frip-info wrap">
 				<div class="info-table-box">
@@ -54,13 +55,13 @@
 									<span>전체 후기 수</span>
 									<div><%= data.getTotalFeedCount() %></div>
 								</td>
-								<td>
-									<span>평균 별점</span>
+								<td colspan="2">
+									<div>평균 별점</div>
 									<% String result = String.format("%.1f",data.getTotalrankCount() ); %>
-									<div><%= result %></div>
-								</td>
-								<td>
-									<span>전체 문의 수</span>
+									<% for(int i=0;i<Double.parseDouble(result);i++) {%>
+										<img src="/mainContentImg/star.png" style="width: 15px;">
+									<% } %>
+									<span><%= result %></span>
 								</td>
 							</tr>
 						</tbody>

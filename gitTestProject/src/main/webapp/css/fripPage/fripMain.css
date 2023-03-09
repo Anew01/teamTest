@@ -1,6 +1,8 @@
 @charset "UTF-8";
 
 .page-content{
+	width : 80%;
+	margin : 0 auto;
 	display: flex;
 }
 
@@ -41,7 +43,7 @@
 	align-items : center;
 }
 .my-info-content>img{
-	margin-left : 10px;
+	margin-bottom : 10px;
 	width : 100px;
 	height : 100px;
 }
@@ -68,7 +70,7 @@
 }
 
 .tbl{
-	width : 500px;
+	width : 400px;
 	text-align : center;
 }
 .tbl>tbody>tr>td{
@@ -87,8 +89,8 @@
 }
 
 .income-info{
+	width : 40%;
 	margin-left : 60px;
-	width : 400px;
 	padding : 20px;
 }
 .income-info>div:first-of-type{

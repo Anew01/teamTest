@@ -80,13 +80,13 @@
 				</div>
 				<div class="detail-btn-wrap">
 					<a href="/joinFrip.do?fripNo=<%=f.getFripNo()%>">
-						<button class="btn btn-primary">바로가기</button>
+						<button class="btn" style="background-color : #FEBE8C; color : white;">바로가기</button>
 					</a>
 					<a href="/updateFripFrm.do?fripNo=<%=f.getFripNo()%>">
-						<button class="btn btn-primary">수정하기</button>
+						<button class="btn" style="background-color : #FEBE8C; color : white;">수정하기</button>
 					</a>
 					<a href="viewMyFripFeed.do?fripNo=<%=f.getFripNo()%>">
-						<button class="btn btn-primary">피드보기</button>
+						<button class="btn" style="background-color : #FEBE8C; color : white;	">피드보기</button>
 					</a>
 				</div>
 			</div>
@@ -99,7 +99,7 @@
 					</div>
 					<div>
 						<span>총 수입금</span>
-						<span>0원</span>
+						<span><%= f.getFripIncome() %>원</span>
 					</div>
 				</div>
 				<div class="frip-inquiry-feed-wrap">
@@ -123,8 +123,12 @@
 							</a>
 						</div>
 						<div class="feed-content">
-							<div class="feed-rating">ㅁㅁㅁㅁ</div>
-							<div class="feed-rating-number">4.0</div>
+							<div>
+								<% for(int i=0;i<Double.parseDouble(f.getAvgRating());i++) {%>
+									<img src="/mainContentImg/star.png" style="width: 15px;">
+								<% } %>
+							</div>
+							<div class="feed-rating-number"><%= f.getAvgRating() %></div>
 						</div>
 					</div>
 				</div>
@@ -152,7 +156,7 @@
 						<input type="text" class="form-control" name="maxCount" id="maxCount" required>
 					</div>
 					<div class="submit-btn-warpper">
-						<button type="submit" id="insertBtn" class="btn btn-primary btn-lg btn-block" style="width : 100%;">등록하기</button>
+						<button type="submit" id="insertBtn" class="btn btn-lg btn-block" style="width : 100%; background-color : #FEBE8C; color : white;">등록하기</button>
 					</div>
 				</div>
 				<div class="date-result-wrap">
@@ -163,15 +167,16 @@
 			<div class="frip-date-search-wrap">
 				<div class="date-search-title">날짜 조회</div>
 				<div class="date-search-content">
-					<div class="date-picker-wrap">
-						<input type="text" id="datepicker1" name="startDate"> ~
-						<input type="text" id="datepicker2" name="endDate">
-						<button class="btn btn-primary" id="searchDateBtn" type="button">조회하기</button>
+					<div class="input-group mb-3" style="width : 80%;">
+						<input class="form-control" type="text" id="datepicker1" name="startDate"> 
+						<div class="input-group-text">~</div>
+						<input class="form-control" type="text" id="datepicker2" name="endDate">
+						<button class="btn" style="background-color : #FEBE8C; color : white;" id="searchDateBtn" type="button">조회하기</button>
 					</div>
 					<div class="date-tbl">
 						<table class="table">
 							<thead>
-						    	<tr class="table-success">
+						    	<tr class="table">
 					      			<th scope="col">No</th>
 								    <th scope="col">날짜</th>
 								    <th scope="col">참여인원</th>
