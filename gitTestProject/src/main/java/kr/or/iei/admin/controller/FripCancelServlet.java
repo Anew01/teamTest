@@ -28,7 +28,7 @@ public class FripCancelServlet extends HttpServlet {
 		int result = service.fripCancel(fripNo);
 
 		if (result > 0) {
-			response.sendRedirect("/firpAndFeed.do?fripReqPage=1&feedReqPage=1");
+			response.sendRedirect("/firpAndFeed.do?fripReqPage=1&feedReqPage=1&fripTitle=&feedWriter=");
 		} else {
 			RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
 

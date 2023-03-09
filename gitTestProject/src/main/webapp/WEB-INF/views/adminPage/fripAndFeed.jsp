@@ -62,7 +62,9 @@
                                                                     <td>
                                                                         <%=i+fripStart%>
                                                                     </td>
-                                                                    <td><%=frip.getFripWriter() %></td>
+                                                                    <td>
+                                                                        <%=frip.getFripWriter() %>
+                                                                    </td>
                                                                     <td class="frip-no"><%=frip.getFripNo() %></td>
                                                                     <td><%=frip.getFripTitle() %></td>
                                                                     <td>
@@ -170,25 +172,33 @@
                                         </div>
                                         </div>
                                         <script>
-                                            $(".fripAccept").on("click", function () {
+                                            $(".fripAccept").on("click", function (e) {
+                                                e.stopPropagation();
+
                                                 const fripNo = $(this).parent().parent().children().eq(3).text(); // 프립 번호  
 
                                                 location.href = "/fripAccept.do?fripNo=" + fripNo;
                                             });
 
-                                            $(".fripCancel").on("click", function () {
+                                            $(".fripCancel").on("click", function (e) {
+                                                e.stopPropagation();
+
                                                 const fripNo = $(this).parent().parent().children().eq(3).text(); // 프립 번호       
 
                                                 location.href = "/fripCancel.do?fripNo=" + fripNo;
                                             });
 
-                                            $(".feedDelete").on("click", function () {
+                                            $(".feedDelete").on("click", function (e) {
+                                                e.stopPropagation();
+
                                                 const feedNo = $(this).parent().parent().children().eq(2).text(); // 피드 번호       
 
                                                 location.href = "/feedDelete.do?feedNo=" + feedNo;
                                             });
 
-                                            $(".checkedfripAccept").on("click", function () {
+                                            $(".checkedfripAccept").on("click", function (e) {
+                                                e.stopPropagation();
+
                                                 const check = $(".fripChk:checked");
 
                                                 if (check.length == 0) {
@@ -207,7 +217,9 @@
                                                 location.href = "/checkedfripAccept.do?fripNos=" + fripNos.join("/");
                                             });
 
-                                            $(".checkedfripCancel").on("click", function () {
+                                            $(".checkedfripCancel").on("click", function (e) {
+                                                e.stopPropagation();
+
                                                 const check = $(".fripChk:checked");
 
                                                 if (check.length == 0) {
@@ -226,7 +238,9 @@
                                                 location.href = "/checkedfripCancel.do?fripNos" + fripNos.join("/");
                                             });
 
-                                            $(".checkedfeedDelete").on("click", function () {
+                                            $(".checkedfeedDelete").on("click", function (e) {
+                                                e.stopPropagation();
+
                                                 const check = $(".feedChk:checked");
 
                                                 if (check.length == 0) {
