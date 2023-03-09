@@ -106,7 +106,7 @@
 					<div class="inquiry-wrap">
 						<div class="inquiry-title">
 							<span>문의글</span>
-							<a href="#">
+							<a href="/inquiryBox.do?fripNo=<%=f.getFripNo()%>">
 								<button class="btn btn-link">더보기</button>
 							</a>
 						</div>
