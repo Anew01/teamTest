@@ -219,20 +219,46 @@ a{
 	width : 100%;
 	display :flex;
 }
+.modal-footer>div{
+	width : 100px;
+}
+.modal-footer>form{
+	width : 650px;
+}
+.img-pre{
+	height : 150px;
+	border : 1px solid #dedede;
+	box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
+}
+#insertFeedFrm{
+	display:flex;
+}
+#insertFeedFrm>div:first-of-type{
+	flex-grow : 3;
+}
 .insert-feed-content{
-	flex-grow : 1;
+	padding : 20px;
 }
-.insert-feed-content>textarea{
-	border : 1px solid  #dedede;
-	resize : none;
-	width : 100%;
+#feedContent{
+	width: 100%;
 	height : 100%;
+	border : 1px solid #dedede;
+	box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
+	resize : none;
 }
-.modal-footer-btn-wrap{
+#insertFeedFrm>div:last-of-type{
+	padding : 20px;
 	flex-grow : 1;
-	align-self: flex-end;
 }
-
+#insertFeedFrm>div:last-of-type> *{
+	margin-bottom : 10px;
+}
+#filepath{
+	width: 100px;
+}
+.modal-footer-btn-wrap>button{
+	width : 100%;
+}
 .feed-writer-info{
 	display : flex;
 }

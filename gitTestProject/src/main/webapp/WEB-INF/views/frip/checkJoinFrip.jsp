@@ -267,43 +267,30 @@ Boolean isPayed = (Boolean)request.getAttribute("isPayed");
       	</div>
       	<% if(loginMember != null && isPayed) { %>
       	<div class="modal-footer">
+	      	<div class="img-pre"></div>
       		<form id="insertFeedFrm" method="POST" enctype="multipart/form-data">
-	      		<div class="insert-feed-img">
-	      			<div class="img-pre">
-	      			</div>
-	      			<input type="file" id="filepath" class="form-input" name="filepath">
-	      		</div>
-	      		<div class="rating">
-					<div>
-		                <label for="rating1">★</label>
-		                <input type="radio" name="rating" value="1" id="rating1">
-					</div>
-					<div>
-		                <label for="rating2">★★</label>
-		                <input type="radio" name="rating" value="2" id="rating2">
-					</div>
-					<div>
-		                <label for="rating3">★★★</label>
-		                <input type="radio" name="rating" value="3" id="rating3">
-					</div>
-					<div>
-		                <label for="rating4">★★★★</label>
-		                <input type="radio" name="rating" value="4" id="rating4">
-					</div>
-					<div>
-		                <label for="rating5">★★★★★</label>
-		                <input type="radio" name="rating" value="5" id="rating5">
-					</div>
-				</div>
 	      		<div class="insert-feed-content">
 	      			<textarea id="feedContent" name="feedContent">
 	      			</textarea>
 	      		</div>
+	      		<div>
+		      		<div class="insert-feed-img">
+		      			<input type="file" id="filepath" class="form-input" name="filepath" onchange="uploadFile(this)">
+		      		</div>
+		      		<select name="rating">
+		      			<option selected>별점등록</option>
+		      			<option value="1">★</option>
+		      			<option value="2">★★</option>
+		      			<option value="3">★★★</option>
+						<option value="4">★★★★</option>
+			        	<option value="5">★★★★★</option>
+					</select>
+					<div class="modal-footer-btn-wrap">
+	      				<button class="btn btn-primary" id="insertFeedBtn">피드 쓰기</button>
+	      			</div>
+				</div>
 	      		<input type="hidden" id="feedWriter" name="feedWriter" value="<%= loginMember.getMemberId() %>"> 
 	      		<input type="hidden" id="fripNo" name="fripNo" value="<%= f.getFripNo() %>">
-	      		<div class="modal-footer-btn-wrap">
-	      			<button class="btn btn-primary" id="insertFeedBtn">피드 쓰기</button>
-	      		</div>
       		</form>
       	</div>
       	<% } %>
@@ -426,6 +413,22 @@ geocoder.addressSearch('<%=f.getFripAddr()%>', function(result, status) {
   modalTitle.textContent = `New message to ${recipient}`
   modalBodyInput.value = recipient
 })
+
+function uploadFile(fs){
+	if(fs.files.length != 0 && fs.files[0] != 0){
+		for(let i=0;i<fs.files.length;i++){
+			const reader = new FileReader();
+			reader.readAsDataURL(fs.files[i]);
+			reader.onload = function(e){
+				const img = $("<img>").attr("src", e.target.result).css("height","150px").css("width","100px");
+				$(".img-pre").append(img);
+			}
+		}
+	} else {
+		const img = $("<img>").attr("src", "");
+		$(".img-pre").append(img);
+	}
+}
 
 $("#insertFeedBtn").on("click", function(event){
 	
