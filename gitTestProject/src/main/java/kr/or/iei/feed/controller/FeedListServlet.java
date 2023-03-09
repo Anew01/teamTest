@@ -37,7 +37,7 @@ public class FeedListServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		/*
+		
 		 //프립전체를 조회
 		FripService fService = new FripService();
 		ArrayList<Frip> fripList = fService.selectAllFrip();
@@ -57,7 +57,7 @@ public class FeedListServlet extends HttpServlet {
 		request.setAttribute("feedList", fripList);
 		request.setAttribute("feedList", feedList);
 		view.forward(request, response);
-		 */
+		 
 	}
 
 	/**
