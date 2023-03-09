@@ -24,10 +24,11 @@
 	box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
 }
 .detail-title{
-	width : 100%;
-	font-size : 30px;
+	width : 80%;
+	height : 30px;
+	overflow : hidden;
+	font-size : 20px;
 	text-indent : 10px;
-	height: fit-content;
 }
 .carousel-item>img{
 	height : 250px;

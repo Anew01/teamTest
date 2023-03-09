@@ -62,8 +62,8 @@ public class FripMainServlet extends HttpServlet {
 					RatingService rService = new RatingService();
 					feedTotalRating += rService.selectAllMyFripRating(data.getF().getFeedNo());
 				}
+				totalRatingAvg = (double)feedTotalRating / totalFeedCount;				
 			}
-			totalRatingAvg = (double)feedTotalRating / totalFeedCount;				
 			totalPaymentCount += pService.selectCountMyFripPayment(f.getFripNo());
 			totalIncome += f.getFripIncome();
 			if( Integer.parseInt(f.getFripStatus()) == 1) {
