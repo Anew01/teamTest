@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%Member member = (Member)request.getAttribute("member"); %>
     <!DOCTYPE html>
     <html lang="ko" dir="ltr">
 
@@ -22,7 +23,7 @@
                             <form action="/updateMember.do" method="post" class="profile-form"
                                 enctype="multipart/form-data">
                                 <div class="input-wrap">
-                                    <img src="/upload/member/<%=loginMember.getMemberProfile() %>" class="profile-img">
+                                    <img src="/upload/member/<%=member.getMemberProfile() %>" class="profile-img">
                                     <label for="upProfile">
                                         <img src="/upload/admin/camera.png" id="camera">
                                     </label>
@@ -32,51 +33,51 @@
                                 <div class="input-wrap">
                                     <label for="memberId">아이디</label>
                                     <input type="text" name="memberId" id="memberId" class="input-form"
-                                        value="<%=loginMember.getMemberId() %>" readonly>
+                                        value="<%=member.getMemberId() %>" readonly>
                                 </div>
                                 <div class="input-wrap">
                                     <label for="memberPw">비밀번호</label>
                                     <input type="text" name="memberPw" id="memberPw" class="input-form"
-                                        value="<%=loginMember.getMemberPw() %>">
+                                        value="<%=member.getMemberPw() %>">
                                 </div>
                                 <div class="input-wrap">
                                     <label for="memberName">이름</label>
                                     <input type="text" name="memberName" id="memberName" class="input-form"
-                                        value="<%=loginMember.getMemberName() %>" disabled>
+                                        value="<%=member.getMemberName() %>" disabled>
                                 </div>
                                 <div class="input-wrap">
                                     <label for="memberPhone">전화번호</label>
                                     <input type="text" name="memberPhone" id="memberPhone" class="input-form"
-                                        value="<%=loginMember.getMemberPhone() %>">
+                                        value="<%=member.getMemberPhone() %>">
                                 </div>
                                 <div class="input-wrap">
                                     <label for="memberAddr">상세주소 변경</label>
-                                    <%if(loginMember.getMemberAddrDetail() == null) {%>
+                                    <%if(member.getMemberAddrDetail() == null) {%>
                                      <input type="text" name="memberAddr" id="memberAddr" class="input-form"
                                         value="상세 주소 없음">
                                     <%} else { %>
                                      <input type="text" name="memberAddr" id="memberAddr" class="input-form"
-                                        value="<%=loginMember.getMemberAddrDetail() %>">
+                                        value="<%=member.getMemberAddrDetail() %>">
                                     <%} %>                                 
                                 </div>
                                 <div class="input-wrap">
                                     <label for="memberLevel">등급</label>
                                     <input type="text" name="memberLevel" id="memberLevel" class="input-form"
-                                        value="<%=loginMember.getMemberLevel() %>" disabled>
+                                        value="<%=member.getMemberLevel() %>" disabled>
                                 </div>
                                 <div class="input-wrap">
                                     <label for="memberDate">등록일</label>
                                     <input type="text" name="memberDate" id="memberDate" class="input-form"
-                                        value="<%=loginMember.getEnrollDate() %>" disabled>
+                                        value="<%=member.getMemberLevel() %>" disabled>
                                 </div>
                                 <div class="input-wrap">
                                     <label for="memberIntro">관리자 소개</label>
                                     <textarea name="memberIntro" id="memberIntro" cols="132" rows="20"
                                         style="resize: none;">
-                                     <%if(loginMember.getMemberIntro() == null) {%>
+                                     <%if(member.getMemberIntro() == null) {%>
 관리자는 소개를 꼭 작성해주세요.
                                      <%} else {%>
-<%=loginMember.getMemberIntro() %>
+<%=member.getMemberIntro() %>
                                      <%} %>              
                                         </textarea>
                                 </div>

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import kr.or.iei.admin.service.adminService;
 import kr.or.iei.member.vo.Member;
 
 @WebServlet(name = "AdminPage", urlPatterns = { "/adminPage.do" })
@@ -55,7 +56,15 @@ public class AdminPageServelt extends HttpServlet {
 			return; // 아래 코드들 실행x
 		}
 
+		adminService adminService = new adminService();
+
+		String memberId = member.getMemberId();
+
+		Member updateMember = adminService.selectOneMember(memberId);
+
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/adminPage/adminPage.jsp");
+
+		request.setAttribute("member", updateMember);
 
 		view.forward(request, response);
 	}

@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
@@ -51,6 +52,16 @@ public class UpdateMemberServlet extends HttpServlet {
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
 
 		if (result > 0) {
+			HttpSession session = request.getSession();
+
+			Member prevMember = (Member) session.getAttribute("m");
+
+			prevMember.setMemberPw(member.getMemberPw());
+			prevMember.setMemberPhone(member.getMemberPhone());
+			prevMember.setMemberAddr(member.getMemberAddrDetail());
+			prevMember.setMemberIntro(member.getMemberIntro());
+			prevMember.setMemberProfile(member.getMemberProfile());
+
 			request.setAttribute("title", "성공");
 			request.setAttribute("msg", "정보 수정 성공");
 			request.setAttribute("icon", "success");
