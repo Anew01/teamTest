@@ -28,7 +28,7 @@ Member member = (Member) request.getAttribute("m");
 				<%} %>
 				</div>
                 <div class="profile-name">
-                    <div class="memberName"><%=loginMember.getMemberName() %></div>
+                    <div id="memberName"><%=loginMember.getMemberName() %></div>
                 </div>
             </a>
             </div>
@@ -89,6 +89,11 @@ Member member = (Member) request.getAttribute("m");
                 js.crossOrigin = 'anonymous';
                 fjs.parentNode.insertBefore(js, fjs);
             })(document, 'script', 'kakao-js-sdk');
+            
+            
+            
+    		
+    	
         </script>
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
 </body>

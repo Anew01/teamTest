@@ -53,7 +53,7 @@ public class UpdateMyInfoServlet extends HttpServlet {
 		String status = mRequest.getParameter("status");
 		
 		
-		String oldProfile = mRequest.getParameter("oldProfile");
+		String oldProfile = mRequest.getFilesystemName("oldProfile");
 		String upProfile = mRequest.getFilesystemName("upProfile");
 		
 		if(oldProfile != null && status.equals("stay")) {
@@ -73,6 +73,15 @@ public class UpdateMyInfoServlet extends HttpServlet {
 		//4.화면처리
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
 		if(result>0) {
+			HttpSession session = request.getSession();
+
+			Member updateMember = (Member) session.getAttribute("m");
+			
+			updateMember.setMemberPw(member.getMemberPw());
+			updateMember.setMemberPhone(member.getMemberPhone());
+			updateMember.setMemberAddr(member.getMemberAddrDetail());
+			updateMember.setMemberIntro(member.getMemberIntro());
+			updateMember.setMemberProfile(member.getMemberProfile());
 			
 			request.setAttribute("title", "변경성공");
 			request.setAttribute("msg", "정보가 성공적으로 변경되었습니다.");
