@@ -124,7 +124,7 @@ Member m = (Member)request.getAttribute("m");
          </div>
          <div class="content">
             <div class="small-title">
-              	 호스트 <span><%=f.getFripWriter() %></span>님 
+              	 호스트 <span><%=m.getMemberName()%></span>님 
             </div>
             <p>후기 별점
                ★<span class="rating"><%=f.getAvgRating() %></span>
