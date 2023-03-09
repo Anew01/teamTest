@@ -238,6 +238,7 @@ public class MemberDao {
 			JDBCTemplate.close(pstmt);
 			JDBCTemplate.close(rset);
 		}
+			
 		return m;
 	}
 
