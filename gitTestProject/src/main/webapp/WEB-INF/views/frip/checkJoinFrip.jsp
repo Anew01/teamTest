@@ -265,12 +265,12 @@ Boolean isPayed = (Boolean)request.getAttribute("isPayed");
       			<% } %>
       		</div>
       	</div>
-      	<% if(isPayed) { %>
+      	<% if(loginMember != null && isPayed) { %>
       	<div class="modal-footer">
       		<div class="insert-feed-img">
       			<div class="img-pre">
       			</div>
-      			<input type="file" name="filepath">
+      			<input type="file" class="form-input" name="filepath">
       		</div>
       		<div class="insert-feed-content">
       			<textarea name="feedContent">
@@ -288,8 +288,6 @@ Boolean isPayed = (Boolean)request.getAttribute("isPayed");
 </div>
 	<!-- 피드 모달 끝 -->
    	</div>
-
-
    <script src="https://cdn.jsdelivr.net/npm/gijgo@1.9.14/js/gijgo.min.js"></script>
    <script src="/js/joinFrip/detailpage.js"></script>
    

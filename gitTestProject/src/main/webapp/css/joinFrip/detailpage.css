@@ -221,14 +221,12 @@ a{
 	display :flex;
 }
 .insert-feed-img{
-	flex-grow : 1;
 }
 .insert-feed-img>input{
 	width : 20%;
 }
 .insert-feed-content{
-	height : 150px;
-	flex-grow : 3;
+	flex-grow : 1;
 }
 .insert-feed-content>textarea{
 	border : 1px solid  #dedede;
@@ -237,7 +235,7 @@ a{
 	height : 100%;
 }
 .modal-footer-btn-wrap{
-	flex-grow : 0;
+	flex-grow : 1;
 	align-self: flex-end;
 }
 
