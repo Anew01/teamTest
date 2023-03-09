@@ -226,7 +226,7 @@ Boolean isPayed = (Boolean)request.getAttribute("isPayed");
   		<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document">
     		<div class="modal-content">
       			<div class="modal-header">
-        		<img src="/mainContentImg/star.png" style="width : 25px;">
+        		<img src="/mainImage/star.png" style="width : 25px;">
         		<h5 class="modal-title" id="exampleModalLabel">
         			<%= f.getAvgRating() %>(후기<%= fList.size() %>)
         		</h5>
@@ -457,8 +457,8 @@ $("#insertFeedBtn").on("click", function(event){
         	console.log("ERROR : ", e);     
             alert("fail");      
         }
-	})
-})
+	});
+});
 
 
 //메일 ajax
@@ -492,9 +492,6 @@ $("#insertFeedBtn").on("click", function(event){
     		});
  * 
  */
-
-
-
    </script>
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>
 </body>

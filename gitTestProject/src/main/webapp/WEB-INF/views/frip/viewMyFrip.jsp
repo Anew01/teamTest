@@ -140,7 +140,7 @@
 						<div class="input-group-prepend">
 							<label class="input-group-text" for="startDate">스프립 시작날짜</label>
 						</div>
-						<input type="hidden" name="fripNo" value="<%= f.getFripNo() %>">
+						<input type="hidden" id="fripNo" name="fripNo" value="<%= f.getFripNo() %>">
 						<input type="date" class="form-control" name="startDate" id="startDate" required>
 					</div>
 					<div class="input-group mb-3">
@@ -267,7 +267,7 @@
 		 $("#searchDateBtn").on("click", function(){
 			 const startDate = $("#datepicker1").val();
 			 const endDate =$("#datepicker2").val();
-			 const fripNo = $("[name=fripNo]").val();
+			 const fripNo = $("#fripNo").val();
 			 
 			 const date1 = new Date(startDate);
 			 const date2 = new Date(endDate);
@@ -284,23 +284,38 @@
 					dataType : "json",
 					success : function(list){
 						$("tr.result").remove();
-						for(let i=0;i<list.length;i++){
+						if(list.length > 0){
+							for(let i=0;i<list.length;i++){
+								const tr = $("<tr>");
+								tr.addClass("result");
+								const td1 = $("<td>");
+								td1.text(list[i].joinFripNo);
+								const td2 = $("<td>");
+								td2.text(list[i].joinDate);
+								const td3 = $("<td>");
+								if(list[i].useCnt == null){
+									td3.text("0");							
+								} else {
+									td3.text(list[i].useCnt);
+								}
+								const td4 = $("<td>");
+								td4.text(list[i].maxCnt);
+								tr.append(td1).append(td2).append(td3).append(td4);
+								$(".table").children().eq(1).append(tr);
+							}
+						} else {
 							const tr = $("<tr>");
 							tr.addClass("result");
 							const td1 = $("<td>");
-							td1.text(list[i].joinFripNo);
+							td1.text("0");
 							const td2 = $("<td>");
-							td2.text(list[i].joinDate);
+							td2.text("조회 결과 없음");
 							const td3 = $("<td>");
-							if(list[i].useCnt == null){
-								td3.text("0");							
-							} else {
-								td3.text(list[i].useCnt);
-							}
+							td3.text("조회 결과 없음");							
 							const td4 = $("<td>");
-							td4.text(list[i].maxCnt);
+							td4.text("조회 결과 없음");
 							tr.append(td1).append(td2).append(td3).append(td4);
-							$("tr.table-success").after(tr);
+							$(".table").children().eq(1).append(tr);
 						}
 					},
 					error : function(){
