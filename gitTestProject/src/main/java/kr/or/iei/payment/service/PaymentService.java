@@ -19,6 +19,13 @@ public class PaymentService {
 		JDBCTemplate.close(conn);
 		return totalCount;
 	}
+
+	public Boolean checkMyPayment(int memberNo, int fripNo) {
+		Connection conn = JDBCTemplate.getConnection();
+		Boolean isPayed = payDao.selectMyPayment(conn, memberNo, fripNo);
+		JDBCTemplate.close(conn);
+		return isPayed;
+	}
 	
 	
 

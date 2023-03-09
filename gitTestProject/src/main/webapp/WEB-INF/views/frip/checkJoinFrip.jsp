@@ -14,6 +14,7 @@ ArrayList<ViewFripFeedData> fList = (ArrayList<ViewFripFeedData>)request.getAttr
 ArrayList<Frip> list = (ArrayList<Frip>)request.getAttribute("list");
 ArrayList<Member> mList = (ArrayList<Member>)request.getAttribute("mList");
 Member m = (Member)request.getAttribute("m");
+Boolean isPayed = (Boolean)request.getAttribute("isPayed");
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -222,17 +223,19 @@ Member m = (Member)request.getAttribute("m");
    	</div>
    	<!-- 피드 모달 -->
     <div class="modal fade" id="feedModal" tabindex="-1" role="dialog" aria-labelledby="feedModal" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-        </button>
-      </div>
-      <div class="modal-body">
-      	<div class="feed-modal-wrap">
+  		<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document">
+    		<div class="modal-content">
+      			<div class="modal-header">
+        		<img src="/mainContentImg/star.png" style="width : 25px;">
+        		<h5 class="modal-title" id="exampleModalLabel">
+        			<%= f.getAvgRating() %>(후기<%= fList.size() %>)
+        		</h5>
+        		<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      		</div>
+      	<div class="modal-body">
+      		<div class="feed-modal-wrap">
       			<% for(ViewFripFeedData data : fList) { %>
-      				<div class="feed-box">
+      				<div class="feed-modal-box">
       					<div class="feed-writer-info">
       						<div class="img-box">
       							<% if(data.getMemProfilepath() != null) { %>
@@ -262,8 +265,24 @@ Member m = (Member)request.getAttribute("m");
       			<% } %>
       		</div>
       	</div>
-      <div class="modal-footer">
-      </div>
+      	<% if(isPayed) { %>
+      	<div class="modal-footer">
+      		<div class="insert-feed-img">
+      			<div class="img-pre">
+      			</div>
+      			<input type="file" name="filepath">
+      		</div>
+      		<div class="insert-feed-content">
+      			<textarea name="feedContent">
+      			</textarea>
+      		</div>
+      		<input type="hidden" name="feedWriter" value="<%= loginMember.getMemberId() %>"> 
+      		<input type="hidden" name="fripNo" value="<%= f.getFripNo() %>">
+      		<div class="modal-footer-btn-wrap">
+      			<button class="btn btn-primary">피드 쓰기</button>
+      		</div>
+      	</div>
+      	<% } %>
     </div>
   </div>
 </div>

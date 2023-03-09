@@ -33,4 +33,28 @@ public class PaymentDao {
 		return totalCount;
 	}
 
+	public Boolean selectMyPayment(Connection conn, int memberNo, int fripNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = "select * from payment_tbl where member_no=? and frip_no=?";
+		Boolean isPayed = false;
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, memberNo);
+			pstmt.setInt(2, fripNo);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				isPayed = true;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return null;
+	}
+
 }

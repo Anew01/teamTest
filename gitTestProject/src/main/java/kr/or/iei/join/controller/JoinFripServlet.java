@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import kr.or.iei.feed.service.FeedService;
 import kr.or.iei.feed.vo.Feed;
@@ -17,6 +18,7 @@ import kr.or.iei.frip.service.FripService;
 import kr.or.iei.frip.vo.Frip;
 import kr.or.iei.member.service.MemberService;
 import kr.or.iei.member.vo.Member;
+import kr.or.iei.payment.service.PaymentService;
 
 /**
  * Servlet implementation class JoinFripServlet
@@ -39,25 +41,26 @@ public class JoinFripServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		int fripNo = Integer.parseInt(request.getParameter("fripNo"));
-		System.out.println("받은값: "+fripNo);
+		HttpSession session = request.getSession();
+		Member loginMem = (Member)session.getAttribute("m");
 		FripService fservice = new FripService();
 		Frip f = fservice.selectOneFripByNo(fripNo);
 		FeedService feedService = new FeedService();
-		      
 		MemberService mService = new MemberService();
 		Member m = mService.selectOneMemberByJoin(fripNo);
 		ArrayList<Member> mList = mService.selectAllMember();
-		
 		String categoryName = request.getParameter("categoryName");
 		ArrayList<Frip> list = fservice.selectAllFrip();
 		for(Frip f1 : list) {
 			String avgRating = fservice.selectRating(f1.getFripNo());
 			f.setAvgRating(avgRating);
 		}
-		MemberService service = new MemberService();
 		
 		ArrayList<ViewFripFeedData> fList = feedService.selectAllMyFripFeed(fripNo);
-		
+		PaymentService pService = new PaymentService();
+		/*
+		Boolean isPayed = pService.checkMyPayment(loginMem.getMemberNo(), f.getFripNo());
+		*/
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/frip/checkJoinFrip.jsp");
 		request.setAttribute("f", f);
 		request.setAttribute("list", list);
@@ -65,6 +68,7 @@ public class JoinFripServlet extends HttpServlet {
 		request.setAttribute("fList", fList);
 		request.setAttribute("mList", mList);
 		request.setAttribute("m", m);
+		request.setAttribute("isPayed", true);
 		view.forward(request, response);
 	}
 

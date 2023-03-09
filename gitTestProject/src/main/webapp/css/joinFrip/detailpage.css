@@ -190,7 +190,7 @@ a{
 	padding : 30px;
 }
 .content-wrap>button{
-	width : 20%;
+	width : 30%;
 	margin-top : 20px;
 	margin-left : 20px;
 }
@@ -200,14 +200,45 @@ a{
 	flex-wrap: wrap;
 }
 .feed-modal-wrap{
-	width: 100%;
-	height : 70%;	
 	display :flex;
 	flex-wrap: wrap;
 }
 .feed-box{	
 	width : 50%;
 	padding : 20px;
+}
+
+.feed-modal-box{
+	width : 100%;
+	padding : 20px;
+	margin-bottom : 20px;
+}
+.modal-title{
+	margin-left : 10px;
+}
+.modal-footer{
+	width : 100%;
+	display :flex;
+}
+.insert-feed-img{
+	flex-grow : 1;
+}
+.insert-feed-img>input{
+	width : 20%;
+}
+.insert-feed-content{
+	height : 150px;
+	flex-grow : 3;
+}
+.insert-feed-content>textarea{
+	border : 1px solid  #dedede;
+	resize : none;
+	width : 100%;
+	height : 100%;
+}
+.modal-footer-btn-wrap{
+	flex-grow : 0;
+	align-self: flex-end;
 }
 
 .feed-writer-info{
