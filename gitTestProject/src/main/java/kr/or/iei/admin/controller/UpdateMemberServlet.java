@@ -41,9 +41,15 @@ public class UpdateMemberServlet extends HttpServlet {
 		member.setMemberId(mRequest.getParameter("memberId"));
 		member.setMemberPw(mRequest.getParameter("memberPw"));
 		member.setMemberPhone(mRequest.getParameter("memberPhone"));
-		member.setMemberAddr(mRequest.getParameter("memberAddr"));
+		member.setMemberAddrDetail(mRequest.getParameter("memberAddr"));
 		member.setMemberIntro(mRequest.getParameter("memberIntro"));
 		member.setMemberProfile(mRequest.getFilesystemName("upProfile"));
+
+		String memberOldProfile = mRequest.getParameter("oldProfile");
+
+		if (member.getMemberProfile() == null) {
+			member.setMemberProfile(memberOldProfile);
+		}
 
 		adminService service = new adminService();
 

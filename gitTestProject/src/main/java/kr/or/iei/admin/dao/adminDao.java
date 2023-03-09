@@ -132,14 +132,14 @@ public class adminDao {
 
 		int result = 0;
 
-		String query = "UPDATE MEMBER_TBL SET MEMBER_PW = ?, MEMBER_PHONE = ?, MEMBER_ADDR = ?, MEMBER_PROFILE = ?, MEMBER_INTRO = ? WHERE MEMBER_ID = ?";
+		String query = "UPDATE MEMBER_TBL SET MEMBER_PW = ?, MEMBER_PHONE = ?, MEMBER_ADDR_DETAIL = ?, MEMBER_PROFILE = ?, MEMBER_INTRO = ? WHERE MEMBER_ID = ?";
 
 		try {
 			pStatement = connection.prepareStatement(query);
 
 			pStatement.setString(1, member.getMemberPw());
 			pStatement.setString(2, member.getMemberPhone());
-			pStatement.setString(3, member.getMemberAddr());
+			pStatement.setString(3, member.getMemberAddrDetail());
 			pStatement.setString(4, member.getMemberProfile());
 			pStatement.setString(5, member.getMemberIntro());
 			pStatement.setString(6, member.getMemberId());
