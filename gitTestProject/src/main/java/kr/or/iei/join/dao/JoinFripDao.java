@@ -84,8 +84,7 @@ public class JoinFripDao {
 	public int inquiryInsert(Connection conn, Inquiry i) {
 		PreparedStatement pstmt = null;
 		int result= 0;
-		String query = "insert into frip_inquiry values('',?,?,'','',to_char(sysdate, 'yyyy-mm-dd'))";
-		
+		String query = "insert into frip_inquiry values(frip_inquiry_seq.nextval,?,?,?,null,to_char(sysdate, 'yyyy-mm-dd'))";
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, i.getFripNo());

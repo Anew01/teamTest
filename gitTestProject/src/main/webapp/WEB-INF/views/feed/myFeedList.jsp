@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%
-    	ArrayList<ViewFripFeedData> list = (ArrayList<ViewFripFeedData>)request.getAttribute("list");
+    	ArrayList<ViewFripFeedData> list = (ArrayList<ViewFripFeedData>)request.getAttribute("list"); 
     %>
 <!DOCTYPE html>
 <html>
