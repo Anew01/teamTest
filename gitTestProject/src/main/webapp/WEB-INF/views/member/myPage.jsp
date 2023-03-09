@@ -15,7 +15,7 @@ Member member = (Member) request.getAttribute("m");
         <script>Kakao.init('933fdb3f5c64bf38bb66bc3494744435');</script>
 </head>
 <body>
-<%@ include file="/WEB-INF/views/common/header_mypage.jsp" %>
+<%@ include file="/WEB-INF/views/common/header.jsp" %>
  <div class="page-content">
         <div class="top">
             <div class="profile-wrap">

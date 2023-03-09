@@ -49,7 +49,7 @@
 									placeholder="비밀번호를 입력해주세요." onfocus="this.placeholder=''"
 									onblur="this.placeholder='비밀번호를 입력해주세요.'" required>
 							</div>
-							<span id="pwChk"></span>
+							<span class="comment"></span>
 						</div>
 						<div class="join-input-wrap">
 							<div>
@@ -60,6 +60,7 @@
 									placeholder="비밀번호를 입력해주세요." onfocus="this.placeholder=''"
 									onblur="this.placeholder='비밀번호를 입력해주세요.'" required>
 							</div>
+							<span class="comment"></span>
 						</div>
 						<div class="join-input-wrap">
 							<div>
@@ -80,19 +81,6 @@
 									class="long-input">
 							</div>
 						</div>
-						<!-- 
-                    <div class="join-input-wrap">
-                        <div>
-                            <label>성별</label>
-                        </div>
-                        <div>
-                            <input type="radio" name="memberGender" id="m" value="m">
-                            <label for="m">남자</label>
-                            <input type="radio" name="memberGender" id="f" value="f">
-                            <label for="f">여자</label>
-                        </div>
-                    </div>
-                     -->
 						<div class="join-input-wrap">
 							<div>
 								<label for="memberAddr">주소</label>
@@ -134,6 +122,40 @@
 	</div>
 	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
 	<script>
+	<%-- 비밀번호 유효성 검사 --%>
+	
+	const result = [false, false];
+	
+	$("[name=memberPw]").on("change", function () {
+    //비밀번호 : 영어소문자+대문자+숫자로 8~12
+    const pwValue = $(this).val();
+    const pwReg = /^[a-zA-Z0-9]{8,12}$/;
+    const check = pwReg.test(pwValue);
+    if (check) {
+        $(".comment").eq(0).text("사용가능한 비밀번호 입니다.");
+        $(".comment").eq(0).css("color", "green");
+        result[0] = true;
+
+    } else {
+        $(".comment").eq(0).text("비밀번호는 영어소문자+대문자+숫자로 8~12글자 입니다.");
+        $(".comment").eq(0).css("color", "red");
+        result[0] = false;
+    }
+});
+$("[name=pwre]").on("change", function () {
+    //비밀번호확인 : 비밀번호와 값이 같은지 확인
+    const pwValue = $("[name=memberPw]").val();
+    const pwReValue = $(this).val();
+    if (pwValue==pwReValue) {
+        $(".comment").eq(1).text("비밀번호가 일치합니다.");
+        $(".comment").eq(1).css("color", "green");
+        result[1] = true;
+    } else {
+        $(".comment").eq(1).text("비밀번호가 일치하지 않습니다.");
+        $(".comment").eq(1).css("color", "red");
+        result[1] = false;
+    }
+});
 	
 	<%-- 주소찾기 api --%>
 		function searchAddr() {
@@ -236,7 +258,7 @@
 	
 	$(".chkMsg").hide();
 		function checkAuth() {
-			if ($("#authMsg").text("인증완료") && $("#pwChk").text("비밀번호가 일치합니다.") && $('#privacyAgreement').is(':checked')) {
+			if ($("#authMsg").text("인증완료") && result[0]==true && result[1]==true && $('#privacyAgreement').is(':checked')) {
 				
 				return true;
 				
@@ -251,22 +273,7 @@
 		};
 		
 		
-		
-	<%-- 비밀번호 일치 확인 --%>
-		$("#pwre").on("keyup",function(){
-		    const pwValue = $("#memberPw").val();
-		    const pwReValue = $(this).val();
-		    if(pwValue==pwReValue){
-		        $("#pwChk").css("color", "blue");
-		        $("#pwChk").text("비밀번호가 일치합니다.");
-		        result[1] = true;
-		    }
-		    else{
-		        $("#pwChk").css("color", "red");
-		        $("#pwChk").text("비밀번호가 일치하지 않습니다.");
-		        result[1] = false;
-		    }
-		});
+	
 		
 	</script>
 
