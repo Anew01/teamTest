@@ -60,9 +60,13 @@ public class FirpAndFeedServlet extends HttpServlet {
 		int fripReqPage = Integer.parseInt(request.getParameter("fripReqPage"));
 		int feedReqPage = Integer.parseInt(request.getParameter("feedReqPage"));
 
+		String fripTitle = request.getParameter("fripTitle");
+		String feedWriter = request.getParameter("feedWriter");
+
 		adminService service = new adminService();
 
-		FripAndFeedPageDate fripAndFeedPageDate = service.selectAllFripAndFeed(fripReqPage, feedReqPage);
+		FripAndFeedPageDate fripAndFeedPageDate = service.selectAllFripAndFeed(fripReqPage, feedReqPage, fripTitle,
+				feedWriter);
 
 		request.setAttribute("frips", fripAndFeedPageDate.getFrips());
 		request.setAttribute("fripPageNavi", fripAndFeedPageDate.getFripPageNavi());

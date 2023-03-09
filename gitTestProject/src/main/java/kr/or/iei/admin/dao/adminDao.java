@@ -132,14 +132,14 @@ public class adminDao {
 
 		int result = 0;
 
-		String query = "UPDATE MEMBER_TBL SET MEMBER_PW = ?, MEMBER_PHONE = ?, MEMBER_ADDR_DETAIL = ?, MEMBER_PROFILE = ?, MEMBER_INTRO = ? WHERE MEMBER_ID = ?";
+		String query = "UPDATE MEMBER_TBL SET MEMBER_PW = ?, MEMBER_PHONE = ?, MEMBER_ADDR = ?, MEMBER_PROFILE = ?, MEMBER_INTRO = ? WHERE MEMBER_ID = ?";
 
 		try {
 			pStatement = connection.prepareStatement(query);
 
 			pStatement.setString(1, member.getMemberPw());
 			pStatement.setString(2, member.getMemberPhone());
-			pStatement.setString(3, member.getMemberAddrDetail());
+			pStatement.setString(3, member.getMemberAddr());
 			pStatement.setString(4, member.getMemberProfile());
 			pStatement.setString(5, member.getMemberIntro());
 			pStatement.setString(6, member.getMemberId());
@@ -154,20 +154,21 @@ public class adminDao {
 		return result;
 	}
 
-	public ArrayList<Frip> selectAllFrip(Connection connection, int fripStart, int fripEnd) {
+	public ArrayList<Frip> selectAllFrip(Connection connection, int fripStart, int fripEnd, String fripTitle) {
 		PreparedStatement preparedStatement = null;
 
 		ResultSet resultSet = null;
 
 		ArrayList<Frip> frips = new ArrayList<Frip>();
 
-		String query = "SELECT * FROM(SELECT ROWNUM AS rnum, n.* FROM (SELECT FRIP_NO, FRIP_WRITER, FRIP_AUTH, FRIP_TITLE, FRIP_ADDR, NVL(FRIP_LEVEL, '없음') AS NVLFRIP, FRIP_PRICE, WRITE_DATE FROM FRIP_TBL ORDER BY 1 DESC) n) WHERE rnum BETWEEN ? and ?";
+		String query = "SELECT * FROM(SELECT ROWNUM AS rnum, n.* FROM (SELECT FRIP_NO, FRIP_WRITER, FRIP_AUTH, FRIP_TITLE, FRIP_ADDR, NVL(FRIP_LEVEL, '없음') AS NVLFRIP, FRIP_PRICE, WRITE_DATE FROM FRIP_TBL WHERE FRIP_TITLE LIKE ? ORDER BY 1 DESC) n) WHERE rnum BETWEEN ? and ?";
 
 		try {
 			preparedStatement = connection.prepareStatement(query);
 
-			preparedStatement.setInt(1, fripStart);
-			preparedStatement.setInt(2, fripEnd);
+			preparedStatement.setString(1, "%" + fripTitle + "%");
+			preparedStatement.setInt(2, fripStart);
+			preparedStatement.setInt(3, fripEnd);
 
 			resultSet = preparedStatement.executeQuery();
 
@@ -195,20 +196,21 @@ public class adminDao {
 		return frips;
 	}
 
-	public ArrayList<Feed> selectAllFeed(Connection connection, int feedStart, int feedEnd) {
+	public ArrayList<Feed> selectAllFeed(Connection connection, int feedStart, int feedEnd, String feedWriter) {
 		PreparedStatement preparedStatement = null;
 
 		ResultSet resultSet = null;
 
 		ArrayList<Feed> feeds = new ArrayList<Feed>();
 
-		String query = "SELECT * FROM(SELECT ROWNUM AS rnum, n.* FROM (SELECT FEED_NO, FRIP_TITLE, FEED_CONTENT, FEED_WRITER, FEED_TBL.WRITE_DATE FROM FEED_TBL JOIN FRIP_TBL USING(FRIP_NO) ORDER BY 1 DESC) n) WHERE rnum BETWEEN ? and ?";
+		String query = "SELECT * FROM(SELECT ROWNUM AS rnum, n.* FROM (SELECT FEED_NO, FRIP_TITLE, FEED_CONTENT, FEED_WRITER, FEED_TBL.WRITE_DATE FROM FEED_TBL JOIN FRIP_TBL USING(FRIP_NO) WHERE FEED_WRITER LIKE ? ORDER BY 1 DESC) n) WHERE rnum BETWEEN ? and ?";
 
 		try {
 			preparedStatement = connection.prepareStatement(query);
 
-			preparedStatement.setInt(1, feedStart);
-			preparedStatement.setInt(2, feedEnd);
+			preparedStatement.setString(1, "%" + feedWriter + "%");
+			preparedStatement.setInt(2, feedStart);
+			preparedStatement.setInt(3, feedEnd);
 
 			resultSet = preparedStatement.executeQuery();
 
@@ -233,16 +235,18 @@ public class adminDao {
 		return feeds;
 	}
 
-	public int selectFripCount(Connection connection) {
+	public int selectFripCount(Connection connection, String fripTitle) {
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
 
 		int fripTotalCount = 0;
 
-		String query = "SELECT COUNT(*) AS CNT FROM FRIP_TBL";
+		String query = "SELECT COUNT(*) AS CNT FROM FRIP_TBL WHERE FRIP_TITLE LIKE ?";
 
 		try {
 			preparedStatement = connection.prepareStatement(query);
+
+			preparedStatement.setString(1, "%" + fripTitle + "%");
 
 			resultSet = preparedStatement.executeQuery();
 
@@ -259,16 +263,18 @@ public class adminDao {
 		return fripTotalCount;
 	}
 
-	public int selectFeedCount(Connection connection) {
+	public int selectFeedCount(Connection connection, String feedWriter) {
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
 
 		int feedTotalCount = 0;
 
-		String query = "SELECT COUNT(*) AS CNT FROM FEED_TBL";
+		String query = "SELECT COUNT(*) AS CNT FROM FEED_TBL WHERE FEED_WRITER LIKE ?";
 
 		try {
 			preparedStatement = connection.prepareStatement(query);
+
+			preparedStatement.setString(1, "%" + feedWriter + "%");
 
 			resultSet = preparedStatement.executeQuery();
 

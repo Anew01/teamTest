@@ -25,132 +25,153 @@
                                                 <div class="main-header">
                                                     <h1>프립/피드 관리</h1>
                                                 </div>
+                                            </div>
+                                            <div class="card">
                                                 <div class="card">
                                                     <div class="main-header">
                                                         <h1>프립 관리</h1>
                                                     </div>
-                                                    <div>
-                                                        <table class="table">
-                                                            <tr class="tr-1 fripColor">
-                                                                <th>선택</th>
-                                                                <th>번호</th>
-                                                                <th>작성자</th>
-                                                                <th>제목</th>
-                                                                <th>주소</th>
-                                                                <th>난이도</th>
-                                                                <th>가격</th>
-                                                                <th>등록 수락</th>
-                                                                <th>삭제</th>
-                                                            </tr>
-                                                            <%for(int i=0; i < frips.size(); i++) {%>
-                                                                <%Frip frip=frips.get(i);%>
-                                                                    <tr class="tr-2 fripView">
-                                                                        <td><input type="checkbox" class="chk fripChk">
-                                                                        </td>
-                                                                        <td>
-                                                                            <%=i+fripStart%>
-                                                                        </td>
-                                                                        <td>
-                                                                            <%=frip.getFripWriter() %>
-                                                                        </td>
-                                                                        <td class="frip-no"><%=frip.getFripNo() %></td>
-                                                                        <td>
-                                                                            <%=frip.getFripTitle() %>
-                                                                        </td>
-                                                                        <td>
-                                                                            <%=frip.getFripAddr() %>
-                                                                        </td>
-                                                                        <td>
-                                                                            <%=frip.getFripLevel() %>
-                                                                        </td>
-                                                                        <td>
-                                                                            <%=frip.getFripPrice() %>
-                                                                        </td>
-                                                                        <td><button
-                                                                                class="btc bc33 btn chageLevel fripAccept">등록
-                                                                                수락</button></td>
-                                                                        <td><button
-                                                                                class="btc bc33 btn withdrawal  fripCancel">등록
-                                                                                취소</button>
-                                                                        </td>
-                                                                    </tr>
-                                                                    <%} %>
-                                                                        <tr>
-                                                                            <th colspan="9">
-                                                                                <button
-                                                                                    class="select-btn checkedChangeLevel checkedfripAccept">선택프립등록수락</button>
-                                                                                <button
-                                                                                    class="select-btn checkedWithdrawal checkedfripCancel">선택프립등록취소</button>
-                                                                            </th>
-                                                                        </tr>
-                                                        </table>
-                                                        <div id="pageNavi">
-                                                            <%=fripPageNavi %>
+                                                    <div class="search">
+                                                        <div class="search-padding">
+                                                            <label for="searchId" style="font-size: 0.9rem;">검색:</label>
+                                                            <input type="text" name="searchId" id="searchId"
+                                                                placeholder="프립 제목을 입력해주세요"
+                                                                onkeyup="if(window.event.keyCode==13){fripInputEnter();}">
+                                                            <button class="submit fripSubmit" type="submit">검색</button>
+                                                            <button class="reset" type="reset">초기화</button>
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <div>
+                                                    <table class="table">
+                                                        <tr class="tr-1 fripColor">
+                                                            <th>선택</th>
+                                                            <th>번호</th>
+                                                            <th>작성자</th>
+                                                            <th>제목</th>
+                                                            <th>주소</th>
+                                                            <th>난이도</th>
+                                                            <th>가격</th>
+                                                            <th>등록 수락</th>
+                                                            <th>삭제</th>
+                                                        </tr>
+                                                        <%for(int i=0; i < frips.size(); i++) {%>
+                                                            <%Frip frip=frips.get(i);%>
+                                                                <tr class="tr-2 fripView">
+                                                                    <td><input type="checkbox" class="chk fripChk">
+                                                                    </td>
+                                                                    <td>
+                                                                        <%=i+fripStart%>
+                                                                    </td>
+                                                                    <td><%=frip.getFripWriter() %></td>
+                                                                    <td class="frip-no"><%=frip.getFripNo() %></td>
+                                                                    <td>
+                                                                        <%=frip.getFripTitle() %>
+                                                                    </td>
+                                                                    <td>
+                                                                        <%=frip.getFripAddr() %>
+                                                                    </td>
+                                                                    <td>
+                                                                        <%=frip.getFripLevel() %>
+                                                                    </td>
+                                                                    <td>
+                                                                        <%=frip.getFripPrice() %>
+                                                                    </td>
+                                                                    <td><button
+                                                                            class="btc bc33 btn chageLevel fripAccept">등록
+                                                                            수락</button></td>
+                                                                    <td><button
+                                                                            class="btc bc33 btn withdrawal  fripCancel">등록
+                                                                            취소</button>
+                                                                    </td>
+                                                                </tr>
+                                                                <%} %>
+                                                                    <tr>
+                                                                        <th colspan="9">
+                                                                            <button
+                                                                                class="select-btn checkedChangeLevel checkedfripAccept">선택프립등록수락</button>
+                                                                            <button
+                                                                                class="select-btn checkedWithdrawal checkedfripCancel">선택프립등록취소</button>
+                                                                        </th>
+                                                                    </tr>
+                                                    </table>
+                                                    <div id="pageNavi">
+                                                        <%=fripPageNavi %>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card">
                                                 <div class="card">
                                                     <div class="main-header">
                                                         <h1>피드 관리</h1>
                                                     </div>
-                                                    <div>
-                                                        <table class="table">
-                                                            <tr class="tr-1 feedColor">
-                                                                <th>선택</th>
-                                                                <th>번호</th>
-                                                                <th>프립</th>
-                                                                <th>작성자</th>
-                                                                <th>작성일자</th>
-                                                                <th>삭제</th>
-                                                            </tr>
-                                                            <%for(int i=0; i < feeds.size(); i++) {%>
-                                                                <%Feed feed=feeds.get(i);%>
-                                                                    <tr class="tr-2 feedView">
-                                                                        <td><input type="checkbox" class="chk feedChk">
-                                                                        </td>
-                                                                        <td>
-                                                                            <%=i+feedStart %>
-                                                                        </td>
-                                                                        <td class="feed-no"><%=feed.getFeedNo() %></td>
-                                                                        <td>
-                                                                            <%=feed.getFripTitle() %>
-                                                                        </td>
-                                                                        <td>
-                                                                            <%=feed.getFeedWriter() %>
-                                                                        </td>
-                                                                        <td>
-                                                                            <%=feed.getWriteDate() %>
-                                                                        </td>
-                                                                        <td><button
-                                                                                class="btc bc33 btn withdrawal feedDelete">삭제</button>
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr class="notice-content">
-                                                                        <td colspan="7">
-                                                                            <%=feed.getFeedContent() %>
-                                                                        </td>
-                                                                    </tr>
-                                                                    <%} %>
-                                                                        <tr>
-                                                                            <th colspan="9">
-                                                                                <button
-                                                                                    class="select-btn checkedWithdrawal checkedfeedDelete">선택피드삭제</button>
-                                                                            </th>
-                                                                        </tr>
-                                                        </table>
-                                                        <div id="pageNavi">
-                                                            <%=feedPageNavi %>
+                                                    <div class="search">
+                                                        <div class="search-padding">
+                                                            <label for="searchId" style="font-size: 0.9rem;">검색:</label>
+                                                            <input type="text" name="searchId" id="searchId"
+                                                                placeholder="피드 작설자를 입력해주세요"
+                                                                onkeyup="if(window.event.keyCode==13){feedInputEnter();}">
+                                                            <button class="submit feedSubmit" type="submit">검색</button>
+                                                            <button class="reset" type="reset">초기화</button>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="card">
-                                                    <p>㈜프렌트립 | 사업자 등록번호 : 261-81-04385|통신판매업신고번호 : 2016-서울성동-01088
-                                                        대표 : 임수열|개인정보 관리 책임자 : 양사열|서울시 성동구 왕십리로 115 헤이그라운드 서울숲점 G703
-                                                        ㈜프렌트립은 통신판매중개자로서 거래당사자가 아니며, 호스트가 등록한 상품정보 및 거래에 대해 ㈜프렌트립은 일체의
-                                                        책임을 지지 않습니다.
-                                                    </p>
+                                                <div>
+                                                    <table class="table">
+                                                        <tr class="tr-1 feedColor">
+                                                            <th>선택</th>
+                                                            <th>번호</th>
+                                                            <th>프립</th>
+                                                            <th>작성자</th>
+                                                            <th>작성일자</th>
+                                                            <th>삭제</th>
+                                                        </tr>
+                                                        <%for(int i=0; i < feeds.size(); i++) {%>
+                                                            <%Feed feed=feeds.get(i);%>
+                                                                <tr class="tr-2 feedView">
+                                                                    <td><input type="checkbox" class="chk feedChk">
+                                                                    </td>
+                                                                    <td>
+                                                                        <%=i+feedStart %>
+                                                                    </td>
+                                                                    <td class="feed-no"><%=feed.getFeedNo() %></td>
+                                                                    <td>
+                                                                        <%=feed.getFripTitle() %>
+                                                                    </td>
+                                                                    <td><%=feed.getFeedWriter() %></td>
+                                                                    <td>
+                                                                        <%=feed.getWriteDate() %>
+                                                                    </td>
+                                                                    <td><button
+                                                                            class="btc bc33 btn withdrawal feedDelete">삭제</button>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr class="notice-content">
+                                                                    <td colspan="7">
+                                                                        <%=feed.getFeedContent() %>
+                                                                    </td>
+                                                                </tr>
+                                                                <%} %>
+                                                                    <tr>
+                                                                        <th colspan="9">
+                                                                            <button
+                                                                                class="select-btn checkedWithdrawal checkedfeedDelete">선택피드삭제</button>
+                                                                        </th>
+                                                                    </tr>
+                                                    </table>
+                                                    <div id="pageNavi">
+                                                        <%=feedPageNavi %>
+                                                    </div>
                                                 </div>
                                             </div>
+                                            <div class="card">
+                                                <p>㈜프렌트립 | 사업자 등록번호 : 261-81-04385|통신판매업신고번호 : 2016-서울성동-01088
+                                                    대표 : 임수열|개인정보 관리 책임자 : 양사열|서울시 성동구 왕십리로 115 헤이그라운드 서울숲점 G703
+                                                    ㈜프렌트립은 통신판매중개자로서 거래당사자가 아니며, 호스트가 등록한 상품정보 및 거래에 대해 ㈜프렌트립은 일체의
+                                                    책임을 지지 않습니다.
+                                                </p>
+                                            </div>
+                                        </div>
                                         </div>
                                         <script>
                                             $(".fripAccept").on("click", function () {
@@ -236,6 +257,34 @@
 
                                             $(".feedView").on("click", function () {
                                                 $(this).next().toggle("tr-active");
+                                            });
+
+                                            $(".fripSubmit").on("click", function () {
+                                                const fripTitle = $(this).prev().val();
+
+                                                location.href = "/firpAndFeed.do?fripReqPage=1&feedReqPage=1&fripTitle=" + fripTitle + "&feedWriter=";
+                                            });
+
+                                            $(".feedSubmit").on("click", function () {
+                                                const feedWriter = $(this).prev().val();
+
+                                                location.href = "/firpAndFeed.do?fripReqPage=1&feedReqPage=1&fripTitle=&feedWriter=" + feedWriter;
+                                            });
+
+                                            function fripInputEnter() {
+                                                const fripTitle = $(this).prev().val();
+
+                                                location.href = "/firpAndFeed.do?fripReqPage=1&feedReqPage=1&fripTitle=" + fripTitle + "&feedWriter=";
+                                            }
+
+                                            function feedInputEnter() {
+                                                const feedWriter = $(this).prev().val();
+
+                                                location.href = "/firpAndFeed.do?fripReqPage=1&feedReqPage=1&fripTitle=&feedWriter=" + feedWriter;
+                                            }
+
+                                            $(".reset").on("click", function () {
+                                                location.href = "/firpAndFeed.do?fripReqPage=1&feedReqPage=1&fripTitle=&feedWriter=";
                                             });
                                         </script>
                                         <script src="/js/adminPage/sidebar.js"></script>

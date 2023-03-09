@@ -180,8 +180,8 @@ a{
  }
 
 #map{
-	width: 60%;
-	margin-top:20px;
+	width: 65%;
+	margin-top:0 auto ;
 	border-radius: 50px;
 }
 

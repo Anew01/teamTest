@@ -42,7 +42,7 @@ public class CheckedfripAcceptServlet extends HttpServlet {
 			request.setAttribute("icon", "error");
 		}
 
-		request.setAttribute("loc", "/firpAndFeed.do?fripReqPage=1&feedReqPage=1");
+		request.setAttribute("loc", "/firpAndFeed.do?fripReqPage=1&feedReqPage=1&fripTitle=&feedWriter=");
 
 		view.forward(request, response);
 	}
