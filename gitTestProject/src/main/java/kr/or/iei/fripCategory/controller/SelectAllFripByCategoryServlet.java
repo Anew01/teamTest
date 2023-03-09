@@ -78,6 +78,7 @@ public class SelectAllFripByCategoryServlet extends HttpServlet {
 			request.setAttribute("list", list);
 			view = request.getRequestDispatcher("/WEB-INF/views/category/selectAllFripByCategory.jsp");
 			view.forward(request, response);
+			return;
 		}
 		 view = request.getRequestDispatcher("/WEB-INF/views/common/mainPage.jsp");
 		 view.forward(request, response);
