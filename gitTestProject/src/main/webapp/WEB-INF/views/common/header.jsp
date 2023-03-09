@@ -23,100 +23,146 @@ Member loginMember = (Member) session.getAttribute("m");
 <!--jQuery-->
 <script src="/js/jquery-3.6.3.min.js"></script>
 <!--bootstrap-->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+	crossorigin="anonymous">
+<script
+	src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+	integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
+	integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
+	crossorigin="anonymous"></script>
 <!--기본css-->
 <link rel="stylesheet" href="/css/mokupCss/mockup.css">
 <style>
-	.category-list li{
-		text-align : center;
-	}
+.category-list li {
+	text-align: center;
+}
 </style>
 <header>
 	<div class="header">
-        <div class="header-content-top">
-            <div class="header-logo"><a href="selectAllFripByCategory.do?categoryName=main&newFeed=newFeed""><span class="logo-text">Sprip</span></a></div>
-            <div class="header-searchBar">
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="봄날의 여행같은 시간을 검색하세요!" aria-label="Recipient's username" aria-describedby="button-addon2">
-                    <button class="btn btn-outline-secondary" type="button" id="button-addon2">입력</button>
-                </div>
-            </div>
-            <div class="header-button">
-                <ul>
-                    <li><a href="#"><img src="/headerBtnImage/북마크.png"><div><span>호스트지원</span></div></a></li>
-                    <li><a href="/noticeListUser.do?reqPage=1"><img src="/headerBtnImage/피드.png"><div><span>공지사항</span></div></a></li>
-                    <%if (loginMember == null) {%>
-                    <li><a href="/loginFrm.do"><img src="/headerBtnImage/마이페이지.png"><div><span>로그인</span></div></a></li>
-                    <%} else {%>
-                    <li><a href="/myPage.do?memberId=<%=loginMember.getMemberId()%>"><img src="/headerBtnImage/마이페이지.png"><div><span>마이페이지</span></div></a></li>
-                    <%}	%>
-                </ul>
-                </div>
-            </div>
-        </div>
+		<div class="header-content-top">
+			<div class="header-logo">
+				<a href="mainPage.do?categoryName=main&newFeed=newFeed";><span
+					class="logo-text">Sprip</span></a>
+			</div>
+			<div class="header-searchBar">
+				<form action="searchFrip" method="get"
+					onsubmit="return validateForm()">
+					<div class="input-group mb-3">
+						<input type="text" class="form-control" name="searchFrip"
+							placeholder="스프립 제목으로 검색!" aria-label="Recipient's username"
+							aria-describedby="button-addon2">
+						<button class="btn btn-outline-secondary" type="submit"
+							id="button-addon2">입력</button>
+					</div>
+				</form>
+			</div>
+			<div class="header-button">
+				<ul>
+					<li><a href="#"><img src="/headerBtnImage/북마크.png">
+							<div>
+								<span>호스트지원</span>
+							</div></a></li>
+					<li><a href="/noticeListUser.do?reqPage=1"><img
+							src="/headerBtnImage/피드.png">
+							<div>
+								<span>공지사항</span>
+							</div></a></li>
+					<%
+					if (loginMember == null) {
+					%>
+					<li><a href="/loginFrm.do"><img
+							src="/headerBtnImage/마이페이지.png">
+							<div>
+								<span>로그인</span>
+							</div></a></li>
+					<%
+					} else {
+					%>
+					<li><a
+						href="/myPage.do?memberId=<%=loginMember.getMemberId()%>"><img
+							src="/headerBtnImage/마이페이지.png">
+							<div>
+								<span>마이페이지</span>
+							</div></a></li>
+					<%
+					}
+					%>
+				</ul>
+			</div>
+		</div>
+	</div>
 	<div class="header-content-bottom">
 		<div class="category-bar">
 			<ul class="category-list">
-				<li style="text-align : center;"><a href="/selectAllFripByCategory.do?categoryName=ALL&newFeed=default"
-					id="allBtn"><img src="/categoryImg/ALL.png">
-					<div class="img-text">
+				<li style="text-align: center;"><a
+					href="/selectAllFripByCategory.do?categoryName=ALL" id="allBtn">
+						<img src="/categoryImg/ALL.png">
+						<div class="img-text">
 							<span>ALL</span>
-						</div></a></li">
-				<li><a href="/selectAllFripByCategory.do?categoryName=아웃도어&newFeed=default"><img
-						src="/categoryImg/아웃도어.jpg">
-					<div class="img-text">
+						</div>
+				</a></li">
+				<li><a href="/selectAllFripByCategory.do?categoryName=아웃도어">
+						<img src="/categoryImg/아웃도어.jpg">
+						<div class="img-text">
 							<span>아웃도어</span>
-						</div></a></li>
-				<li><a href="/selectAllFripByCategory.do?categoryName=피트니스&newFeed=default"><img
-						src="/categoryImg/피트니스.png">
-					<div class="img-text">
+						</div>
+				</a></li>
+				<li><a href="/selectAllFripByCategory.do?categoryName=피트니스">
+						<img src="/categoryImg/피트니스.png">
+						<div class="img-text">
 							<span>피트니스</span>
-						</div></a></li>
-				<li><a href="/selectAllFripByCategory.do?categoryName=DIY&newFeed=default"><img
-						src="/categoryImg/DIY.png">
-					<div class="img-text">
+						</div>
+				</a></li>
+				<li><a href="/selectAllFripByCategory.do?categoryName=DIY">
+						<img src="/categoryImg/DIY.png">
+						<div class="img-text">
 							<span>공예DIY</span>
-						</div></a></li>
-				<li><a href="/selectAllFripByCategory.do?categoryName=스포츠&newFeed=default"><img
-						src="/categoryImg/스포츠1.png">
-					<div class="img-text">
+						</div>
+				</a></li>
+				<li><a href="/selectAllFripByCategory.do?categoryName=스포츠">
+				<img src="/categoryImg/스포츠1.png">
+						<div class="img-text">
 							<span>스포츠</span>
 						</div></a></li>
-				<li><a href="/selectAllFripByCategory.do?categoryName=요리&newFeed=default"><img
-						src="/categoryImg/요리.png">
-					<div class="img-text">
+				<li><a href="/selectAllFripByCategory.do?categoryName=요리">
+				<img src="/categoryImg/요리.png">
+						<div class="img-text">
 							<span>요리</span>
 						</div></a></li>
-				<li><a href="/selectAllFripByCategory.do?categoryName=온라인&newFeed=default"><img
-						src="/categoryImg/온라인.png">
-					<div class="img-text">
+				<li><a href="/selectAllFripByCategory.do?categoryName=온라인">
+				<img src="/categoryImg/온라인.png">
+						<div class="img-text">
 							<span>온라인</span>
 						</div></a></li>
-				<li><a href="/selectAllFripByCategory.do?categoryName=자기계발&newFeed=default"><img
-						src="/categoryImg/자기계발.png">
-					<div class="img-text">
+				<li><a href="/selectAllFripByCategory.do?categoryName=자기계발">
+				<img src="/categoryImg/자기계발.png">
+						<div class="img-text">
 							<span>자기계발</span>
 						</div></a></li>
-				<li><a href="/selectAllFripByCategory.do?categoryName=뷰티&newFeed=default"><img
-						src="/categoryImg/뷰티.png">
-					<div class="img-text">
+				<li><a href="/selectAllFripByCategory.do?categoryName=뷰티">
+				<img src="/categoryImg/뷰티.png">
+						<div class="img-text">
 							<span>뷰티</span>
 						</div></a></li>
-				<li><a href="/selectAllFripByCategory.do?categoryName=모임&newFeed=default"><img
-						src="/categoryImg/모임.png">
-					<div class="img-text">
+				<li><a href="/selectAllFripByCategory.do?categoryName=모임">
+				<img src="/categoryImg/모임.png">
+						<div class="img-text">
 							<span>모임</span>
 						</div></a></li>
-				<li><a href="/selectAllFripByCategory.do?categoryName=국내여행&newFeed=default"><img
-						src="/categoryImg/국내여행.png">
-					<div class="img-text">
+				<li><a href="/selectAllFripByCategory.do?categoryName=국내여행">
+				<img src="/categoryImg/국내여행.png">
+						<div class="img-text">
 							<span>국내여행</span>
 						</div></a></li>
-				<li><a href="/selectAllFripByCategory.do?categoryName=해외여행&newFeed=default"><img
-						src="/categoryImg/해외여행.png">
-					<div class="img-text">
+				<li><a href="/selectAllFripByCategory.do?categoryName=해외여행">
+				<img src="/categoryImg/해외여행.png">
+						<div class="img-text">
 							<span>해외여행</span>
 						</div></a></li>
 			</ul>
@@ -124,3 +170,13 @@ Member loginMember = (Member) session.getAttribute("m");
 	</div>
 	</div>
 </header>
+<script>
+	function validateForm() {
+		var input = document.getElementsByName("searchFrip")[0];
+		if (input.value.trim() === "") {
+			alert("검색어를 입력하세요.");
+			return false;
+		}
+		return true;
+	}
+</script>

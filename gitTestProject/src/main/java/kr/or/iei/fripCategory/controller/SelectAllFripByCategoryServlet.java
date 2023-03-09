@@ -36,52 +36,17 @@ public class SelectAllFripByCategoryServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// 인
 		request.setCharacterEncoding("utf-8");
-		FripService service = new FripService();
 		String categoryName = request.getParameter("categoryName");
-		String newFeed = request.getParameter("newFeed");
-		RequestDispatcher view = null;
-		
-		if ("main".equals(categoryName)) {
-			//main 화면
-			ArrayList<Frip> list = service.selectAllFripByCategory(categoryName);
-			ArrayList<Frip> rList = service.selectAllFripByCategory(categoryName);
-			for(Frip f : list) {
-					String avgRating = service.selectRating(f.getFripNo());
-					f.setAvgRating(avgRating);
-				}
-			request.setAttribute("list", list);
-			request.setAttribute("rList", rList);
-		} else {
-			ArrayList<Frip> list = service.selectAllFripByCategory(categoryName);
-			for(Frip f : list) {
-				String avgRating = service.selectRating(f.getFripNo());
-				f.setAvgRating(avgRating);
-			}
-				request.setAttribute("list", list);
-				view = request.getRequestDispatcher("/WEB-INF/views/category/selectAllFripByCategory.jsp");
-		}
-		 if("newFeed".equals(newFeed)) {
-			ArrayList<Frip> nList = service.selectNewFeed(newFeed);
-			for(Frip f : nList) {
-				String avgRating = service.selectRating(f.getFripNo());
-				f.setAvgRating(avgRating);
-			}
-			System.out.println("카테고리 서블렛에서 newFeedList값 : "+nList);
-			request.setAttribute("nList", nList);
-			
-		} else {
-			ArrayList<Frip> list = service.selectAllFripByCategory(categoryName);
-				for(Frip f : list) {
-					String avgRating = service.selectRating(f.getFripNo());
-					f.setAvgRating(avgRating);
-				}
-			request.setAttribute("list", list);
-			view = request.getRequestDispatcher("/WEB-INF/views/category/selectAllFripByCategory.jsp");
-			view.forward(request, response);
-		}
-		 view = request.getRequestDispatcher("/WEB-INF/views/common/mainPage.jsp");
-		 view.forward(request, response);
-		}
+		FripService service = new FripService();
+	    ArrayList<Frip> list = service.selectAllFripByCategory(categoryName);
+	    for(Frip f : list) {
+	        String avgRating = service.selectRating(f.getFripNo());
+	        f.setAvgRating(avgRating);
+	    }
+	    request.setAttribute("list", list);
+	    RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/category/selectAllFripByCategory.jsp");
+	    view.forward(request, response);
+	}
 	//결
 		
 		
