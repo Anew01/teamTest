@@ -12,7 +12,7 @@ Member member = (Member) request.getAttribute("m");
  <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.1.0/kakao.min.js"
             integrity="sha384-dpu02ieKC6NUeKFoGMOKz6102CLEWi9+5RQjWSV0ikYSFFd8M3Wp2reIcquJOemx"
             crossorigin="anonymous"></script>
-        <script>Kakao.init('933fdb3f5c64bf38bb66bc3494744435'); // 사용하려는 앱의 JavaScript 키 입력</script>
+        <script>Kakao.init('933fdb3f5c64bf38bb66bc3494744435');</script>
 </head>
 <body>
 <%@ include file="/WEB-INF/views/common/header_mypage.jsp" %>
@@ -31,8 +31,8 @@ Member member = (Member) request.getAttribute("m");
         <hr>
         <div class="sub-menu">
             <div>내 활동</div><br>
-            <div><a href="/memberPayment.do">결제내역</a></div>
-            <div><a href="/memberReview.do">후기</a></div>
+            <div><a href="/memberPayment.do?memberId=<%= member.getMemberId()%>">결제내역</a></div>
+            <div><a href="/memberReview.do?memberNo=<%= member.getMemberNo()%>">후기</a></div>
         </div>
         <br>
         <hr>

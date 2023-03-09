@@ -8,6 +8,8 @@ public class Payment {
 	private String paymentType;
 	private int totalPrice;
 	private int finalPrice;
+	private String paymentDate;
+	private String fripTitle;
 	public Payment() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -22,6 +24,13 @@ public class Payment {
 		this.paymentType = paymentType;
 		this.totalPrice = totalPrice;
 		this.finalPrice = finalPrice;
+	}
+	
+	public Payment(int totalPrice, String paymentDate, String fripTitle) {
+		super();
+		this.totalPrice = totalPrice;
+		this.paymentDate = paymentDate;
+		this.fripTitle = fripTitle;
 	}
 	public int getPaymentNo() {
 		return paymentNo;
@@ -65,7 +74,18 @@ public class Payment {
 	public void setFinalPrice(int finalPrice) {
 		this.finalPrice = finalPrice;
 	}
-
+	public String getPaymentDate() {
+		return paymentDate;
+	}
+	public void setPaymentDate(String paymentDate) {
+		this.paymentDate = paymentDate;
+	}
+	public String getFripTitle() {
+		return fripTitle;
+	}
+	public void setFripTitle(String fripTitle) {
+		this.fripTitle = fripTitle;
+	}
 	
 	
 	

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import common.JDBCTemplate;
 import kr.or.iei.member.dao.MemberDao;
 import kr.or.iei.member.vo.Member;
+import kr.or.iei.member.vo.PaymentList;
 
 public class MemberService {
 	private MemberDao dao;
@@ -101,6 +102,13 @@ public class MemberService {
 		Connection conn = JDBCTemplate.getConnection();
 		Member m = dao.selectOneMemberByJoin(conn, fripNo);
 		return m;
+	}
+
+	public  ArrayList<PaymentList> selectOnePayment(int memberNo) {
+		Connection conn = JDBCTemplate.getConnection();
+		ArrayList<PaymentList> list = dao.selectOnePayment(conn, memberNo);
+		JDBCTemplate.close(conn);
+		return list;
 	}
 
 }

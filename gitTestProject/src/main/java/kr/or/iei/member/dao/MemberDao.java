@@ -9,6 +9,7 @@ import java.util.function.Predicate;
 
 import common.JDBCTemplate;
 import kr.or.iei.member.vo.Member;
+import kr.or.iei.member.vo.PaymentList;
 
 public class MemberDao {
 
@@ -240,6 +241,32 @@ public class MemberDao {
 		}
 			
 		return m;
+	}
+
+	public ArrayList<PaymentList> selectOnePayment(Connection conn, int MemberNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<PaymentList> list = new ArrayList<>();
+		String query = "select b.frip_title, c.total_price, c.payment_date from member_tbl a, frip_tbl b, payment_tbl c where b.FRIP_NO = c.FRIP_NO and a.member_no = c.member_no and a.member_no=?";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, MemberNo);
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				PaymentList pl = new PaymentList();
+				pl.setFripTitle(rset.getString("frip_title"));
+				pl.setTotalPrice(rset.getInt("totla_price"));
+				pl.setWriteDate(rset.getString("payment_date"));
+				
+				list.add(pl);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return list;
 	}
 
 

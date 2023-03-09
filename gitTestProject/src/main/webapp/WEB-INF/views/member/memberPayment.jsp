@@ -1,11 +1,12 @@
+<%@page import="kr.or.iei.member.vo.PaymentList"%>
 <%@page import="kr.or.iei.payment.vo.Payment"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%
     
-    ArrayList<Frip> list = (ArrayList<Frip>)request.getAttribute("list");
-Member member = (Member) request.getAttribute("m");
-int start = (int)request.getAttribute("start");
+    ArrayList<PaymentList> list = (ArrayList<PaymentList>)request.getAttribute("list");
+	Member member = (Member) request.getAttribute("m");
+	Frip f = (Frip)request.getAttribute("f");
 %>
 <!DOCTYPE html>
 <html>
@@ -42,20 +43,22 @@ int start = (int)request.getAttribute("start");
  			<th style="width:10%">결제금액</th>
  			<th style="width:10%">결제일자</th>
  		</tr>
+ 		<%--  
  		<%for(int i=0;i<list.size();i++){ %> 
  		<!-- 0부터면 처음부터 -->
- 		<%Frip f = list.get(i); %>
+ 		<%Payment p = list.get(i); %>
  			<tr class="tr-1">
- 				<td><%=i+start %></td>
+ 				<td><%=i+1 %></td>
  				<td>
- 					<a href="/noticeView.do?noticeNo=<%=f.getFripNo() %>">
- 				<%=p.getNoticeTitle() %>
+ 					<a href="/joinFrip.do?fripNo=<%=f.getFripNo() %>">
+ 				<%=f.getFripTitle() %>
  					</a>
  				</td>
- 				<td><%=p.getNoticeWriter() %></td>
- 				<td><%=p.getRegDate() %></td>
+ 				<td><%=p.getTotalPrice() %></td>
+ 				<td><%=p.getPaymentDate() %></td>
  			</tr>
  		<%} %>
+ 		--%>
  	</table>
 	</div>
 	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
