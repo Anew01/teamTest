@@ -185,5 +185,43 @@ a{
 	border-radius: 50px;
 }
 
+.content-feed{
+	width : 100%;
+	padding : 30px;
+}
+.content-wrap>button{
+	width : 20%;
+	margin-top : 20px;
+	margin-left : 20px;
+}
+.feed-wrap{
+	width: 100%;	
+	display :flex;
+	flex-wrap: wrap;
+}
+.feed-modal-wrap{
+	width: 100%;
+	height : 70%;	
+	display :flex;
+	flex-wrap: wrap;
+}
+.feed-box{	
+	width : 50%;
+	padding : 20px;
+}
 
-	
+.feed-writer-info{
+	display : flex;
+}
+
+.img-box>img{
+	width: 50px;
+}
+
+.img-box{
+	margin-right : 20px;
+}
+
+.feed-content-wrap{
+	margin-top : 20px;
+}

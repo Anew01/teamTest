@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import kr.or.iei.feed.service.FeedService;
 import kr.or.iei.feed.vo.Feed;
+import kr.or.iei.feed.vo.ViewFripFeedData;
 import kr.or.iei.frip.service.FripService;
 import kr.or.iei.frip.vo.Frip;
 import kr.or.iei.member.service.MemberService;
@@ -42,7 +43,6 @@ public class JoinFripServlet extends HttpServlet {
 		FripService fservice = new FripService();
 		Frip f = fservice.selectOneFripByNo(fripNo);
 		FeedService feedService = new FeedService();
-		ArrayList<Feed> fList = feedService.selectOneFeed(fripNo);
 		      
 		MemberService mService = new MemberService();
 		Member m = mService.selectOneMemberByJoin(fripNo);
@@ -55,6 +55,8 @@ public class JoinFripServlet extends HttpServlet {
 			f.setAvgRating(avgRating);
 		}
 		MemberService service = new MemberService();
+		
+		ArrayList<ViewFripFeedData> fList = feedService.selectAllMyFripFeed(fripNo);
 		
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/frip/checkJoinFrip.jsp");
 		request.setAttribute("f", f);
