@@ -51,6 +51,7 @@
 	font-size : 20px;
 }
 .my-info{
+	width : 50%;
 	display :flex;
 	flex-direction : column;
 }
@@ -65,12 +66,17 @@
 	height : 50px;
 }
 
+.feed-inquiry{
+	width : 40%;
+	margin-right : 0;
+}
+
 .all-frip-info{
 	width : 100%;
 }
 
 .tbl{
-	width : 400px;
+	width : 100%;
 	text-align : center;
 }
 .tbl>tbody>tr>td{
@@ -87,10 +93,11 @@
 .tbl>tbody>tr:last-of-type>td{
 	border-bottom : none;
 }
-
+.info-table-box{
+	width : 60%;
+}
 .income-info{
 	width : 40%;
-	margin-left : 60px;
 	padding : 20px;
 }
 .income-info>div:first-of-type{
