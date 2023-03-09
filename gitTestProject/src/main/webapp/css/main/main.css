@@ -134,7 +134,6 @@ body{
     padding: 5px;
     margin-left: 20px;
 }
-/*캐러셀 시작*/
 .carousel {
     position: relative;
 }
@@ -362,7 +361,7 @@ body{
 }
 
 .carousel-inner{
-    width: 70%;
+    width: 70% !important;
     height: 500px;
     margin: 0 auto;
     z-index : 0;
@@ -379,6 +378,3 @@ body{
  }
 
 /*캐러셀 종료*/
-/*사진크기
-class="object-fit-cover border rounded"
-*/

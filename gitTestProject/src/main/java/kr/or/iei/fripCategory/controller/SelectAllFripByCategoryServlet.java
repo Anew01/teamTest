@@ -45,7 +45,7 @@ public class SelectAllFripByCategoryServlet extends HttpServlet {
 			//main 화면
 			ArrayList<Frip> list = service.selectAllFripByCategory(categoryName);
 			ArrayList<Frip> rList = service.selectAllFripByCategory(categoryName);
-				for(Frip f : list) {
+			for(Frip f : list) {
 					String avgRating = service.selectRating(f.getFripNo());
 					f.setAvgRating(avgRating);
 				}
