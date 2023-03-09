@@ -220,11 +220,6 @@ a{
 	width : 100%;
 	display :flex;
 }
-.insert-feed-img{
-}
-.insert-feed-img>input{
-	width : 20%;
-}
 .insert-feed-content{
 	flex-grow : 1;
 }
@@ -241,6 +236,13 @@ a{
 
 .feed-writer-info{
 	display : flex;
+}
+
+.feed-content-wrap{
+	display : flex;
+}
+feed-img-box>img{
+	height : 100px;
 }
 
 .img-box>img{

@@ -205,7 +205,7 @@ Boolean isPayed = (Boolean)request.getAttribute("isPayed");
       					<div class="feed-content-wrap">
       						<div class="feed-img-box">
       							<% if(data.getF().getFilepath() != null) { %>
-      								<img src="/upload/feed/<%=data.getF().getFilepath()%>">
+      								<img src="/upload/feed/<%=data.getF().getFilepath()%>" style="height : 100px;">
       							<% } else { %>
       							<% } %>
       						</div>
@@ -255,7 +255,7 @@ Boolean isPayed = (Boolean)request.getAttribute("isPayed");
       					<div class="feed-content-wrap">
       						<div class="feed-img-box">
       							<% if(data.getF().getFilepath() != null) { %>
-      								<img src="/upload/feed/<%=data.getF().getFilepath()%>">
+      								<img src="/upload/feed/<%=data.getF().getFilepath()%>" style="width : 100px;">
       							<% } else { %>
       							<% } %>
       						</div>
@@ -267,20 +267,44 @@ Boolean isPayed = (Boolean)request.getAttribute("isPayed");
       	</div>
       	<% if(loginMember != null && isPayed) { %>
       	<div class="modal-footer">
-      		<div class="insert-feed-img">
-      			<div class="img-pre">
-      			</div>
-      			<input type="file" class="form-input" name="filepath">
-      		</div>
-      		<div class="insert-feed-content">
-      			<textarea name="feedContent">
-      			</textarea>
-      		</div>
-      		<input type="hidden" name="feedWriter" value="<%= loginMember.getMemberId() %>"> 
-      		<input type="hidden" name="fripNo" value="<%= f.getFripNo() %>">
-      		<div class="modal-footer-btn-wrap">
-      			<button class="btn btn-primary">피드 쓰기</button>
-      		</div>
+      		<form id="insertFeedFrm" method="POST" enctype="multipart/form-data">
+	      		<div class="insert-feed-img">
+	      			<div class="img-pre">
+	      			</div>
+	      			<input type="file" id="filepath" class="form-input" name="filepath">
+	      		</div>
+	      		<div class="rating">
+					<div>
+		                <label for="rating1">★</label>
+		                <input type="radio" name="rating" value="1" id="rating1">
+					</div>
+					<div>
+		                <label for="rating2">★★</label>
+		                <input type="radio" name="rating" value="2" id="rating2">
+					</div>
+					<div>
+		                <label for="rating3">★★★</label>
+		                <input type="radio" name="rating" value="3" id="rating3">
+					</div>
+					<div>
+		                <label for="rating4">★★★★</label>
+		                <input type="radio" name="rating" value="4" id="rating4">
+					</div>
+					<div>
+		                <label for="rating5">★★★★★</label>
+		                <input type="radio" name="rating" value="5" id="rating5">
+					</div>
+				</div>
+	      		<div class="insert-feed-content">
+	      			<textarea id="feedContent" name="feedContent">
+	      			</textarea>
+	      		</div>
+	      		<input type="hidden" id="feedWriter" name="feedWriter" value="<%= loginMember.getMemberId() %>"> 
+	      		<input type="hidden" id="fripNo" name="fripNo" value="<%= f.getFripNo() %>">
+	      		<div class="modal-footer-btn-wrap">
+	      			<button class="btn btn-primary" id="insertFeedBtn">피드 쓰기</button>
+	      		</div>
+      		</form>
       	</div>
       	<% } %>
     </div>
@@ -403,7 +427,36 @@ geocoder.addressSearch('<%=f.getFripAddr()%>', function(result, status) {
   modalBodyInput.value = recipient
 })
 
-//피드 모달
+$("#insertFeedBtn").on("click", function(event){
+	
+	event.preventDefault(); 
+	var form = $('#insertFeedFrm')[0]; 
+	const fripNo = $("#fripNo").val();
+	var data = new FormData(form); 
+	const feedContent = $("#feedContent").val();
+	const feedWriter = $("#feedWriter").val();
+	const filepath = $("#filepath").val();
+	
+	$.ajax({
+		type: "POST",          
+        enctype: 'multipart/form-data',
+		url : "/insertFeed.do",
+		data : data,
+        processData: false,    
+        contentType: false,      
+        cache: false,
+        timeout: 600000,  
+        success: function (data) { 
+        	alert("complete"); 
+        	location.reload();
+        },          
+        error: function (e) {  
+        	console.log("ERROR : ", e);     
+            alert("fail");      
+        }
+	})
+})
+
 
 //메일 ajax
 /*

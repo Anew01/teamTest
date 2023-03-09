@@ -54,7 +54,7 @@ public class PaymentDao {
 			JDBCTemplate.close(rset);
 			JDBCTemplate.close(pstmt);
 		}
-		return null;
+		return isPayed;
 	}
 
 }

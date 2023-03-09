@@ -191,4 +191,76 @@ public class FeedDao {
 		return fList;
 	}
 
+	public int selectLastestFeedNo(Connection conn, int fripNo, String feedWriter) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = "SELECT max(feed_no) as lateNo FROM FEED_TBL WHERE FRIP_NO = ? and feed_writer=?";
+		int feedNo = -1;
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, fripNo);
+			pstmt.setString(2, feedWriter);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				feedNo = rset.getInt("lateNo");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return feedNo;
+	}
+
+	public int insertFeed(Connection conn, String feedWriter, String feedContent, int fripNo, String filepath) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "INSERT INTO FEED_TBL VALUES(FEED_TBL_SEQ.NEXTVAL, ?, ?, ?, null, ?, null, SYSDATE)";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, feedWriter);
+			pstmt.setInt(2, fripNo);
+			pstmt.setString(3, feedContent);
+			pstmt.setString(4, filepath);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+
+	public Feed selectFeed(Connection conn, int feedNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Feed f = null;
+		String query = "SELECT * FROM FEED_TBL WHERE FEED_NO = ?";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, feedNo);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				Feed feed = new Feed();
+				feed.setFeedNo(rset.getInt("feed_no"));
+				feed.setFeedWriter(rset.getString("feed_writer"));
+				feed.setFripNo(rset.getInt("frip_no"));
+				feed.setFeedContent(rset.getString("feed_content"));
+				feed.setFilename(rset.getString("file_name"));
+				feed.setFilepath(rset.getString("file_path"));
+				feed.setFdNo(rset.getInt("fd_no"));
+				feed.setWriteDate(rset.getString("write_date"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return f;
+	}
 }

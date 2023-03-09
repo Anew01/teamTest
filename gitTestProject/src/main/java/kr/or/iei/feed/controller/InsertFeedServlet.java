@@ -1,6 +1,8 @@
 package kr.or.iei.feed.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,10 +11,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import kr.or.iei.feed.service.FeedService;
+import kr.or.iei.feed.vo.Feed;
+import kr.or.iei.feed.vo.ViewFripFeedData;
 import kr.or.iei.rating.service.RatingService;
 
 /**
@@ -38,42 +43,34 @@ public class InsertFeedServlet extends HttpServlet {
 		response.setContentType("text/html;charset=utf-8");
 
 		String root = getServletContext().getRealPath("/");
-		String saveDirectory = root + "upload/member";
+		String saveDirectory = root + "upload/feed";
 		int maxsize = 10 * 1024 * 1024;
 
 		MultipartRequest mRequest = new MultipartRequest(request, saveDirectory, maxsize, "utf-8", new DefaultFileRenamePolicy());
 		request.setCharacterEncoding("utf-8");
-		String feedWriter = mRequest.getParameter("memberId");
-		String fripTitle = mRequest.getParameter("fripTitle");
-		String feedContent = mRequest.getParameter("editordata");
+		String feedWriter = mRequest.getParameter("feedWriter");
+		String feedContent = mRequest.getParameter("feedContent");
+		String filepath = mRequest.getFilesystemName("filepath");
 		int fripNo = Integer.parseInt(mRequest.getParameter("fripNo"));
 		int rating = Integer.parseInt(mRequest.getParameter("rating"));
-		int feedNo = Integer.parseInt(mRequest.getParameter("feedNo"));
 		System.out.println("인서트jsp에서 넘어온 memberId 값 : "+feedWriter);
-		System.out.println("인서트jsp에서 넘어온 fripTitle 값 : "+fripTitle);
 		System.out.println("인서트jsp에서 넘어온 feedContent 값 : "+feedContent);
 		System.out.println("인서트jsp에서 넘어온 fripNo 값 : "+fripNo);
 		System.out.println("인서트jsp에서 넘어온 rating 값 : "+rating);
-		System.out.println("인서트jsp에서 넘어온 feedNo 값 : "+feedNo);
 		FeedService service = new FeedService();
-		int result = service.insertFeed(feedWriter, feedContent, fripNo);
+		int result = service.insertFeed(feedWriter, feedContent, fripNo, filepath);
+		int feedNo = service.selectLastestFeedNo(fripNo, feedWriter);
 		RatingService rService = new RatingService();
 		int rResult = rService.insertRating(feedNo, rating);
-		
-		
-		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
-		
+		Feed f = service.selectFeed(feedNo);
+		response.setCharacterEncoding("UTF-8");
+		PrintWriter out = response.getWriter();
+		Gson gson = new Gson();
 		if(result > 0 && rResult > 0) {
-			request.setAttribute("title", "스프립 등록 성공");
-			request.setAttribute("msg", "스프립 등록이 성공했습니다");
-			request.setAttribute("icon", "success");
+			gson.toJson(f, out);
 		} else {
-			request.setAttribute("title", "스프립 등록 실패");
-			request.setAttribute("msg", "관리자에게 문의 하세요");
-			request.setAttribute("icon", "error");
+			gson.toJson("실패", out);
 		}
-		request.setAttribute("loc", "/selectAllFripByCategory.do?categoryName=main");
-		view.forward(request, response);
 	}
 
 	/**
