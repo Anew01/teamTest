@@ -70,14 +70,7 @@ Member member = (Member) request.getAttribute("m");
 									value="<%=member.getMemberPw()%>">
 							</div>
 						</div>
-						<div class="join-input-wrap">
-							<div>
-								<label for="pwre">비밀번호 확인</label>
-							</div>
-							<div>
-								<input type="password" name="pwre" id="pwre">
-							</div>
-						</div>
+						
 						<div class="join-input-wrap">
 							<div>
 								<label for="memberName">이름</label>

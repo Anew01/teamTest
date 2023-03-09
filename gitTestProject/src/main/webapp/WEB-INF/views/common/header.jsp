@@ -45,12 +45,15 @@ Member loginMember = (Member) session.getAttribute("m");
             </div>
             <div class="header-button">
                 <ul>
-                    <li><a href="#"><img src="/headerBtnImage/북마크.png"><div><span>호스트지원</span></div></a></li>
+                    
                     <li><a href="/noticeListUser.do?reqPage=1"><img src="/headerBtnImage/피드.png"><div><span>공지사항</span></div></a></li>
                     <%if (loginMember == null) {%>
+                    <li><a href="/enrollMain.do"><img src="/headerBtnImage/북마크.png"><div><span>회원가입</span></div></a></li>
                     <li><a href="/loginFrm.do"><img src="/headerBtnImage/마이페이지.png"><div><span>로그인</span></div></a></li>
                     <%} else {%>
                     <li><a href="/myPage.do?memberId=<%=loginMember.getMemberId()%>"><img src="/headerBtnImage/마이페이지.png"><div><span>마이페이지</span></div></a></li>
+                    <li><a href="/logout.do"><img src="/headerBtnImage/로그아웃.png" width="48px;" height="48px;"><div><span>로그아웃</span></div></a></li>
+                    
                     <%}	%>
                 </ul>
                 </div>
