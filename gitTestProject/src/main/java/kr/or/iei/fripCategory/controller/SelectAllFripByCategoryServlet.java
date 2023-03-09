@@ -45,35 +45,42 @@ public class SelectAllFripByCategoryServlet extends HttpServlet {
 			//main 화면
 			ArrayList<Frip> list = service.selectAllFripByCategory(categoryName);
 			ArrayList<Frip> rList = service.selectAllFripByCategory(categoryName);
-			for(Frip f : list) {
-				String avgRating = service.selectRating(f.getFripNo());
-				f.setAvgRating(avgRating);
-			}
-			request.setAttribute("list", list);
-			request.setAttribute("rList", rList);
-			
-			} else {
-				ArrayList<Frip> list = service.selectAllFripByCategory(categoryName);
 				for(Frip f : list) {
 					String avgRating = service.selectRating(f.getFripNo());
 					f.setAvgRating(avgRating);
 				}
+			request.setAttribute("list", list);
+			request.setAttribute("rList", rList);
+		} else {
+			ArrayList<Frip> list = service.selectAllFripByCategory(categoryName);
+			for(Frip f : list) {
+				String avgRating = service.selectRating(f.getFripNo());
+				f.setAvgRating(avgRating);
+			}
 				request.setAttribute("list", list);
 				view = request.getRequestDispatcher("/WEB-INF/views/category/selectAllFripByCategory.jsp");
+		}
+		 if("newFeed".equals(newFeed)) {
+			ArrayList<Frip> nList = service.selectNewFeed(newFeed);
+			for(Frip f : nList) {
+				String avgRating = service.selectRating(f.getFripNo());
+				f.setAvgRating(avgRating);
 			}
-			 if("newFeed".equals(newFeed)) {
-				ArrayList<Frip> nList = service.selectNewFeed(newFeed);
-				for(Frip f : nList) {
+			System.out.println("카테고리 서블렛에서 newFeedList값 : "+nList);
+			request.setAttribute("nList", nList);
+			
+		} else {
+			ArrayList<Frip> list = service.selectAllFripByCategory(categoryName);
+				for(Frip f : list) {
 					String avgRating = service.selectRating(f.getFripNo());
 					f.setAvgRating(avgRating);
 				}
-				System.out.println("카테고리 서블렛에서 newFeedList값 : "+nList);
-				request.setAttribute("nList", nList);
-			} else {
-				
-			}
-			 view = request.getRequestDispatcher("/WEB-INF/views/common/mainPage.jsp");
-			 view.forward(request, response);
+			request.setAttribute("list", list);
+			view = request.getRequestDispatcher("/WEB-INF/views/category/selectAllFripByCategory.jsp");
+			view.forward(request, response);
+		}
+		 view = request.getRequestDispatcher("/WEB-INF/views/common/mainPage.jsp");
+		 view.forward(request, response);
 		}
 	//결
 		
