@@ -33,10 +33,9 @@
                                                     </div>
                                                     <div class="search">
                                                         <div class="search-padding">
-                                                            <label for="searchId" style="font-size: 0.9rem;">검색:</label>
-                                                            <input type="text" name="searchId" id="searchId"
-                                                                placeholder="프립 제목을 입력해주세요"
-                                                                onkeyup="if(window.event.keyCode==13){fripInputEnter();}">
+                                                            <label for="fripId" style="font-size: 0.9rem;">검색:</label>
+                                                            <input type="text" name="searchId" id="fripId"
+                                                                placeholder="프립 제목을 입력해주세요">
                                                             <button class="submit fripSubmit" type="submit">검색</button>
                                                             <button class="reset" type="reset">초기화</button>
                                                         </div>
@@ -63,8 +62,12 @@
                                                                     <td>
                                                                         <%=i+fripStart%>
                                                                     </td>
-                                                                    <td><%=frip.getFripWriter() %></td>
-                                                                    <td class="frip-no"><%=frip.getFripNo() %></td>
+                                                                    <td>
+                                                                        <%=frip.getFripWriter() %>
+                                                                    </td>
+                                                                    <td class="frip-no">
+                                                                        <%=frip.getFripNo() %>
+                                                                    </td>
                                                                     <td>
                                                                         <%=frip.getFripTitle() %>
                                                                     </td>
@@ -107,10 +110,9 @@
                                                     </div>
                                                     <div class="search">
                                                         <div class="search-padding">
-                                                            <label for="searchId" style="font-size: 0.9rem;">검색:</label>
-                                                            <input type="text" name="searchId" id="searchId"
-                                                                placeholder="피드 작설자를 입력해주세요"
-                                                                onkeyup="if(window.event.keyCode==13){feedInputEnter();}">
+                                                            <label for="feedId" style="font-size: 0.9rem;">검색:</label>
+                                                            <input type="text" name="searchId" id="feedId"
+                                                                placeholder="피드 작성자를 입력해주세요">
                                                             <button class="submit feedSubmit" type="submit">검색</button>
                                                             <button class="reset" type="reset">초기화</button>
                                                         </div>
@@ -134,11 +136,15 @@
                                                                     <td>
                                                                         <%=i+feedStart %>
                                                                     </td>
-                                                                    <td class="feed-no"><%=feed.getFeedNo() %></td>
+                                                                    <td class="feed-no">
+                                                                        <%=feed.getFeedNo() %>
+                                                                    </td>
                                                                     <td>
                                                                         <%=feed.getFripTitle() %>
                                                                     </td>
-                                                                    <td><%=feed.getFeedWriter() %></td>
+                                                                    <td>
+                                                                        <%=feed.getFeedWriter() %>
+                                                                    </td>
                                                                     <td>
                                                                         <%=feed.getWriteDate() %>
                                                                     </td>
@@ -271,17 +277,21 @@
                                                 location.href = "/firpAndFeed.do?fripReqPage=1&feedReqPage=1&fripTitle=&feedWriter=" + feedWriter;
                                             });
 
-                                            function fripInputEnter() {
-                                                const fripTitle = $(this).prev().val();
+                                            $("#fripId").on("keyup", function (e) {
+                                                if (e.keyCode == 13) {
+                                                    const fripTitle = $(this).val();
 
-                                                location.href = "/firpAndFeed.do?fripReqPage=1&feedReqPage=1&fripTitle=" + fripTitle + "&feedWriter=";
-                                            }
+                                                    location.href = "/firpAndFeed.do?fripReqPage=1&feedReqPage=1&fripTitle=" + fripTitle + "&feedWriter=";
+                                                }
+                                            });
 
-                                            function feedInputEnter() {
-                                                const feedWriter = $(this).prev().val();
+                                            $("#feedId").on("keyup", function (e) {
+                                                if (e.keyCode == 13) {
+                                                    const feedWriter = $(this).val();
 
-                                                location.href = "/firpAndFeed.do?fripReqPage=1&feedReqPage=1&fripTitle=&feedWriter=" + feedWriter;
-                                            }
+                                                    location.href = "/firpAndFeed.do?fripReqPage=1&feedReqPage=1&fripTitle=&feedWriter=" + feedWriter;
+                                                }
+                                            });
 
                                             $(".reset").on("click", function () {
                                                 location.href = "/firpAndFeed.do?fripReqPage=1&feedReqPage=1&fripTitle=&feedWriter=";
