@@ -1,11 +1,9 @@
 <%@page import="kr.or.iei.member.vo.PaymentList"%>
-<%@page import="kr.or.iei.payment.vo.Payment"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%
-    
+ 
     ArrayList<PaymentList> list = (ArrayList<PaymentList>)request.getAttribute("list");
-	PaymentList pl = (PaymentList)request.getAttribute("pl");
 %>
 <!DOCTYPE html>
 <html>

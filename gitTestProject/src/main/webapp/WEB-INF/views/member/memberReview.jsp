@@ -1,10 +1,9 @@
-<%@page import="kr.or.iei.feed.vo.Feed"%>
+<%@page import="kr.or.iei.member.vo.ReviewList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%
-    ArrayList<Feed> list = (ArrayList<Feed>)request.getAttribute("list");
-Member member = (Member) request.getAttribute("m");
-int start = (int)request.getAttribute("start");
+        <%
+    
+    ArrayList<ReviewList> list = (ArrayList<ReviewList>)request.getAttribute("list");
 %>
 <!DOCTYPE html>
 <html>
@@ -38,17 +37,19 @@ int start = (int)request.getAttribute("start");
  		<tr class="tr-2">
  			<th style="width:10%">번호</th>
  			<th style="width:10%">스프립 정보</th>
+ 			<th style="width:10%">작성일자</th>
  		</tr>
  		<%for(int i=0;i<list.size();i++){ %> 
  		<!-- 0부터면 처음부터 -->
- 		<%Notice n = list.get(i); %>
+ 		<%ReviewList rl = list.get(i); %>
  			<tr class="tr-1">
- 				<td><%=i+start %></td>
+ 				<td><%=i+1 %></td>
  				<td>
- 					<a href="/noticeView.do?noticeNo=<%=n.getNoticeNo() %>">
- 				<%=n.getNoticeTitle() %>
+ 					<a href="/joinFrip.do?fripNo=<%=rl.getFripNo() %>">
+ 				<%=rl.getFripTitle() %>
  					</a>
  				</td>
+ 				<td><%=rl.getWriteDate() %></td>
  			</tr>
  		<%} %>
  	</table>

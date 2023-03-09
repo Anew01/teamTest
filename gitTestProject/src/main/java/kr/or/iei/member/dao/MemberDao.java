@@ -10,6 +10,7 @@ import java.util.function.Predicate;
 import common.JDBCTemplate;
 import kr.or.iei.member.vo.Member;
 import kr.or.iei.member.vo.PaymentList;
+import kr.or.iei.member.vo.ReviewList;
 
 public class MemberDao {
 
@@ -260,6 +261,32 @@ public class MemberDao {
 				pl.setTotalPrice(rset.getInt("total_price"));
 				pl.setWriteDate(rset.getString("payment_date"));
 				list.add(pl);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return list;
+	}
+
+	public ArrayList<ReviewList> selectMemberReview(Connection conn, String memberId) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<ReviewList> list = new ArrayList<>();
+		String query = "select b.frip_no, b.frip_title, c.write_date from member_tbl a , frip_tbl b , feed_tbl c  where b.frip_no = c.frip_no and a.member_id = c.feed_writer and a.member_id=?";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, memberId);
+			rset = pstmt.executeQuery();
+			ReviewList rl = new ReviewList();
+			while(rset.next()) {
+				rl.setFripNo(rset.getInt("frip_no"));
+				rl.setReviewMemberId(memberId);
+				rl.setFripTitle(rset.getString("frip_title"));
+				rl.setWriteDate(rset.getString("write_date"));
+				list.add(rl);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
