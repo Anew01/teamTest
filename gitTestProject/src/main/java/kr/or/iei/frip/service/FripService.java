@@ -173,4 +173,12 @@ public class FripService {
 		return list;
 	}
 
+	public ArrayList<Frip> searchFrip(String searchFrip) {
+		Connection conn = JDBCTemplate.getConnection();
+		ArrayList<Frip> list = dao.searchFrip(conn, searchFrip);
+		JDBCTemplate.close(conn);
+		return list;
+	}
+
+
 }

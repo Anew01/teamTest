@@ -1,9 +1,8 @@
-package kr.or.iei.fripCategory.controller;
+package kr.or.iei.frip.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
-import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,16 +14,16 @@ import kr.or.iei.frip.service.FripService;
 import kr.or.iei.frip.vo.Frip;
 
 /**
- * Servlet implementation class AllCategoryServlet
+ * Servlet implementation class SeaechFripServlet
  */
-@WebServlet(name = "AllCategory", urlPatterns = { "/allCategory.do" })
-public class AllCategoryServlet extends HttpServlet {
+@WebServlet(name = "seaechFrip", urlPatterns = { "/seaechFrip.do" })
+public class SeaechFripServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AllCategoryServlet() {
+    public SeaechFripServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,16 +32,14 @@ public class AllCategoryServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//인코딩
 		request.setCharacterEncoding("utf-8");
-		//값추출
-		//비즈니스로직
+		String searchFrip = request.getParameter("searchFrip");
 		FripService service = new FripService();
-		ArrayList<Frip> list = service.selectAllFrip();
-		//결과처리
-		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/category/categoryAll.jsp");
+		ArrayList<Frip> list = service.searchFrip(searchFrip);
 		request.setAttribute("list", list);
+		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/common/searchFrip.jsp");
 		view.forward(request, response);
+		
 	}
 
 	/**

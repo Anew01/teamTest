@@ -23,15 +23,25 @@ Member loginMember = (Member) session.getAttribute("m");
 <!--jQuery-->
 <script src="/js/jquery-3.6.3.min.js"></script>
 <!--bootstrap-->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+	crossorigin="anonymous">
+<script
+	src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+	integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
+	integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
+	crossorigin="anonymous"></script>
 <!--기본css-->
 <link rel="stylesheet" href="/css/mokupCss/mockup.css">
 <style>
-	.category-list li{
-		text-align : center;
-	}
+.category-list li {
+	text-align: center;
+}
 </style>
 <header>
 	<div class="header">
@@ -62,64 +72,69 @@ Member loginMember = (Member) session.getAttribute("m");
 	<div class="header-content-bottom">
 		<div class="category-bar">
 			<ul class="category-list">
-				<li style="text-align : center;"><a href="/selectAllFripByCategory.do?categoryName=ALL&newFeed=default"
-					id="allBtn"><img src="/categoryImg/ALL.png">
-					<div class="img-text">
+				<li style="text-align: center;"><a
+					href="/selectAllFripByCategory.do?categoryName=ALL" id="allBtn">
+						<img src="/categoryImg/ALL.png">
+						<div class="img-text">
 							<span>ALL</span>
-						</div></a></li">
-				<li><a href="/selectAllFripByCategory.do?categoryName=아웃도어&newFeed=default"><img
-						src="/categoryImg/아웃도어.jpg">
-					<div class="img-text">
+						</div>
+				</a></li">
+				<li><a href="/selectAllFripByCategory.do?categoryName=아웃도어">
+						<img src="/categoryImg/아웃도어.jpg">
+						<div class="img-text">
 							<span>아웃도어</span>
-						</div></a></li>
-				<li><a href="/selectAllFripByCategory.do?categoryName=피트니스&newFeed=default"><img
-						src="/categoryImg/피트니스.png">
-					<div class="img-text">
+						</div>
+				</a></li>
+				<li><a href="/selectAllFripByCategory.do?categoryName=피트니스">
+						<img src="/categoryImg/피트니스.png">
+						<div class="img-text">
 							<span>피트니스</span>
-						</div></a></li>
-				<li><a href="/selectAllFripByCategory.do?categoryName=DIY&newFeed=default"><img
-						src="/categoryImg/DIY.png">
-					<div class="img-text">
+						</div>
+				</a></li>
+				<li><a href="/selectAllFripByCategory.do?categoryName=DIY">
+						<img src="/categoryImg/DIY.png">
+						<div class="img-text">
 							<span>공예DIY</span>
-						</div></a></li>
-				<li><a href="/selectAllFripByCategory.do?categoryName=스포츠&newFeed=default"><img
-						src="/categoryImg/스포츠1.png">
-					<div class="img-text">
+						</div>
+				</a></li>
+				<li><a href="/selectAllFripByCategory.do?categoryName=스포츠">
+				<img src="/categoryImg/스포츠1.png">
+						<div class="img-text">
 							<span>스포츠</span>
 						</div></a></li>
-				<li><a href="/selectAllFripByCategory.do?categoryName=요리&newFeed=default"><img
-						src="/categoryImg/요리.png">
-					<div class="img-text">
+				<li><a href="/selectAllFripByCategory.do?categoryName=요리">
+				<img src="/categoryImg/요리.png">
+						<div class="img-text">
 							<span>요리</span>
 						</div></a></li>
-				<li><a href="/selectAllFripByCategory.do?categoryName=온라인&newFeed=default"><img
-						src="/categoryImg/온라인.png">
-					<div class="img-text">
+				<li><a href="/selectAllFripByCategory.do?categoryName=온라인">
+				<img src="/categoryImg/온라인.png">
+						<div class="img-text">
 							<span>온라인</span>
 						</div></a></li>
-				<li><a href="/selectAllFripByCategory.do?categoryName=자기계발&newFeed=default"><img
-						src="/categoryImg/자기계발.png">
-					<div class="img-text">
+				<li><a href="/selectAllFripByCategory.do?categoryName=자기계발">
+				<img src="/categoryImg/자기계발.png">
+						<div class="img-text">
 							<span>자기계발</span>
 						</div></a></li>
-				<li><a href="/selectAllFripByCategory.do?categoryName=뷰티&newFeed=default"><img
-						src="/categoryImg/뷰티.png">
-					<div class="img-text">
+				<li><a href="/selectAllFripByCategory.do?categoryName=뷰티">
+				<img src="/categoryImg/뷰티.png">
+						<div class="img-text">
 							<span>뷰티</span>
 						</div></a></li>
-				<li><a href="/selectAllFripByCategory.do?categoryName=모임&newFeed=default"><img
-						src="/categoryImg/모임.png">
-					<div class="img-text">
+				<li><a href="/selectAllFripByCategory.do?categoryName=모임">
+				<img src="/categoryImg/모임.png">
+						<div class="img-text">
 							<span>모임</span>
 						</div></a></li>
-				<li><a href="/selectAllFripByCategory.do?categoryName=국내여행&newFeed=default"><img
-						src="/categoryImg/국내여행.png">
-					<div class="img-text">
+				<li><a href="/selectAllFripByCategory.do?categoryName=국내여행">
+				<img src="/categoryImg/국내여행.png">
+						<div class="img-text">
 							<span>국내여행</span>
 						</div></a></li>
-				<li><a href="/selectAllFripByCategory.do?categoryName=해외여행&newFeed=default"><img
-						src="/categoryImg/해외여행.png">
-					<div class="img-text">
+				<li><a href="/selectAllFripByCategory.do?categoryName=해외여행">
+				<img src="/categoryImg/해외여행.png">
+						<div class="img-text">
 							<span>해외여행</span>
 						</div></a></li>
 			</ul>
@@ -127,3 +142,13 @@ Member loginMember = (Member) session.getAttribute("m");
 	</div>
 	</div>
 </header>
+<script>
+	function validateForm() {
+		var input = document.getElementsByName("searchFrip")[0];
+		if (input.value.trim() === "") {
+			alert("검색어를 입력하세요.");
+			return false;
+		}
+		return true;
+	}
+</script>
