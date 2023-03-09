@@ -8,7 +8,9 @@ import java.util.ArrayList;
 
 import common.JDBCTemplate;
 import kr.or.iei.frip.vo.FripJoinableDate;
+import kr.or.iei.inquiry.vo.Inquiry;
 import kr.or.iei.join.vo.JoinFrip;
+import oracle.net.aso.i;
 
 public class JoinFripDao {
 
@@ -79,4 +81,46 @@ public class JoinFripDao {
 		return list;
 	}
 
+	public int inquiryInsert(Connection conn, Inquiry i) {
+		PreparedStatement pstmt = null;
+		int result= 0;
+		String query = "insert into frip_inquiry values('',?,?,'','',to_char(sysdate, 'yyyy-mm-dd'))";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, i.getFripNo());
+			pstmt.setString(2, i.getInquiryWriter());
+			pstmt.setString(3, i.getInquiryContent());
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+
+	
+		
+		
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

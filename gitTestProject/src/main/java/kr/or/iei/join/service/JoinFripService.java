@@ -7,6 +7,7 @@ import org.apache.catalina.valves.JDBCAccessLogValve;
 
 import common.JDBCTemplate;
 import kr.or.iei.frip.vo.FripJoinableDate;
+import kr.or.iei.inquiry.vo.Inquiry;
 import kr.or.iei.join.dao.JoinFripDao;
 import kr.or.iei.join.vo.JoinFrip;
 
@@ -73,6 +74,18 @@ public class JoinFripService {
 			jf.setUseCnt(j.getUseCnt());
 		}
 		return list;
+	}
+
+	public int InquiryInsert(Inquiry i) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.inquiryInsert(conn, i);
+		if(result>0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
 	}
 	
 	

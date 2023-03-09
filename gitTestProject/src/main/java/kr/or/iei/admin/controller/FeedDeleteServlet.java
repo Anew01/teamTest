@@ -33,7 +33,7 @@ public class FeedDeleteServlet extends HttpServlet {
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
 
 		if (result > 0) {
-			response.sendRedirect("/firpAndFeed.do?fripReqPage=1&feedReqPage=1");
+			response.sendRedirect("/firpAndFeed.do?fripReqPage=1&feedReqPage=1&fripTitle=&feedWriter=");
 		} else {
 			request.setAttribute("title", "피드 삭제 실패");
 			request.setAttribute("msg", "홈페이지에 문제가 발생했습니다.");

@@ -31,8 +31,14 @@ Member member = (Member) request.getAttribute("m");
         <hr>
         <div class="sub-menu">
             <div>내 활동</div><br>
-            <div><a href="/memberPayment.do?memberId=<%= member.getMemberId()%>">결제내역</a></div>
-            <div><a href="/memberReview.do?memberNo=<%= member.getMemberNo()%>">후기</a></div>
+            <form action="/memberPayment.do?memberNo=<%= member.getMemberNo()%>">
+            <input type="submit" value="결제내역">
+            <input type="hidden" name="memberNo" id="memberNo" value="<%= member.getMemberNo()%>">
+            </form>
+            <form action="/memberReview.do?memberId=<%= member.getMemberId()%>">
+            <div><input type="submit" value="후기">
+            <input type="hidden" name="memberId" id="memberId" value="<%= member.getMemberId()%>">
+            </form>
         </div>
         <br>
         <hr>
@@ -60,11 +66,6 @@ Member member = (Member) request.getAttribute("m");
             data-size="large" data-color="yellow" data-shape="pc" data-support-multiple-densities="true"></div>
         </div>
         <br>
-        <hr>
-        <div class="sub-menu">
-            <div>설정</div><br>
-            <div>약관 및 정책</div>
-        </div>
     </div>
     <script>
             window.kakaoAsyncInit = function () {

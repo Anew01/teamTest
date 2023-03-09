@@ -8,11 +8,24 @@ public class Inquiry {
 	private String inquiryEmail;
 	private String enrollDate;
 	private String inquiryWriter;
+	private int fripNo;
 
 	public Inquiry() {
 		super();
 
 	}
+	
+	
+
+	public Inquiry(String inquiryContent, String inquiryWriter, int fripNo) {
+		super();
+		this.inquiryContent = inquiryContent;
+		this.inquiryWriter = inquiryWriter;
+		this.fripNo = fripNo;
+		
+	}
+
+
 
 	public Inquiry(int inquiryNo, String inquiryTitle, String inquiryContent, String inquiryCategory,
 			String inquiryEmail, String enrollDate, String inquiryWriter) {
@@ -81,5 +94,17 @@ public class Inquiry {
 	public void setInquiryWriter(String inquiryWriter) {
 		this.inquiryWriter = inquiryWriter;
 	}
+
+
+
+	public int getFripNo() {
+		return fripNo;
+	}
+
+	public void setFripNo(int fripNo) {
+		this.fripNo = fripNo;
+	}
+	
+	
 
 }
