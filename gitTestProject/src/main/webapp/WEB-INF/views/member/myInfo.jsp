@@ -96,19 +96,6 @@ Member member = (Member) request.getAttribute("m");
 									value="<%=member.getMemberPhone()%>">
 							</div>
 						</div>
-						<!-- 
-                    <div class="join-input-wrap">
-                        <div>
-                            <label>성별</label>
-                        </div>
-                        <div>
-                            <input type="radio" name="gender" id="m" value="m">
-                            <label for="m">남자</label>
-                            <input type="radio" name="gender" id="f" value="f">
-                            <label for="f">여자</label>
-                        </div>
-                    </div>
-                     -->
 						<div class="join-input-wrap">
 							<div>
 								<label for="memberAddr">주소</label>
@@ -136,6 +123,7 @@ Member member = (Member) request.getAttribute("m");
 			</div>
 		</div>
 		<script>
+		
 	
 			function func1() {
 				var result = confirm("회원탈퇴를 진행하시겠습니까?");
