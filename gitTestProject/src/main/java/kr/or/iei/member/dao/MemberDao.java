@@ -219,4 +219,28 @@ public class MemberDao {
 	}
 
 
+	public Member selectOneMemberByJoin(Connection conn, int fripNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Member m = null;
+		String query = "SELECT MEMBER_NAME FROM MEMBER_TBL LEFT JOIN FRIP_TBL ON (MEMBER_ID = FRIP_WRITER) WHERE FRIP_NO =?";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, fripNo);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				m = new Member();
+				m.setMemberName(rset.getString("member_name"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+			JDBCTemplate.close(rset);
+		}
+			
+		return m;
+	}
+
+
 }
