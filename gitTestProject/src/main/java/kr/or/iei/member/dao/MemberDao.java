@@ -126,6 +126,7 @@ public class MemberDao {
 				m.setMemberAddrDetail(rset.getString("member_addr_detail"));
 				m.setMemberLevel(rset.getInt("member_level"));
 				m.setMemberProfile(rset.getString("member_profile"));
+				m.setMemberOldProfile(rset.getString("member_old_profile"));
 				m.setEnrollDate(rset.getString("enroll_date"));
 				
 			}

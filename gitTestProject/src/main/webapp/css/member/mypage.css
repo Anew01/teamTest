@@ -1,41 +1,81 @@
-.page-content{
-    width: 900px;
-    background-color: #fff;
-    margin: 100px auto;
-    border-radius: 10px;
+.page-content {
+	width: 900px;
+	background-color: #fff;
+	margin: 100px auto;
+	border-radius: 10px;
 }
-.top{
-    overflow: hidden;
+
+.top {
+	overflow: hidden;
 }
-.profile-image{
-   float: left;
+.profile-wrap{
+	
+	text-decoration: none;
 }
+.profile-image {
+	float: left;
+}
+
 .profile-img {
-  margin-bottom: 50px;
-  margin: 0px 0px 16px;
-  border-radius: 50%;
-  
+	width: 50px;
+	height: 50px;
+	margin-bottom: 50px;
+	margin: 0px 0px 16px;
+	border-radius: 50%;
 }
+
+.profile-name {
+	font-weight: 700;
+	font-size: 20px;
+	color: #686b72;
+	background-color: transparent;
+	border: none;
+}
+
 #upProfile {
-  display: none;
+	display: none;
 }
-.profile-name>div{
-    padding: 10px;
-    margin-left: 50px;
+
+.profile-name>div {
+	padding: 10px;
+	margin-left: 50px;
 }
-.profile-detail{
-    overflow: hidden;
+
+.profile-detail {
+	overflow: hidden;
 }
-.profile-detail>div{
-    float: left;
-    margin: 0 20px;
-    text-align: center;
+
+.profile-detail>div {
+	float: left;
+	margin: 0 20px;
+	text-align: center;
 }
-.sub-menu>div:first-child(){
-	 font-weight: 700;
-    font-size: 20px;
-    color: #686b72;
+.memberName{
+	
+	text-decoration: none;
 }
-.sub-menu>div{
-    margin: 10px 0;
+.sub-menu input[type=submit] {
+	font-size: 20px;
+	color: #686b72;
+	background-color: transparent;
+	border: none;
+}
+.sub-menu input[type=submit]:hover {
+	
+	color: #000;
+
+	}
+.sub-menu a {
+	font-size: 20px;
+	color: #686b72;
+	background-color: transparent;
+	border: none;
+	text-decoration: none;
+}
+.sub-menu a:hover {
+	color: #000;
+	}
+
+.sub-menu>div {
+	margin: 10px 0;
 }
