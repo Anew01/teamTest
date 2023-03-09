@@ -97,6 +97,33 @@ public class FeedService {
 		JDBCTemplate.close(conn);
 		return fList;
 	}
+
+	public int selectLastestFeedNo(int fripNo, String feedWriter) {
+		Connection conn = JDBCTemplate.getConnection();
+		int feedNo = dao.selectLastestFeedNo(conn, fripNo, feedWriter);
+		JDBCTemplate.close(conn);
+		return feedNo;
+	}
+
+	public int insertFeed(String feedWriter, String feedContent, int fripNo, String filepath) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.insertFeed(conn, feedWriter, feedContent, fripNo, filepath);
+		if(result > 0) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
+
+	public Feed selectFeed(int feedNo) {
+		Connection conn = JDBCTemplate.getConnection();
+		Feed f = dao.selectFeed(conn, feedNo);
+		JDBCTemplate.close(conn);
+		return f;
+	}
+
 }
 
 

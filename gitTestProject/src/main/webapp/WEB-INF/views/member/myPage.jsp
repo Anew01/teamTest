@@ -20,9 +20,15 @@ Member member = (Member) request.getAttribute("m");
         <div class="top">
             <div class="profile-wrap">
             <a href="/myInfo.do?memberId=<%=loginMember.getMemberId() %>">
-				<div class="profile-image"><img src="/upload/member/<%=member.getMemberProfile() %>" class="profile-img" width="50px"></div>
+				<div class="profile-image">
+				<%if(member.getMemberProfile() != null) { %>
+				<img src="/upload/member/<%=member.getMemberProfile() %>" class="profile-img">
+				<%}else{ %>
+				<img src="/upload/member/no-profile.png" class="profile-img">
+				<%} %>
+				</div>
                 <div class="profile-name">
-                    <div><%=loginMember.getMemberName() %></div>
+                    <div class="memberName"><%=loginMember.getMemberName() %></div>
                 </div>
             </a>
             </div>

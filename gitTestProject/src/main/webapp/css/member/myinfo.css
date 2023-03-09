@@ -55,6 +55,7 @@ body{
   height: 50px;
   position: absolute;
   border : none;
+  background-color: transparent;
 }
 #delProfile{
   position: absolute;

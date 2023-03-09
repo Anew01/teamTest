@@ -1,3 +1,6 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Date"%>
+<%@page import="kr.or.iei.feed.vo.ViewFripFeedData"%>
 <%@page import="kr.or.iei.feed.vo.Feed"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="kr.or.iei.frip.vo.Frip"%>
@@ -7,10 +10,11 @@
 Frip f = (Frip) request.getAttribute("f");
 int fripNo = (int) request.getAttribute("fripNo");
 ArrayList<Member> mlist = (ArrayList<Member>)request.getAttribute("mlist");
-ArrayList<Feed> fList = (ArrayList<Feed>)request.getAttribute("fList");
+ArrayList<ViewFripFeedData> fList = (ArrayList<ViewFripFeedData>)request.getAttribute("fList");
 ArrayList<Frip> list = (ArrayList<Frip>)request.getAttribute("list");
 ArrayList<Member> mList = (ArrayList<Member>)request.getAttribute("mList");
 Member m = (Member)request.getAttribute("m");
+Boolean isPayed = (Boolean)request.getAttribute("isPayed");
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -28,6 +32,7 @@ Member m = (Member)request.getAttribute("m");
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
  <!--카카오 지도 API-->
  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=47b529e9eac0ea1c6c378c29238f4160&libraries=services"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gijgo@1.9.14/css/gijgo.min.css">
 </head>
 <body>
 
@@ -67,12 +72,12 @@ Member m = (Member)request.getAttribute("m");
             <%} %>
             <input type="hidden" id="fripNo" name="fripNo" value=<%=fripNo%>>
           </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-        <button type="submit" class="btn btn-primary">보내기</button>
-       </div>
+      	  <div class="modal-footer">
+        	<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+        	<button type="submit" class="btn btn-primary">보내기</button>
+       	  </div>
         </form>
+      </div>
     </div>
   </div>
 </div>
@@ -89,7 +94,7 @@ Member m = (Member)request.getAttribute("m");
       <div class="content">
          <div class="title"><%=f.getFripTitle() %></div>
          <div class="show-rating">
-            <span class="material-symbols-rounded">star</span><span><%=f.getAvgRating() %></span class="rating"><span class="addr"> <%=f.getFripAddr() %></span>
+            <span class="material-symbols-rounded">star</span><span class="rating"><%=f.getAvgRating() %></span><span class="addr"> <%=f.getFripAddr() %></span>
          </div>
          <div class="photo"> <!-- 대표 이미지 3장씩 -->
         	<%if(f.getFilePath().size() >= 3) {%>
@@ -175,15 +180,126 @@ Member m = (Member)request.getAttribute("m");
          </div>
       </div>
 	</div>
-   <div class="content-visit">
-      <div class="small-title">방문 장소</div>
-      <div id="map" style="width:100%; height: 500px;"></div>
-   </div>
-   </div>
-
-
+	<div class="content-feed">
+   		<div class="content-wrap">
+      		<div class="small-title">피드 목록</div>
+      		<div class="feed-wrap">
+      			<% for(ViewFripFeedData data : fList) { %>
+      				<div class="feed-box">
+      					<div class="feed-writer-info">
+      						<div class="img-box">
+      							<% if(data.getMemProfilepath() != null) { %>
+	      							<img src="upload/member/<%= data.getMemProfilepath()%>">
+      							<% } else { %>
+      								<img src="upload/member/no-profile.png">
+      							<% } %>
+      						</div>
+      						<div class="writer-info">
+      							<div><%= data.getF().getFeedWriter() %></div>
+      							<%  Date date = new Date();
+      					       		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+      					        	String dateStr = format.format(date); %>
+      							<div><%= dateStr %></div>
+      						</div>
+      					</div>
+      					<div class="feed-content-wrap">
+      						<div class="feed-img-box">
+      							<% if(data.getF().getFilepath() != null) { %>
+      								<img src="/upload/feed/<%=data.getF().getFilepath()%>" style="height : 100px;">
+      							<% } else { %>
+      							<% } %>
+      						</div>
+      						<div class="feed-content"><%= data.getF().getFeedContent() %></div>
+      					</div>
+      				</div>
+      			<% } %>
+      		</div>
+      		<button class="btn btn-outline-secondary btn-lg" id="moreFeedBtn" data-bs-toggle="modal" data-bs-target="#feedModal">피드 <%= fList.size() %>개 모두보기</button>
+    	</div>
+   	</div>
+   	<div class="content-visit">
+      	<div class="small-title">방문 장소</div>
+      	<div id="map" style="width:100%; height: 500px;"></div>
+   	</div>
+   	<!-- 피드 모달 -->
+    <div class="modal fade" id="feedModal" tabindex="-1" role="dialog" aria-labelledby="feedModal" aria-hidden="true">
+  		<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document">
+    		<div class="modal-content">
+      			<div class="modal-header">
+        		<img src="/mainContentImg/star.png" style="width : 25px;">
+        		<h5 class="modal-title" id="exampleModalLabel">
+        			<%= f.getAvgRating() %>(후기<%= fList.size() %>)
+        		</h5>
+        		<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      		</div>
+      	<div class="modal-body">
+      		<div class="feed-modal-wrap">
+      			<% for(ViewFripFeedData data : fList) { %>
+      				<div class="feed-modal-box">
+      					<div class="feed-writer-info">
+      						<div class="img-box">
+      							<% if(data.getMemProfilepath() != null) { %>
+	      							<img src="upload/member/<%= data.getMemProfilepath()%>">
+      							<% } else { %>
+      								<img src="upload/member/no-profile.png">
+      							<% } %>
+      						</div>
+      						<div class="writer-info">
+      							<div><%= data.getF().getFeedWriter() %></div>
+      							<%  Date date = new Date();
+      					       		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+      					        	String dateStr = format.format(date); %>
+      							<div><%= dateStr %></div>
+      						</div>
+      					</div>
+      					<div class="feed-content-wrap">
+      						<div class="feed-img-box">
+      							<% if(data.getF().getFilepath() != null) { %>
+      								<img src="/upload/feed/<%=data.getF().getFilepath()%>" style="width : 100px;">
+      							<% } else { %>
+      							<% } %>
+      						</div>
+      						<div class="feed-content"><%= data.getF().getFeedContent() %></div>
+      					</div>
+      				</div>
+      			<% } %>
+      		</div>
+      	</div>
+      	<% if(loginMember != null && isPayed) { %>
+      	<div class="modal-footer">
+	      	<div class="img-pre"></div>
+      		<form id="insertFeedFrm" method="POST" enctype="multipart/form-data">
+	      		<div class="insert-feed-content">
+	      			<textarea id="feedContent" name="feedContent">
+	      			</textarea>
+	      		</div>
+	      		<div>
+		      		<div class="insert-feed-img">
+		      			<input type="file" id="filepath" class="form-input" name="filepath" onchange="uploadFile(this)">
+		      		</div>
+		      		<select name="rating">
+		      			<option selected>별점등록</option>
+		      			<option value="1">★</option>
+		      			<option value="2">★★</option>
+		      			<option value="3">★★★</option>
+						<option value="4">★★★★</option>
+			        	<option value="5">★★★★★</option>
+					</select>
+					<div class="modal-footer-btn-wrap">
+	      				<button class="btn btn-primary" id="insertFeedBtn">피드 쓰기</button>
+	      			</div>
+				</div>
+	      		<input type="hidden" id="feedWriter" name="feedWriter" value="<%= loginMember.getMemberId() %>"> 
+	      		<input type="hidden" id="fripNo" name="fripNo" value="<%= f.getFripNo() %>">
+      		</form>
+      	</div>
+      	<% } %>
+    </div>
+  </div>
+</div>
+	<!-- 피드 모달 끝 -->
+   	</div>
    <script src="https://cdn.jsdelivr.net/npm/gijgo@1.9.14/js/gijgo.min.js"></script>
-   <link href="https://cdn.jsdelivr.net/npm/gijgo@1.9.14/css/gijgo.min.css" rel="stylesheet" >
    <script src="/js/joinFrip/detailpage.js"></script>
    
    <script>
@@ -297,6 +413,53 @@ geocoder.addressSearch('<%=f.getFripAddr()%>', function(result, status) {
   modalTitle.textContent = `New message to ${recipient}`
   modalBodyInput.value = recipient
 })
+
+function uploadFile(fs){
+	if(fs.files.length != 0 && fs.files[0] != 0){
+		for(let i=0;i<fs.files.length;i++){
+			const reader = new FileReader();
+			reader.readAsDataURL(fs.files[i]);
+			reader.onload = function(e){
+				const img = $("<img>").attr("src", e.target.result).css("height","150px").css("width","100px");
+				$(".img-pre").append(img);
+			}
+		}
+	} else {
+		const img = $("<img>").attr("src", "");
+		$(".img-pre").append(img);
+	}
+}
+
+$("#insertFeedBtn").on("click", function(event){
+	
+	event.preventDefault(); 
+	var form = $('#insertFeedFrm')[0]; 
+	const fripNo = $("#fripNo").val();
+	var data = new FormData(form); 
+	const feedContent = $("#feedContent").val();
+	const feedWriter = $("#feedWriter").val();
+	const filepath = $("#filepath").val();
+	
+	$.ajax({
+		type: "POST",          
+        enctype: 'multipart/form-data',
+		url : "/insertFeed.do",
+		data : data,
+        processData: false,    
+        contentType: false,      
+        cache: false,
+        timeout: 600000,  
+        success: function (data) { 
+        	alert("complete"); 
+        	location.reload();
+        },          
+        error: function (e) {  
+        	console.log("ERROR : ", e);     
+            alert("fail");      
+        }
+	})
+})
+
 
 //메일 ajax
 /*

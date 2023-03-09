@@ -1,11 +1,17 @@
 package kr.or.iei.join.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import kr.or.iei.inquiry.service.InquiryService;
+import kr.or.iei.inquiry.vo.InquiryList;
 
 /**
  * Servlet implementation class InquiryBoxServlet
@@ -29,14 +35,15 @@ public class InquiryBoxServlet extends HttpServlet {
 		//1. 인코딩
 		request.setCharacterEncoding("utf-8");
 		//2. 값추출
-		
-		
-		
-		
-		
-		//query : select inquiry_writer, inquiry_content from frip_inquiry where frip_no=?;
+		int fripNo = Integer.parseInt(request.getParameter("fripNo"));
 		//3. 비즈니스 로직
+		//query : select inquiry_writer, inquiry_content from frip_inquiry where frip_no=?;
+		InquiryService iservice = new InquiryService();
+		ArrayList<InquiryList> list = iservice.allInquiryList(fripNo);
 		//4. 결과도출 
+		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/feed/feedList.jsp");
+		request.setAttribute("list", list);
+		view.forward(request, response);
 	}
 
 	/**
