@@ -50,7 +50,7 @@ Member m = (Member)request.getAttribute("m");
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form action="/sendRequestToHost.do" method="post">
+        <form action="/inquiryInsert.do" method="post">
           <div class="mb-3">
             <%--<label for="recipient-name" class="col-form-label">호스트 이메일:</label> --%>
             <label for="recipient-name" class="col-form-label">호스트 이메일:</label>
@@ -299,6 +299,7 @@ geocoder.addressSearch('<%=f.getFripAddr()%>', function(result, status) {
 })
 
 //메일 ajax
+/*
 	let mailCode;
     		
     		$(".btn btn-primary").on("click", function() {
@@ -306,7 +307,7 @@ geocoder.addressSearch('<%=f.getFripAddr()%>', function(result, status) {
     		
 
     			$.ajax({
-    				url : "/sendRequestToHost.do",
+    				url : "/inquiryInsert.do",
     				data : {
     					email : email
     				},
@@ -326,6 +327,8 @@ geocoder.addressSearch('<%=f.getFripAddr()%>', function(result, status) {
     			});
 
     		});
+ * 
+ */
 
 
 

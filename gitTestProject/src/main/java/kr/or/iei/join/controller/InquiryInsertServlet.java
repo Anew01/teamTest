@@ -39,24 +39,28 @@ public class InquiryInsertServlet extends HttpServlet {
 		String msgText = request.getParameter("messageText");
 		String guestmail = request.getParameter("guestmail");
 		int fripNo= Integer.parseInt(request.getParameter("fripNo"));
-		Inquiry i = new Inquiry(msgText, guestmail, fripNo);
-		System.out.println("fripNo"+fripNo);
-		System.out.println("guestMail"+guestmail);
-		System.out.println("msgText"+msgText);
+		Inquiry i = new Inquiry();
+		i.setInquiryContent(msgText);
+		i.setInquiryWriter(guestmail);
+		i.setFripNo(fripNo);
 		//3. 비즈니스 로직
 		JoinFripService service = new JoinFripService();
 		int result = service.InquiryInsert(i);
 		//4. 결과처리 
-		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/feed/myFeedList.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
 		if(result>0) {
 			request.setAttribute("title", "문의 완료");
 			request.setAttribute("msg", "호스트에게 문의가 잘 전송되었습니다.");
 			request.setAttribute("icon", "success");
+			request.setAttribute("loc", "/joinFrip.do?fripNo="+fripNo);
+			
 		}else {
 			request.setAttribute("title", "문의전송 오류");
 			request.setAttribute("msg", "재시도 후 실패시 고객센터 문의 바랍니다.");
 			request.setAttribute("icon", "error");
+			request.setAttribute("loc", "/joinFrip.do?fripNo="+fripNo);
 		}
+		view.forward(request, response);
 	}
 
 	/**

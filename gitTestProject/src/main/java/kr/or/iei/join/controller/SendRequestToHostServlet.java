@@ -28,6 +28,7 @@ public class SendRequestToHostServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		/*
 		//1. 인코딩
 		request.setCharacterEncoding("utf-8");
 		//2. 값추출
@@ -54,6 +55,8 @@ public class SendRequestToHostServlet extends HttpServlet {
 		}
 		request.setAttribute("loc", "/joinFrip.do?fripNo="+fripNo);
 		view.forward(request, response);
+		 * 
+		 */
 	}
 
 	/**
