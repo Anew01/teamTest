@@ -99,7 +99,7 @@
 					</div>
 					<div>
 						<span>총 수입금</span>
-						<span>0원</span>
+						<span><%= f.getFripIncome() %>원</span>
 					</div>
 				</div>
 				<div class="frip-inquiry-feed-wrap">
@@ -123,8 +123,12 @@
 							</a>
 						</div>
 						<div class="feed-content">
-							<div class="feed-rating">ㅁㅁㅁㅁ</div>
-							<div class="feed-rating-number">4.0</div>
+							<div>
+								<% for(int i=0;i<Double.parseDouble(f.getAvgRating());i++) {%>
+									<img src="/mainContentImg/star.png" style="width: 15px;">
+								<% } %>
+							</div>
+							<div class="feed-rating-number"><%= f.getAvgRating() %></div>
 						</div>
 					</div>
 				</div>
