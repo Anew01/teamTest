@@ -69,6 +69,14 @@
                                 $(".FAQ").on("click", function () {
                                     location.href = "/noticeFAQListUser.do";
                                 })
+
+                                $(document).ready(function () {
+                                    if ($(".notice-category").text() == "공지") {
+                                        $(".notice-category").css("background-color", "rgb(51, 151, 255)");
+                                    } else if ($(".notice-category").text() == "이벤트") {
+                                        $(".notice-category").css("background-color", "rgb(160, 130, 250)");
+                                    }
+                                });
                             </script>
                 </body>
 
