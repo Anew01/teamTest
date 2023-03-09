@@ -62,15 +62,9 @@
                                                                     <td>
                                                                         <%=i+fripStart%>
                                                                     </td>
-                                                                    <td>
-                                                                        <%=frip.getFripWriter() %>
-                                                                    </td>
-                                                                    <td class="frip-no">
-                                                                        <%=frip.getFripNo() %>
-                                                                    </td>
-                                                                    <td>
-                                                                        <%=frip.getFripTitle() %>
-                                                                    </td>
+                                                                    <td><%=frip.getFripWriter() %></td>
+                                                                    <td class="frip-no"><%=frip.getFripNo() %></td>
+                                                                    <td><%=frip.getFripTitle() %></td>
                                                                     <td>
                                                                         <%=frip.getFripAddr() %>
                                                                     </td>
@@ -136,15 +130,11 @@
                                                                     <td>
                                                                         <%=i+feedStart %>
                                                                     </td>
-                                                                    <td class="feed-no">
-                                                                        <%=feed.getFeedNo() %>
-                                                                    </td>
+                                                                    <td class="feed-no"><%=feed.getFeedNo() %></td>
                                                                     <td>
                                                                         <%=feed.getFripTitle() %>
                                                                     </td>
-                                                                    <td>
-                                                                        <%=feed.getFeedWriter() %>
-                                                                    </td>
+                                                                    <td><%=feed.getFeedWriter() %></td>
                                                                     <td>
                                                                         <%=feed.getWriteDate() %>
                                                                     </td>
