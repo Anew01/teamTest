@@ -38,36 +38,44 @@ public class SelectAllFripByCategoryServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		FripService service = new FripService();
 		String categoryName = request.getParameter("categoryName");
+		String newFeed = request.getParameter("newFeed");
 		RequestDispatcher view = null;
 		
 		if ("main".equals(categoryName)) {
 			//main 화면
 			ArrayList<Frip> list = service.selectAllFripByCategory(categoryName);
-			ArrayList<Frip> rList = service.selectAllFripByCategory("rList");
-			ArrayList<Frip> nList = service.selectAllFripByCategory("nList");
-			
+			ArrayList<Frip> rList = service.selectAllFripByCategory(categoryName);
 			for(Frip f : list) {
 				String avgRating = service.selectRating(f.getFripNo());
 				f.setAvgRating(avgRating);
-				System.out.println("if main rating : "+avgRating);
 			}
 			request.setAttribute("list", list);
 			request.setAttribute("rList", rList);
-			view = request.getRequestDispatcher("/WEB-INF/views/common/mainPage.jsp");
-			view.forward(request, response);
-		} else {
-			//main 화면이 아닐때
-			ArrayList<Frip> list = service.selectAllFripByCategory(categoryName);
-			for(Frip f : list) {
-				String avgRating = service.selectRating(f.getFripNo());
-				f.setAvgRating(avgRating);
+			
+			} else {
+				ArrayList<Frip> list = service.selectAllFripByCategory(categoryName);
+				for(Frip f : list) {
+					String avgRating = service.selectRating(f.getFripNo());
+					f.setAvgRating(avgRating);
+				}
+				request.setAttribute("list", list);
+				view = request.getRequestDispatcher("/WEB-INF/views/category/selectAllFripByCategory.jsp");
 			}
-			request.setAttribute("list", list);
-			view = request.getRequestDispatcher("/WEB-INF/views/category/selectAllFripByCategory.jsp");
-			view.forward(request, response);
+			 if("newFeed".equals(newFeed)) {
+				ArrayList<Frip> nList = service.selectNewFeed(newFeed);
+				for(Frip f : nList) {
+					String avgRating = service.selectRating(f.getFripNo());
+					f.setAvgRating(avgRating);
+				}
+				System.out.println("카테고리 서블렛에서 newFeedList값 : "+nList);
+				request.setAttribute("nList", nList);
+			} else {
+				
+			}
+			 view = request.getRequestDispatcher("/WEB-INF/views/common/mainPage.jsp");
+			 view.forward(request, response);
 		}
-	}
-		//결
+	//결
 		
 		
 	
