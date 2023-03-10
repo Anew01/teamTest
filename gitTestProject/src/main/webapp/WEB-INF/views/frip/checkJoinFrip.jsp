@@ -60,14 +60,14 @@ Boolean isPayed = (Boolean)request.getAttribute("isPayed");
             <%--<label for="recipient-name" class="col-form-label">호스트 이메일:</label> --%>
             <label for="recipient-name" class="col-form-label">호스트 이메일:</label>
             <input type="text" class="form-control" id="hostmail" value="<%=f.getFripWriter() %>" name="hostmail">
-            <%if(loginMember != null){ %>
+            <%if(loginMember != null && loginMember.getMemberNo() != 0){ %>
             <input type="hidden" class="form-control" id="recipient-name"  name="recipientName" value="<%=loginMember.getMemberId()%>">
            <%} %>
           </div>
           <div class="mb-3">
             <label for="message-text" class="col-form-label">호스트에게 보낼 메세지를 적어주세요</label>
             <textarea class="form-control" id="message-text" name="messageText"></textarea>
-             <% if(loginMember!=null){ %>
+             <% if(loginMember!=null && loginMember.getMemberNo() != 0){ %>
             <input type="hidden" id="guestmail" name="guestmail" value="<%=loginMember.getMemberId()%>">
             <%} %>
             <input type="hidden" id="fripNo" name="fripNo" value=<%=fripNo%>>
