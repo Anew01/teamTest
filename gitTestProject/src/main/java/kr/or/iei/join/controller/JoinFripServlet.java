@@ -54,7 +54,7 @@ public class JoinFripServlet extends HttpServlet {
 		for(Frip f1 : list) {
 			String avgRating = fservice.selectRating(f1.getFripNo());
 			f.setAvgRating(avgRating);
-		}
+		}	
 		
 		ArrayList<ViewFripFeedData> fList = feedService.selectAllMyFripFeed(fripNo);
 		PaymentService pService = new PaymentService();
