@@ -72,6 +72,7 @@ public class JoinFripService {
 			JoinFrip j = dao.selectCount(conn, date, fripNo);
 			jf.setMaxCnt(j.getMaxCnt());
 			jf.setUseCnt(j.getUseCnt());
+			JDBCTemplate.close(conn);
 		}
 		return list;
 	}

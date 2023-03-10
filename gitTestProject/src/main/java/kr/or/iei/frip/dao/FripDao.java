@@ -68,6 +68,9 @@ public class FripDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
 		}
 		return fripNo;
 	}
@@ -112,6 +115,7 @@ public class FripDao {
 			e.printStackTrace();
 		} finally {
 			JDBCTemplate.close(pstmt);
+			JDBCTemplate.close(rset);
 		}
 		return result;
 	}
