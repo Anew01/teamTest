@@ -62,7 +62,7 @@
 									<div>평균 별점</div>
 									<% String result = String.format("%.1f",data.getTotalrankCount() ); %>
 									<% for(int i=0;i<Double.parseDouble(result);i++) {%>
-										<img src="/mainContentImg/star.png" style="width: 15px;">
+										<img src="/mainImage/star.png" style="width: 15px;">
 									<% } %>
 									<span><%= result %></span>
 								</td>

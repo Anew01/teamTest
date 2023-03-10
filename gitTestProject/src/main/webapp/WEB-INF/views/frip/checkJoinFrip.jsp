@@ -270,8 +270,8 @@ Boolean isPayed = (Boolean)request.getAttribute("isPayed");
       	<div class="modal-footer">
 	      	<div class="img-pre"></div>
       		<form id="insertFeedFrm" method="POST" enctype="multipart/form-data">
-	      		<div class="insert-feed-content">
-	      			<textarea id="feedContent" name="feedContent">
+	      		<div class="insert-feed-content" style="text-align : left;">
+	      			<textarea id="feedContent" name="feedContent" style="text-align : left;">
 	      			</textarea>
 	      		</div>
 	      		<div>
