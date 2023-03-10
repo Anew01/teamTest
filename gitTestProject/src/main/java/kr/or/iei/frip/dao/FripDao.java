@@ -286,18 +286,16 @@ public class FripDao {
 				pstmt = conn.prepareStatement(query);
 				rset = pstmt.executeQuery();
 			}else if("main".equals(fripCategory)) {
-				query = "select \r\n"
-						+ "*\r\n"
-						+ "from (select a.frip_no as ratingNo, decode(AVG(c.RATING), null, 0, ROUND(AVG(c.RATING),1)) as rating\r\n"
+				query = "select rownum, rating, n.* from(select *\r\n"
+						+ "                    from (select a.frip_no as ratingNo, decode(AVG(c.RATING), null, 0, ROUND(AVG(c.RATING),1)) as rating\r\n"
 						+ "from frip_tbl a\r\n"
-						+ "left join feed_tbl b on a.frip_no = b.frip_no\r\n"
-						+ "left join rating_tbl c on b.feed_no = c.feed_no\r\n"
+						+ "join feed_tbl b on a.frip_no = b.frip_no\r\n"
+						+ "join rating_tbl c on b.feed_no = c.feed_no\r\n"
 						+ "group by a.frip_no\r\n"
 						+ ") a\r\n"
 						+ "inner join frip_tbl b on a.ratingNo = b.frip_no\r\n"
 						+ "inner join frip_category c on b.frip_no = c.frip_no\r\n"
-						+ "where rownum < 4\r\n"
-						+ "order by RATING DESC";
+						+ "order by RATING desc)n where rownum < 4";
 				pstmt = conn.prepareStatement(query);
 				rset = pstmt.executeQuery();
 			} else if("newFeed".equals(fripCategory)) {
@@ -489,10 +487,10 @@ public class FripDao {
 		ResultSet rset = null;
 		ArrayList<Frip> list = new ArrayList<>();
 		String query ="SELECT * FROM FRIP_TBL \r\n"
-				+ "left join feed_tbl c using(frip_no)\r\n"
-				+ "left join rating_tbl using(feed_no)\r\n"
-				+ "WHERE ROWNUM < 4 \r\n"
-				+ "ORDER BY FRIP_NO DESC";
+				+ "left join frip_category using(frip_no)\r\n"
+				+ "left join feed_tbl  using(frip_no) \r\n"
+				+ "left join rating_tbl using(feed_no) \r\n"
+				+ "WHERE ROWNUM < 4 ORDER BY FRIP_NO DESC";
 		try {
 			pstmt = conn.prepareStatement(query);
 			rset = pstmt.executeQuery();
@@ -510,6 +508,7 @@ public class FripDao {
 			f.setWriteDate(rset.getString("write_date"));
 			f.setFripWriter(rset.getString("frip_writer"));
 			f.setAvgRating(rset.getString("rating"));
+			f.setFripCategory(rset.getString("category_name"));
 			list.add(f);
 		}
 	} catch (SQLException e) {
@@ -525,11 +524,7 @@ public class FripDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		ArrayList<Frip> list = new ArrayList<>();
-		String query = "SELECT * FROM FRIP_TBL\r\n"
-				+ "left join frip_category  using(frip_no)"
-				+ "left join feed_tbl  using(frip_no)\r\n"
-				+ "left join rating_tbl using(feed_no)\r\n"
-				+ "WHERE FRIP_TITLE LIKE ?";
+		String query = "SELECT * FROM FRIP_TBL WHERE FRIP_TITLE LIKE ?";
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, "%"+searchFrip+"%");
@@ -547,8 +542,7 @@ public class FripDao {
 				f.setFripStatus(rset.getString("frip_status"));
 				f.setWriteDate(rset.getString("write_date"));
 				f.setFripWriter(rset.getString("frip_writer"));
-				f.setAvgRating(rset.getString("rating"));
-				f.setFripCategory(rset.getString("category_name"));
+				f.setAvgRating(rset.getString("RATING"));
 				list.add(f);
 			}
 		} catch (SQLException e) {

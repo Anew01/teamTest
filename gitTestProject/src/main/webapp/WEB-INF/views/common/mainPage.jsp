@@ -330,7 +330,7 @@
    			<% if(loginMember != null) { %>
 					<input type="hidden" name="loginMemNo" value="<%= loginMember.getMemberNo() %>">         
    				<% } else { %>
-   					<input type="hidden" name="loginMemNo" value="-1">         
+   					<input type="hidden" name="loginMemNo" value="0">         
    				<% } %> 
             <div class="col">
               <div class="card shadow-sm">
@@ -365,7 +365,11 @@
                     <div class="btn-group">
                       <button type="submit" class="btn btn-m btn-outline-secondary">참여</button>
                     </div>
+					<%if(f.getAvgRating() != null){ %>
                     <small class="text-muted" style="line-height:20px;"><img src="/mainImage/star.png" style="width : 20px; height : 20px; margin-right : 5px; vertical-align: middle; font-weight: 900; "><%=f.getAvgRating() %></small>
+                    <%} else { %>
+                    <small class="text-muted" style="line-height:20px;"><img src="/mainImage/star.png" style="width : 20px; height : 20px; margin-right : 5px; vertical-align: middle; font-weight: 900; ">0.0</small>
+                    <%} %>
                   </div>
                   </div>
               </div>
@@ -426,7 +430,11 @@
                     <div class="btn-group">
                       <button type="submit" class="btn btn-m btn-outline-secondary">참여</button>
                     </div>
+                    <%if(nf.getAvgRating() != null){ %>
                     <small class="text-muted" style="line-height:20px;"><img src="/mainImage/star.png" style="width : 20px; height : 20px; margin-right : 5px; vertical-align: middle; font-weight: 900; "><%=nf.getAvgRating() %></small>
+                    <%} else { %>
+                    <small class="text-muted" style="line-height:20px;"><img src="/mainImage/star.png" style="width : 20px; height : 20px; margin-right : 5px; vertical-align: middle; font-weight: 900; ">0.0</small>
+                    <%} %>
                   </div>
                   </div>
               </div>
