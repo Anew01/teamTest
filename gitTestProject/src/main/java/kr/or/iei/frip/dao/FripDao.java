@@ -406,7 +406,6 @@ public class FripDao {
 			rset = pstmt.executeQuery();
 			if(rset.next()) {
 				String rating = rset.getString("RATING");
-				System.out.println(rating);
 				if (rating==null) {
 					avgRating = "0.0";
 				} else {
@@ -489,7 +488,11 @@ public class FripDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		ArrayList<Frip> list = new ArrayList<>();
-		String query ="SELECT * FROM FRIP_TBL WHERE ROWNUM < 4 ORDER BY FRIP_NO DESC";
+		String query ="SELECT * FROM FRIP_TBL \r\n"
+				+ "left join feed_tbl c using(frip_no)\r\n"
+				+ "left join rating_tbl using(feed_no)\r\n"
+				+ "WHERE ROWNUM < 4 \r\n"
+				+ "ORDER BY FRIP_NO DESC";
 		try {
 			pstmt = conn.prepareStatement(query);
 			rset = pstmt.executeQuery();
@@ -506,6 +509,7 @@ public class FripDao {
 			f.setFripStatus(rset.getString("frip_status"));
 			f.setWriteDate(rset.getString("write_date"));
 			f.setFripWriter(rset.getString("frip_writer"));
+			f.setAvgRating(rset.getString("rating"));
 			list.add(f);
 		}
 	} catch (SQLException e) {
@@ -539,6 +543,7 @@ public class FripDao {
 				f.setFripStatus(rset.getString("frip_status"));
 				f.setWriteDate(rset.getString("write_date"));
 				f.setFripWriter(rset.getString("frip_writer"));
+				f.setAvgRating(rset.getString("RATING"));
 				list.add(f);
 			}
 		} catch (SQLException e) {
@@ -549,6 +554,5 @@ public class FripDao {
 			JDBCTemplate.close(pstmt);
 		}
 		return list;
-	}
-	
+	}	
 }
