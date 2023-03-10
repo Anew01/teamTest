@@ -46,6 +46,7 @@ public class FripService {
 				}
 			}
 		}
+		JDBCTemplate.close(conn);
 		return result4;
 	}
 	
@@ -58,6 +59,7 @@ public class FripService {
 			ArrayList<FripJoinableDate> joinableDates = dao.selectJoinableDates(conn, f.getFripNo());
 			f.setJoinableDates(joinableDates);
 		}
+		JDBCTemplate.close(conn);
 		return list;
 	}
 
@@ -70,6 +72,7 @@ public class FripService {
 			ArrayList<FripJoinableDate> joinableDates = dao.selectJoinableDates(conn, f.getFripNo());
 			f.setJoinableDates(joinableDates);
 		}
+		JDBCTemplate.close(conn);
 		return list;
 	}
 
@@ -130,6 +133,7 @@ public class FripService {
 		} else {
 			JDBCTemplate.rollback(conn);
 		}
+		JDBCTemplate.close(conn);
 		return result;
 	}
 	
@@ -156,6 +160,8 @@ public class FripService {
 			}
 		} else {
 			JDBCTemplate.rollback(conn);
+		} finally {
+			JDBCTemplate.close(conn);
 		}
 		return result;
 	}
