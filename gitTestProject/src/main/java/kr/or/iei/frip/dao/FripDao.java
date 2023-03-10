@@ -525,11 +525,7 @@ public class FripDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		ArrayList<Frip> list = new ArrayList<>();
-		String query = "SELECT * FROM FRIP_TBL\r\n"
-				+ "left join frip_category  using(frip_no)"
-				+ "left join feed_tbl  using(frip_no)\r\n"
-				+ "left join rating_tbl using(feed_no)\r\n"
-				+ "WHERE FRIP_TITLE LIKE ?";
+		String query = "SELECT * FROM FRIP_TBL WHERE FRIP_TITLE LIKE ?";
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, "%"+searchFrip+"%");
@@ -547,8 +543,7 @@ public class FripDao {
 				f.setFripStatus(rset.getString("frip_status"));
 				f.setWriteDate(rset.getString("write_date"));
 				f.setFripWriter(rset.getString("frip_writer"));
-				f.setAvgRating(rset.getString("rating"));
-				f.setFripCategory(rset.getString("category_name"));
+				f.setAvgRating(rset.getString("RATING"));
 				list.add(f);
 			}
 		} catch (SQLException e) {
