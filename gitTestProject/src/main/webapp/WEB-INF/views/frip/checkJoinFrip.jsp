@@ -125,7 +125,7 @@ Boolean isPayed = (Boolean)request.getAttribute("isPayed");
          </div>
          <div class="content">
             <div class="small-title"><%=f.getFripTitle() %></div>
-            <div class="explain"><%=f.getFripContent() %>✔여기 내용을 넣어주세요</div>
+            <div class="explain"><%=f.getFripContent() %></div>
          </div>
          <div class="content">
             <div class="small-title">

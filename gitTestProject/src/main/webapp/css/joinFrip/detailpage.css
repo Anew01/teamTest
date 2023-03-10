@@ -20,7 +20,7 @@ a{
     border-radius: 10px;
 }
 .content{
-    padding: 20px;
+    padding: 0px !important;
     margin: 20px;
     overflow: hidden;
     border-bottom: solid 0.5px rgb(215, 217, 215);
