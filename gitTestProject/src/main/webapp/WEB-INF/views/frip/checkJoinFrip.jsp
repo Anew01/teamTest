@@ -60,14 +60,14 @@ Boolean isPayed = (Boolean)request.getAttribute("isPayed");
             <%--<label for="recipient-name" class="col-form-label">호스트 이메일:</label> --%>
             <label for="recipient-name" class="col-form-label">호스트 이메일:</label>
             <input type="text" class="form-control" id="hostmail" value="<%=f.getFripWriter() %>" name="hostmail">
-            <%if(loginMember != null){ %>
+            <%if(loginMember != null && loginMember.getMemberNo() != 0){ %>
             <input type="hidden" class="form-control" id="recipient-name"  name="recipientName" value="<%=loginMember.getMemberId()%>">
            <%} %>
           </div>
           <div class="mb-3">
             <label for="message-text" class="col-form-label">호스트에게 보낼 메세지를 적어주세요</label>
             <textarea class="form-control" id="message-text" name="messageText"></textarea>
-             <% if(loginMember!=null){ %>
+             <% if(loginMember!=null && loginMember.getMemberNo() != 0){ %>
             <input type="hidden" id="guestmail" name="guestmail" value="<%=loginMember.getMemberId()%>">
             <%} %>
             <input type="hidden" id="fripNo" name="fripNo" value=<%=fripNo%>>
@@ -125,7 +125,7 @@ Boolean isPayed = (Boolean)request.getAttribute("isPayed");
          </div>
          <div class="content">
             <div class="small-title"><%=f.getFripTitle() %></div>
-            <div class="explain"><%=f.getFripContent() %>✔여기 내용을 넣어주세요</div>
+            <div class="explain"><%=f.getFripContent() %></div>
          </div>
          <div class="content">
             <div class="small-title">
@@ -136,7 +136,7 @@ Boolean isPayed = (Boolean)request.getAttribute("isPayed");
             </p>
             <div class="explain"></div>
             <div>
-            <%if(loginMember != null){ %>
+            <%if(loginMember != null && loginMember.getMemberNo() != 0){ %>
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="<%=loginMember.getMemberId()%>" style="background-color: #85C88A; border : none;">호스트에게 연락</button>
             <%} %>
             </div>
@@ -164,9 +164,7 @@ Boolean isPayed = (Boolean)request.getAttribute("isPayed");
                <div class="attend-info">
                   <div class="select-box right">
                      <div class="guest-number">인원</div>
-                     <% if(loginMember != null){ %>
-	                     <input type="hidden" name="memberNo" value="<%= loginMember.getMemberNo() %>">
-                     <% }%>
+	                     <input type="hidden" name="memberNo" value="<%= m.getMemberNo() %>">
                      <select class="attend-number" id="select" name="attendNumber">
                         <option>날짜 설정 후 선택 해주세요</option>
                      </select>
@@ -268,7 +266,7 @@ Boolean isPayed = (Boolean)request.getAttribute("isPayed");
       			<% } %>
       		</div>
       	</div>
-      	<% if(loginMember != null && isPayed) { %>
+      	<% if(loginMember != null && isPayed && loginMember.getMemberNo() != 0) { %>
       	<div class="modal-footer">
 	      	<div class="img-pre"></div>
       		<form id="insertFeedFrm" method="POST" enctype="multipart/form-data">

@@ -52,7 +52,9 @@
                                                             <td>
                                                                 <%=i+start%>
                                                             </td>
-                                                            <td><%=member.getMemberId() %></td>
+                                                            <td>
+                                                                <%=member.getMemberId() %>
+                                                            </td>
                                                             <td>
                                                                 <%=member.getMemberName() %>
                                                             </td>

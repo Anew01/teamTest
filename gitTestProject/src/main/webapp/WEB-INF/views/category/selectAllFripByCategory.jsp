@@ -24,7 +24,7 @@
 			<% if(loginMember != null) { %>
 					<input type="hidden" name="loginMemNo" value="<%= loginMember.getMemberNo() %>">         
    				<% } else { %>
-   					<input type="hidden" name="loginMemNo" value="0">         
+   					<input type="hidden" name="loginMemNo" value=0>         
    				<% } %>
             <div class="col">
               <div class="card shadow-sm">
