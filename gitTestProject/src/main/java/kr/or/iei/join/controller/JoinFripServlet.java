@@ -51,9 +51,13 @@ public class JoinFripServlet extends HttpServlet {
 		ArrayList<Member> mList = mService.selectAllMember();
 		String categoryName = request.getParameter("categoryName");
 		ArrayList<Frip> list = fservice.selectAllFrip();
-		for(Frip f1 : list) {
-			String avgRating = fservice.selectRating(f1.getFripNo());
-			f.setAvgRating(avgRating);
+		if(list.size() > 0) {
+			for(Frip f1 : list) {
+				String avgRating = fservice.selectRating(f1.getFripNo());
+				f.setAvgRating(avgRating);
+			}			
+		} else {
+			f.setAvgRating("0");
 		}
 		
 		ArrayList<ViewFripFeedData> fList = feedService.selectAllMyFripFeed(fripNo);
