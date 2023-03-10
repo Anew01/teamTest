@@ -104,15 +104,15 @@ Boolean isPayed = (Boolean)request.getAttribute("isPayed");
             	<%}else if(f.getFilePath().size() == 2){%>
 		           	<img src="/upload/photo/<%=f.getFilePath().get(1)%>"> 
 		           	<img src="/upload/photo/<%=f.getFilePath().get(0)%>">
-		           	<img src="/upload/photo/no-photo.png">
+		           	<img src="/mainImage/springImg.png">
             	<%}else if(f.getFilePath().size() == 1){%>
-	            	<img src="/upload/photo/no-photo.png">
+	            	<img src="/mainImage/springImg.png">
 	            	<img src="/upload/photo/<%=f.getFilePath().get(0)%>">
-	            	<img src="/upload/photo/no-photo.png">
+	            	<img src="/mainImage/springImg.png">
             	<%}else if(f.getFilePath().size() < 1){%>
-	            	<img src="/upload/photo/noImg.gif">
-	            	<img src="/upload/photo/noImg.gif">
-	            	<img src="/upload/photo/noImg.gif">
+					<img src="/mainImage/springImg.png">
+					<img src="/mainImage/springImg.png">
+					<img src="/mainImage/springImg.png">
             	<%} %>
          </div>
       </div>
