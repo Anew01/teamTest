@@ -328,7 +328,6 @@ Boolean isPayed = (Boolean)request.getAttribute("isPayed");
       function func1() {
          const Dvalue = $("#datePicker").val();
          //var selectedDate = $('#datePicker').datepicker('getDate');
-         alert(Dvalue);
       }
       function selectCntAjax() {
          $.ajax({
