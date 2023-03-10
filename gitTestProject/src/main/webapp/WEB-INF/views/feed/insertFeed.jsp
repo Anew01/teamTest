@@ -21,6 +21,7 @@
 <body>
 	<script src="/js/summernote-lite.js"></script>
 	<script src="/js/summernote-ko-KR.js"></script>
+	<div class="padding" style="padding-top : 200px;"></div>
 	<div class="page-content">
 		<form action="insertFeed.do" method="get">
 		<div class="hiddenInfo">

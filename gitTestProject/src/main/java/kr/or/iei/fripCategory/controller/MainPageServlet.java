@@ -42,7 +42,7 @@ public class MainPageServlet extends HttpServlet {
 		FripService service = new FripService();
 		ArrayList<Frip> list = service.selectAllFripByCategory(categoryName);
 	    ArrayList<Frip> rList = service.selectAllFripByCategory(categoryName);
-	    ArrayList<Frip> nList = service.selectNewFeed(newFeed);
+	    ArrayList<Frip> nList = service.selectAllFripByCategory(categoryName);
 	    
 	    for(Frip f : list) {
 	        String avgRating = service.selectRating(f.getFripNo());

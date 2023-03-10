@@ -13,6 +13,7 @@
 </head>
 <body>
 	<%@include file="/WEB-INF/views/common/header.jsp" %>
+	<div class="padding" style="padding-top : 200px;"></div>
 	<div class="page-content">
 		<%@include file="/WEB-INF/views/frip/fripSideBar.jsp" %>
 		<div class="content">

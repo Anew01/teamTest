@@ -3,9 +3,36 @@
     padding: 0;
     outline: none;
 }
+
 body{
     font-family: 'Nanum Gothic', sans-serif;
 
+}
+
+.padding-top{
+	padding : 200px;
+}
+
+header{
+	position: fixed;
+  	top: 0;
+  	/* width: 100% */
+  	left: 0;
+  	right: 0;
+  	z-index: 1000;
+	
+}
+.header{
+	height : 200px;
+}
+.header-content-bottom{
+	padding-top : 10px;
+}
+.header-content-top{
+	margin : 0 auto;
+}
+.content{
+	padding-top : 200px;
 }
 .list2:first-child{
     margin-right: 100px;
@@ -27,7 +54,7 @@ body{
 .header{
     margin: 0 auto;
     width: 80%;
-    height: 120px;
+    height: 180px;
     padding-top: 10px;
     background-color: #FFFBC1;
     border-bottom-left-radius: 15px;
@@ -124,14 +151,17 @@ body{
 .footer{
     background-color: #FFFBC1;
     border-top: #FEBE8C solid 0.3px;
-    width: 1250px;
+    width: 80%;
     height: 150px;
     margin: 0 auto;
     margin-top: 100px;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
+    padding-bottom : 0;
+    
 }
 .explain{
     padding: 5px;
     margin-left: 20px;
 }
+
