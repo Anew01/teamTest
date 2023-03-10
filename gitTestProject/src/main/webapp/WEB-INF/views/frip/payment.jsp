@@ -15,12 +15,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>확인 및 결제</title>
     <link rel="stylesheet" href="/css/payment/paymentpage.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 <body>
     <div class="wrap">
         <div class="top">
-            <span class="material-symbols-rounded">arrow_back_ios_new</span><h1>확인 및 결제</h1>
+            <h1>확인 및 결제</h1>
         </div>
         <div class="contents-bundle">
             <div class="contents-left">
