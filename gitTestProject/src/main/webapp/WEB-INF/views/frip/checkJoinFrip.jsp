@@ -136,7 +136,7 @@ Boolean isPayed = (Boolean)request.getAttribute("isPayed");
             </p>
             <div class="explain"></div>
             <div>
-            <%if(loginMember != null){ %>
+            <%if(loginMember != null && loginMember.getMemberNo() != 0){ %>
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="<%=loginMember.getMemberId()%>" style="background-color: #85C88A; border : none;">호스트에게 연락</button>
             <%} %>
             </div>
@@ -266,7 +266,7 @@ Boolean isPayed = (Boolean)request.getAttribute("isPayed");
       			<% } %>
       		</div>
       	</div>
-      	<% if(loginMember != null && isPayed) { %>
+      	<% if(loginMember != null && isPayed && loginMember.getMemberNo() != 0) { %>
       	<div class="modal-footer">
 	      	<div class="img-pre"></div>
       		<form id="insertFeedFrm" method="POST" enctype="multipart/form-data">
