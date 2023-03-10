@@ -58,10 +58,9 @@ public class JoinFripServlet extends HttpServlet {
 		
 		ArrayList<ViewFripFeedData> fList = feedService.selectAllMyFripFeed(fripNo);
 		PaymentService pService = new PaymentService();
-
 		if(loginMemNo != 0 ||loginMemNo != -1 ) {
 			isPayed = pService.checkMyPayment(loginMemNo, f.getFripNo());			
-		}
+		}			
 
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/frip/checkJoinFrip.jsp");
 		request.setAttribute("f", f);
