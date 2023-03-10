@@ -69,7 +69,8 @@ public class InsertFeedServlet extends HttpServlet {
 		if(result > 0 && rResult > 0) {
 			gson.toJson(f, out);
 		} else {
-			gson.toJson("실패", out);
+			System.out.println("댓글 등록 실패");
+			gson.toJson(f, out);
 		}
 	}
 
