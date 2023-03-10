@@ -37,12 +37,12 @@ public class MainPageServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		
 		String categoryName = request.getParameter("categoryName");
-		String newFeed = request.getParameter("newFeed");
+		String selectNewFeed = request.getParameter("newFeed");
 		
 		FripService service = new FripService();
 		ArrayList<Frip> list = service.selectAllFripByCategory(categoryName);
 	    ArrayList<Frip> rList = service.selectAllFripByCategory(categoryName);
-	    ArrayList<Frip> nList = service.selectAllFripByCategory(categoryName);
+	    ArrayList<Frip> nList = service.selectNewFeed(selectNewFeed);
 	    
 	    for(Frip f : list) {
 	        String avgRating = service.selectRating(f.getFripNo());
