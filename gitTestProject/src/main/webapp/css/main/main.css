@@ -7,6 +7,7 @@ body{
     font-family: 'Nanum Gothic', sans-serif;
 
 }
+
 .list2:first-child{
     margin-right: 100px;
 }
@@ -378,3 +379,31 @@ body{
  }
 
 /*캐러셀 종료*/
+.shadow-sm{
+	padding : 20px !important;
+}
+.padding-top{
+	padding : 200px;
+}
+
+header{
+	position: fixed;
+  	top: 0;
+  	/* width: 100% */
+  	left: 0;
+  	right: 0;
+  	z-index: 1000;
+	
+}
+.header{
+	height : 200px;
+}
+.header-content-bottom{
+	padding-top : 10px;
+}
+.header-content-top{
+	margin : 0 auto;
+}
+.content{
+	padding-top : 200px;
+}

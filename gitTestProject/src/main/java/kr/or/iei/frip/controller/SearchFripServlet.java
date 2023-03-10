@@ -16,14 +16,14 @@ import kr.or.iei.frip.vo.Frip;
 /**
  * Servlet implementation class SeaechFripServlet
  */
-@WebServlet(name = "seaechFrip", urlPatterns = { "/seaechFrip.do" })
-public class SeaechFripServlet extends HttpServlet {
+@WebServlet(name = "searchFrip", urlPatterns = { "/searchFrip.do" })
+public class SearchFripServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SeaechFripServlet() {
+    public SearchFripServlet() {
         super();
         // TODO Auto-generated constructor stub
     }

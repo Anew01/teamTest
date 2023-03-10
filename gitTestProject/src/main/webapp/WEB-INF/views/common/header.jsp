@@ -45,13 +45,16 @@ Member loginMember = (Member) session.getAttribute("m");
 </style>
 <header>
 	<div class="header">
+	<div class="header-content-main">
         <div class="header-content-top">
-            <div class="header-logo"><a href="selectAllFripByCategory.do?categoryName=main&newFeed=newFeed""><span class="logo-text">Sprip</span></a></div>
+            <div class="header-logo"><a href="mainPage.do?categoryName=main&newFeed=newFeed"><span class="logo-text">Sprip</span></a></div>
             <div class="header-searchBar">
+                <form action="/searchFrip.do" method="get">
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="봄날의 여행같은 시간을 검색하세요!" aria-label="Recipient's username" aria-describedby="button-addon2">
-                    <button class="btn btn-outline-secondary" type="button" id="button-addon2">입력</button>
+                    <input type="text" class="form-control" name="searchFrip" placeholder="봄날의 여행같은 시간을 검색하세요!" aria-label="Recipient's username" aria-describedby="button-addon2">
+                    <button class="btn btn-outline-secondary" type="submit" id="button-addon2">입력</button>
                 </div>
+                </form>
             </div>
             <div class="header-button">
                 <ul>
@@ -68,7 +71,6 @@ Member loginMember = (Member) session.getAttribute("m");
                 </ul>
                 </div>
             </div>
-        </div>
 	<div class="header-content-bottom">
 		<div class="category-bar">
 			<ul class="category-list">
@@ -127,21 +129,13 @@ Member loginMember = (Member) session.getAttribute("m");
 						<div class="img-text">
 							<span>모임</span>
 						</div></a></li>
-				<li><a href="/selectAllFripByCategory.do?categoryName=국내여행">
-				<img src="/categoryImg/국내여행.png">
-						<div class="img-text">
-							<span>국내여행</span>
-						</div></a></li>
-				<li><a href="/selectAllFripByCategory.do?categoryName=해외여행">
-				<img src="/categoryImg/해외여행.png">
-						<div class="img-text">
-							<span>해외여행</span>
-						</div></a></li>
 			</ul>
 		</div>
 	</div>
 	</div>
+	</div>
 </header>
+	<div class="padding" style="padding-top : 200px;"></div>
 <script>
 	function validateForm() {
 		var input = document.getElementsByName("searchFrip")[0];

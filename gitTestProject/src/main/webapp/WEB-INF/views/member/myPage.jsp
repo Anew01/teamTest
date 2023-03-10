@@ -73,6 +73,7 @@ Member member = (Member) request.getAttribute("m");
         </div>
         <br>
     </div>
+    <div class="heightset" style="height : "></div>
     <script>
             window.kakaoAsyncInit = function () {
                 Kakao.Channel.createChatButton({

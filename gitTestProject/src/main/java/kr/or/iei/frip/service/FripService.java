@@ -176,6 +176,12 @@ public class FripService {
 	public ArrayList<Frip> searchFrip(String searchFrip) {
 		Connection conn = JDBCTemplate.getConnection();
 		ArrayList<Frip> list = dao.searchFrip(conn, searchFrip);
+		for(Frip f : list) {
+			ArrayList<String> fripFiles = dao.selectFripFiles(conn, f.getFripNo());
+			f.setFilePath(fripFiles);
+			ArrayList<FripJoinableDate> joinableDates = dao.selectJoinableDates(conn, f.getFripNo());
+			f.setJoinableDates(joinableDates);
+		}
 		JDBCTemplate.close(conn);
 		return list;
 	}
