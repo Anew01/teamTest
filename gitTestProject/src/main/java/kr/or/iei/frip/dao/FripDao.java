@@ -528,7 +528,11 @@ public class FripDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		ArrayList<Frip> list = new ArrayList<>();
-		String query = "SELECT * FROM FRIP_TBL WHERE FRIP_TITLE LIKE ?";
+		String query = "select * from frip_tbl\r\n"
+				+ "left join frip_category using(frip_no)\r\n"
+				+ "left join feed_tbl using(frip_no)\r\n"
+				+ "left join rating_tbl using(feed_no)\r\n"
+				+ "where frip_title like ?";
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, "%"+searchFrip+"%");
