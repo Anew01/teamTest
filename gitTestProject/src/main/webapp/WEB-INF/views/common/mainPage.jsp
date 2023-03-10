@@ -326,11 +326,12 @@
         <div class="container">
           <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
           <%for(Frip f : list){ %>
-          	<% if(loginMember != null) { %>
-					<form action="/joinFrip.do?fripNo=<%=f.getFripNo()%>&loginMemNo=<%= loginMember.getMemberNo() %>" method="post">          
+   			<form action="/joinFrip.do?fripNo=<%=f.getFripNo()%>" method="post"> 
+   			<% if(loginMember != null) { %>
+					<input type="hidden" name="loginMemNo" value="<%= loginMember.getMemberNo() %>">         
    				<% } else { %>
-   					<form action="/joinFrip.do?fripNo=<%=f.getFripNo()%>&loginMemNo=-1" method="post">  
-   				<% } %>
+   					<input type="hidden" name="loginMemNo" value="-1">         
+   				<% } %> 
             <div class="col">
               <div class="card shadow-sm">
               	<%if(f.getFilePath().size() != 0){ %>
