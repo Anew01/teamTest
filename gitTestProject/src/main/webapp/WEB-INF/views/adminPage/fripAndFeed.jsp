@@ -62,11 +62,11 @@
                                                                     <td>
                                                                         <%=i+fripStart%>
                                                                     </td>
-                                                                    <td>
-                                                                        <%=frip.getFripWriter() %>
-                                                                    </td>
+                                                                    <td><%=frip.getFripWriter() %></td>
                                                                     <td class="frip-no"><%=frip.getFripNo() %></td>
-                                                                    <td><%=frip.getFripTitle() %></td>
+                                                                    <td>
+                                                                        <%=frip.getFripTitle() %>
+                                                                    </td>
                                                                     <td>
                                                                         <%=frip.getFripAddr() %>
                                                                     </td>
@@ -136,7 +136,9 @@
                                                                     <td>
                                                                         <%=feed.getFripTitle() %>
                                                                     </td>
-                                                                    <td><%=feed.getFeedWriter() %></td>
+                                                                    <td>
+                                                                        <%=feed.getFeedWriter() %>
+                                                                    </td>
                                                                     <td>
                                                                         <%=feed.getWriteDate() %>
                                                                     </td>
@@ -156,7 +158,8 @@
                                                                                 class="select-btn checkedWithdrawal checkedfeedDelete">선택피드삭제</button>
                                                                         </th>
                                                                     </tr>
-                                                    </table>
+                                                                    <td class="loginMemNo"><%=loginMember.getMemberNo() %></td>           
+                                                    </table>                                                                                    
                                                     <div id="pageNavi">
                                                         <%=feedPageNavi %>
                                                     </div>
@@ -231,7 +234,6 @@
 
                                                 check.each(function (index, item) {
                                                     const fripNo = $(item).parent().parent().children().eq(3).text();
-
                                                     fripNos.push(fripNo);
                                                 });
 
@@ -261,8 +263,9 @@
 
                                             $(".fripView").on("click", function () {
                                                 const fripNo = $(this).children().eq(3).text();
+                                                const loginMemNo = $(".loginMemNo").text();
 
-                                                location.href = "/joinFrip.do?fripNo=" + fripNo;
+                                                location.href = "/joinFrip.do?fripNo=" + fripNo + "&loginMemNo=" + loginMemNo;
                                             });
 
                                             $(".feedView").on("click", function () {
