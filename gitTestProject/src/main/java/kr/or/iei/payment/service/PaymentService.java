@@ -26,7 +26,12 @@ public class PaymentService {
 		JDBCTemplate.close(conn);
 		return isPayed;
 	}
-	
-	
+
+	public int insertPayment(String date, int price, int memberNo, int fripNo, int attendNo) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = payDao.insertPayment(conn, date, price, memberNo, fripNo, attendNo); 
+		JDBCTemplate.close(conn);
+		return result;
+	}
 
 }

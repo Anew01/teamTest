@@ -55,6 +55,7 @@ public class PaymentServlet extends HttpServlet {
 		//선택한 날짜와 참석자 수를 결제페이지로 그대로 가져간다.
 		int fripNo = Integer.parseInt(request.getParameter("fripNo"));
 		String date = request.getParameter("date");
+		int memberNo = Integer.parseInt(request.getParameter("memberNo"));
 		int attendNumber =Integer.parseInt(request.getParameter("attendNumber"));
 		//3. 비즈니스 로직
 		//query 2: select frip_addr, frip_name, frip_price from frip_tbl where frip_no=?;
@@ -67,6 +68,7 @@ public class PaymentServlet extends HttpServlet {
 		request.setAttribute("date", date);
 		request.setAttribute("attendNumber", attendNumber);
 		request.setAttribute("f", f);
+		request.setAttribute("memberNo", memberNo);
 		view.forward(request, response);
 
 		//response.getWriter().println("<script>alert('결제 성공!'); history.back();</script>");
