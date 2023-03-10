@@ -41,7 +41,6 @@ public class JoinFripServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		int fripNo = Integer.parseInt(request.getParameter("fripNo"));
-		int loginMemNo = Integer.parseInt(request.getParameter("loginMemNo"));
 		FripService fservice = new FripService();
 		Boolean isPayed = false;
 		Frip f = fservice.selectOneFripByNo(fripNo);
@@ -59,10 +58,7 @@ public class JoinFripServlet extends HttpServlet {
 		}
 		
 		ArrayList<ViewFripFeedData> fList = feedService.selectAllMyFripFeed(fripNo);
-		PaymentService pService = new PaymentService();
-		if(loginMemNo != 0 ||loginMemNo != -1 ) {
-			isPayed = pService.checkMyPayment(loginMemNo, f.getFripNo());			
-		}			
+
 
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/frip/checkJoinFrip.jsp");
 		request.setAttribute("f", f);
@@ -71,7 +67,6 @@ public class JoinFripServlet extends HttpServlet {
 		request.setAttribute("fList", fList);
 		request.setAttribute("mList", mList);
 		request.setAttribute("m", m);
-		request.setAttribute("isPayed", isPayed);
 		view.forward(request, response);
 	}
 

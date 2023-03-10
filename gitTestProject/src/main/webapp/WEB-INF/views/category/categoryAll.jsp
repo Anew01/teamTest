@@ -24,11 +24,6 @@
             <div class="img-box">
 		<%for(int j=0; j<1; j++){ %>
    			<%String s = f.getFilePath().get(j); %>
-   				<% if(loginMember != null) { %>
-   					<a href="/joinFrip.do?fripNo=<%=f.getFripNo()%>&loginMemNo=<%= loginMember.getMemberNo() %>"><img src="/upload/photo/<%=s%>"></a>
-   				<% } else { %>
-	                <a href="/joinFrip.do?fripNo=<%=f.getFripNo()%>&loginMemNo=0"><img src="/upload/photo/<%=s%>"></a>
-   				<% } %>
 			<%} %>
             </div>
             <div class="f-title">
