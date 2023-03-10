@@ -93,7 +93,7 @@ Member loginMember = (Member) session.getAttribute("m");
 							<span>피트니스</span>
 						</div>
 				</a></li>
-				<li><a href="/selectAllFripByCategory.do?categoryName=DIY">
+				<li><a href="/selectAllFripByCategory.do?categoryName=공예DIY">
 						<img src="/categoryImg/DIY.png">
 						<div class="img-text">
 							<span>공예DIY</span>
