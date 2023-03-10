@@ -35,9 +35,9 @@
                         </div>
                         <div class="guest-number">
                             <div class="small-title">참여자</div>
-                            <input type="hidden" id="memberNo" value="<%= memberNo%>">
+                            <input type="hidden" id="attendNumber" value="<%= attendNumber%>">
                             <input type="hidden" id="fripNo" value="<%= f.getFripNo() %>">
-                            <input type="hidden" id="attendNumber" value="<%= attendNumber %>">;
+                            <input type="hidden" id="memberNo" value="<%= memberNo%>">
                             <%=attendNumber %>명
                         </div>
                     </div>
@@ -82,15 +82,28 @@
 			
 			IMP.init("imp65187362");
 			
+			IMP.request_pay({
+				pg : "html5_inicis",
+				pay_method : "card",
+				merchant_uid : "상품번호_"+date, //상점에서 관리하는 주문식별번호
+				name : "결제 테스트", //결제이름
+				amount : price, //결제금액
+				buyer_email : "9kooding@gmail.com",
+				buyer_name: "구매자",
+				buyer_tel : "010-9999-9999",
+				buyer_addr: "뉴욕 맨해튼",
+				buyer_postcode : "12345"
+			}, function(rsp){ //결제 결과는 rsp로 응답이 돌아온다.
+				if(rsp.success){
 					$.ajax({
-			            url : "/insertPayment.do",
 			            type : "POST",
+			            url : "insertpayment.do",
 			            data : {
 			               date : date,
 			               price : price,
-			               memberNo : memberNo,
+			               memberNo : payer,
 			               fripNo : fripNo,
-			               attendNumber : attendNumber
+			               memberNo : memberNo
 			            },
 			            dataType : "json",
 			            success : function(data) {
@@ -100,6 +113,10 @@
 			            }
 			         });
 					//결제관련 정보를 DB insert 하는 작업이 필요 
+				}else{
+					alert("결제실패");
+				}
+			});
 		});
 		
 		$(document).ready(function() {
