@@ -164,6 +164,7 @@ Boolean isPayed = (Boolean)request.getAttribute("isPayed");
                <div class="attend-info">
                   <div class="select-box right">
                      <div class="guest-number">인원</div>
+                     <input type="hidden" name="memberNo" value="<%= loginMember.getMemberNo() %>">
                      <select class="attend-number" id="select" name="attendNumber">
                         <option>날짜 설정 후 선택 해주세요</option>
                      </select>

@@ -5,6 +5,7 @@
     	Frip f = (Frip)request.getAttribute("f");
     	String date = (String)request.getAttribute("date");
     	int attendNumber = (int)request.getAttribute("attendNumber");
+    	int memberNo = (int)request.getAttribute("memberNo");
     	String strNewDtFormat = (String)request.getAttribute("strNewDtFormat");
     %>
 <!DOCTYPE html>
@@ -34,6 +35,9 @@
                         </div>
                         <div class="guest-number">
                             <div class="small-title">참여자</div>
+                            <input type="hidden" id="memberNo" value="<%= memberNo%>">
+                            <input type="hidden" id="fripNo" value="<%= f.getFripNo() %>">
+                            <input type="hidden" id="attendNumber" value="<%= attendNumber %>">;
                             <%=attendNumber %>명
                         </div>
                     </div>
@@ -72,28 +76,30 @@
 			const price = $("#pay").text();
 			const d = new Date();
 			const date = d.getFullYear()+""+(d.getMonth()+1)+""+d.getDate()+""+d.getHours()+""+d.getMinutes()+""+d.getSeconds();
+			const attendNumber = $("#attendNumber").val();
+			const memberNo = $("#memberNo").val();
+			const fripNo = $("#fripNo").val();
 			
 			IMP.init("imp65187362");
 			
-			IMP.request_pay({
-				pg : "html5_inicis",
-				pay_method : "card",
-				merchant_uid : "상품번호_"+date, //상점에서 관리하는 주문식별번호
-				name : "결제 테스트", //결제이름
-				amount : price, //결제금액
-				buyer_email : "9kooding@gmail.com",
-				buyer_name: "구매자",
-				buyer_tel : "010-9999-9999",
-				buyer_addr: "뉴욕 맨해튼",
-				buyer_postcode : "12345"
-			}, function(rsp){ //결제 결과는 rsp로 응답이 돌아온다.
-				if(rsp.success){
-					alert("결제성공");
+					$.ajax({
+			            url : "/insertPayment.do",
+			            type : "POST",
+			            data : {
+			               date : date,
+			               price : price,
+			               memberNo : memberNo,
+			               fripNo : fripNo,
+			               attendNumber : attendNumber
+			            },
+			            dataType : "json",
+			            success : function(data) {
+			            	alert("결제성공");
+			            },
+			            error : function() {
+			            }
+			         });
 					//결제관련 정보를 DB insert 하는 작업이 필요 
-				}else{
-					alert("결제실패");
-				}
-			});
 		});
 		
 		$(document).ready(function() {
