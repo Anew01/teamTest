@@ -266,7 +266,6 @@ Boolean isPayed = (Boolean)request.getAttribute("isPayed");
       			<% } %>
       		</div>
       	</div>
-      	<% if(loginMember != null && isPayed && loginMember.getMemberNo() != 0) { %>
       	<div class="modal-footer">
 	      	<div class="img-pre"></div>
       		<form id="insertFeedFrm" method="POST" enctype="multipart/form-data">
@@ -294,7 +293,6 @@ Boolean isPayed = (Boolean)request.getAttribute("isPayed");
 	      		<input type="hidden" id="fripNo" name="fripNo" value="<%= f.getFripNo() %>">
       		</form>
       	</div>
-      	<% } %>
     </div>
   </div>
 </div>
