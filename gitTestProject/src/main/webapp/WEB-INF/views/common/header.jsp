@@ -51,7 +51,7 @@ Member loginMember = (Member) session.getAttribute("m");
             <div class="header-searchBar">
                 <form action="/searchFrip.do" method="get">
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" name="searchFrip" placeholder="봄날의 여행같은 시간을 검색하세요!" aria-label="Recipient's username" aria-describedby="button-addon2">
+                    <input type="text" class="form-control" name="searchFrip" placeholder="스프립 제목으로 검색!" aria-label="Recipient's username" aria-describedby="button-addon2">
                     <button class="btn btn-outline-secondary" type="submit" id="button-addon2">입력</button>
                 </div>
                 </form>
@@ -93,7 +93,7 @@ Member loginMember = (Member) session.getAttribute("m");
 							<span>피트니스</span>
 						</div>
 				</a></li>
-				<li><a href="/selectAllFripByCategory.do?categoryName=DIY">
+				<li><a href="/selectAllFripByCategory.do?categoryName=공예DIY">
 						<img src="/categoryImg/DIY.png">
 						<div class="img-text">
 							<span>공예DIY</span>
