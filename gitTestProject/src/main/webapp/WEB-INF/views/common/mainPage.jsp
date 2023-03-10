@@ -327,7 +327,7 @@
           <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
           <%for(Frip f : list){ %>
    			<form action="/joinFrip.do?fripNo=<%=f.getFripNo()%>" method="post"> 
-   			<% if(loginMember != null) { %>
+   			<% if(loginMember != null  && loginMember.getMemberNo() != 0) { %>
 					<input type="hidden" name="loginMemNo" value="<%= loginMember.getMemberNo() %>">         
    				<% } else { %>
    					<input type="hidden" name="loginMemNo" value="0">         
@@ -397,7 +397,7 @@
           <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
           <%for(Frip nf : nList){ %>
 			<form action="/joinFrip.do?fripNo=<%=nf.getFripNo()%>" method="post"> 
-			<% if(loginMember != null) { %>
+			<% if(loginMember != null  && loginMember.getMemberNo() != 0) { %>
 					<input type="hidden" name="loginMemNo" value="<%= loginMember.getMemberNo() %>">         
    				<% } else { %>
    					<input type="hidden" name="loginMemNo" value="0">         
