@@ -80,7 +80,7 @@
 					    <option selected>카테고리...</option>
 					    <option value="아웃도어">아웃도어</option>
 					    <option value="피트니스">피트니스</option>
-					    <option value="공예DIY ">공예DIY</option>
+					    <option value="공예DIY">공예DIY</option>
 					    <option value="스포츠">스포츠</option>
 					    <option value="요리">요리</option>
 					    <option value="온라인">온라인</option>
