@@ -42,7 +42,6 @@ public class JoinFripServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		int fripNo = Integer.parseInt(request.getParameter("fripNo"));
 		FripService fservice = new FripService();
-		Boolean isPayed = false;
 		Frip f = fservice.selectOneFripByNo(fripNo);
 		FeedService feedService = new FeedService();
 		MemberService mService = new MemberService();
@@ -55,6 +54,8 @@ public class JoinFripServlet extends HttpServlet {
 				String avgRating = fservice.selectRating(f1.getFripNo());
 				f.setAvgRating(avgRating);
 			}	
+		} else {
+			f.setAvgRating("0.0");
 		}
 		
 		ArrayList<ViewFripFeedData> fList = feedService.selectAllMyFripFeed(fripNo);
