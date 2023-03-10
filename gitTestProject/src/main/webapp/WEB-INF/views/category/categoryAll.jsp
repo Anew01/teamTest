@@ -27,7 +27,7 @@
    				<% if(loginMember != null) { %>
    					<a href="/joinFrip.do?fripNo=<%=f.getFripNo()%>&loginMemNo=<%= loginMember.getMemberNo() %>"><img src="/upload/photo/<%=s%>"></a>
    				<% } else { %>
-	                <a href="/joinFrip.do?fripNo=<%=f.getFripNo()%>&loginMemNo=-1"><img src="/upload/photo/<%=s%>"></a>
+	                <a href="/joinFrip.do?fripNo=<%=f.getFripNo()%>&loginMemNo=0"><img src="/upload/photo/<%=s%>"></a>
    				<% } %>
 			<%} %>
             </div>

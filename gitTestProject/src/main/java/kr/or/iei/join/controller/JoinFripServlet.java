@@ -43,6 +43,7 @@ public class JoinFripServlet extends HttpServlet {
 		int fripNo = Integer.parseInt(request.getParameter("fripNo"));
 		int loginMemNo = Integer.parseInt(request.getParameter("loginMemNo"));
 		FripService fservice = new FripService();
+		Boolean isPayed = false;
 		Frip f = fservice.selectOneFripByNo(fripNo);
 		FeedService feedService = new FeedService();
 		MemberService mService = new MemberService();
@@ -58,7 +59,9 @@ public class JoinFripServlet extends HttpServlet {
 		ArrayList<ViewFripFeedData> fList = feedService.selectAllMyFripFeed(fripNo);
 		PaymentService pService = new PaymentService();
 
-		Boolean isPayed = pService.checkMyPayment(loginMemNo, f.getFripNo());
+		if(loginMemNo != 0 ||loginMemNo != -1 ) {
+			isPayed = pService.checkMyPayment(loginMemNo, f.getFripNo());			
+		}
 
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/frip/checkJoinFrip.jsp");
 		request.setAttribute("f", f);
