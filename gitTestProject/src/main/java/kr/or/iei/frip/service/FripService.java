@@ -160,9 +160,8 @@ public class FripService {
 			}
 		} else {
 			JDBCTemplate.rollback(conn);
-		} finally {
-			JDBCTemplate.close(conn);
-		}
+		} 
+		JDBCTemplate.close(conn);
 		return result;
 	}
 
