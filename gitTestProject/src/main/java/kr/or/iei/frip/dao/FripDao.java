@@ -286,18 +286,16 @@ public class FripDao {
 				pstmt = conn.prepareStatement(query);
 				rset = pstmt.executeQuery();
 			}else if("main".equals(fripCategory)) {
-				query = "select \r\n"
-						+ "*\r\n"
-						+ "from (select a.frip_no as ratingNo, decode(AVG(c.RATING), null, 0, ROUND(AVG(c.RATING),1)) as rating\r\n"
+				query = "select rownum, rating, n.* from(select *\r\n"
+						+ "                    from (select a.frip_no as ratingNo, decode(AVG(c.RATING), null, 0, ROUND(AVG(c.RATING),1)) as rating\r\n"
 						+ "from frip_tbl a\r\n"
-						+ "left join feed_tbl b on a.frip_no = b.frip_no\r\n"
-						+ "left join rating_tbl c on b.feed_no = c.feed_no\r\n"
+						+ "join feed_tbl b on a.frip_no = b.frip_no\r\n"
+						+ "join rating_tbl c on b.feed_no = c.feed_no\r\n"
 						+ "group by a.frip_no\r\n"
 						+ ") a\r\n"
 						+ "inner join frip_tbl b on a.ratingNo = b.frip_no\r\n"
 						+ "inner join frip_category c on b.frip_no = c.frip_no\r\n"
-						+ "where rownum < 4\r\n"
-						+ "order by RATING DESC";
+						+ "order by RATING desc)n where rownum < 4";
 				pstmt = conn.prepareStatement(query);
 				rset = pstmt.executeQuery();
 			} else if("newFeed".equals(fripCategory)) {
