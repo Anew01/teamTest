@@ -74,6 +74,7 @@ public class JoinFripService {
 			jf.setUseCnt(j.getUseCnt());
 			JDBCTemplate.close(conn);
 		}
+		JDBCTemplate.close(conn);
 		return list;
 	}
 
