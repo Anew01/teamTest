@@ -73,6 +73,7 @@ public class JoinFripService {
 			jf.setMaxCnt(j.getMaxCnt());
 			jf.setUseCnt(j.getUseCnt());
 		}
+		JDBCTemplate.close(conn);
 		return list;
 	}
 
